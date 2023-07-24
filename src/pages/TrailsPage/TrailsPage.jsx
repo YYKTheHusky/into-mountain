@@ -1,7 +1,8 @@
+import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
 export default function TrailsPage() {
-  return(
+  return (
     <div className="container mx-auto">
-
+      <TrailsSearchBar />
     </div>
   )
 }
