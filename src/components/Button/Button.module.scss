@@ -1,0 +1,54 @@
+// PrimaryButton
+Button {
+  width: 100%;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 12px;
+  font-size: 20px;
+  color: white;
+  padding: 8px 24px;
+  height: 46px;
+  font-family: var(--main-font-family);
+}
+
+.primaryButtonLight,
+.secondaryButtonLight {
+  background-color: var(--primary-color);
+}
+
+.primaryButtonBright,
+.secondaryButtonBright {
+  background-color: var(--blue-40);
+}
+
+.primaryButtonGray,
+.secondaryButtonGray {
+  background-color: var(--dark-50);
+  color: var(--main-text);
+}
+
+//SecondaryButton
+.secondaryButton,
+.secondaryButtonLight,
+.secondaryButtonBright,
+.secondaryButtonGray {
+  padding: 4px 16px;
+  height: 32px;
+  font-size: 14px;
+}
+
+//ovalButton 58px
+.ovalButtonHuge {
+  height: 58px;
+  border-radius: 50px;
+  font-size: 24px;
+  background: #2770ab95;
+}
+
+//ovalButton 38px
+.ovalButtonSmall {
+  height: 38px;
+  font-size: 16px;
+  border-radius: 50px;
+  background: #2770ab;
+}
