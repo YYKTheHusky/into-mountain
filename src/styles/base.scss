@@ -23,18 +23,15 @@
 }
 
 body {
-  --background-color: #ffffff;
-  --main-color: #55b770;
-  --primary-color: #684bf6;
-  --secondary-color: #6c757d;
-  --success-color: #3dd598;
-  --warning: #ffc542;
-  --danger: #fc5a5a;
-  --green-100: #192805;
-  --green-80: #55b770;
-  --green-60: #83e07f;
-  --green-40: #8ef287;
-  --bluepurple-20: #3f1af5;
+  --background-color: #FFFFFF;
+  --main-color: #2770AB;
+  --primary-color: #3FA6CB;
+  --secondary-color: #6C757D;
+  --success-color: #3DD598;
+  --warning: #FFC542;
+  --danger: #FC5A5A;
+  --blue-40: #51D1FF;
+  --blue-20: #A0E6FF;
 
   --main-text: #171725;
 
@@ -89,16 +86,15 @@ h5 {
 }
 
 .mid-container {
-  background-color: #3dd598;
   @media (min-width: 1200px) {
     width: 1140px;
   }
 
-  @media (min-width: 992px) and (max-width: 1199px) {
+  @media (min-width: 767px) and (max-width: 1199px) {
     width: 960px;
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 766px) {
     width: 100%;
     padding: 0 24px;
   }
