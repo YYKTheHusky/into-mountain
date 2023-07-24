@@ -25,17 +25,14 @@
 
 body {
   --background-color: #FFFFFF;
-  --main-color: #55B770;
-  --primary-color: #684BF6;
+  --main-color: #2770AB;
+  --primary-color: #3FA6CB;
   --secondary-color: #6C757D;
   --success-color: #3DD598;
   --warning: #FFC542;
   --danger: #FC5A5A;
-  --green-100: #192805;
-  --green-80: #55B770;
-  --green-60: #83E07F;
-  --green-40: #8EF287;
-  --bluepurple-20: #3F1AF5;
+  --blue-40: #51D1FF;
+  --blue-20: #A0E6FF;
 
   --main-text: #171725;
 
@@ -90,16 +87,15 @@ h5 {
 }
 
 .mid-container {
-  background-color: #3DD598;
   @media (min-width: 1200px) {
     width: 1140px;
   }
 
-  @media (min-width: 992px) and (max-width: 1199px) {
+  @media (min-width: 767px) and (max-width: 1199px) {
     width: 960px;
   }
 
-  @media (max-width: 991px) {
+  @media (max-width: 766px) {
     width: 100%;
     padding: 0 24px;
   }

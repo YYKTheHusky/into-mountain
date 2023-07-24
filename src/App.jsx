@@ -1,17 +1,17 @@
 import "styles/reset.scss"
 import "styles/base.scss";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import MainPage from "pages/MainPage";
-import LoginPage from "pages/LoginPage";
-import TrailsPage from "pages/TrailsPage";
-import SingleTrailPage from "pages/SingleTrailPage";
-import ReviewsPage from "pages/ReviewsPage";
-import SingleReviewPage from "pages/SingleReviewPage";
-import EditReviewPage from "pages/EditReviewPage";
-import UserPage from "pages/UserPage";
-import AdminLoginPage from "pages/AdminLoginPage";
-import AdminMainPage from "pages/AdminMainPage";
-import ErrorPage from "pages/ErrorPage";
+import MainPage from "pages/MainPage/MainPage";
+import LoginPage from "pages/LoginPage/LoginPage";
+import TrailsPage from "pages/TrailsPage/TrailsPage";
+import SingleTrailPage from "pages/SingleTrailPage/SingleTrailPage";
+import ReviewsPage from "pages/ReviewsPage/ReviewsPage";
+import SingleReviewPage from "pages/SingleReviewPage/SingleReviewPage";
+import EditReviewPage from "pages/EditReviewPage/EditReviewPage";
+import UserPage from "pages/UserPage/UserPage";
+import AdminLoginPage from "pages/AdminLoginPage/AdminLoginPage";
+import AdminMainPage from "pages/AdminMainPage/AdminMainPage";
+import ErrorPage from "pages/ErrorPage/ErrorPage";
 
 
 function App() {
