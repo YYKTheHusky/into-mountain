@@ -1,0 +1,46 @@
+// pre
+.b-a {
+  transition: all 0.25s;
+  content: '';
+  position: absolute;
+  left: 0;
+  height: 4px;
+  width: 30px;
+  border-radius: 15px;
+  background-color: var(--dark-90);
+}
+
+.b-a-expanded {
+  transition: all 0.25s;
+  top: -0px;
+}
+
+// Burger
+.burgerContainer {
+  .bar {
+    @extend .b-a;
+    position: fixed;
+    left: 12px;
+    top: 33px;
+    &:before {
+      @extend .b-a;
+      top: -8px;
+    }
+    &:after {
+      @extend .b-a;
+      top: 8px;
+    }
+    &[data-expanded='true'] {
+      background-color: transparent;
+      transition: all 0.25s;
+      &:before {
+        @extend .b-a-expanded;
+        transform: rotate(45deg);
+      }
+      &:after {
+        @extend .b-a-expanded;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
