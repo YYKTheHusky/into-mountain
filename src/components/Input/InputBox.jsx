@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 // scss
 import styles from 'components/Input/InputBox.module.scss'
 
-export default function InputBox({ placeholder, label, type, value }) {
+export default function InputBox({ label, type, value }) {
   const [errorMessage, setErrorMessage] = useState('')
 
   // 檢查password輸入內容是否符合要求
@@ -69,12 +69,10 @@ export default function InputBox({ placeholder, label, type, value }) {
 
   return (
     <div className={styles.inputBoxContainer}>
-      <input
-        className={styles.inputBox}
-        type={type || 'text'}
-        value={value || ''}
-        placeholder={placeholder || ''}
-      />
+      <label className={styles.inputLabel} htmlFor={label}>
+        {label}
+      </label>
+      <input className={styles.inputBox} id={label} type={type || 'text'} value={value || ''} />
       <span className={styles.error}>{errorMessage}</span>
     </div>
   )
