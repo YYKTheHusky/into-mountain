@@ -1,0 +1,48 @@
+// 首頁用search bar
+.searchBar {
+  background-color: white;
+  box-shadow: 0px 16px 24px 0px rgba(60, 79, 107, 0.522);
+  padding: 0 22px;
+  border-radius: 50px;
+  position: relative;
+  width: 550px;
+  height: 52px;
+  .searchInput {
+    height: 40px;
+    margin-top: 2px;
+    border: none;
+    width: 402px;
+    position: absolute;
+    top: 50%;
+    left: 66px;
+    transform: translate(0, -50%);
+    font-size: 18px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .searchIcon {
+    position: absolute;
+    top: 50%;
+    left: 22px;
+    transform: translate(0, -50%);
+  }
+  .searchArrowIcon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    right: 22px;
+    transform: translate(0, -50%);
+  }
+}
+// 首頁用search bar
+@media (max-width: 600px) {
+  .searchBar {
+    width: 330px;
+    .searchInput {
+      width: 182px;
+      font-size: 14px;
+    }
+  }
+}
