@@ -1,0 +1,76 @@
+.navContainer {
+  height: 70px;
+  border-bottom: 2px solid var(--dark-90);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .left {
+    font-weight: 700;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    span:hover {
+      color: var(--main-color);
+    }
+    .burger {
+      display: none;
+    }
+  }
+  .right {
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    .rightListItem {
+      cursor: pointer;
+      &:hover {
+        color: var(--main-color);
+      }
+    }
+    button {
+      cursor: pointer;
+      background-color: var(--main-color);
+      padding: 6px 20px;
+      border-radius: 20px;
+      border: 0;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 26px;
+      color: var(--dark-0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .rightListIcon {
+      cursor: pointer;
+      transition: all 0.5s ease;
+      &:hover {
+        transform: rotate(10deg);
+      }
+    }
+  }
+}
+
+// RWD
+@media (max-width: 991px) {
+  .navContainer {
+    justify-content: space-between;
+    .left {
+      margin-left: 67px;
+      .burger {
+        display: block;
+      }
+    }
+    .right {
+      div,
+      button,
+      .user {
+        display: none;
+      }
+      margin-right: 12px;
+    }
+  }
+}
