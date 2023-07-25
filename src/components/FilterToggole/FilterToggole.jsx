@@ -13,7 +13,7 @@ const list = {
     '步道類型5',
     '試試看'
   ],
-  難易度: ['type1', 'type2', 'type3', 'type4', 'type4', 'type4'],
+  難易度: ['type1', 'type2', 'type3', 'type4', 'type5', 'type6'],
   里程: ['type1', 'type2', 'type3'],
   所需時間: [
     'type1',

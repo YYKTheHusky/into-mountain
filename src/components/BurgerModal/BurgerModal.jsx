@@ -1,6 +1,6 @@
 import styles from './BurgerModal.module.scss'
-import Burgur from 'components/Burger/Burger'
-import BurgerMenu from 'components/BurgerMenu/BurgerMenu'
+import Burgur from 'components/BurgerModal/Burger/Burger'
+import BurgerMenu from 'components/BurgerModal/BurgerMenu/BurgerMenu'
 import { useState } from 'react'
 const { backdrop, modalContainer, menu } = styles
 
