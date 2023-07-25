@@ -1,8 +1,8 @@
-.filterToggole {
+// desktop
+.filterToggoleGroup {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  outline: 1px solid tomato;
 }
 
 .item {
@@ -47,5 +47,18 @@
     }
   }
 }
-
 //
+.filterIcon {
+  display: none;
+  cursor: pointer;
+}
+
+//RWD
+@media (max-width: 766px) {
+  .filterToggoleGroup {
+    display: none;
+  }
+  .filterIcon {
+    display: block;
+  }
+}
