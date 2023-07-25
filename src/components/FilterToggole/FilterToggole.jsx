@@ -29,7 +29,9 @@ const FilterToggoleItem = ({ listName, theList }) => {
       {iconToggle && (
         <div className={itemList}>
           {theList.map((theListItem) => (
-            <div key={theListItem}>{theListItem}</div>
+            <div key={theListItem} onClick={() => console.log(theListItem)}>
+              {theListItem}
+            </div>
           ))}
         </div>
       )}
@@ -41,11 +43,12 @@ const FilterToggole = () => {
   return (
     <div className={filterToggole}>
       {Object.keys(list).map((theListName) => (
-        <FilterToggoleItem
-          key={theListName}
-          listName={theListName}
-          theList={list[theListName]}
-        />
+        <div key={theListName}>
+          <FilterToggoleItem
+            listName={theListName}
+            theList={list[theListName]}
+          />
+        </div>
       ))}
     </div>
   )
