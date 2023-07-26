@@ -1,9 +1,16 @@
 .navContainer {
-  height: 70px;
-  border-bottom: 2px solid var(--dark-90);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+  .innerContainer {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+  }
+  .burger {
+    display: none;
+  }
   .left {
     font-weight: 700;
     font-size: 24px;
@@ -13,9 +20,6 @@
     cursor: pointer;
     span:hover {
       color: var(--main-color);
-    }
-    .burger {
-      display: none;
     }
   }
   .right {
@@ -62,12 +66,14 @@
 // RWD
 @media (max-width: 991px) {
   .navContainer {
-    justify-content: space-between;
-    .left {
-      margin-left: 67px;
-      .burger {
-        display: block;
-      }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 999;
+    .burger {
+      display: block;
     }
     .right {
       div,
@@ -75,7 +81,6 @@
       .user {
         display: none;
       }
-      margin-right: 12px;
     }
   }
 }
