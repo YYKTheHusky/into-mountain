@@ -58,7 +58,7 @@ export default function InputBox({ label, type, value }) {
   useEffect(() => {
     if (label === '密碼' || label === '密碼確認') {
       checkPassword()
-    } else if (label === '名稱') {
+    } else if (label === '暱稱') {
       checkName()
     } else if (label === '自我介紹') {
       checkDescription()
@@ -69,10 +69,18 @@ export default function InputBox({ label, type, value }) {
 
   return (
     <div className={styles.inputBoxContainer}>
-      <label className={styles.inputLabel} htmlFor={label}>
+      <label
+        className={`${styles.inputLabel} ${value !== '' && styles.active}`}
+        htmlFor={label}
+      >
         {label}
       </label>
-      <input className={styles.inputBox} id={label} type={type || 'text'} value={value || ''} />
+      <input
+        className={styles.inputBox}
+        id={label}
+        type={type || 'text'}
+        value={value || ''}
+      />
       <span className={styles.error}>{errorMessage}</span>
     </div>
   )
