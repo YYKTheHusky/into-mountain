@@ -14,29 +14,32 @@ const {
   rightListIcon,
   user,
   burger,
-  postReviewButton
+  postReviewButton,
+  innerContainer
 } = styles
 
 const Nav = () => {
   return (
     <div className={navContainer}>
-      <div className={left}>
+      <div className={innerContainer}>
         <div className={burger}>
           <BurgerModal />
         </div>
-        <IconLogo />
-        <span>登山小站</span>
-      </div>
-      <div className={right}>
-        <div className={rightListItem}>找路徑</div>
-        <div className={rightListItem}>找心得</div>
-        <div className={postReviewButton}>
-          <OvalButtonSmall>
-            <IconAdd /> <span>我的心得</span>
-          </OvalButtonSmall>
+        <div className={left}>
+          <IconLogo />
+          <span>登山小站</span>
         </div>
-        <IconNotification className={rightListIcon} />
-        <IconUser className={`${user} ${rightListIcon}`} />
+        <div className={right}>
+          <div className={rightListItem}>找路徑</div>
+          <div className={rightListItem}>找心得</div>
+          <div className={postReviewButton}>
+            <OvalButtonSmall>
+              <IconAdd /> <span>我的心得</span>
+            </OvalButtonSmall>
+          </div>
+          <IconNotification className={rightListIcon} />
+          <IconUser className={`${user} ${rightListIcon}`} />
+        </div>
       </div>
     </div>
   )

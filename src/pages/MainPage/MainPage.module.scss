@@ -1,7 +1,11 @@
 .navbar {
-  width: 100%;
+  width: 100vw;
   height: 70px;
-  background-color: aquamarine;
+}
+.emptyNav {
+  position: absolute;
+  width: 100vw;
+  height: 70px;
 }
 
 //首頁圖片
