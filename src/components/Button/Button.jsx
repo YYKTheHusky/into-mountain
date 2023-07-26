@@ -48,6 +48,18 @@ export function PrimaryButtonGray({ onClick, children }) {
   )
 }
 
+// 48px color D5D5DC
+export function PrimaryButtonWhite({ onClick, children }) {
+  return (
+    <button
+      className={`cursor-point ${styles.primaryButtonWhite}`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  )
+}
+
 // 32px color 2770AB
 export function SecondaryButton({ onClick, children }) {
   return (
