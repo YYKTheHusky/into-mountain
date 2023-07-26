@@ -1,9 +1,8 @@
 const MyCollection = () => {
   return (
     <div>
-      <div></div>
+      <div>MyCollection</div>
     </div>
   )
 }
-
 export default MyCollection
