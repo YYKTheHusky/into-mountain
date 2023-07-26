@@ -42,6 +42,11 @@
   transform: translate(-50%, -50%);
 }
 
+// 推薦路線
+.trailsContainer {
+  margin-top: 80px;
+}
+
 @media (max-width: 600px) {
   .photoContainer {
     .sloganContainer {
@@ -50,6 +55,19 @@
     .slogan {
       font-size: 54px;
       line-height: 74px;
+    }
+  }
+}
+
+// 手機橫向
+@media (orientation: landscape) and (max-height: 500px) {
+  .photoContainer {
+    .sloganContainer {
+      top: 50%;
+    }
+    .slogan {
+      font-size: 42px;
+      line-height: 58px;
     }
   }
 }

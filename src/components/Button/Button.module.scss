@@ -59,3 +59,14 @@
   border-radius: 50px;
   background: #2770ab;
 }
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .ovalButtonHuge {
+    height: 38px;
+    border-radius: 50px;
+    font-size: 16px;
+    background: #2770abd1;
+    border: 2px solid white;
+    padding: 0 24px;
+  }
+}

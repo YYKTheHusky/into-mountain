@@ -3,7 +3,10 @@ import styles from 'components/Button/Button.module.scss'
 // 48px color 2770AB
 export function PrimaryButton({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.primaryButton}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.primaryButton}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -12,7 +15,10 @@ export function PrimaryButton({ onClick, children }) {
 // 48px color 3FA6CB
 export function PrimaryButtonLight({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.primaryButtonLight}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.primaryButtonLight}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -21,7 +27,10 @@ export function PrimaryButtonLight({ onClick, children }) {
 // 48px color 51D1FF
 export function PrimaryButtonBright({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.primaryButtonBright}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.primaryButtonBright}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -30,7 +39,10 @@ export function PrimaryButtonBright({ onClick, children }) {
 // 48px color D5D5DC
 export function PrimaryButtonGray({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.primaryButtonGray}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.primaryButtonGray}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -39,7 +51,10 @@ export function PrimaryButtonGray({ onClick, children }) {
 // 32px color 2770AB
 export function SecondaryButton({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.secondaryButton}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.secondaryButton}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -48,7 +63,10 @@ export function SecondaryButton({ onClick, children }) {
 // 32px color 3FA6CB
 export function SecondaryButtonLight({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.secondaryButtonLight}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.secondaryButtonLight}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -57,7 +75,10 @@ export function SecondaryButtonLight({ onClick, children }) {
 // 32px color 51D1FF
 export function SecondaryButtonBright({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.secondaryButtonBright}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.secondaryButtonBright}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -66,16 +87,22 @@ export function SecondaryButtonBright({ onClick, children }) {
 // 32px color D5D5DC
 export function SecondaryButtonGray({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.secondaryButtonGray}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.secondaryButtonGray}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
 }
 
-// 58px oval 首頁用的
+// 58px oval 首頁用的大
 export function OvalButtonHuge({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.ovalButtonHuge}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.ovalButtonHuge}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
@@ -84,7 +111,10 @@ export function OvalButtonHuge({ onClick, children }) {
 // 38px oval Navbar用的
 export function OvalButtonSmall({ onClick, children }) {
   return (
-    <button className={`cursor-point ${styles.ovalButtonSmall}`} onClick={onClick}>
+    <button
+      className={`cursor-point ${styles.ovalButtonSmall}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   )
