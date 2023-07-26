@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './BurgerMenu.module.scss'
 import { ReactComponent as IconChevronRight } from 'assets/icons/icon-chevron-right.svg'
+import { OvalButtonSmall } from 'components/Button/Button'
 const {
   menuContainer,
   menuListItem,
@@ -8,7 +9,8 @@ const {
   account,
   accountTitle,
   chevron,
-  accountList
+  accountList,
+  postReviewButton
 } = styles
 
 const BurgerMenu = () => {
@@ -38,7 +40,9 @@ const BurgerMenu = () => {
           </div>
         </div>
         <div className={menuListItem}>通知</div>
-        <button>+我的心得</button>
+        <div className={postReviewButton}>
+          <OvalButtonSmall>+我的心得</OvalButtonSmall>
+        </div>
         <span></span>
       </div>
       <div className={login}>登入</div>
