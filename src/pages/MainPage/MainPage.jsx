@@ -15,6 +15,7 @@ export default function MainPage() {
       <div className={styles.navbar}>
         <Nav />
       </div>
+      <div className={styles.emptyNav}></div>
       <div className={styles.photoContainer}>
         <img
           className={styles.mainPagePhoto}
