@@ -1,5 +1,5 @@
 // PrimaryButton
-Button {
+.buttonStyle {
   width: 100%;
   background-color: var(--main-color);
   border: none;
@@ -13,16 +13,19 @@ Button {
 
 .primaryButtonLight,
 .secondaryButtonLight {
+  @extend .buttonStyle;
   background-color: var(--primary-color);
 }
 
 .primaryButtonBright,
 .secondaryButtonBright {
+  @extend .buttonStyle;
   background-color: var(--blue-40);
 }
 
 .primaryButtonGray,
 .secondaryButtonGray {
+  @extend .buttonStyle;
   background-color: var(--dark-50);
   color: var(--main-text);
 }
@@ -32,6 +35,7 @@ Button {
 .secondaryButtonLight,
 .secondaryButtonBright,
 .secondaryButtonGray {
+  @extend .buttonStyle;
   padding: 4px 16px;
   height: 32px;
   font-size: 14px;
@@ -39,6 +43,7 @@ Button {
 
 //ovalButton 58px
 .ovalButtonHuge {
+  @extend .buttonStyle;
   height: 58px;
   border-radius: 50px;
   font-size: 24px;
@@ -48,6 +53,7 @@ Button {
 
 //ovalButton 38px
 .ovalButtonSmall {
+  @extend .buttonStyle;
   height: 38px;
   font-size: 16px;
   border-radius: 50px;
