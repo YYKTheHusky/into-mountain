@@ -1,4 +1,5 @@
 import styles from './InfoCard.module.scss'
+import { ReactComponent as IconGear } from 'assets/icons/icon-gear.svg'
 const {
   infoCardContainer,
   card,
@@ -9,7 +10,8 @@ const {
   infoSet,
   countTitle,
   countTitle2,
-  information
+  information,
+  infoSetIcon
 } = styles
 
 const InfoCard = ({ data, onAcitveContent }) => {
@@ -46,6 +48,7 @@ const InfoCard = ({ data, onAcitveContent }) => {
             className={infoSet}
             onClick={() => onAcitveContent('infoSetting')}
           >
+            <IconGear className={infoSetIcon} />
             編輯個人資料
           </div>
         </div>

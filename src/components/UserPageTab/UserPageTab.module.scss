@@ -5,20 +5,28 @@
     background-color: var(--dark-0);
     margin: 0 auto;
     border-radius: 3px;
-    border: 1px solid var(--dark-50);
     font-size: 20px;
     font-weight: 500;
     div {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       cursor: pointer;
       &:hover {
         opacity: 0.7;
       }
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .tabType2 {
     display: none;
   }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 @media (max-width: 991px) {
@@ -35,7 +43,7 @@
       .tabType2Selection {
         cursor: pointer;
         height: 100%;
-        padding: 10px 30px 5px 30px;
+        padding: 10px 20px 5px 20px;
         width: 40%;
         border-bottom: 3px solid var(--dark-50);
         &:hover {
@@ -46,9 +54,17 @@
         background-color: var(--dark-0);
         color: var(--main-color);
         border-color: var(--main-color);
+        .icon {
+          fill: var(--main-color);
+        }
       }
     }
     margin-bottom: 10px;
+  }
+  .icon {
+    width: 11px;
+    height: 11px;
+    margin-right: 0px;
   }
 }
 
