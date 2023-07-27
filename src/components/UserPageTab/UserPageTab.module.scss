@@ -29,7 +29,6 @@
     .tabType2 {
       padding-top: 10px;
       text-align: center;
-      // margin-left: 20px;
       display: flex;
       font-size: 18px;
       font-weight: 500;
@@ -50,5 +49,16 @@
       }
     }
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 350px) {
+  .userPageTabContainer {
+    .tabType2 {
+      .tabType2Selection {
+        width: 40%;
+        font-size: 12px;
+      }
+    }
   }
 }

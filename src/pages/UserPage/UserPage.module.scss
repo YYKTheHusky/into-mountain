@@ -18,6 +18,7 @@
   }
   .right {
     flex: 1;
+    margin: 20px;
   }
 }
 @media (max-width: 991px) {
@@ -43,6 +44,15 @@
         position: fixed;
         top: 0;
         left: 0;
+      }
+    }
+  }
+}
+@media (max-width: 350px) {
+  .contentContainer {
+    .left {
+      .tab {
+        border-bottom: 0;
       }
     }
   }
