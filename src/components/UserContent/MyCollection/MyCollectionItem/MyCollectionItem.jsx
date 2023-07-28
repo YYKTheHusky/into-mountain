@@ -1,32 +1,62 @@
 import styles from './MyCollectionItem.module.scss'
 const {
-  type1Item,
-  type1ItemLeft,
-  type1ItemRight,
+  itemContainer,
+  itemLeft,
+  itemRight,
   itemRightTitle,
-  itemRightSideTag
+  itemRightSideTag1,
+  itemRightSideTag2,
+  tagLeft,
+  tag2Avatar,
+  tag2Time
 } = styles
 
-const MyCollectionItem = ({ tabStep, trailCollectionData }) => {
-  if (tabStep === 'trailCollection') {
-    return (
-      <div className={type1Item}>
-        <div className={type1ItemLeft}>
-          <img src={trailCollectionData.image} alt="" />
-        </div>
-        <div className={type1ItemRight}>
-          <div className={itemRightTitle}>{trailCollectionData.title}</div>
-          <p>{trailCollectionData.introduction}</p>
-          <div className={itemRightSideTag}>
-            <span>{trailCollectionData.location}</span>
-            <span>難度 {trailCollectionData.difficulty}</span>
-            <span>{trailCollectionData.distance}</span>
-            <span>所需時間{trailCollectionData.duration}</span>
-          </div>
-        </div>
+const ItemRightSideTag1 = ({ collectionData }) => {
+  return (
+    <>
+      <p>{collectionData.introduction}</p>
+      <div className={itemRightSideTag1}>
+        <span>{collectionData.location}</span>
+        <span>難度 {collectionData.difficulty}</span>
+        <span>{collectionData.distance}</span>
+        <span>所需時間{collectionData.duration}</span>
       </div>
-    )
-  }
+    </>
+  )
+}
+const ItemRightSideTag2 = ({ collectionData }) => {
+  return (
+    <>
+      <p>{collectionData.description}</p>
+      <div className={itemRightSideTag2}>
+        <div className={tagLeft}>
+          <div className={tag2Avatar}>
+            <img src={collectionData.userAvatar} alt="" />
+          </div>
+          <span>{collectionData.userName}</span>
+        </div>
+        <div className={tag2Time}>發表於：{collectionData.createdAt}</div>
+      </div>
+    </>
+  )
+}
+const MyCollectionItem = ({ tabStep, collectionData }) => {
+  console.log(collectionData.image)
+  return (
+    <div className={itemContainer}>
+      <div className={itemLeft}>
+        <img src={collectionData.image} alt="" />
+      </div>
+      <div className={itemRight}>
+        <div className={itemRightTitle}>{collectionData.title}</div>
+        {tabStep === 'trailCollection' ? (
+          <ItemRightSideTag1 collectionData={collectionData} />
+        ) : (
+          <ItemRightSideTag2 collectionData={collectionData} />
+        )}
+      </div>
+    </div>
+  )
 }
 
 export default MyCollectionItem
