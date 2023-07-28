@@ -1,0 +1,13 @@
+.myFollowerContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-left: 5%;
+  gap: 30px;
+}
+@media (max-width: 768px) {
+  .myFollowerContainer {
+    justify-content: center;
+    gap: 5px;
+  }
+}

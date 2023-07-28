@@ -1,0 +1,47 @@
+.rightSideContainer {
+  width: 100%;
+  height: 1000px;
+  background-color: var(--dark-0);
+  box-shadow:
+    0px 8px 16px 0px rgba(60, 79, 107, 0.1),
+    0px 2px 4px 0px rgba(60, 79, 107, 0.1),
+    0px -2px 12px 0px rgba(60, 79, 107, 0.1);
+  .listTitle {
+    font-size: 30px;
+    font-weight: 500;
+    padding: 15px;
+  }
+  .listContent {
+    height: 92%;
+    overflow-y: scroll;
+    padding-left: 16px;
+    padding-right: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary-color) #f0f0f0;
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--secondary-color);
+      border-radius: 10px;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #f0f0f0;
+      border-radius: 10px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .rightSideContainer {
+    background-color: initial;
+    box-shadow: initial;
+    .listContent {
+      padding: 5px;
+      overflow-y: initial;
+    }
+  }
+}

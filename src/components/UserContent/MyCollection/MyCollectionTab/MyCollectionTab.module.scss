@@ -1,0 +1,22 @@
+.myCollectionTab {
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
+  .tabItem {
+    cursor: pointer;
+    border-bottom: 3px solid var(--dark-50);
+    font-size: 23px;
+    font-weight: 500;
+    color: var(--dark-90);
+    width: 20%;
+    text-align: center;
+    padding-bottom: 5px;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  .active {
+    color: var(--main-color);
+    border-color: var(--main-color);
+  }
+}

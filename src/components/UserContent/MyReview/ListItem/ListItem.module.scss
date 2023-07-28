@@ -1,0 +1,79 @@
+.listItem {
+  margin-top: 20px;
+  display: flex;
+  padding: 15px;
+  font-size: 16px;
+  max-height: 230px;
+  line-height: 24px;
+  background-color: var(--dark-0);
+  box-shadow:
+    0px 8px 16px 0px rgba(60, 79, 107, 0.1),
+    0px 2px 4px 0px rgba(60, 79, 107, 0.1),
+    0px -2px 12px 0px rgba(60, 79, 107, 0.1);
+  border-radius: 10px;
+  .itemLeft {
+    flex: 0.3;
+    height: 110px;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    img {
+      background-position: center center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .itemRight {
+    flex: 1;
+    font-size: 0.8em;
+    .itemRightTitle {
+      font-size: 1.2em;
+      display: flex;
+      justify-content: space-between;
+      .titleButton1,
+      .titleButton2 {
+        border-radius: 5px;
+        border: 0;
+        color: var(--dark-0);
+        font-size: 10px;
+        line-height: 15px;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+      .titleButton1 {
+        background: #6a9e20;
+      }
+      .titleButton2 {
+        margin-left: 5px;
+        background: #ed4960;
+      }
+    }
+    .itemRightTime {
+      font-size: 0.8em;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .listItem {
+    padding-bottom: 5px;
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 350px;
+    .itemLeft {
+      width: 100%;
+    }
+    .itemRight {
+      flex: 1;
+      margin-top: 10px;
+      p {
+        margin-top: 10px;
+        font-size: 0.7em;
+        line-height: 18px;
+      }
+    }
+  }
+}

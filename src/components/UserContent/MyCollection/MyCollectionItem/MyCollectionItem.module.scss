@@ -1,0 +1,119 @@
+// pre
+.itemLeftSide {
+  flex: 0.3;
+  height: 110px;
+  overflow: hidden;
+  margin-top: 15px;
+  margin-right: 15px;
+  border-radius: 10px;
+  img {
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.itemRightSide {
+  flex: 1;
+  font-size: 0.8em;
+}
+
+//
+.itemContainer {
+  margin-top: 20px;
+  display: flex;
+  padding: 15px;
+  font-size: 16px;
+  max-height: 230px;
+  line-height: 24px;
+  background-color: var(--dark-0);
+  box-shadow:
+    0px 8px 16px 0px rgba(60, 79, 107, 0.1),
+    0px 2px 4px 0px rgba(60, 79, 107, 0.1),
+    0px -2px 12px 0px rgba(60, 79, 107, 0.1);
+  border-radius: 10px;
+  .itemLeft {
+    @extend .itemLeftSide;
+  }
+  .itemRight {
+    @extend .itemRightSide;
+    .itemRightTitle {
+      font-size: 1.2em;
+    }
+    p {
+      min-height: 90px;
+    }
+    .itemRightSideTag1 {
+      span {
+        opacity: 0.7;
+        display: inline-block;
+        padding: 0px 10px;
+        line-height: 18px;
+        margin-left: 10px;
+        background-color: var(--dark-40);
+        border-radius: 20px;
+      }
+    }
+    .itemRightSideTag2 {
+      display: flex;
+      justify-content: space-between;
+      .tagLeft {
+        display: flex;
+        align-items: center;
+        .tag2Avatar {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 5px;
+          img {
+            background-position: center center;
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+      .tag2Time {
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .itemLeftSide {
+    flex: 1;
+    height: 500px;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    img {
+      background-position: center center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .itemContainer {
+    flex-direction: column;
+    max-height: 430px;
+    .itemLeft {
+    }
+    .itemRight {
+      .itemRightSideTag1 {
+      }
+      .itemRightSideTag2 {
+        margin-top: 30px;
+        .tagLeft {
+          display: flex;
+          align-items: center;
+          .tag2Avatar {
+            img {
+            }
+          }
+        }
+        .tag2Time {
+        }
+      }
+    }
+  }
+}

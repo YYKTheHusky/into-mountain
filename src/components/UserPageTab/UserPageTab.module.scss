@@ -1,0 +1,80 @@
+.userPageTabContainer {
+  width: 100%;
+  .tabType1 {
+    width: 250px;
+    background-color: var(--dark-0);
+    margin: 0 auto;
+    border-radius: 3px;
+    font-size: 20px;
+    font-weight: 500;
+    div {
+      margin-bottom: 20px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .tabType2 {
+    display: none;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+@media (max-width: 991px) {
+  .userPageTabContainer {
+    .tabType1 {
+      display: none;
+    }
+    .tabType2 {
+      padding-top: 10px;
+      text-align: center;
+      display: flex;
+      font-size: 18px;
+      font-weight: 500;
+      .tabType2Selection {
+        cursor: pointer;
+        height: 100%;
+        padding: 10px 20px 5px 20px;
+        width: 40%;
+        border-bottom: 3px solid var(--dark-50);
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+      .active {
+        background-color: var(--dark-0);
+        color: var(--main-color);
+        border-color: var(--main-color);
+        .icon {
+          fill: var(--main-color);
+        }
+      }
+    }
+    margin-bottom: 10px;
+  }
+  .icon {
+    width: 11px;
+    height: 11px;
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 350px) {
+  .userPageTabContainer {
+    .tabType2 {
+      .tabType2Selection {
+        width: 40%;
+        font-size: 12px;
+      }
+    }
+  }
+}
