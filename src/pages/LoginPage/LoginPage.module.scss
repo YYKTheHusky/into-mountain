@@ -1,0 +1,26 @@
+.navbar {
+  width: 100vw;
+  height: 70px;
+}
+.emptyNav {
+  position: absolute;
+  width: 100vw;
+  height: 70px;
+}
+.outerContainer {
+  position: relative;
+  width: 100%;
+  .photo {
+    width: 100vw;
+    height: 763px;
+    object-fit: cover;
+    margin-left: calc(50% - 50vw);
+  }
+  .modalContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    top: 60px;
+  }
+}

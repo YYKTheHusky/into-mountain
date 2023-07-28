@@ -1,0 +1,31 @@
+.modalContainer {
+  height: 650px;
+  width: 375px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  padding: 32px;
+  .inputGroup {
+    margin-top: 36px;
+  }
+  .text {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    .links {
+      margin-left: 18px;
+      color: var(--main-color);
+    }
+  }
+  .buttonContainer {
+    position: relative;
+    margin: 18px 0;
+    .logo {
+      position: absolute;
+      width: 28px;
+      margin: 0 12px;
+      top: 10px;
+      left: 0;
+    }
+  }
+}
