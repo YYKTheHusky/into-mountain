@@ -14,29 +14,6 @@
   }
   .inputBox {
     height: 40px;
-    background: #ffffff;
-    border-radius: 5px;
-    border: none;
-    outline: 1px solid #92929d;
-    padding-left: 10px;
-
-    &::placeholder {
-      color: var(--dark-60);
-      font-family: var(--main-font-family);
-    }
-
-    &:hover {
-      outline: 1px solid var(--main-color);
-    }
-    &:focus {
-      outline: 2px solid var(--main-color);
-    }
-  }
-  input.danger {
-    outline: 1px solid var(--danger);
-    &:focus {
-      outline: 2px solid var(--danger);
-    }
   }
 }
 
