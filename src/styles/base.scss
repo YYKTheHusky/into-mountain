@@ -122,3 +122,35 @@ h5 {
   font-size: var(--small-font-size);
   font-weight: 500;
 }
+
+// 定義網站input/text area樣式
+input,
+textarea {
+  background: #ffffff;
+  border-radius: 5px;
+  border: none;
+  outline: 1px solid #92929d;
+  padding-left: 10px;
+  &::placeholder {
+    color: var(--dark-60);
+    font-family: var(--main-font-family);
+  }
+
+  &:hover {
+    outline: 1px solid var(--main-color);
+  }
+  &:focus {
+    outline: 2px solid var(--main-color);
+  }
+  &.danger {
+    outline: 1px solid var(--danger);
+    &:focus {
+      outline: 2px solid var(--danger);
+    }
+  }
+}
+textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+}
