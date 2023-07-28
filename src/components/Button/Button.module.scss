@@ -1,5 +1,6 @@
 // PrimaryButton
-.buttonStyle {
+.buttonStyle,
+.primaryButton {
   width: 100%;
   background-color: var(--main-color);
   border: none;
@@ -9,18 +10,38 @@
   padding: 8px 24px;
   height: 46px;
   font-family: var(--main-font-family);
+  &:hover {
+    background-color: #2d7ec1;
+  }
+}
+.primaryButtonWhite {
+  @extend .buttonStyle;
+  background-color: white;
+  color: var(--main-text);
+  border: 1px solid var(--primary-color);
+  font-size: 16px;
+  &:hover {
+    background-color: white;
+    border: 1px solid var(--main-color);
+  }
 }
 
 .primaryButtonLight,
 .secondaryButtonLight {
   @extend .buttonStyle;
   background-color: var(--primary-color);
+  &:hover {
+    background-color: #44b2da;
+  }
 }
 
 .primaryButtonBright,
 .secondaryButtonBright {
   @extend .buttonStyle;
   background-color: var(--blue-40);
+  &:hover {
+    background-color: #6bd7ff;
+  }
 }
 
 .primaryButtonGray,
@@ -28,6 +49,9 @@
   @extend .buttonStyle;
   background-color: var(--dark-50);
   color: var(--main-text);
+  &:hover {
+    background-color: #e2e2e7;
+  }
 }
 
 //SecondaryButton
@@ -49,6 +73,9 @@
   font-size: 24px;
   background: #2770abd1;
   border: 3px solid white;
+  &:hover {
+    background-color: #2770ab;
+  }
 }
 
 //ovalButton 38px
@@ -58,4 +85,16 @@
   font-size: 16px;
   border-radius: 50px;
   background: #2770ab;
+  &:hover {
+    background-color: #398acd;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .ovalButtonHuge {
+    height: 38px;
+    font-size: 16px;
+    border: 2px solid white;
+    padding: 0 24px;
+  }
 }

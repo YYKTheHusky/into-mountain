@@ -1,0 +1,12 @@
+.modalContainer {
+  height: 350px;
+  width: 375px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  padding: 32px;
+  .inputGroup {
+    margin-top: 36px;
+  }
+}

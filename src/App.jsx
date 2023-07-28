@@ -1,5 +1,6 @@
 import 'styles/reset.scss'
 import 'styles/base.scss'
+import 'leaflet/dist/leaflet.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import MainPage from 'pages/MainPage/MainPage'
@@ -23,7 +24,8 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="regist" element={<LoginPage />} />
           <Route path="trail" element={<TrailsPage />} />
-          <Route path="trail/:trailID" element={<SingleTrailPage />} />
+          <Route path="trail/:trailID/detail" element={<SingleTrailPage />} />
+          <Route path="trail/:trailID/gpx" element={<SingleTrailPage />} />
           <Route path="review" element={<ReviewsPage />} />
           <Route path="review/:reviewID" element={<SingleReviewPage />} />
           <Route path="review/:reviewID/edit" element={<EditReviewPage />} />
