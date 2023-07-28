@@ -1,0 +1,52 @@
+.tableContainer {
+  display: flex;
+  width: 100%;
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  th {
+    width: 25%;
+    background-color: var(--dark-30);
+    padding: 16px;
+    border: 1px solid var(--dark-50);
+  }
+  td {
+    padding: 16px;
+    border: 1px solid var(--dark-50);
+  }
+  .tableTwo th {
+    border-left: none;
+  }
+}
+
+.mapContainer {
+  width: 100%;
+  overflow: hidden;
+}
+.buttonContainer {
+  width: 90px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 991px) {
+  .tableContainer {
+    flex-direction: column;
+    .tableTwo th {
+      border-left: 1px solid var(--dark-50);
+      border-top: none;
+    }
+    .tableTwo td {
+      border-top: none;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .tableContainer {
+    th {
+      width: 98px;
+      padding: 16px 8px;
+    }
+  }
+}
