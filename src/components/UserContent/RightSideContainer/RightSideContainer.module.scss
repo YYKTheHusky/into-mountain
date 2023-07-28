@@ -12,7 +12,6 @@
     padding: 15px;
   }
   .listContent {
-    // outline: 10px solid tomato;
     height: 92%;
     overflow-y: scroll;
     padding-left: 16px;
@@ -36,8 +35,13 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 991px) {
   .rightSideContainer {
-    height: initial;
+    background-color: initial;
+    box-shadow: initial;
+    .listContent {
+      padding: 5px;
+      overflow-y: initial;
+    }
   }
 }

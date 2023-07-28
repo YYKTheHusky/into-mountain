@@ -27,8 +27,7 @@
   }
   .contentContainer {
     flex-direction: column;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0;
     .left {
       flex: 1;
       display: flex;
@@ -45,8 +44,12 @@
         left: 0;
       }
     }
+    .right {
+      margin: 5px;
+    }
   }
 }
+
 @media (max-width: 350px) {
   .contentContainer {
     .left {
