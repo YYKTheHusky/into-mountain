@@ -1,8 +1,6 @@
 // modal本體
 .modalBody {
-  position: fixed;
-  top: 56px;
-  left: calc(50% - 195px);
+  margin-top: 56px;
   display: flex;
   flex-direction: column;
   width: 390px;
