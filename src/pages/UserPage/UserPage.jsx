@@ -21,10 +21,12 @@ const theUserData = {
   updatedAt: '2023-07-26',
   isFollow: false
 }
-const preScroll = window.scrollY
 
 export default function UserPage() {
-  const [currentScroll, setCurrentScroll] = useState(0)
+  const [currentScroll, setCurrentScroll] = useState({
+    currentValue: window.scrollY,
+    upOrDown: true
+  })
   const [acitveContent, setAcitveContent] = useState('review')
   const handleAcitveContent = (type) => {
     setAcitveContent(type)
@@ -32,7 +34,11 @@ export default function UserPage() {
 
   useEffect(() => {
     function handleScroll() {
-      setCurrentScroll(window.scrollY)
+      setCurrentScroll((pre) => ({
+        currentValue: window.scrollY,
+        upOrDown: pre.currentValue > window.scrollY
+      }))
+      console.log(currentScroll)
     }
     window.addEventListener('scroll', handleScroll)
     return () => {
@@ -40,19 +46,18 @@ export default function UserPage() {
     }
   }, [currentScroll])
 
-  const test = currentScroll === preScroll
   return (
     <div className="container mx-auto">
-      {currentScroll === preScroll && <Nav />}
+      {currentScroll.upOrDown && <Nav />}
       <div className={contentContainer}>
-        <div className={left} data-scroll={test}>
+        <div className={left} data-scroll={currentScroll.upOrDown}>
           <InfoCard
             className={info}
             data={theUserData}
             acitveContent={acitveContent}
             onAcitveContent={handleAcitveContent}
           />
-          <div className={tab} data-scroll={test}>
+          <div className={tab} data-scroll={currentScroll.upOrDown}>
             <UserPageTab
               acitveContent={acitveContent}
               onAcitveContent={handleAcitveContent}
