@@ -1,22 +1,19 @@
 .adminNavContainer {
-  height: 100vh;
+  height: 100%;
   background-color: var(--dark-20);
   box-shadow:
-    0px 2px 2px 0px rgba(60, 79, 107, 0.1),
-    0px 3px 1px -2px rgba(60, 79, 107, 0.05),
-    0px 1px 5px 0px rgba(60, 79, 107, 0.15);
+    0px -1px 2px 0px rgba(60, 79, 107, 0.1),
+    0px -1px 1px -2px rgba(60, 79, 107, 0.05),
+    0px -5px 5px 0px rgba(60, 79, 107, 0.15);
   border-radius: 0px 5px;
   font-weight: bold;
   color: var(--dark-80);
-  // text-shadow: 2px 2px 2px #fff;
-  display: inline-block;
   min-width: 50px;
   .headerInfo {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    // align-items: center;
-    height: 20%;
+    height: 200px;
     .avatar {
       height: 50px;
       width: 50px;
@@ -32,16 +29,15 @@
   }
   .content {
     width: 100%;
-    height: 60%;
+    height: 600px;
     padding-top: 10px;
     background-color: var(--dark-30);
     box-shadow:
       inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55),
-      inset 0px -5px 5px -4px rgba(50, 50, 50, 0.55);
+      inset 0px -5px 5px 0.5px rgba(50, 50, 50, 0.55);
   }
   .footer {
-    height: 150px;
-    // border-radius: 5px 5px 0 0;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,6 +89,23 @@
     color: white;
     .icon {
       fill: white;
+    }
+  }
+}
+
+//
+@media (max-width: 768px) {
+  .adminNavContainer {
+    .footer {
+      display: none;
+    }
+  }
+  .listItem {
+    .listItemLabel {
+      display: none;
+    }
+    .expand {
+      display: none;
     }
   }
 }
