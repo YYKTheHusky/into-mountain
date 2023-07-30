@@ -12,6 +12,7 @@ import reportIcon from 'assets/icons/report-icon.svg'
 import Nav from 'components/Nav/Nav'
 import Footer from 'components/Footer/Footer'
 import { SecondaryButton } from 'components/Button/Button'
+import { ColorTag } from 'components/Tag/Tag'
 
 export default function SingleReviewPage() {
   return (
@@ -19,7 +20,6 @@ export default function SingleReviewPage() {
       <div className={styles.navbar}>
         <Nav />
       </div>
-      <div className={styles.emptyNav} />
       <div className={`mx-auto ${styles.container}`}>
         <section className={styles.reviewInfo}>
           {/* 標題 */}
@@ -29,18 +29,25 @@ export default function SingleReviewPage() {
           {/* 作者資訊 */}
           <div className={styles.authorAndButton}>
             <div className={styles.author}>
-              <div>
-                <span>Saiyan Broly</span>
-                <span>2023-07-30 發表</span>
-                <span>22 個讚</span>
-              </div>
-              <div className={styles.buttonContainer}>
-                <SecondaryButton>關注作者</SecondaryButton>
+              <div className={styles.authorInfo}>
+                <div className={styles.nameAndFollow}>
+                  <span className={`cursor-point ${styles.authorName}`}>
+                    Saiyan
+                  </span>
+                  <div className={styles.buttonContainer}>
+                    <SecondaryButton>關注作者</SecondaryButton>
+                  </div>
+                </div>
+                <div className={styles.otherInfo}>
+                  <span>2023-07-30 發表</span>
+                  <span>22 個讚</span>
+                  <span>22 個收藏</span>
+                </div>
               </div>
             </div>
             {/* 案讚、收藏、檢舉、分享按鈕 */}
             <div className={styles.socialButtons}>
-              <div className={`cursor-point ${styles.buttons}`}>
+              <div className={`cursor-point ${styles.like}`}>
                 <img
                   className={styles.icon}
                   src={likeIcon}
@@ -48,7 +55,7 @@ export default function SingleReviewPage() {
                 ></img>
                 <span>案讚</span>
               </div>
-              <div className={`cursor-point ${styles.buttons}`}>
+              <div className={`cursor-point ${styles.favorite}`}>
                 <img
                   className={styles.icon}
                   src={FavoriteIcon}
@@ -56,7 +63,7 @@ export default function SingleReviewPage() {
                 ></img>
                 <span>收藏</span>
               </div>
-              <div className={`cursor-point ${styles.buttons}`}>
+              <div className={`cursor-point ${styles.report}`}>
                 <img
                   className={styles.icon}
                   src={reportIcon}
@@ -64,7 +71,7 @@ export default function SingleReviewPage() {
                 ></img>
                 <span>檢舉</span>
               </div>
-              <div className={`cursor-point ${styles.buttons}`}>
+              <div className={`cursor-point ${styles.share}`}>
                 <img
                   className={styles.icon}
                   src={shareIcon}
@@ -74,7 +81,9 @@ export default function SingleReviewPage() {
               </div>
             </div>
           </div>
-          <div className={styles.label}></div>
+          <div className={styles.tag}>
+            <ColorTag>海外</ColorTag>
+          </div>
         </section>
         <section className={styles.reviewPhoto}>
           <img className={styles.photo} src={photo} alt="步道圖片片片片" />
