@@ -1,0 +1,86 @@
+.navbar {
+  width: 100vw;
+  height: 70px;
+}
+.emptyNav {
+  position: absolute;
+  width: 100vw;
+  height: 70px;
+}
+
+.container {
+  max-width: 1140px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  // 標題名字、ICON
+  .reviewInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .authorAndButton {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      .author {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+      span + span::before {
+        content: '|';
+        margin: 0 8px;
+        color: var(--main-text);
+      }
+      .buttonContainer {
+        margin-left: 12px;
+        width: 100px;
+      }
+    }
+    .socialButtons {
+      display: flex;
+      gap: 10px;
+      height: 32px;
+      margin-top: 20px;
+      .buttons {
+        background-color: var(--primary-color);
+        box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        span {
+          color: white;
+          font-size: 14px;
+        }
+      }
+      .icon {
+        height: 16px;
+        width: 16px;
+        margin-right: 8px;
+      }
+    }
+  }
+  .photo {
+    margin: 25px 0;
+    max-width: 100%;
+  }
+  .divide {
+    position: relative;
+    span {
+      min-width: 320px;
+      background-color: white;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .text {
+    margin-top: 40px;
+  }
+}
