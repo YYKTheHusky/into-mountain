@@ -50,7 +50,7 @@
     .info {
       .infoName {
         padding-bottom: 10px;
-        font-size: 16px;
+        font-size: 15px;
       }
       .infoContainer {
         display: flex;
@@ -60,6 +60,10 @@
         .infoTime {
         }
         .infoCollectCount {
+        }
+        div {
+          display: flex;
+          align-items: center;
         }
       }
     }

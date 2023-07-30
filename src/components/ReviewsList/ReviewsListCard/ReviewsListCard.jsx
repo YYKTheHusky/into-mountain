@@ -1,6 +1,7 @@
 // postId,title, image, difficulty, userId, userAvatar, createdAt, updatedAt,...
 import styles from './ReviewsListCard.module.scss'
 import { ReactComponent as IconStar } from 'assets/icons/icon-star.svg'
+import { ReactComponent as IconLikeActive } from 'assets/icons/like-active.svg'
 const {
   reviewListCarContainer,
   reviewListCarImg,
@@ -22,7 +23,7 @@ const ReviewListCard = ({ data }) => {
       </div>
       <div className={reviewListCarTitle}>
         {data.title}
-        <span>({data.difficulty})</span>
+        {/* <span>({data.difficulty})</span> */}
       </div>
       <div className={reviewListCarInfo}>
         <div className={avatar}>
@@ -37,7 +38,10 @@ const ReviewListCard = ({ data }) => {
               <IconStar />
               {data.recommend}
             </div>
-            <div>{data.likeCount}</div>
+            <div>
+              <IconLikeActive />
+              {data.likeCount}
+            </div>
           </div>
         </div>
       </div>
