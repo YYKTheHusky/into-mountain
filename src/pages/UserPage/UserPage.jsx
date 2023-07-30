@@ -4,6 +4,7 @@ import InfoCard from 'components/InfoCard/InfoCard'
 import UserPageTab from 'components/UserPageTab/UserPageTab'
 import UserContent from 'components/UserContent/UserContent'
 import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const { contentContainer, left, info, tab, right } = styles
 const theUserData = {
@@ -27,10 +28,18 @@ export default function UserPage() {
     currentValue: window.scrollY,
     upOrDown: true
   })
-  const [acitveContent, setAcitveContent] = useState('review')
+  const location = useLocation()
+  const navigate = useNavigate()
+  const thePathArray = location.pathname.split('/')
+  const [acitveContent, setAcitveContent] = useState()
   const handleAcitveContent = (type) => {
     setAcitveContent(type)
+    navigate(`/user/1/${type}`)
   }
+
+  useEffect(() => {
+    setAcitveContent(thePathArray[thePathArray.length - 1])
+  }, [location])
 
   useEffect(() => {
     function handleScroll() {
@@ -38,7 +47,6 @@ export default function UserPage() {
         currentValue: window.scrollY,
         upOrDown: pre.currentValue > window.scrollY
       }))
-      console.log(currentScroll)
     }
     window.addEventListener('scroll', handleScroll)
     return () => {

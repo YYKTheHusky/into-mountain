@@ -41,7 +41,6 @@ const ItemRightSideTag2 = ({ collectionData }) => {
   )
 }
 const MyCollectionItem = ({ tabStep, collectionData }) => {
-  console.log(collectionData.image)
   return (
     <div className={itemContainer}>
       <div className={itemLeft}>

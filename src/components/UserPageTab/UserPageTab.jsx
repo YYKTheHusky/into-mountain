@@ -15,15 +15,15 @@ const {
 const TabType1 = ({ onAcitveContent }) => {
   return (
     <div className={tabType1}>
-      <div onClick={() => onAcitveContent('review')}>
+      <div onClick={() => onAcitveContent('myReviews')}>
         <IconFeather className={icon} />
         心得
       </div>
-      <div onClick={() => onAcitveContent('collection')}>
+      <div onClick={() => onAcitveContent('trailCollection')}>
         <IconTag className={icon} />
         收藏
       </div>
-      <div onClick={() => onAcitveContent('notice')}>
+      <div onClick={() => onAcitveContent('notification')}>
         <IconNotification className={icon} />
         通知
       </div>
@@ -39,7 +39,7 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
           acitveContent === 'review' && active
         )}
         data-active={acitveContent}
-        onClick={() => onAcitveContent('review')}
+        onClick={() => onAcitveContent('myReviews')}
       >
         <IconFeather className={icon} />
         心得
@@ -50,7 +50,7 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
           acitveContent === 'collection' && active
         )}
         data-active={acitveContent}
-        onClick={() => onAcitveContent('collection')}
+        onClick={() => onAcitveContent('trailCollection')}
       >
         <IconTag className={icon} />
         收藏
@@ -61,7 +61,7 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
           acitveContent === 'notice' && active
         )}
         data-active={acitveContent}
-        onClick={() => onAcitveContent('notice')}
+        onClick={() => onAcitveContent('notification')}
       >
         <IconNotification className={icon} />
         通知
