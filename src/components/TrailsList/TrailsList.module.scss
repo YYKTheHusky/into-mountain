@@ -1,6 +1,11 @@
 .trailsListContainer {
-  margin: 100px;
-  gap: 30px;
+  gap: 10px;
   display: flex;
   flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .trailsListContainer {
+    justify-content: center;
+  }
 }

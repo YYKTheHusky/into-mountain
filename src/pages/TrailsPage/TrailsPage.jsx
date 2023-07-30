@@ -1,10 +1,12 @@
-import FilterToggole from 'components/FilterToggole/FilterToggole'
-import TrailsList from 'components/TrailsList/TrailsList'
+import TrailsMainContent from 'components/TrailsMainContent/TrailsMainContent'
+import MainLayout from 'components/MainLayout/MainLayout'
+
 export default function TrailsPage() {
   return (
     <div className="container mx-auto">
-      <FilterToggole />
-      <TrailsList />
+      <MainLayout>
+        <TrailsMainContent />
+      </MainLayout>
     </div>
   )
 }

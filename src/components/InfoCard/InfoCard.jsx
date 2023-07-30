@@ -44,10 +44,7 @@ const InfoCard = ({ data, onAcitveContent }) => {
             </div>
           </div>
           <span></span>
-          <div
-            className={infoSet}
-            onClick={() => onAcitveContent('infoSetting')}
-          >
+          <div className={infoSet} onClick={() => onAcitveContent('setting')}>
             <IconGear className={infoSetIcon} />
             編輯個人資料
           </div>

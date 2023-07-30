@@ -9,19 +9,22 @@ import InfoSetting from './InfoSetting/InfoSetting'
 const { userContentContainer } = styles
 
 const UserContent = ({ acitveContent }) => {
-  if (acitveContent === 'review') {
+  if (acitveContent === 'myReviews') {
     return (
       <div className={userContentContainer}>
         <MyReview />
       </div>
     )
-  } else if (acitveContent === 'collection') {
+  } else if (
+    acitveContent === 'trailCollection' ||
+    acitveContent === 'reviewCollection'
+  ) {
     return (
       <div className={userContentContainer}>
         <MyCollection />
       </div>
     )
-  } else if (acitveContent === 'notice') {
+  } else if (acitveContent === 'notification') {
     return (
       <div className={userContentContainer}>
         <MyNotice />
@@ -39,7 +42,7 @@ const UserContent = ({ acitveContent }) => {
         <MyFollower />
       </div>
     )
-  } else if (acitveContent === 'infoSetting') {
+  } else if (acitveContent === 'setting') {
     return (
       <div className={userContentContainer}>
         <InfoSetting />

@@ -9,6 +9,7 @@ const BurgerModal = () => {
   const handleBurgerToggle = () => {
     setBurgerToggle(!burgerToggle)
   }
+
   return (
     <>
       {burgerToggle && (
@@ -21,7 +22,7 @@ const BurgerModal = () => {
         />
         {burgerToggle && (
           <div className={menu}>
-            <BurgerMenu />
+            <BurgerMenu onBurgerToggle={handleBurgerToggle} />
           </div>
         )}
       </div>

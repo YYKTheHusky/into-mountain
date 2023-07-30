@@ -1,0 +1,19 @@
+.tailsMainContentContainer {
+  .search {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px;
+    .searchBarContainer {
+    }
+    .filterContainer {
+    }
+  }
+  .list {
+    max-width: 1300px;
+    padding-left: 3%;
+    margin: 30px auto 30px auto;
+  }
+}
