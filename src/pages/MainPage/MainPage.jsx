@@ -1,14 +1,14 @@
 // scss
 import styles from 'pages/MainPage/MainPage.module.scss'
-import Nav from 'components/Nav/Nav'
+
 // components
-import Footer from 'components/Footer/Footer'
 import { OvalButtonHuge } from 'components/Button/Button'
 import { SearchBarMain } from 'components/SearchBar/SearchBar'
+import MainPageScrollCard from 'components/ScrollCardGroup/MainPageScrollCard'
+import MainLayout from 'components/MainLayout/MainLayout'
 
 // svg
 import mainPagePhoto from 'assets/photos/mainpage-photo.svg'
-import MainPageScrollCard from 'components/ScrollCardGroup/MainPageScrollCard'
 
 export default function MainPage() {
   // 假資料
@@ -56,11 +56,7 @@ export default function MainPage() {
   ]
 
   return (
-    <div>
-      <div className={styles.navbar}>
-        <Nav />
-      </div>
-      <div className={styles.emptyNav}></div>
+    <MainLayout>
       <div className={styles.photoContainer}>
         <img
           className={styles.mainPagePhoto}
@@ -85,7 +81,6 @@ export default function MainPage() {
         ></MainPageScrollCard>
         <MainPageScrollCard data={data} title="最新心得"></MainPageScrollCard>
       </div>
-      <Footer />
-    </div>
+    </MainLayout>
   )
 }
