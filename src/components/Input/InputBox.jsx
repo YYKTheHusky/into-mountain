@@ -76,7 +76,7 @@ export default function InputBox({ label, type, value }) {
         {label}
       </label>
       <input
-        className={styles.inputBox}
+        className={`${styles.inputBox} ${errorMessage !== '' && 'danger'}`}
         id={label}
         type={type || 'text'}
         value={value || ''}
