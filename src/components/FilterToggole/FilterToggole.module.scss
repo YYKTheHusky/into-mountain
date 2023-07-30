@@ -12,6 +12,7 @@
   color: var(--dark-0);
   padding: 3px 10px;
   position: relative;
+  z-index: 999;
   &:hover {
     opacity: 0.9;
   }
@@ -38,8 +39,10 @@
     top: 27px;
     color: var(--dark-70);
     font-size: 16px;
+    // z-index: 999;
     div {
       padding: 5px 10px;
+      // z-index: 9999;
       &:hover {
         color: var(--dark-0);
         background-color: var(--main-color);

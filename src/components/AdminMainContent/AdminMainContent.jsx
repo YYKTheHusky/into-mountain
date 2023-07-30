@@ -5,6 +5,8 @@ const {
   userItemLeft,
   userItemRight,
   userItemRightButton,
+  unSus,
+  sus,
   userItemRightName,
   userItemRightMail,
   userItemRightDescription,
@@ -19,7 +21,7 @@ const {
   reviewItemRightDescription
 } = styles
 
-const UserItem = () => {
+const UserItem = ({ isSus }) => {
   return (
     <div className={userItemContainer}>
       <div className={userItemLeft}>
@@ -27,7 +29,13 @@ const UserItem = () => {
       </div>
       <div className={userItemRight}>
         <div className={userItemRightButton}>
-          <button>停權</button>
+          {isSus ? (
+            <button className={sus} disabled>
+              已停權
+            </button>
+          ) : (
+            <button className={unSus}>停權</button>
+          )}
         </div>
         <div className={userItemRightName}>名字</div>
         <div className={userItemRightMail}>email</div>
@@ -56,13 +64,68 @@ const ReviewItem = () => {
   )
 }
 
-const AdminMainContent = () => {
+const AdminMainContent = ({ page }) => {
   return (
     <div className={adminMainContentContainer}>
-      <div className="listItemContainer">
-        <UserItem />
-        <ReviewItem />
-      </div>
+      {page === 'userList' && (
+        <>
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+          <UserItem />
+        </>
+      )}
+      {page === 'susUserList' && (
+        <>
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+          <UserItem isSus="true" />
+        </>
+      )}
+      {page === 'reviewList' && (
+        <>
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+          <ReviewItem />
+        </>
+      )}
     </div>
   )
 }

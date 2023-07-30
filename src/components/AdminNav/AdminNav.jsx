@@ -19,7 +19,7 @@ const {
   icon
 } = styles
 
-const AdminNav = () => {
+const AdminNav = ({ onPage }) => {
   const [navExpand, setNavExpand] = useState(false)
   const [fixed, setFixed] = useState(false)
 
@@ -68,19 +68,32 @@ const AdminNav = () => {
           setNavExpand(false)
         }}
       >
-        <div className={listItem} title="被停權的使用者">
-          <IconUserSlash className={icon} />
-          <span className={clsx(listItemLabel, navExpand && expand)}>
-            被停權的使用者
-          </span>
-        </div>
-        <div className={listItem} title="使用者清單">
+        <div
+          className={listItem}
+          title="使用者清單"
+          onClick={() => onPage?.('userList')}
+        >
           <IconUserGroup className={icon} />
           <span className={clsx(listItemLabel, navExpand && expand)}>
             使用者清單
           </span>
         </div>
-        <div className={listItem} title="被檢舉的心得清單">
+        <div
+          className={listItem}
+          title="被停權的使用者"
+          onClick={() => onPage?.('susUserList')}
+        >
+          <IconUserSlash className={icon} />
+          <span className={clsx(listItemLabel, navExpand && expand)}>
+            被停權的使用者
+          </span>
+        </div>
+
+        <div
+          className={listItem}
+          title="被檢舉的心得清單"
+          onClick={() => onPage?.('reviewList')}
+        >
           <IconAlignLeft className={icon} />
           <span className={clsx(listItemLabel, navExpand && expand)}>
             被檢舉的心得清單

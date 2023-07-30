@@ -5,6 +5,7 @@ import styles from './FilterModal.module.scss'
 import { useState } from 'react'
 const {
   filterModalContainer,
+  filterIcon,
   backdrop,
   modal,
   xmark,
@@ -49,7 +50,10 @@ const FilterModal = ({ list }) => {
         ></div>
       )}
       <div className={filterModalContainer}>
-        <IconFilter onClick={() => setFilterModalToggle(!filterModalToggle)} />
+        <IconFilter
+          className={filterIcon}
+          onClick={() => setFilterModalToggle(!filterModalToggle)}
+        />
         {filterModalToggle && (
           <div className={modal}>
             <IconXmark

@@ -41,6 +41,46 @@ const data = [
     favoriteCount: '7',
     distance: '2km',
     duration: '2hr'
+  },
+  {
+    trailId: 6,
+    title: 'Flame Mountain Loop',
+    difficulty: 'Hard',
+    favoriteCount: '7',
+    distance: '2km',
+    duration: '2hr'
+  },
+  {
+    trailId: 7,
+    title: 'Flame Mountain Loop',
+    difficulty: 'Hard',
+    favoriteCount: '7',
+    distance: '2km',
+    duration: '2hr'
+  },
+  {
+    trailId: 8,
+    title: 'Flame Mountain Loop',
+    difficulty: 'Hard',
+    favoriteCount: '7',
+    distance: '2km',
+    duration: '2hr'
+  },
+  {
+    trailId: 9,
+    title: 'Flame Mountain Loop',
+    difficulty: 'Hard',
+    favoriteCount: '7',
+    distance: '2km',
+    duration: '2hr'
+  },
+  {
+    trailId: 10,
+    title: 'Flame Mountain Loop',
+    difficulty: 'Hard',
+    favoriteCount: '7',
+    distance: '2km',
+    duration: '2hr'
   }
 ]
 

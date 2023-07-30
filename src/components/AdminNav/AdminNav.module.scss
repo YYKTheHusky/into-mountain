@@ -42,8 +42,10 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-color: var(--secondary-color);
     .icon {
       transition: all 0.3s ease-out;
+      fill: white;
     }
     &:hover {
       background-color: var(--primary-color);
@@ -58,7 +60,6 @@
     color: white;
     .icon {
       transform: rotate(180deg);
-      fill: white;
     }
   }
   .icon {
@@ -97,7 +98,14 @@
 @media (max-width: 768px) {
   .adminNavContainer {
     .footer {
-      display: none;
+      background-color: var(--secondary-color);
+      cursor: initial;
+      .icon {
+        display: none;
+      }
+      &:hover {
+        background-color: var(--secondary-color);
+      }
     }
   }
   .listItem {
