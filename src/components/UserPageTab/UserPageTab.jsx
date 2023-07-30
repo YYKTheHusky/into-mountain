@@ -36,7 +36,7 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
       <div
         className={clsx(
           tabType2Selection,
-          acitveContent === 'review' && active
+          acitveContent === 'myReviews' && active
         )}
         data-active={acitveContent}
         onClick={() => onAcitveContent('myReviews')}
@@ -47,7 +47,7 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
       <div
         className={clsx(
           tabType2Selection,
-          acitveContent === 'collection' && active
+          acitveContent === 'trailCollection' && active
         )}
         data-active={acitveContent}
         onClick={() => onAcitveContent('trailCollection')}
@@ -58,7 +58,7 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
       <div
         className={clsx(
           tabType2Selection,
-          acitveContent === 'notice' && active
+          acitveContent === 'notification' && active
         )}
         data-active={acitveContent}
         onClick={() => onAcitveContent('notification')}

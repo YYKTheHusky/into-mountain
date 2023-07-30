@@ -3,7 +3,8 @@ import RightSideContainer from '../RightSideContainer/RightSideContainer'
 import MyCollectionTab from './MyCollectionTab/MyCollectionTab'
 import MyCollectionItem from './MyCollectionItem/MyCollectionItem'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+
 // Dummy
 const trailCollectionData = [
   {
@@ -163,10 +164,16 @@ const MyCollection = () => {
   const [tabStep, setTabStep] = useState('trailCollection')
   const [collectionData, setCollectionData] = useState([])
   const navigate = useNavigate()
+  const location = useLocation()
+  const thePathArray = location.pathname.split('/')
   const handleTapStep = (type) => {
     setTabStep(type)
     navigate(`/user/1/${type}`)
   }
+
+  useEffect(() => {
+    setTabStep(thePathArray[thePathArray.length - 1])
+  }, [location])
 
   useEffect(() => {
     if (tabStep === 'trailCollection') {
