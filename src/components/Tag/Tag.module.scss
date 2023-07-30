@@ -1,0 +1,36 @@
+.BlackTag {
+  background-color: rgba(0, 0, 0, 0.756);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+}
+
+.baiyue,
+.subur,
+.oversea,
+.gray {
+  padding: 8px 16px;
+  border-radius: 50px;
+  display: inline-flex;
+}
+
+.baiyue {
+  color: #5c3d00;
+  background-color: #ebe0cc;
+}
+
+.subur {
+  color: #58c2a9;
+  background-color: #e0fbf6;
+}
+
+.oversea {
+  color: #ece7fe;
+  background-color: #8972f3;
+}
+
+.gray {
+  color: #a0a6b5;
+  background-color: #f7f8fc;
+}
