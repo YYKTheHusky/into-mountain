@@ -22,12 +22,13 @@
     width: 240px;
     .socialLinkContainer {
       display: flex;
-      .socialLink {
-        background-color: gray;
+      img {
+        background-color: white;
         width: 40px;
         height: 40px;
         border-radius: 50px;
         margin-right: 20px;
+        object-fit: cover;
       }
     }
   }
