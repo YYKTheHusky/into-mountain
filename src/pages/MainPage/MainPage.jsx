@@ -16,7 +16,7 @@ export default function MainPage() {
     {
       trailId: 1,
       title: '珠穆朗瑪峰',
-      difficulty: '困難',
+      difficulty: '低',
       favoriteCount: '9',
       distance: '2km',
       duration: '2hr'
@@ -24,7 +24,7 @@ export default function MainPage() {
     {
       trailId: 2,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '低-中',
       favoriteCount: '3',
       distance: '2km',
       duration: '2hr'
@@ -32,7 +32,7 @@ export default function MainPage() {
     {
       trailId: 3,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '中',
       favoriteCount: '6',
       distance: '2km',
       duration: '2hr'
@@ -40,7 +40,7 @@ export default function MainPage() {
     {
       trailId: 4,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '中-高',
       favoriteCount: '5',
       distance: '2km',
       duration: '2hr'
@@ -48,7 +48,7 @@ export default function MainPage() {
     {
       trailId: 5,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '高',
       favoriteCount: '7',
       distance: '2km',
       duration: '2hr'

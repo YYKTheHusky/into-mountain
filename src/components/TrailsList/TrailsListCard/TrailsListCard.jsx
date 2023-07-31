@@ -3,39 +3,54 @@ import { ReactComponent as IconStar } from 'assets/icons/icon-star.svg'
 import { ReactComponent as IconClock } from 'assets/icons/icon-clock.svg'
 import styles from './TrailsListCard.module.scss'
 import { useState } from 'react'
+import { DifficultyTag } from 'components/Tag/Tag'
+import { useNavigate } from 'react-router-dom'
 const {
   trailsListCardContainer,
   label,
   descriptionContainer,
   descriptionType1,
   descriptionType2,
-  descriptionType3
+  difTag
 } = styles
 
 const TrailsListCard = ({ data }) => {
+  const navigate = useNavigate()
   const [cardLabel, setCardLabel] = useState(false)
 
   return (
     <div>
       <div className={trailsListCardContainer}>
-        <img src="https://picsum.photos/seed/picsum/200/200" alt="fake" />
+        <img
+          className="cursor-point"
+          src="https://picsum.photos/seed/picsum/200/200"
+          alt="fake"
+          onClick={() => navigate(`/trail/${data.trailID}/detail`)}
+        />
         <IconLabel
           className={label}
           data-favorite={cardLabel}
           onClick={() => setCardLabel(!cardLabel)}
         />
+        <div className={difTag}>
+          <DifficultyTag>{data.difficulty}</DifficultyTag>
+        </div>
       </div>
       <div className={descriptionContainer}>
-        <div className={descriptionType1}>
-          <span>
-            {data.difficulty}‧<IconStar /> {data.favoriteCount}
-          </span>
+        <div
+          className={`${descriptionType1} cursor-point`}
+          onClick={() => navigate(`/trail/${data.trailID}/detail`)}
+        >
+          {' '}
+          {data.title}
         </div>
-        <div className={descriptionType2}> {data.title}</div>
-        <div className={descriptionType3}>
+        <div className={descriptionType2}>
           <span>距離 {data.distance}</span>
           <span>
             <IconClock /> {data.duration}
+          </span>
+          <span>
+            <IconStar /> {data.favoriteCount}人收藏此路線
           </span>
         </div>
       </div>

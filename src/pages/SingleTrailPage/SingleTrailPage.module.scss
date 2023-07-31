@@ -145,7 +145,11 @@
 }
 
 @media (max-width: 767px) {
+  .pageContainer {
+    padding: 0;
+  }
   .container {
+    border-radius: 0;
     h2 {
       font-size: 32px;
     }

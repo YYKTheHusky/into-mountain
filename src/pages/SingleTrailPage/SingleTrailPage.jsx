@@ -14,11 +14,14 @@ import { SecondaryButton } from 'components/Button/Button'
 import InformationTable from 'components/TrailsInformation/InformationTable'
 import MapTable from 'components/TrailsInformation/MapTable.jsx'
 import MainLayout from 'components/MainLayout/MainLayout'
+import ReportModal from 'components/Modal/ReportModal'
 
 export default function SingleTrailPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState(null)
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false)
+
   useEffect(() => {
     if (location.pathname.includes('detail')) {
       setActiveTab('detail')
@@ -66,8 +69,14 @@ export default function SingleTrailPage() {
                 <div className={styles.reportHeader}>
                   <h4>路況回報</h4>
                   <div className={styles.reportButton}>
-                    <SecondaryButton>我要回報</SecondaryButton>
+                    <SecondaryButton onClick={() => setIsReportModalOpen(true)}>
+                      我要回報
+                    </SecondaryButton>
                   </div>
+                  <ReportModal
+                    isReportModalOpen={isReportModalOpen}
+                    setIsReportModalOpen={setIsReportModalOpen}
+                  ></ReportModal>
                 </div>
                 <div className={styles.reports}>
                   <TrailReport></TrailReport>
