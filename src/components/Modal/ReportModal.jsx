@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+// styles
 import styles from 'components/Modal/ReportModal.module.scss'
-
 // svg
 import xmark from 'assets/icons/icon-xmark.svg'
+// components
 import { SecondaryButtonBright } from 'components/Button/Button'
 
 // 父層設定一個State控制modal開關
@@ -38,12 +39,6 @@ export default function ReportModal({
     return null
   }
 
-  useEffect(() => {
-    if (reportValue.length > 0) {
-      setInputNone(false)
-    }
-  }, [reportValue])
-
   return (
     <div className="modalBackground">
       <div className={styles.modalContainer}>
@@ -51,7 +46,7 @@ export default function ReportModal({
           className={`${styles.closeContainer} cursor-point`}
           onClick={handleClose}
         >
-          <img src={xmark} alt="close" onClick={handleClose}></img>
+          <img src={xmark} alt="close" onClick={handleClose} />
         </div>
         <h4>步道狀況回報</h4>
         <div className={styles.inputGroup}>

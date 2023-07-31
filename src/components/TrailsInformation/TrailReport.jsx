@@ -3,14 +3,26 @@ import styles from 'components/TrailsInformation/TrailReport.module.scss'
 
 // svg
 import temptIcon from 'assets/icons/facebook-logo.svg'
+import { useNavigate } from 'react-router-dom'
 
 export default function TrailReport() {
+  const navigate = useNavigate()
   return (
     <div className={styles.trailReport}>
       <div className={styles.userInfo}>
         <div className={styles.user}>
-          <img className={styles.userIcon} src={temptIcon} alt="temptIcon" />
-          <span className={styles.userName}>userNameIshere名字字字</span>
+          <img
+            className={`${styles.userIcon} cursor-point`}
+            src={temptIcon}
+            alt="temptIcon"
+            onClick={() => navigate(`/user/userId/myReviews`)}
+          />
+          <span
+            className={`${styles.userName} cursor-point`}
+            onClick={() => navigate(`/user/userId/myReviews`)}
+          >
+            userNameIshere名字字字
+          </span>
         </div>
         <span className={styles.time}>2099-11-01, 13:50</span>
       </div>

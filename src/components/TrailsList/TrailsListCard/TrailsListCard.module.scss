@@ -25,21 +25,26 @@
       fill-opacity: 1;
     }
   }
+  .difTag {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    z-index: 2;
+  }
 }
 
 .descriptionContainer {
   margin-top: 10px;
   font-size: 16px;
   .descriptionType1 {
-    margin-bottom: 5px;
-    color: var(--dark-80);
-  }
-  .descriptionType2 {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: 700;
     color: var(--dark-90);
+    &:hover {
+      color: var(--main-color);
+    }
   }
-  .descriptionType3 {
+  .descriptionType2 {
     margin-bottom: 5px;
     font-size: 14px;
     color: var(--dark-70);

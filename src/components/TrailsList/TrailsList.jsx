@@ -5,7 +5,7 @@ const data = [
   {
     trailId: 1,
     title: '珠穆朗瑪峰',
-    difficulty: '困難',
+    difficulty: '低',
     favoriteCount: '9',
     distance: '2km',
     duration: '2hr'
@@ -13,7 +13,7 @@ const data = [
   {
     trailId: 2,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '低-中',
     favoriteCount: '3',
     distance: '2km',
     duration: '2hr'
@@ -21,7 +21,7 @@ const data = [
   {
     trailId: 3,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '中',
     favoriteCount: '6',
     distance: '2km',
     duration: '2hr'
@@ -29,7 +29,7 @@ const data = [
   {
     trailId: 4,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '中-高',
     favoriteCount: '5',
     distance: '2km',
     duration: '2hr'
@@ -37,7 +37,7 @@ const data = [
   {
     trailId: 5,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '高',
     favoriteCount: '7',
     distance: '2km',
     duration: '2hr'
@@ -45,7 +45,7 @@ const data = [
   {
     trailId: 6,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '高',
     favoriteCount: '7',
     distance: '2km',
     duration: '2hr'
@@ -53,7 +53,7 @@ const data = [
   {
     trailId: 7,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '中',
     favoriteCount: '7',
     distance: '2km',
     duration: '2hr'
@@ -61,7 +61,7 @@ const data = [
   {
     trailId: 8,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '中',
     favoriteCount: '7',
     distance: '2km',
     duration: '2hr'
@@ -69,7 +69,7 @@ const data = [
   {
     trailId: 9,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '低-中',
     favoriteCount: '7',
     distance: '2km',
     duration: '2hr'
@@ -77,7 +77,7 @@ const data = [
   {
     trailId: 10,
     title: 'Flame Mountain Loop',
-    difficulty: 'Hard',
+    difficulty: '低-中',
     favoriteCount: '7',
     distance: '2km',
     duration: '2hr'
