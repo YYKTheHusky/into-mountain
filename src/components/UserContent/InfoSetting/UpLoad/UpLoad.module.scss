@@ -1,0 +1,35 @@
+.upLoadContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  .avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      height: 100%;
+      width: 100%;
+      background-position: center center;
+    }
+    &.defaultImg {
+      fill: var(--dark-50);
+    }
+  }
+  button {
+    border: 0;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    &:focus,
+    &:active {
+      outline: 3px solid var(--blue-40);
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
