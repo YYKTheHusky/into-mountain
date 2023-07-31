@@ -18,5 +18,29 @@ export function ColorTag({ children }) {
       setStyle('gray')
     }
   }, [children])
-  return <div className={styles[style]}>{children}</div>
+  return (
+    <div className={`${styles[style]} ${styles.basicOval}`}>{children}</div>
+  )
+}
+
+export function DifficultyTag({ children }) {
+  const [style, setStyle] = useState('')
+  useEffect(() => {
+    if (children === '低') {
+      setStyle('defLow')
+    } else if (children === '低-中') {
+      setStyle('defLowMid')
+    } else if (children === '中') {
+      setStyle('defMid')
+    } else if (children === '中-高') {
+      setStyle('defMidHigh')
+    } else if (children === '高') {
+      setStyle('defHigh')
+    }
+  }, [children])
+  return (
+    <div className={`${styles[style]} ${styles.basicOval}`}>
+      難易度：{children}
+    </div>
+  )
 }
