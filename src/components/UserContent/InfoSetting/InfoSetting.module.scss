@@ -1,0 +1,57 @@
+.infoSettingContainer {
+  margin-top: 30px;
+  .infoItem {
+    margin: 0px auto 30px auto;
+    max-width: 85%;
+    position: relative;
+
+    label {
+      font-size: 14px;
+      margin: 8px 0 2px 10px;
+      background-color: white;
+      color: var(--dark-80);
+      transform: translateY(-16px);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    textarea:active ~ label,
+    textarea:focus ~ label,
+    input:active ~ label,
+    input:focus ~ label {
+      color: var(--main-color);
+    }
+    textarea {
+      width: 70%;
+      min-width: 200px;
+      padding-top: 10px;
+    }
+    input {
+      border-radius: 3px;
+      width: 30%;
+      min-width: 200px;
+      height: 35px;
+    }
+  }
+  .saveChange {
+    margin: 0px auto 30px auto;
+    max-width: 85%;
+    button {
+      font-size: 18px;
+      font-weight: 500;
+      border: 0;
+      background-color: chocolate;
+      color: white;
+      padding: 5px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:focus,
+      &:active {
+        outline: 2px solid rgb(245, 177, 129);
+      }
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
