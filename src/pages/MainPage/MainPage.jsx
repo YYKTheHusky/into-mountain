@@ -1,14 +1,14 @@
 // scss
 import styles from 'pages/MainPage/MainPage.module.scss'
-import Nav from 'components/Nav/Nav'
+
 // components
-import Footer from 'components/Footer/Footer'
 import { OvalButtonHuge } from 'components/Button/Button'
 import { SearchBarMain } from 'components/SearchBar/SearchBar'
+import MainPageScrollCard from 'components/ScrollCardGroup/MainPageScrollCard'
+import MainLayout from 'components/MainLayout/MainLayout'
 
 // svg
 import mainPagePhoto from 'assets/photos/mainpage-photo.svg'
-import MainPageScrollCard from 'components/ScrollCardGroup/MainPageScrollCard'
 
 export default function MainPage() {
   // 假資料
@@ -16,7 +16,7 @@ export default function MainPage() {
     {
       trailId: 1,
       title: '珠穆朗瑪峰',
-      difficulty: '困難',
+      difficulty: '低',
       favoriteCount: '9',
       distance: '2km',
       duration: '2hr'
@@ -24,7 +24,7 @@ export default function MainPage() {
     {
       trailId: 2,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '低-中',
       favoriteCount: '3',
       distance: '2km',
       duration: '2hr'
@@ -32,7 +32,7 @@ export default function MainPage() {
     {
       trailId: 3,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '中',
       favoriteCount: '6',
       distance: '2km',
       duration: '2hr'
@@ -40,7 +40,7 @@ export default function MainPage() {
     {
       trailId: 4,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '中-高',
       favoriteCount: '5',
       distance: '2km',
       duration: '2hr'
@@ -48,7 +48,7 @@ export default function MainPage() {
     {
       trailId: 5,
       title: 'Flame Mountain Loop',
-      difficulty: 'Hard',
+      difficulty: '高',
       favoriteCount: '7',
       distance: '2km',
       duration: '2hr'
@@ -56,11 +56,7 @@ export default function MainPage() {
   ]
 
   return (
-    <div>
-      <div className={styles.navbar}>
-        <Nav />
-      </div>
-      <div className={styles.emptyNav}></div>
+    <MainLayout>
       <div className={styles.photoContainer}>
         <img
           className={styles.mainPagePhoto}
@@ -85,7 +81,6 @@ export default function MainPage() {
         ></MainPageScrollCard>
         <MainPageScrollCard data={data} title="最新心得"></MainPageScrollCard>
       </div>
-      <Footer />
-    </div>
+    </MainLayout>
   )
 }

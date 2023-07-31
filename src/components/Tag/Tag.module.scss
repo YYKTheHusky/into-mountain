@@ -1,0 +1,56 @@
+.BlackTag {
+  background-color: rgba(0, 0, 0, 0.756);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+}
+
+.basicOval {
+  padding: 8px 16px;
+  border-radius: 50px;
+  display: inline-flex;
+}
+
+// 山的類型分類
+.baiyue {
+  color: #5c3d00;
+  background-color: #ebe0cc;
+}
+
+.subur {
+  color: #58c2a9;
+  background-color: #e0fbf6;
+}
+
+.oversea {
+  color: #ece7fe;
+  background-color: #8972f3;
+}
+
+.gray {
+  color: #a0a6b5;
+  background-color: #f7f8fc;
+}
+
+// 難易度分類
+.defLow {
+  color: #1c3829;
+  background-color: #dbeddb;
+}
+.defLowMid {
+  color: #442a1e;
+  background-color: #eee0da;
+}
+.defMid {
+  color: #574330;
+  background-color: #fdecc8;
+}
+.defMidHigh {
+  color: #4c2337;
+  background-color: #f5e0e9;
+}
+.defHigh {
+  color: #5d1715;
+  background-color: #ffe2dd;
+}
