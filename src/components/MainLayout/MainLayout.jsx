@@ -1,8 +1,7 @@
 import styles from './MainLayout.module.scss'
 import Nav from 'components/Nav/Nav'
 import Footer from 'components/Footer/Footer'
-const { mainLayoutContainer, navContainer, contentContainer, footerContainer } =
-  styles
+const { mainLayoutContainer, navContainer, contentContainer } = styles
 
 const MainLayout = ({ children }) => {
   return (
@@ -11,9 +10,7 @@ const MainLayout = ({ children }) => {
         <Nav />
       </div>
       <div className={contentContainer}>{children}</div>
-      <div className={footerContainer}>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   )
 }
