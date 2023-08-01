@@ -21,10 +21,7 @@ const ReviewListCard = ({ data }) => {
       <div className={reviewListCarImg}>
         <img src={data.image} alt="" />
       </div>
-      <div className={reviewListCarTitle}>
-        {data.title}
-        {/* <span>({data.difficulty})</span> */}
-      </div>
+      <div className={reviewListCarTitle}>{data.title}</div>
       <div className={reviewListCarInfo}>
         <div className={avatar}>
           <img src={data.userAvatar} alt="" />
@@ -33,14 +30,13 @@ const ReviewListCard = ({ data }) => {
           <div className={infoName}>{data.userName}</div>
           <div className={infoContainer}>
             <div className={infoTime}>{data.createdAt}</div>
-            <div className={infoCollectCount}>{data.favoriteCount}人收藏</div>
-            <div>
-              <IconStar />
-              {data.recommend}
-            </div>
-            <div>
+            <div className={infoCollectCount}>
               <IconLikeActive />
-              {data.likeCount}
+              {data.likeCount}人案讚
+            </div>
+            <div className={infoCollectCount}>
+              <IconStar />
+              {data.favoriteCount}人收藏
             </div>
           </div>
         </div>
