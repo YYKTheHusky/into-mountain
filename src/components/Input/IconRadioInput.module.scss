@@ -1,0 +1,12 @@
+.iconInput {
+  display: flex;
+}
+.icon {
+  height: 44px;
+  width: 44px;
+  padding: 0 2px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+}

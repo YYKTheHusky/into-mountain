@@ -1,5 +1,9 @@
 .mainLayoutContainer {
+  height: 100vh;
   .navContainer {
     height: 70px;
+  }
+  .contentContainer {
+    min-height: calc(100vh - 320px);
   }
 }

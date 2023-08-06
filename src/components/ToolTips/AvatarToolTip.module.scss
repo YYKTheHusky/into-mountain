@@ -1,0 +1,28 @@
+.container {
+  position: absolute;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  .tooltip {
+    background-color: azure;
+    color: black;
+    width: 160px;
+    height: 80px;
+    padding: 8px;
+    font-size: 16px;
+    position: absolute;
+    top: 55px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(60, 79, 107, 0.1);
+    &::after {
+      content: '\01F891';
+      font-size: 46px;
+      color: azure;
+      position: absolute;
+      top: -65%;
+    }
+  }
+  .title {
+    margin-bottom: 8px;
+  }
+}

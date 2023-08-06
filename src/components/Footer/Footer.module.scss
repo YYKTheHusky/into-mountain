@@ -6,11 +6,12 @@
   .innerContainer {
     display: flex;
     height: 250px;
-    padding-top: 80px;
+    padding-top: 60px;
   }
   .sectionOne {
     width: 240px;
     margin-right: 120px;
+    margin-top: 24px;
   }
   p,
   a {
@@ -22,6 +23,9 @@
     width: 240px;
     .socialLinkContainer {
       display: flex;
+      .avatarContainer {
+        position: relative;
+      }
       img {
         background-color: white;
         width: 40px;
