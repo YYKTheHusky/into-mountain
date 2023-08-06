@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Swal from 'sweetalert2'
+import Toast from 'api/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/LoginModal.module.scss'
 
@@ -23,15 +23,6 @@ export default function LoginModal() {
   const [password, setPassword] = useState('')
   const [isError, setIsError] = useState('')
   const navigate = useNavigate()
-
-  // alert
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true
-  })
 
   // 登入功能
   const handleLogin = async () => {

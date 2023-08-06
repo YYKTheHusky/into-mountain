@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import Swal from 'sweetalert2'
+import Toast from 'api/sweetAlertConfig.js'
 // scss
 import styles from 'pages/LoginPage/LoginPage.module.scss'
 // components
@@ -15,15 +15,6 @@ import MainLayout from 'components/MainLayout/MainLayout'
 export default function LoginPage() {
   const location = useLocation()
   const navigate = useNavigate()
-
-  // alert
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true
-  })
 
   // 如果已經登入，導向首頁
   useEffect(() => {

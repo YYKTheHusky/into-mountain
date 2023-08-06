@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
+import Toast from 'api/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/SignUpModal.module.scss'
 
@@ -25,15 +25,6 @@ export default function SignUpModal() {
   const [passwordCheck, setPasswordCheck] = useState('')
   const [isError, setIsError] = useState('')
   const navigate = useNavigate()
-
-  // alert
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true
-  })
 
   // 檢查輸入內容
   const isNotValid =
