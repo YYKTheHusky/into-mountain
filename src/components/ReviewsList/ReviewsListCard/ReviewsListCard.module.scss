@@ -11,10 +11,17 @@
   .reviewListCarImg {
     height: 200px;
     width: 300px;
+    position: relative;
     img {
       height: 100%;
       width: 100%;
       object-fit: cover;
+    }
+    .tag {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      z-index: 2;
     }
   }
   .reviewListCarTitle {
