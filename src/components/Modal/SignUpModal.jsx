@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Toast from 'api/sweetAlertConfig.js'
+import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/SignUpModal.module.scss'
 

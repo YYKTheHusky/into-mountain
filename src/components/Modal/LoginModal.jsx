@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Toast from 'api/sweetAlertConfig.js'
+import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/LoginModal.module.scss'
 

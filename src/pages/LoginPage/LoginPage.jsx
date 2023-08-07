@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import Toast from 'api/sweetAlertConfig.js'
+import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'pages/LoginPage/LoginPage.module.scss'
 // components
