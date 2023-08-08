@@ -1,4 +1,5 @@
 import axiosInstance from 'api/AxiosInstance.js'
+import axiosAuthInstance from 'api/AxiosAuthInstance.js'
 
 // 取得所有已發布文章
 export const getAllPost = async () => {
@@ -25,5 +26,59 @@ export const getOnePost = async (postId) => {
     console.error('[Get Single Post Failed]:', error)
     const { message } = error.response.data
     return { success: false, message }
+  }
+}
+
+// 按讚文章
+export const likePost = async (postId) => {
+  try {
+    const response = await axiosAuthInstance.post(`/posts/likes`, { postId })
+    if (response) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Like Post Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 取消讚文章
+export const dislikePost = async (postId) => {
+  try {
+    const response = await axiosAuthInstance.delete(`/posts/likes/${postId}`)
+    if (response) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Dislike Post Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 收藏文章
+export const collectPost = async (postId) => {
+  try {
+    const response = await axiosAuthInstance.post(`/posts/collects`, {
+      postId
+    })
+    if (response) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Collect Post Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 取消收藏文章
+export const discollectPost = async (postId) => {
+  try {
+    const response = await axiosAuthInstance.delete(`/posts/collects/${postId}`)
+    if (response) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Discollect Post Failed]:', error)
+    return { success: false }
   }
 }

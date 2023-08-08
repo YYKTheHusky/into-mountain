@@ -6,10 +6,10 @@ import formatDateTime from 'utils/time.js'
 import styles from 'pages/SingleReviewPage/SingleReviewPage.module.scss'
 
 // svg and photo
-import FavoriteIcon from 'assets/icons/icon-label.svg'
-import shareIcon from 'assets/icons/share-icon.svg'
-import likeIcon from 'assets/icons/like-icon.svg'
-import reportIcon from 'assets/icons/report-icon.svg'
+import { ReactComponent as FavoriteIcon } from 'assets/icons/icon-label.svg'
+import { ReactComponent as LikeIcon } from 'assets/icons/like-icon.svg'
+import { ReactComponent as ShareIcon } from 'assets/icons/share-icon.svg'
+import { ReactComponent as ReportIcon } from 'assets/icons/report-icon.svg'
 
 // components
 import { SecondaryButton, SecondaryButtonGray } from 'components/Button/Button'
@@ -19,7 +19,13 @@ import WholePageModal from 'components/Modal/WholePageModal'
 import IconRadioInput from 'components/Input/IconRadioInput'
 
 // api
-import { getOnePost } from 'api/post.js'
+import {
+  collectPost,
+  discollectPost,
+  dislikePost,
+  likePost,
+  getOnePost
+} from 'api/post.js'
 import { followUser, unFollowUser } from 'api/followship.js'
 
 export default function SingleReviewPage() {
@@ -27,6 +33,7 @@ export default function SingleReviewPage() {
   const [post, setPost] = useState('')
   const { reviewID } = useParams()
 
+  // 追蹤使用者
   const handleFollow = async () => {
     const { success } = await followUser(post.User.id)
     if (success) {
@@ -41,6 +48,7 @@ export default function SingleReviewPage() {
     }
   }
 
+  // 退追蹤使用者
   const handleUnFollow = async () => {
     const { success } = await unFollowUser(post.User.id)
     if (success) {
@@ -52,6 +60,60 @@ export default function SingleReviewPage() {
         icon: 'error',
         title: '退追蹤時遇到一點問題!'
       })
+    }
+  }
+
+  // 按讚/取消讚
+  const handleLike = async () => {
+    if (!post.isLike) {
+      const { success } = await likePost(reviewID)
+      if (success) {
+        const updatedPost = { ...post, isLike: true }
+        setPost(updatedPost)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '按讚時遇到一點問題!'
+        })
+      }
+    } else if (post.isLike) {
+      const { success } = await dislikePost(reviewID)
+      if (success) {
+        const updatedPost = { ...post, isLike: false }
+        setPost(updatedPost)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '取消讚時遇到一點問題!'
+        })
+      }
+    }
+  }
+
+  // 按收藏/取消收藏
+  const handleCollect = async () => {
+    if (!post.isFavorite) {
+      const { success } = await collectPost(reviewID)
+      if (success) {
+        const updatedPost = { ...post, isFavorite: true }
+        setPost(updatedPost)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '收藏時遇到一點問題!'
+        })
+      }
+    } else if (post.isFavorite) {
+      const { success } = await discollectPost(reviewID)
+      if (success) {
+        const updatedPost = { ...post, isFavorite: false }
+        setPost(updatedPost)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '取消收藏時遇到一點問題!'
+        })
+      }
     }
   }
 
@@ -132,36 +194,34 @@ export default function SingleReviewPage() {
               </div>
               {/* 案讚、收藏、檢舉、分享按鈕 */}
               <div className={styles.socialButtons}>
-                <div className={`cursor-point ${styles.like}`}>
-                  <img
-                    className={styles.icon}
-                    src={likeIcon}
-                    alt="likeIcon"
-                  ></img>
+                <div
+                  className={`cursor-point ${styles.like}`}
+                  onClick={handleLike}
+                >
+                  <LikeIcon
+                    className={`${styles.icon} ${
+                      post.isLike && styles.likeActive
+                    }`}
+                  />
                   <span>案讚</span>
                 </div>
-                <div className={`cursor-point ${styles.favorite}`}>
-                  <img
-                    className={styles.icon}
-                    src={FavoriteIcon}
-                    alt="FavoriteIcon"
-                  ></img>
+                <div
+                  className={`cursor-point ${styles.favorite}`}
+                  onClick={handleCollect}
+                >
+                  <FavoriteIcon
+                    className={`${styles.icon} ${
+                      post.isFavorite && styles.favoriteActive
+                    }`}
+                  />
                   <span>收藏</span>
                 </div>
                 <div className={`cursor-point ${styles.report}`}>
-                  <img
-                    className={styles.icon}
-                    src={reportIcon}
-                    alt="reportIcon"
-                  ></img>
+                  <ReportIcon className={styles.icon} />
                   <span>檢舉</span>
                 </div>
                 <div className={`cursor-point ${styles.share}`}>
-                  <img
-                    className={styles.icon}
-                    src={shareIcon}
-                    alt="shareIcon"
-                  ></img>
+                  <ShareIcon className={styles.icon} />
                   <span>分享</span>
                 </div>
               </div>
@@ -181,11 +241,7 @@ export default function SingleReviewPage() {
             </div>
           </section>
           <section className={styles.reviewPhoto}>
-            <img
-              className={styles.photo}
-              src={post.image}
-              alt="步道圖片片片片"
-            />
+            <img className={styles.photo} src={post.image} alt="步道圖片" />
           </section>
           <section className={styles.reviewText}>
             <div className={styles.divide}>
