@@ -1,3 +1,6 @@
+.navMobile {
+  display: none;
+}
 .contentContainer {
   margin: 30px auto;
   max-width: 1100px;
@@ -20,6 +23,12 @@
   }
 }
 @media (max-width: 991px) {
+  .navDesk {
+    display: none;
+  }
+  .navMobile {
+    display: block;
+  }
   .title {
     margin: 100px auto 30px auto;
   }
@@ -48,6 +57,9 @@
     .right {
       margin: 5px;
     }
+  }
+  .footer {
+    display: none;
   }
 }
 

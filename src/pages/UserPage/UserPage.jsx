@@ -1,12 +1,29 @@
+// components
 import Nav from 'components/Nav/Nav'
 import styles from './UserPage.module.scss'
 import InfoCard from 'components/InfoCard/InfoCard'
 import UserPageTab from 'components/UserPageTab/UserPageTab'
 import UserContent from 'components/UserContent/UserContent'
+import Footer from 'components/Footer/Footer'
+
+// hook
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-const { contentContainer, left, info, tab, right, logout } = styles
+// style
+const {
+  navDesk,
+  navMobile,
+  contentContainer,
+  left,
+  info,
+  tab,
+  right,
+  logout,
+  footer
+} = styles
+
+// data
 const theUserData = {
   userId: 1,
   name: 'user1',
@@ -23,6 +40,12 @@ const theUserData = {
   isFollow: false
 }
 
+// const NavMobile = (upOrDown) => {
+//   if (upOrDown) {
+//     return <Nav className={navMobile} />
+//   }
+// }
+
 export default function UserPage() {
   const [currentScroll, setCurrentScroll] = useState({
     currentValue: window.scrollY,
@@ -32,15 +55,21 @@ export default function UserPage() {
   const navigate = useNavigate()
   const thePathArray = location.pathname.split('/')
   const [acitveContent, setAcitveContent] = useState()
+  const currentUserId = localStorage.getItem('currentUserId')
+
+  // handle
   const handleAcitveContent = (type) => {
     setAcitveContent(type)
-    navigate(`/user/1/${type}`)
+    navigate(`/user/${currentUserId}/${type}`)
   }
 
+  // useEffect
+  // 根據url變化，render右側內容
   useEffect(() => {
     setAcitveContent(thePathArray[thePathArray.length - 1])
   }, [location])
 
+  // 當卷軸滑動，捕捉當前滑動的位置是否置頂
   useEffect(() => {
     function handleScroll() {
       setCurrentScroll((pre) => ({
@@ -53,10 +82,12 @@ export default function UserPage() {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [currentScroll])
-
   return (
     <div className="container mx-auto">
-      {currentScroll.upOrDown && <Nav />}
+      <div className={navDesk}>
+        <Nav className={navDesk} />
+      </div>
+      <div className={navMobile}>{currentScroll.upOrDown && <Nav />}</div>
       <div className={contentContainer}>
         <div className={left} data-scroll={currentScroll.upOrDown}>
           <InfoCard
@@ -84,6 +115,9 @@ export default function UserPage() {
         <div className={right}>
           <UserContent acitveContent={acitveContent} />
         </div>
+      </div>
+      <div className={footer}>
+        <Footer />
       </div>
     </div>
   )
