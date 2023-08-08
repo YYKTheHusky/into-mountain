@@ -1,10 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import formatDateTime from 'utils/time.js'
 // scss
 import styles from './ReviewsListCard.module.scss'
 // svg
 import { ReactComponent as IconStar } from 'assets/icons/icon-star.svg'
 import { ReactComponent as IconLikeActive } from 'assets/icons/like-active.svg'
-import { useNavigate } from 'react-router-dom'
+// component
 import { ColorTag } from 'components/Tag/Tag'
 
 const {
