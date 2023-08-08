@@ -1,12 +1,11 @@
 import axiosInstance from 'api/AxiosInstance.js'
 
 // 取得特定使用者資料
-export const getUserData = async () => {
-  const currentUserId = localStorage.getItem('currentUserId')
+export const getUserData = async (id) => {
   try {
-    const { data } = await axiosInstance.get(`/users/${currentUserId}`)
+    const  data  = await axiosInstance.get(`/users/${id}`)
     if (data) {
-      return { status: data.status, userData: data.data }
+      return data.data.data.user
     }
   } catch (error) {
     console.error('[Get User Data Failed]:', error)

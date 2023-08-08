@@ -40,7 +40,7 @@ const InfoCard = ({ data, onAcitveContent }) => {
             </div>
             <div>
               <div className={countTitle2}>總讚數</div>
-              <div>{data.PostLikeCount}</div>
+              <div>{data.favoritePostCount}</div>
             </div>
           </div>
           <span></span>
