@@ -23,7 +23,7 @@ export default function LoginPage() {
       if (token) {
         navigate('/')
         Toast.fire({
-          icon: 'error',
+          icon: 'info',
           title: '您已經登入囉!'
         })
       }
