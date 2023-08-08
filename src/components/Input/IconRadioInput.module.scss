@@ -5,6 +5,9 @@
   height: 44px;
   width: 44px;
   padding: 0 2px;
+}
+
+.iconHover {
   cursor: pointer;
   &:hover {
     transform: scale(1.05);

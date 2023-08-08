@@ -7,7 +7,7 @@ import difficultyIconWhite from 'assets/icons/difficulty-white.svg'
 import recommendIcon from 'assets/icons/recommended-like-active.svg'
 import recommendIconWhite from 'assets/icons/recommended-like.svg'
 
-export default function IconRadioInput({ iconType, onChange }) {
+export default function IconRadioInput({ iconType, onChange, score }) {
   const [selectedIcon, setSelectedIcon] = useState(null)
   const [defaultIcon, setDefaultIcon] = useState(null)
   const [activeIcon, setActiveIcon] = useState(null)
@@ -20,22 +20,28 @@ export default function IconRadioInput({ iconType, onChange }) {
       setDefaultIcon(recommendIconWhite)
       setActiveIcon(recommendIcon)
     }
-  }, [])
+  }, [iconType])
 
   const handleIconClick = (iconNumber) => {
     setSelectedIcon(iconNumber)
-    onChange(iconNumber)
+    if (onChange) {
+      onChange(iconNumber)
+    }
   }
 
   const renderIcons = () => {
     const icons = []
-    const selectedCount = selectedIcon || 0
+    const selectedCount = score || selectedIcon || 0
     const unselectedCount = 5 - selectedCount
 
     for (let i = 1; i <= selectedCount; i++) {
       icons.push(
         <div key={`selected-${i}`} onClick={() => handleIconClick(i)}>
-          <img className={styles.icon} src={activeIcon} />
+          <img
+            className={`${styles.icon} ${!score && styles.iconHover}`}
+            src={activeIcon}
+            alt="active icon"
+          />
         </div>
       )
     }
@@ -46,7 +52,11 @@ export default function IconRadioInput({ iconType, onChange }) {
           key={`unselected-${i}`}
           onClick={() => handleIconClick(selectedCount + i)}
         >
-          <img className={styles.icon} src={defaultIcon} />
+          <img
+            className={`${styles.icon} ${!score && styles.iconHover}`}
+            src={defaultIcon}
+            alt="default icon"
+          />
         </div>
       )
     }

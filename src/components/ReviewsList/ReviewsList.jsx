@@ -1,185 +1,36 @@
+import { useEffect, useState } from 'react'
+import Toast from 'utils/sweetAlertConfig.js'
+// scss
 import styles from './ReviewsList.module.scss'
+// component
 import ReviewListCard from './ReviewsListCard/ReviewsListCard'
+// api
+import { getAllPost } from 'api/post'
+
 const { reviewListContainer } = styles
-const data = [
-  {
-    postId: 1,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 2,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 3,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 4,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 5,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 6,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 7,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 8,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 9,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  },
-  {
-    postId: 10,
-    title: '珠穆朗瑪峰',
-    category: '困難',
-    description: '9',
-    image: 'https://picsum.photos/200/300',
-    difficulty: '困難',
-    recommend: '5',
-    userId: '1',
-    createdAt: '2023-7-30',
-    updatedAt: '2023-7-30',
-    userName: '使用者名稱',
-    userAvatar: 'https://picsum.photos/id/237/200/300',
-    favoriteCount: '3',
-    likeCount: '10',
-    isLike: 'true'
-  }
-]
 
 const ReviewList = () => {
+  const [allPost, setAllPost] = useState(null)
+
+  useEffect(() => {
+    const getAllPosts = async () => {
+      const { status, posts } = await getAllPost()
+      if (status === 'success') {
+        setAllPost(posts)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '遇到一點問題，請嘗試刷新網頁!'
+        })
+      }
+    }
+    getAllPosts()
+  }, [])
+
   return (
     <div className={reviewListContainer}>
-      {data.map((item) => (
-        <ReviewListCard key={item.postId} data={item} />
-      ))}
+      {allPost &&
+        allPost.map((item) => <ReviewListCard key={item.id} data={item} />)}
     </div>
   )
 }

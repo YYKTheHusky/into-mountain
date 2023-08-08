@@ -20,6 +20,13 @@
     .authorName {
       color: var(--main-color);
     }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50px;
+      margin-right: 8px;
+    }
     span + span::before {
       content: '|';
       margin: 0 8px;
@@ -27,7 +34,21 @@
     }
     .buttonContainer {
       margin: 0 12px;
-      width: 100px;
+      width: 88px;
+    }
+  }
+  .recommend {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    .icon {
+      display: flex;
+      align-items: center;
+      margin-right: 18px;
+    }
+    span {
+      margin-right: 12px;
     }
   }
   .tag {
@@ -61,9 +82,12 @@
     }
   }
 }
+.reviewPhoto {
+  width: 100%;
+}
 .photo {
   margin: 25px 0;
-  max-width: 100%;
+  width: 100%;
 }
 .divide {
   position: relative;
