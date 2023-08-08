@@ -23,7 +23,6 @@ export default function LoginModal() {
   const [password, setPassword] = useState('')
   const [isError, setIsError] = useState('')
   const navigate = useNavigate()
-
   // 登入功能
   const handleLogin = async () => {
     if (email.trim().length === 0 || password.trim().length === 0 || isError) {
