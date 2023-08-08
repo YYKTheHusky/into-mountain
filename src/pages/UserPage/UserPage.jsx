@@ -6,7 +6,7 @@ import UserContent from 'components/UserContent/UserContent'
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-const { contentContainer, left, info, tab, right } = styles
+const { contentContainer, left, info, tab, right, logout } = styles
 const theUserData = {
   userId: 1,
   name: 'user1',
@@ -70,6 +70,15 @@ export default function UserPage() {
               acitveContent={acitveContent}
               onAcitveContent={handleAcitveContent}
             />
+          </div>
+          <div
+            className={logout}
+            onClick={() => {
+              localStorage.clear()
+              navigate(`/`)
+            }}
+          >
+            登出
           </div>
         </div>
         <div className={right}>
