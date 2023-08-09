@@ -1,95 +1,29 @@
-import TrailsListCard from './TrailsListCard/TrailsListCard'
+import { useEffect, useState } from 'react'
+// scss
 import styles from './TrailsList.module.scss'
+// component
+import TrailsListCard from './TrailsListCard/TrailsListCard'
+// api
+import { getAllTrails } from 'api/trail'
+
 const { trailsListContainer } = styles
-const data = [
-  {
-    trailId: 1,
-    title: '珠穆朗瑪峰',
-    difficulty: '低',
-    favoriteCount: '9',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 2,
-    title: 'Flame Mountain Loop',
-    difficulty: '低-中',
-    favoriteCount: '3',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 3,
-    title: 'Flame Mountain Loop',
-    difficulty: '中',
-    favoriteCount: '6',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 4,
-    title: 'Flame Mountain Loop',
-    difficulty: '中-高',
-    favoriteCount: '5',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 5,
-    title: 'Flame Mountain Loop',
-    difficulty: '高',
-    favoriteCount: '7',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 6,
-    title: 'Flame Mountain Loop',
-    difficulty: '高',
-    favoriteCount: '7',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 7,
-    title: 'Flame Mountain Loop',
-    difficulty: '中',
-    favoriteCount: '7',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 8,
-    title: 'Flame Mountain Loop',
-    difficulty: '中',
-    favoriteCount: '7',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 9,
-    title: 'Flame Mountain Loop',
-    difficulty: '低-中',
-    favoriteCount: '7',
-    distance: '2km',
-    duration: '2hr'
-  },
-  {
-    trailId: 10,
-    title: 'Flame Mountain Loop',
-    difficulty: '低-中',
-    favoriteCount: '7',
-    distance: '2km',
-    duration: '2hr'
-  }
-]
 
 const TrailsList = () => {
+  const [trailData, setTrailData] = useState(null)
+
+  useEffect(() => {
+    const getData = async () => {
+      const { trails } = await getAllTrails()
+      setTrailData(trails)
+    }
+    getData()
+  }, [])
   return (
     <div className={trailsListContainer}>
-      {data.map((item) => (
-        <TrailsListCard key={item.trailId} data={item} />
-      ))}
+      {trailData &&
+        trailData.map((item) => (
+          <TrailsListCard key={item.trailId} data={item} />
+        ))}
     </div>
   )
 }

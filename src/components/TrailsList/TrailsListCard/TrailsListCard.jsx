@@ -23,8 +23,8 @@ const TrailsListCard = ({ data }) => {
       <div className={trailsListCardContainer}>
         <img
           className="cursor-point"
-          src="https://picsum.photos/seed/picsum/200/200"
-          alt="fake"
+          src={data.image}
+          alt="cover-photo"
           onClick={() => navigate(`/trail/${data.trailID}/detail`)}
         />
         <IconLabel
@@ -50,7 +50,7 @@ const TrailsListCard = ({ data }) => {
             <IconClock /> {data.duration}
           </span>
           <span>
-            <IconStar /> {data.favoriteCount}人收藏此路線
+            <IconStar /> {data.favoriteCount}人收藏
           </span>
         </div>
       </div>
