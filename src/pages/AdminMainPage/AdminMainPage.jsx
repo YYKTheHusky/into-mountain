@@ -3,16 +3,30 @@ import styles from './AdminMainPage.module.scss'
 import { ReactComponent as IconLogo } from 'assets/icons/icon-logo.svg'
 import AdminMainContent from 'components/AdminMainContent/AdminMainContent'
 import { useEffect, useState } from 'react'
-import { getAllUsers } from 'api/admin'
+import { getAllUsers, addSuspension, getAllSuspension } from 'api/admin'
+
 const { adminMainPageContainer, nav, right, rightHead, logo } = styles
 
 export default function AdminMainPage() {
   const [page, setPage] = useState('userList')
   const [userListData, setUserListData] = useState([])
+  const [susUserList, setSusUserList] = useState([])
 
   const handlePage = (type) => {
     setPage(type)
   }
+  const handleSuspend = async (id) => {
+    try {
+      const who = await addSuspension(id)
+      console.log(who)
+      console.log(id)
+      // console.log(`${id}被停權`)
+      setUserListData(userListData.filter((item) => item.id !== id))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     if (page === 'userList') {
       const getAllUsersAsync = async () => {
@@ -24,6 +38,16 @@ export default function AdminMainPage() {
         }
       }
       getAllUsersAsync()
+    } else if (page === 'susUserList') {
+      const getAllSuspensionAsync = async () => {
+        try {
+          const data = await getAllSuspension()
+          setSusUserList(data)
+        } catch (error) {
+          console.error(error)
+        }
+      }
+      getAllSuspensionAsync()
     }
   }, [page])
 
@@ -38,7 +62,12 @@ export default function AdminMainPage() {
             <IconLogo className={logo} />
             <button>登出</button>
           </div>
-          <AdminMainContent page={page} userListData={userListData} />
+          <AdminMainContent
+            page={page}
+            userListData={userListData}
+            susUserList={susUserList}
+            onSuspend={handleSuspend}
+          />
         </div>
       </div>
     </div>

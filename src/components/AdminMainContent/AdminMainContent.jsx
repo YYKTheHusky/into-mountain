@@ -21,7 +21,7 @@ const {
   reviewItemRightDescription
 } = styles
 
-const UserItem = ({ isSus, data }) => {
+const UserItem = ({ isSus, data, onSuspend }) => {
   return (
     <div className={userItemContainer}>
       <div className={userItemLeft}>
@@ -34,7 +34,9 @@ const UserItem = ({ isSus, data }) => {
               已停權
             </button>
           ) : (
-            <button className={unSus}>停權</button>
+            <button className={unSus} onClick={() => onSuspend?.(data.id)}>
+              停權
+            </button>
           )}
         </div>
         <div className={userItemRightName}>{data.name}</div>
@@ -64,33 +66,21 @@ const ReviewItem = () => {
   )
 }
 
-const AdminMainContent = ({ page, userListData }) => {
+const AdminMainContent = ({ page, userListData, susUserList, onSuspend }) => {
   return (
     <div className={adminMainContentContainer}>
       {page === 'userList' && (
         <>
           {userListData.map((item) => (
-            <UserItem key={item.id} data={item} />
+            <UserItem key={item.id} data={item} onSuspend={onSuspend} />
           ))}
         </>
       )}
       {page === 'susUserList' && (
         <>
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
-          <UserItem isSus="true" />
+          {susUserList.map((item) => (
+            <UserItem key={item.id} data={item} isSus={item.isSuspended} />
+          ))}
         </>
       )}
       {page === 'reviewList' && (
