@@ -1,27 +1,24 @@
-import { useState } from 'react'
 import styles from './FollowCard.module.scss'
 import { SecondaryButton } from 'components/Button/Button'
 const { followerCardCointainer, cardHead, cardAvatar, cardTitle, cardButton } =
   styles
 
-const FollowerCard = () => {
-  const [isFollow, setIsFollow] = useState(false)
-
+const FollowerCard = ({ data, fallow }) => {
   return (
     <div className={followerCardCointainer}>
       <div className={cardHead}>
         <div className={cardAvatar}>
-          <img src="https://picsum.photos/id/237/200/300" alt="" />
+          <img src={fallow.avatar} alt="" />
         </div>
-        <div className={cardTitle}>名稱</div>
+        <div className={cardTitle}>{fallow.name}</div>
       </div>
       <div className={cardButton}>
         <SecondaryButton
-          onClick={() => {
-            setIsFollow(!isFollow)
-          }}
+        onClick={() => {
+          console.log(data.id)
+        }}
         >
-          {isFollow ? '追隨中' : '追隨'}
+          {data.isFollow ? '追隨中' : '追隨'}
         </SecondaryButton>
       </div>
     </div>

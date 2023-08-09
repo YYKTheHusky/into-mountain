@@ -1,83 +1,37 @@
-// import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
+import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 import RightSideContainer from 'components/UserContent/RightSideContainer/RightSideContainer'
 import styles from './MyFollower.module.scss'
 import FollowerCard from 'components/UserContent/FollowCard/FollowCard'
+import { getUserFollowers } from 'api/user'
+import { useState, useEffect } from 'react'
 const { myFollowerContainer } = styles
-// followshipId,followingId,name,createdAt,updatedAt, followingAvatar(following的頭像), isFollow(使用者是否follow)
-// const data = [{
 
-// }]
+const MyFollower = ({ theUserId }) => {
+  const [followersList, setFollowersList] = useState([])
 
-const MyFollower = () => {
+  useEffect(() => {
+    const getUserFollowersAsync = async () => {
+      try {
+        const data = await getUserFollowers(theUserId)
+        setFollowersList(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getUserFollowersAsync()
+  }, [])
+
   return (
     <RightSideContainer title="粉絲">
+      {followersList.length === 0 && (
+        <div>
+          <YouHaveNothing robotDescription="沒有粉絲" />
+        </div>
+      )}
       <div className={myFollowerContainer}>
-        {/* <div>
-          <YouHaveNothing robotTitle="粉絲" robotDescription="沒有粉絲" />
-        </div> */}
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
-        <FollowerCard />
+        {followersList.map((item) => (
+          <FollowerCard key={item.id} data={item} fallow={item.Follower} />
+        ))}
       </div>
     </RightSideContainer>
   )

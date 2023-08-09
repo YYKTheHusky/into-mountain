@@ -94,7 +94,7 @@ export default function UserPage() {
     if (localStorage.getItem('currentUserId')) {
       getUserDataAsync(id)
     }
-  }, [])
+  }, [location])
 
   return (
     <div className="container mx-auto">

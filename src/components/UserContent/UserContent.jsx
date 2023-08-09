@@ -12,7 +12,7 @@ const UserContent = ({ acitveContent, theUserId }) => {
   if (acitveContent === 'myReviews') {
     return (
       <div className={userContentContainer}>
-        <MyReview theUserId={theUserId}/>
+        <MyReview theUserId={theUserId} />
       </div>
     )
   } else if (
@@ -33,13 +33,13 @@ const UserContent = ({ acitveContent, theUserId }) => {
   } else if (acitveContent === 'following') {
     return (
       <div className={userContentContainer}>
-        <MyFollowing />
+        <MyFollowing theUserId={theUserId} />
       </div>
     )
   } else if (acitveContent === 'follower') {
     return (
       <div className={userContentContainer}>
-        <MyFollower />
+        <MyFollower theUserId={theUserId} />
       </div>
     )
   } else if (acitveContent === 'setting') {
