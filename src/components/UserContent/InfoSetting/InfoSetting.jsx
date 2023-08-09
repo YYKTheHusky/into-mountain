@@ -7,30 +7,22 @@ const { infoSettingContainer, infoItem, saveChange } = styles
 const InfoSetting = () => {
   const inputRef = useRef({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-
+  const [avatarImg, setAvatarImg] = useState()
   const handleInputChange = (inputName) => (event) => {
     const { value } = event.target
     inputRef.current[inputName] = value
   }
+  const handleAvatarImg = (picture) => {
+    setAvatarImg(picture)
+  }
 
-  // function handleInputChange(inputName, event) {
-  //   const { value } = event.target
-  //   inputRef.current[inputName] = value
-  //   console.log(inputRef.current)
-  // }
-  // function handleInputChange(inputName) {
-  //   return function (event) {
-  //     const { value } = event.target
-  //     inputRef.current[inputName] = value
-  //     console.log(inputRef.current)
-  //   }
-  // }
   const handleSubmit = () => {
     if (isSubmitting) {
       return
     }
     setIsSubmitting(true)
     setTimeout(() => {
+      console.log(avatarImg)
       console.table(inputRef.current)
       setIsSubmitting(false)
       alert('儲存成功!')
@@ -41,7 +33,7 @@ const InfoSetting = () => {
     <RightSideContainer title="編輯個人資料">
       <div className={infoSettingContainer}>
         <div className={infoItem}>
-          <UpLoad />
+          <UpLoad onAvatarImg={handleAvatarImg} avatarImg={avatarImg} />
         </div>
         <div className={infoItem}>
           <input

@@ -3,7 +3,7 @@ import styles from './UpLoad.module.scss'
 import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
 const { upLoadContainer, avatar, defaultImg } = styles
 
-const UpLoad = () => {
+const UpLoad = ({ onAvatarImg, avatarImg }) => {
   const inpuRef = useRef(null)
   const [image, setImage] = useState('')
 
@@ -12,6 +12,7 @@ const UpLoad = () => {
   }
   const handleImageChange = (e) => {
     const file = e.target.files[0]
+    onAvatarImg(file)
     setImage(file)
   }
 
