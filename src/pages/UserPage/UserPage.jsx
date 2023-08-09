@@ -53,12 +53,12 @@ export default function UserPage() {
   const navigate = useNavigate()
   const thePathArray = location.pathname.split('/')
   const [acitveContent, setAcitveContent] = useState()
-  const currentUserId = localStorage.getItem('currentUserId')
+  // const currentUserId = localStorage.getItem('currentUserId')
   const id = thePathArray[2]
   // handle
   const handleAcitveContent = (type) => {
     setAcitveContent(type)
-    navigate(`/user/${currentUserId}/${type}`)
+    navigate(`/user/${thePathArray[2]}/${type}`)
   }
 
   // useEffect
@@ -107,6 +107,7 @@ export default function UserPage() {
           <InfoCard
             className={info}
             data={theUserData}
+            theUserId={id}
             acitveContent={acitveContent}
             onAcitveContent={handleAcitveContent}
           />
@@ -127,7 +128,7 @@ export default function UserPage() {
           </div>
         </div>
         <div className={right}>
-          <UserContent acitveContent={acitveContent} />
+          <UserContent acitveContent={acitveContent} theUserId={id} />
         </div>
       </div>
       <div className={footer}>

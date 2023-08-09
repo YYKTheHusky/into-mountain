@@ -14,7 +14,9 @@ const {
   infoSetIcon
 } = styles
 
-const InfoCard = ({ data, onAcitveContent }) => {
+const InfoCard = ({ data, onAcitveContent, theUserId }) => {
+  const currentUserId = localStorage.getItem('currentUserId')
+
   return (
     <div className={infoCardContainer}>
       <div className={card}>
@@ -43,11 +45,19 @@ const InfoCard = ({ data, onAcitveContent }) => {
               <div>{data.favoritePostCount}</div>
             </div>
           </div>
-          <span></span>
-          <div className={infoSet} onClick={() => onAcitveContent('setting')}>
-            <IconGear className={infoSetIcon} />
-            編輯個人資料
-          </div>
+
+          {theUserId === currentUserId.toString() && (
+            <>
+              <span></span>
+              <div
+                className={infoSet}
+                onClick={() => onAcitveContent('setting')}
+              >
+                <IconGear className={infoSetIcon} />
+                編輯個人資料
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
