@@ -1,0 +1,74 @@
+.background {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.656);
+  position: fixed;
+  z-index: 100000;
+}
+.spinner {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  z-index: 999;
+}
+.word {
+  font-size: 32px;
+  position: absolute;
+  top: 90px;
+  left: 90px;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  animation: text-color 2s ease-in-out infinite;
+}
+.spinnerSector {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 10px solid transparent;
+  mix-blend-mode: overlay;
+  animation: rotate var(--duration) var(--time) infinite;
+}
+
+.spinnerRed {
+  border-top-color: lightcoral;
+  --duration: 1.8s;
+  --time: ease-in-out;
+}
+
+.spinnerGreen {
+  border-left-color: lightblue;
+  --duration: 2s;
+  --time: ease-in;
+}
+
+.spinnerBlue {
+  border-bottom-color: lightgreen;
+  --duration: 2.5s;
+  --time: ease-out;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes text-color {
+  0% {
+    color: rgba(0, 0, 0, 1);
+  }
+  25% {
+    color: rgba(0, 0, 0, 0.65);
+  }
+  50% {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
