@@ -14,6 +14,7 @@ const {
   rightListItem,
   rightListIcon,
   user,
+  avatar,
   burger,
   postReviewButton,
   innerContainer
@@ -21,6 +22,8 @@ const {
 
 const Nav = () => {
   const navigate = useNavigate()
+  const currentUserId = localStorage.getItem('currentUserId')
+  const currentUserAvatar = localStorage.getItem('currentUserAvatar')
 
   return (
     <div className={navContainer}>
@@ -46,12 +49,27 @@ const Nav = () => {
           </div>
           <IconNotification
             className={rightListIcon}
-            onClick={() => navigate('/user/1/notification')}
+            onClick={() => {
+              if (currentUserId) {
+                navigate(`/user/${currentUserId}/notification`)
+              } else {
+                navigate('/login')
+              }
+            }}
           />
-          <IconUser
-            className={`${user} ${rightListIcon}`}
-            onClick={() => navigate('/user/1/myReviews')}
-          />
+          {currentUserId ? (
+            <div
+              className={`${avatar} ${rightListIcon}`}
+              onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
+            >
+              <img src={currentUserAvatar} alt="" />
+            </div>
+          ) : (
+            <IconUser
+              className={`${user} ${rightListIcon}`}
+              onClick={() => navigate('/login')}
+            />
+          )}
         </div>
       </div>
     </div>

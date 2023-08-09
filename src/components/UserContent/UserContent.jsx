@@ -8,11 +8,11 @@ import InfoSetting from './InfoSetting/InfoSetting'
 
 const { userContentContainer } = styles
 
-const UserContent = ({ acitveContent }) => {
+const UserContent = ({ acitveContent, theUserId }) => {
   if (acitveContent === 'myReviews') {
     return (
       <div className={userContentContainer}>
-        <MyReview />
+        <MyReview theUserId={theUserId}/>
       </div>
     )
   } else if (
@@ -21,7 +21,7 @@ const UserContent = ({ acitveContent }) => {
   ) {
     return (
       <div className={userContentContainer}>
-        <MyCollection />
+        <MyCollection theUserId={theUserId} />
       </div>
     )
   } else if (acitveContent === 'notification') {

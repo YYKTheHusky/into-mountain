@@ -31,9 +31,9 @@ const ItemRightSideTag2 = ({ collectionData }) => {
       <div className={itemRightSideTag2}>
         <div className={tagLeft}>
           <div className={tag2Avatar}>
-            <img src={collectionData.userAvatar} alt="" />
+            <img src={collectionData.User.avatar} alt="" />
           </div>
-          <span>{collectionData.userName}</span>
+          <span>{collectionData.User.name}</span>
         </div>
         <div className={tag2Time}>發表於：{collectionData.createdAt}</div>
       </div>
