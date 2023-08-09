@@ -8,8 +8,9 @@ import sliderLeft from 'assets/icons/slider-left-icon.svg'
 
 // components
 import TrailsListCard from 'components/TrailsList/TrailsListCard/TrailsListCard'
+import ReviewListCard from 'components/ReviewsList/ReviewsListCard/ReviewsListCard'
 
-export default function MainPageScrollCard({ data, title }) {
+export default function MainPageScrollCard({ data, title, type }) {
   // 點擊按鈕滑動內容
   const cardsContainerRef = useRef(null)
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -35,14 +36,15 @@ export default function MainPageScrollCard({ data, title }) {
     <div className={`mx-auto ${styles.outerContainer}`}>
       <h4 className={styles.title}>{title}</h4>
       <div
-        className={styles.cardscontainer}
+        className={styles.cardsContainer}
         ref={cardsContainerRef}
         onScroll={handleScroll}
-        style={{ scrollBehavior: 'smooth', scrollLeft: scrollPosition }}
+        style={{ scrollLeft: scrollPosition }}
       >
-        {data.map((item) => (
-          <TrailsListCard key={item.trailId} data={item} />
-        ))}
+        {type === 'trail' &&
+          data.map((item) => <TrailsListCard key={item.trailId} data={item} />)}
+        {type === 'review' &&
+          data.map((item) => <ReviewListCard key={item.id} data={item} />)}
       </div>
       <img
         className={`cursor-point ${styles.sliderLeft}`}

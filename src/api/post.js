@@ -29,6 +29,20 @@ export const getOnePost = async (postId) => {
   }
 }
 
+// 取得暫存的一篇文章
+export const getOneTempPost = async (postId) => {
+  try {
+    const { data } = await axiosAuthInstance.get(`/posts/${postId}/cache`)
+    if (data) {
+      return { status: data.status, postData: data.data }
+    }
+  } catch (error) {
+    console.error('[Get Temp Post Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}
+
 // 按讚文章
 export const likePost = async (postId) => {
   try {
@@ -79,6 +93,35 @@ export const discollectPost = async (postId) => {
     }
   } catch (error) {
     console.error('[Discollect Post Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 發布一篇文章
+export const publishPost = async ({
+  title,
+  category,
+  description,
+  image,
+  difficulty,
+  recommend
+}) => {
+  try {
+    const formData = new FormData()
+    formData.append('title', title)
+    formData.append('category', category)
+    formData.append('description', description)
+    formData.append('image', image)
+    formData.append('difficulty', difficulty)
+    formData.append('recommend', recommend)
+
+    const response = await axiosAuthInstance.post(`/posts`, formData)
+
+    if (response) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Publish Post Failed]:', error)
     return { success: false }
   }
 }

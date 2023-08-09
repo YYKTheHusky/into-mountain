@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 // scss
 import styles from 'pages/MainPage/MainPage.module.scss'
 
@@ -10,50 +12,25 @@ import MainLayout from 'components/MainLayout/MainLayout'
 // svg
 import mainPagePhoto from 'assets/photos/mainpage-photo.svg'
 
+// api
+import { getAllTrails } from 'api/trail'
+import { getAllPost } from 'api/post'
+
 export default function MainPage() {
-  // 假資料
-  const data = [
-    {
-      trailId: 1,
-      title: '珠穆朗瑪峰',
-      difficulty: '低',
-      favoriteCount: '9',
-      distance: '2km',
-      duration: '2hr'
-    },
-    {
-      trailId: 2,
-      title: 'Flame Mountain Loop',
-      difficulty: '低-中',
-      favoriteCount: '3',
-      distance: '2km',
-      duration: '2hr'
-    },
-    {
-      trailId: 3,
-      title: 'Flame Mountain Loop',
-      difficulty: '中',
-      favoriteCount: '6',
-      distance: '2km',
-      duration: '2hr'
-    },
-    {
-      trailId: 4,
-      title: 'Flame Mountain Loop',
-      difficulty: '中-高',
-      favoriteCount: '5',
-      distance: '2km',
-      duration: '2hr'
-    },
-    {
-      trailId: 5,
-      title: 'Flame Mountain Loop',
-      difficulty: '高',
-      favoriteCount: '7',
-      distance: '2km',
-      duration: '2hr'
+  const navigate = useNavigate()
+  const [trailData, setTrailData] = useState(null)
+  const [postData, setPostData] = useState(null)
+  useEffect(() => {
+    const getData = async () => {
+      const [{ trails }, { posts }] = await Promise.all([
+        getAllTrails(),
+        getAllPost()
+      ])
+      setTrailData(trails.slice(0, 5))
+      setPostData(posts.slice(0, 10))
     }
-  ]
+    getData()
+  }, [])
 
   return (
     <MainLayout>
@@ -62,24 +39,31 @@ export default function MainPage() {
           className={styles.mainPagePhoto}
           src={mainPagePhoto}
           alt="mainPagePhoto"
-        ></img>
+        />
         <div className={styles.sloganContainer}>
           <h1 className={styles.slogan}>100+ Ways </h1>
           <h1 className={styles.slogan}>to Meet Nature</h1>
           <div className={styles.buttonContainer}>
-            <OvalButtonHuge>探索所有步道</OvalButtonHuge>
+            <OvalButtonHuge onClick={() => navigate('/trail')}>
+              探索所有步道
+            </OvalButtonHuge>
           </div>
         </div>
       </div>
       <div className={styles.searchBarContainer}>
-        <SearchBarMain></SearchBarMain>
+        <SearchBarMain />
       </div>
       <div className={styles.trailsContainer}>
-        <MainPageScrollCard
-          data={data}
-          title="最受歡迎路線Top10"
-        ></MainPageScrollCard>
-        <MainPageScrollCard data={data} title="最新心得"></MainPageScrollCard>
+        {trailData && (
+          <MainPageScrollCard
+            data={trailData}
+            title="最受歡迎路線Top10"
+            type="trail"
+          />
+        )}
+        {postData && (
+          <MainPageScrollCard data={postData} title="最新心得" type="review" />
+        )}
       </div>
     </MainLayout>
   )
