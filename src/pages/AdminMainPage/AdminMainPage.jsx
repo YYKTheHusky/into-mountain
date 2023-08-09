@@ -2,14 +2,31 @@ import AdminNav from 'components/AdminNav/AdminNav'
 import styles from './AdminMainPage.module.scss'
 import { ReactComponent as IconLogo } from 'assets/icons/icon-logo.svg'
 import AdminMainContent from 'components/AdminMainContent/AdminMainContent'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getAllUsers } from 'api/admin'
 const { adminMainPageContainer, nav, right, rightHead, logo } = styles
 
 export default function AdminMainPage() {
   const [page, setPage] = useState('userList')
+  const [userListData, setUserListData] = useState([])
+
   const handlePage = (type) => {
     setPage(type)
   }
+  useEffect(() => {
+    if (page === 'userList') {
+      const getAllUsersAsync = async () => {
+        try {
+          const data = await getAllUsers()
+          setUserListData(data)
+        } catch (error) {
+          console.error(error)
+        }
+      }
+      getAllUsersAsync()
+    }
+  }, [page])
+
   return (
     <div className="container mx-auto">
       <div className={adminMainPageContainer}>
@@ -21,7 +38,7 @@ export default function AdminMainPage() {
             <IconLogo className={logo} />
             <button>登出</button>
           </div>
-          <AdminMainContent page={page} />
+          <AdminMainContent page={page} userListData={userListData} />
         </div>
       </div>
     </div>

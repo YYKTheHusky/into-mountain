@@ -1,11 +1,12 @@
 .item {
   width: 70%;
   max-width: 600px;
-  height: 130px;
+  height: 140px;
+  overflow: hidden;
   border-radius: 5px;
   background-color: white;
   margin: 0 auto 5px auto;
-  padding: 0 3px;
+  padding: 5px 5px;
   box-shadow:
     0px 2px 2px 0px rgba(60, 79, 107, 0.1),
     0px 3px 1px -2px rgba(60, 79, 107, 0.05),
@@ -40,10 +41,12 @@
     }
   }
   .description {
-    padding: 3px 0;
+    padding: 5px 0;
     font-size: 16px;
     font-weight: 400;
     color: var(--dark-90);
+    max-height: 70px;
+    overflow: hidden;
   }
 }
 

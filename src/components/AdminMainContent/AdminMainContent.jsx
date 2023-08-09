@@ -8,7 +8,7 @@ const {
   unSus,
   sus,
   userItemRightName,
-  userItemRightMail,
+  // userItemRightMail,
   userItemRightDescription,
   reviewItemContainer,
   reviewItemLeft,
@@ -21,11 +21,11 @@ const {
   reviewItemRightDescription
 } = styles
 
-const UserItem = ({ isSus }) => {
+const UserItem = ({ isSus, data }) => {
   return (
     <div className={userItemContainer}>
       <div className={userItemLeft}>
-        <img src="https://picsum.photos/200/300" alt="" />
+        <img src={data.avatar} alt="" />
       </div>
       <div className={userItemRight}>
         <div className={userItemRightButton}>
@@ -37,9 +37,9 @@ const UserItem = ({ isSus }) => {
             <button className={unSus}>停權</button>
           )}
         </div>
-        <div className={userItemRightName}>名字</div>
-        <div className={userItemRightMail}>email</div>
-        <div className={userItemRightDescription}>自我介紹</div>
+        <div className={userItemRightName}>{data.name}</div>
+        {/* <div className={userItemRightMail}>{data.email}</div> */}
+        <div className={userItemRightDescription}>{data.introduction}</div>
       </div>
     </div>
   )
@@ -64,24 +64,14 @@ const ReviewItem = () => {
   )
 }
 
-const AdminMainContent = ({ page }) => {
+const AdminMainContent = ({ page, userListData }) => {
   return (
     <div className={adminMainContentContainer}>
       {page === 'userList' && (
         <>
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
-          <UserItem />
+          {userListData.map((item) => (
+            <UserItem key={item.id} data={item} />
+          ))}
         </>
       )}
       {page === 'susUserList' && (
