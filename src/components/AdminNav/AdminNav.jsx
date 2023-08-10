@@ -19,7 +19,8 @@ const {
   footer,
   footerTrans,
   icon,
-  logout
+  logout,
+  adminPhoto
 } = styles
 
 const AdminNav = ({ onPage }) => {
@@ -45,9 +46,17 @@ const AdminNav = ({ onPage }) => {
         }}
       >
         <div className={listItem} title="管理員">
-          <IconPerson className={icon} />
+          {localStorage.getItem('adminAvatar') ? (
+            <div className={adminPhoto}>
+              <img src={localStorage.getItem('adminAvatar')} alt="" />
+            </div>
+          ) : (
+            <IconPerson className={icon} />
+          )}
           <span className={clsx(listItemLabel, navExpand && expand)}>
-            管理員1號
+            {localStorage.getItem('adminName')
+              ? localStorage.getItem('adminName')
+              : '管理員'}
           </span>
         </div>
         <div className={listItem} title="最新通知">
@@ -103,10 +112,14 @@ const AdminNav = ({ onPage }) => {
             被檢舉的心得清單
           </span>
         </div>
-        <div className={`${listItem} ${logout}`} title="登出" onClick={()=>{
-          localStorage.clear()
-          navigate('/admin/login')
-        }}>
+        <div
+          className={`${listItem} ${logout}`}
+          title="登出"
+          onClick={() => {
+            localStorage.clear()
+            navigate('/admin/login')
+          }}
+        >
           <IconLogout className={icon} />
           <span className={clsx(listItemLabel, navExpand && expand)}>登出</span>
         </div>

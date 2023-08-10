@@ -19,7 +19,7 @@ export default function AdminLoginModal() {
     if (email.trim().length === 0 || password.trim().length === 0 || isError) {
       return
     }
-    const { token, id, avatar, isSuspended, message } = await adminLogin({
+    const { token, id, name, avatar, isSuspended, message } = await adminLogin({
       email,
       password
     })
@@ -32,6 +32,7 @@ export default function AdminLoginModal() {
       localStorage.setItem('adminToken', token)
       localStorage.setItem('adminId', id)
       localStorage.setItem('adminAvatar', avatar)
+      localStorage.setItem('adminName', name)
       Toast.fire({
         icon: 'success',
         title: '登入成功!'

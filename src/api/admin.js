@@ -24,11 +24,12 @@ export const adminLogin = async ({ email, password }) => {
       password
     })
     const { token } = responseData.data
-    const { id, avatar, isSuspended } = responseData.data.user
+    const { id,name, avatar, isSuspended } = responseData.data.user
     if (responseData) {
       return {
         token,
         id,
+        name,
         avatar,
         isSuspended
       }
