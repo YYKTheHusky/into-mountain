@@ -23,10 +23,12 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="regist" element={<LoginPage />} />
-          <Route path="trail" element={<TrailsPage />} />
+          <Route path="search/allTrails" element={<TrailsPage />} />
+          <Route path="search/trails/:keyword" element={<TrailsPage />} />
           <Route path="trail/:trailID/detail" element={<SingleTrailPage />} />
           <Route path="trail/:trailID/gpx" element={<SingleTrailPage />} />
-          <Route path="review" element={<ReviewsPage />} />
+          <Route path="search/allReviews" element={<ReviewsPage />} />
+          <Route path="search/reviews/:keyword" element={<ReviewsPage />} />
           <Route path="review/:reviewID" element={<SingleReviewPage />} />
           <Route path="review/:reviewID/edit" element={<EditReviewPage />} />
           <Route path="newReview" element={<EditReviewPage />} />
