@@ -3,7 +3,12 @@ import styles from './AdminMainPage.module.scss'
 import { ReactComponent as IconLogo } from 'assets/icons/icon-logo.svg'
 import AdminMainContent from 'components/AdminMainContent/AdminMainContent'
 import { useEffect, useState } from 'react'
-import { getAllUsers, addSuspension, getAllSuspension } from 'api/admin'
+import {
+  getAllUsers,
+  addSuspension,
+  removeSuspension,
+  getAllSuspension
+} from 'api/admin'
 
 const { adminMainPageContainer, nav, right, rightHead, logo } = styles
 
@@ -22,7 +27,16 @@ export default function AdminMainPage() {
       console.error(error)
     }
   }
-
+  const handleRemoveSuspend = async (id) => {
+    try {
+      await removeSuspension(id)
+      setSusUserList((susUserList) =>
+        susUserList.filter((item) => item.id !== id)
+      )
+    } catch (error) {
+      console.error(error)
+    }
+  }
   useEffect(() => {
     if (page === 'userList') {
       const getAllUsersAsync = async () => {
@@ -63,6 +77,7 @@ export default function AdminMainPage() {
             userListData={userListData}
             susUserList={susUserList}
             onSuspend={handleSuspend}
+            onRemoveSuspend={handleRemoveSuspend}
           />
         </div>
       </div>

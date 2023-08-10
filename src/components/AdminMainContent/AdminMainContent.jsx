@@ -21,7 +21,7 @@ const {
   reviewItemRightDescription
 } = styles
 
-const UserItem = ({ isSus, data, onSuspend }) => {
+const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend }) => {
   return (
     <div className={userItemContainer}>
       <div className={userItemLeft}>
@@ -30,8 +30,8 @@ const UserItem = ({ isSus, data, onSuspend }) => {
       <div className={userItemRight}>
         <div className={userItemRightButton}>
           {isSus ? (
-            <button className={sus} disabled>
-              已停權
+            <button className={sus} onClick={() => onRemoveSuspend?.(data.id)}>
+              解除停權
             </button>
           ) : (
             <button className={unSus} onClick={() => onSuspend?.(data.id)}>
@@ -66,7 +66,13 @@ const ReviewItem = () => {
   )
 }
 
-const AdminMainContent = ({ page, userListData, susUserList, onSuspend }) => {
+const AdminMainContent = ({
+  page,
+  userListData,
+  susUserList,
+  onSuspend,
+  onRemoveSuspend
+}) => {
   return (
     <div className={adminMainContentContainer}>
       {page === 'userList' && (
@@ -79,7 +85,12 @@ const AdminMainContent = ({ page, userListData, susUserList, onSuspend }) => {
       {page === 'susUserList' && (
         <>
           {susUserList.map((item) => (
-            <UserItem key={item.id} data={item} isSus={item.isSuspended} />
+            <UserItem
+              key={item.id}
+              data={item}
+              isSus={item.isSuspended}
+              onRemoveSuspend={onRemoveSuspend}
+            />
           ))}
         </>
       )}

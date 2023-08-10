@@ -97,6 +97,12 @@
           background-color: var(--dark-40);
           color: var(--dark-90);
         }
+        button {
+          cursor: pointer;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
       }
       .userItemRightName {
         @extend .name;

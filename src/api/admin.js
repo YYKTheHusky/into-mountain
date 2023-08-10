@@ -67,6 +67,20 @@ export const addSuspension = async (userId) => {
   }
 }
 
+// 解除特定使用者停權
+export const removeSuspension = async (userId) => {
+  try {
+    const res = await axiosInstance.put(`/admin/unsuspend`, { userId })
+    if (res) {
+      return res
+    }
+  } catch (error) {
+    console.error('[UnSuspension Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}
+
 // 查看所有停權使用者清單
 export const getAllSuspension = async () => {
   try {
