@@ -17,11 +17,7 @@ export default function AdminMainPage() {
   }
   const handleSuspend = async (id) => {
     try {
-      const who = await addSuspension(id)
-      console.log(who)
-      console.log(id)
-      // console.log(`${id}被停權`)
-      setUserListData(userListData.filter((item) => item.id !== id))
+      await addSuspension(id)
     } catch (error) {
       console.error(error)
     }

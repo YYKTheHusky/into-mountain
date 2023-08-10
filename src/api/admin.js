@@ -54,39 +54,18 @@ export const getAllUsers = async () => {
   }
 }
 // 停權特定使用者
-export const addSuspension = async (id) => {
+export const addSuspension = async (userId) => {
   try {
-    const res = await axiosInstance.put(`/admin/admin/suspend`, { id })
+    const res = await axiosInstance.put(`/admin/suspend`, { userId })
     if (res) {
       return res
     }
   } catch (error) {
-    console.error('[Get User Data Failed]:', error)
+    console.error('[Suspension Failed]:', error)
     const { message } = error.response.data
     return { success: false, message }
   }
 }
-
-// export const addSuspension = async (id) => {
-//   try {
-//     const requestData = qs.stringify({ id })
-//     const adToken = localStorage.getItem('adToken')
-//     const res = await axios.put(`${baseURL}/admin/admin/suspend`, requestData, {
-//       headers: {
-//         Authorization: 'Bearer ' + adToken,
-//         'Content-Type': 'application/x-www-form-urlencoded'
-//       }
-//     })
-
-//     if (res) {
-//       return res
-//     }
-//   } catch (error) {
-//     console.error('[Get User Data Failed]:', error)
-//     const { message } = error.response.data
-//     return { success: false, message }
-//   }
-// }
 
 // 查看所有停權使用者清單
 export const getAllSuspension = async () => {
