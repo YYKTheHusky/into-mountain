@@ -10,7 +10,7 @@ import searchArrowIcon from 'assets/icons/search-arrow-icon.svg'
 // 首頁用大search bar
 export function SearchBarMain() {
   const navigate = useNavigate()
-  const [keyword, setKeyword] = useState(null)
+  const [keyword, setKeyword] = useState('')
 
   const handleTrailSearch = () => {
     if (keyword) {

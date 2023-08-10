@@ -125,3 +125,16 @@ export const publishPost = async ({
     return { success: false }
   }
 }
+
+// 刪除指定post
+export const deletePost = async (postId) => {
+  try {
+    const response = await axiosAuthInstance.delete(`/posts/${postId}`)
+    if (response) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Delete Post Failed]:', error)
+    return { success: false }
+  }
+}
