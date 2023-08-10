@@ -5,6 +5,7 @@ import styles from './ReviewsListCard.module.scss'
 // svg
 import { ReactComponent as IconStar } from 'assets/icons/icon-star.svg'
 import { ReactComponent as IconLikeActive } from 'assets/icons/like-active.svg'
+import UserIcon from 'assets/icons/user.svg'
 // component
 import { ColorTag } from 'components/Tag/Tag'
 
@@ -49,7 +50,10 @@ const ReviewListCard = ({ data }) => {
       <div className={reviewListCarTitle}>{data.title}</div>
       <div className={reviewListCarInfo}>
         <div className={`${avatar} cursor-point`} onClick={navigateToAuthor}>
-          <img src={data.User.avatar} alt="user-avatar" />
+          <img
+            src={data.User.avatar ? data.User.avatar : UserIcon}
+            alt="user-avatar"
+          />
         </div>
         <div className={info}>
           <div

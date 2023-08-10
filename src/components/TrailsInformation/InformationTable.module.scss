@@ -8,12 +8,14 @@
   th {
     width: 25%;
     background-color: var(--dark-30);
-    padding: 16px;
     border: 1px solid var(--dark-50);
+    vertical-align: middle;
   }
   td {
-    padding: 16px;
+    height: 65px;
+    padding: 0 16px;
     border: 1px solid var(--dark-50);
+    vertical-align: middle;
   }
   .tableTwo th {
     border-left: none;
@@ -23,10 +25,11 @@
 .mapContainer {
   width: 100%;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 .buttonContainer {
   width: 90px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 @media (max-width: 991px) {

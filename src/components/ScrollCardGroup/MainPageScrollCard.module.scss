@@ -4,7 +4,7 @@
   max-width: 1140px;
 }
 
-.cardscontainer {
+.cardsContainer {
   display: flex;
   gap: 30px;
   overflow-x: scroll;
@@ -13,6 +13,7 @@
   margin-bottom: 40px;
   transition: 0.3s ease;
   width: 90%;
+  scroll-behavior: smooth;
   &::-webkit-scrollbar {
     display: none;
   }

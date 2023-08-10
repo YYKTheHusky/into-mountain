@@ -12,9 +12,9 @@ export default function AdminLoginPage() {
   return (
     <MainLayout>
       <div className={styles.outerContainer}>
-        <img className={styles.photo} src={AdminLoginPhoto} alt="photo"></img>
+        <img className={styles.photo} src={AdminLoginPhoto} alt="photo" />
         <div className={styles.modalContainer}>
-          <AdminLoginModal></AdminLoginModal>
+          <AdminLoginModal />
         </div>
       </div>
     </MainLayout>

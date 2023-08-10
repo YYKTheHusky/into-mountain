@@ -5,9 +5,9 @@ const axiosInstance = axios.create({ baseURL })
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const adToken = localStorage.getItem('adToken')
-    if (adToken) {
-      config.headers.Authorization = `Bearer ${adToken}`
+    const adminToken = localStorage.getItem('adminToken')
+    if (adminToken) {
+      config.headers.Authorization = `Bearer ${adminToken}`
     }
     return config
   },
@@ -24,18 +24,17 @@ export const adminLogin = async ({ email, password }) => {
       password
     })
     const { token } = responseData.data
-    const { id, name, role, avatar } = responseData.data.user
+    const { id, avatar, isSuspended } = responseData.data.user
     if (responseData) {
       return {
         token,
         id,
-        name,
-        role,
-        avatar
+        avatar,
+        isSuspended
       }
     }
   } catch (error) {
-    console.error('[Login Failed]:', error)
+    console.error('[Admin Login Failed]:', error)
     const { message } = error.response.data
     return { success: false, message }
   }
@@ -98,7 +97,5 @@ export const getAllSuspension = async () => {
     }
   } catch (error) {
     console.error('[Get All Suspension Data Failed]:', error)
-    const { message } = error.response.data
-    return { success: false, message }
   }
 }

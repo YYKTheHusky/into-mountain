@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/LoginModal.module.scss'
@@ -16,7 +17,6 @@ import facebookLogo from 'assets/icons/facebook-logo.svg'
 
 // api
 import { login } from 'api/auth.js'
-import { useNavigate } from 'react-router-dom'
 
 export default function LoginModal() {
   const [email, setEmail] = useState('')
