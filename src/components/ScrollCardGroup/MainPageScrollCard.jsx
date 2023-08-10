@@ -42,7 +42,7 @@ export default function MainPageScrollCard({ data, title, type }) {
         style={{ scrollLeft: scrollPosition }}
       >
         {type === 'trail' &&
-          data.map((item) => <TrailsListCard key={item.trailId} data={item} />)}
+          data.map((item) => <TrailsListCard key={item.id} data={item} />)}
         {type === 'review' &&
           data.map((item) => <ReviewListCard key={item.id} data={item} />)}
       </div>
