@@ -1,58 +1,58 @@
 import styles from 'components/TrailsInformation/InformationTable.module.scss'
 
-export default function InformationTable() {
+export default function InformationTable({ data }) {
   return (
     <div className={styles.tableContainer}>
       <table className={styles.tableOne}>
         <tr>
           <th>所在縣市</th>
-          <td>新北市瑞芳區</td>
+          <td>{data.location}</td>
         </tr>
         <tr>
           <th>步道類型</th>
-          <td>郊山步道</td>
+          <td>{data.trailType}</td>
         </tr>
         <tr>
           <th>海拔高度</th>
-          <td>0~35公尺</td>
+          <td>{data.altitude}</td>
         </tr>
         <tr>
           <th>路面狀況</th>
-          <td>岩石海岸、泥土路</td>
+          <td>{data.trailCondition}</td>
         </tr>
         <tr>
           <th>難易度</th>
-          <td>低</td>
+          <td>{data.difficulty}</td>
         </tr>
         <tr>
           <th>申請入山</th>
-          <td>否</td>
+          <td>{data.permitRequiredForEntry}</td>
         </tr>
       </table>
       <table className={styles.tableTwo}>
         <tr>
           <th>里程</th>
-          <td>新北市瑞芳區</td>
+          <td>{data.distance}</td>
         </tr>
         <tr>
           <th>步道型態</th>
-          <td>郊山步道</td>
+          <td>{data.trailFormat}</td>
         </tr>
         <tr>
           <th>高度落差</th>
-          <td>0~35公尺</td>
+          <td>{data.heightDiff}</td>
         </tr>
         <tr>
           <th>所需時間</th>
-          <td>岩石海岸、泥土路</td>
+          <td>{data.duration}</td>
         </tr>
         <tr>
           <th>所屬園區</th>
-          <td>低</td>
+          <td>{data.parkOwnership}</td>
         </tr>
         <tr>
           <th>申請入園</th>
-          <td>否</td>
+          <td>{data.permitRequiredForParkAccess}</td>
         </tr>
       </table>
     </div>

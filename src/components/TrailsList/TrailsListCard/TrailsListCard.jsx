@@ -1,10 +1,17 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Toast from 'utils/sweetAlertConfig.js'
+// scss
+import styles from './TrailsListCard.module.scss'
+// svg
 import { ReactComponent as IconLabel } from 'assets/icons/icon-label.svg'
 import { ReactComponent as IconStar } from 'assets/icons/icon-star.svg'
 import { ReactComponent as IconClock } from 'assets/icons/icon-clock.svg'
-import styles from './TrailsListCard.module.scss'
-import { useState } from 'react'
+// component
 import { DifficultyTag } from 'components/Tag/Tag'
-import { useNavigate } from 'react-router-dom'
+// api
+import { addFavoriteTrail, deleteFavoriteTrail } from 'api/trail'
+
 const {
   trailsListCardContainer,
   label,
@@ -16,21 +23,48 @@ const {
 
 const TrailsListCard = ({ data }) => {
   const navigate = useNavigate()
-  const [cardLabel, setCardLabel] = useState(false)
+  const [cardLabel, setCardLabel] = useState(data.isFavorite)
+  const [favoriteCount, setFavoriteCount] = useState(data.favoriteCount)
+
+  const handleFavorite = async () => {
+    if (!cardLabel) {
+      const { success } = await addFavoriteTrail(data.id)
+      if (success === true) {
+        setCardLabel(true)
+        setFavoriteCount(favoriteCount + 1)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '收藏時遇到一點問題!'
+        })
+      }
+    } else if (cardLabel) {
+      const { success } = await deleteFavoriteTrail(data.id)
+      if (success === true) {
+        setCardLabel(false)
+        setFavoriteCount(favoriteCount - 1)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '取消收藏時遇到一點問題!'
+        })
+      }
+    }
+  }
 
   return (
     <div>
       <div className={trailsListCardContainer}>
         <img
           className="cursor-point"
-          src="https://picsum.photos/seed/picsum/200/200"
-          alt="fake"
-          onClick={() => navigate(`/trail/${data.trailID}/detail`)}
+          src={data.image}
+          alt="cover-photo"
+          onClick={() => navigate(`/trail/${data.id}/detail`)}
         />
         <IconLabel
           className={label}
           data-favorite={cardLabel}
-          onClick={() => setCardLabel(!cardLabel)}
+          onClick={handleFavorite}
         />
         <div className={difTag}>
           <DifficultyTag>{data.difficulty}</DifficultyTag>
@@ -39,7 +73,7 @@ const TrailsListCard = ({ data }) => {
       <div className={descriptionContainer}>
         <div
           className={`${descriptionType1} cursor-point`}
-          onClick={() => navigate(`/trail/${data.trailID}/detail`)}
+          onClick={() => navigate(`/trail/${data.id}/detail`)}
         >
           {' '}
           {data.title}
@@ -50,7 +84,7 @@ const TrailsListCard = ({ data }) => {
             <IconClock /> {data.duration}
           </span>
           <span>
-            <IconStar /> {data.favoriteCount}人收藏此路線
+            <IconStar /> {favoriteCount}人收藏
           </span>
         </div>
       </div>
