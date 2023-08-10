@@ -36,6 +36,13 @@
       inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55),
       inset 0px -5px 5px 0.5px rgba(50, 50, 50, 0.55);
   }
+  .logout {
+    margin: 0 auto;
+    margin-top: 355px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--dark-50);
+  }
   .footer {
     height: 200px;
     display: flex;

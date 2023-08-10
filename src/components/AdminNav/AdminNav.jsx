@@ -5,8 +5,10 @@ import { ReactComponent as IconUserSlash } from 'assets/icons/icon-user-large-sl
 import { ReactComponent as IconUserGroup } from 'assets/icons/icon-user-group.svg'
 import { ReactComponent as IconAlignLeft } from 'assets/icons/icon-align-left.svg'
 import { ReactComponent as IconCaretLeft } from 'assets/icons/icon-caret-left.svg'
+import { ReactComponent as IconLogout } from 'assets/icons/icon-logout.svg'
 import { clsx } from 'clsx'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 const {
   adminNavContainer,
   headerInfo,
@@ -16,12 +18,14 @@ const {
   expand,
   footer,
   footerTrans,
-  icon
+  icon,
+  logout
 } = styles
 
 const AdminNav = ({ onPage }) => {
   const [navExpand, setNavExpand] = useState(false)
   const [fixed, setFixed] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <div className={adminNavContainer}>
@@ -98,6 +102,13 @@ const AdminNav = ({ onPage }) => {
           <span className={clsx(listItemLabel, navExpand && expand)}>
             被檢舉的心得清單
           </span>
+        </div>
+        <div className={`${listItem} ${logout}`} title="登出" onClick={()=>{
+          localStorage.clear()
+          navigate('/admin/login')
+        }}>
+          <IconLogout className={icon} />
+          <span className={clsx(listItemLabel, navExpand && expand)}>登出</span>
         </div>
       </div>
       <div
