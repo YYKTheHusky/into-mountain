@@ -51,10 +51,10 @@
 }
 
 .adminMainContentContainer {
+  outline: 1px solid tomato;
   height: 100%;
-  width: 95%;
-  margin: 20px auto 0 auto;
-  max-height: 800px;
+  width: 50%;
+  margin: 30px auto 0 auto;
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: var(--secondary-color) #f0f0f0;

@@ -10,7 +10,8 @@ import {
   getAllSuspension
 } from 'api/admin'
 
-const { adminMainPageContainer, nav, right, rightHead, logo } = styles
+const { adminMainPageContainer, nav, right, rightContent, rightHead, logo } =
+  styles
 
 export default function AdminMainPage() {
   const [page, setPage] = useState('userList')
@@ -70,15 +71,16 @@ export default function AdminMainPage() {
         <div className={right}>
           <div className={rightHead}>
             <IconLogo className={logo} />
-            <button>登出</button>
           </div>
-          <AdminMainContent
-            page={page}
-            userListData={userListData}
-            susUserList={susUserList}
-            onSuspend={handleSuspend}
-            onRemoveSuspend={handleRemoveSuspend}
-          />
+          <div className={rightContent}>
+            <AdminMainContent
+              page={page}
+              userListData={userListData}
+              susUserList={susUserList}
+              onSuspend={handleSuspend}
+              onRemoveSuspend={handleRemoveSuspend}
+            />
+          </div>
         </div>
       </div>
     </div>
