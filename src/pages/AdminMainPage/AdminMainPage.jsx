@@ -1,7 +1,7 @@
 import AdminNav from 'components/AdminNav/AdminNav'
 import styles from './AdminMainPage.module.scss'
 import { ReactComponent as IconLogo } from 'assets/icons/icon-logo.svg'
-import AdminMainContent from 'components/AdminMainContent/AdminMainContent'
+import Pagination from 'components/Pagination/Pagination'
 import { useEffect, useState } from 'react'
 import {
   getAllUsers,
@@ -14,12 +14,14 @@ const { adminMainPageContainer, nav, right, rightContent, rightHead, logo } =
   styles
 
 export default function AdminMainPage() {
-  const [page, setPage] = useState('userList')
+  const [page, setPage] = useState(localStorage.getItem('pageId') || 'userList')
   const [userListData, setUserListData] = useState([])
   const [susUserList, setSusUserList] = useState([])
+  const [reviewList, setReviewList] = useState([])
 
   const handlePage = (type) => {
     setPage(type)
+    localStorage.setItem('pageId', type)
   }
   const handleSuspend = async (id) => {
     try {
@@ -59,6 +61,14 @@ export default function AdminMainPage() {
         }
       }
       getAllSuspensionAsync()
+    } else if (page === 'reviewList') {
+      try {
+        fetch('https://jsonplaceholder.typicode.com/todos')
+          .then((response) => response.json())
+          .then((json) => setReviewList(json))
+      } catch (error) {
+        console.error(error)
+      }
     }
   }, [page])
 
@@ -73,13 +83,23 @@ export default function AdminMainPage() {
             <IconLogo className={logo} />
           </div>
           <div className={rightContent}>
-            <AdminMainContent
-              page={page}
-              userListData={userListData}
-              susUserList={susUserList}
-              onSuspend={handleSuspend}
-              onRemoveSuspend={handleRemoveSuspend}
-            />
+            {page === 'userList' && (
+              <Pagination
+                data={userListData}
+                page={page}
+                onSuspend={handleSuspend}
+              />
+            )}
+            {page === 'susUserList' && (
+              <Pagination
+                data={susUserList}
+                page={page}
+                onRemoveSuspend={handleRemoveSuspend}
+              />
+            )}
+            {page === 'reviewList' && (
+              <Pagination data={reviewList} page={page} />
+            )}
           </div>
         </div>
       </div>

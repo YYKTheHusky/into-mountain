@@ -47,7 +47,7 @@ const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend }) => {
   )
 }
 
-const ReviewItem = () => {
+const ReviewItem = ({ item }) => {
   return (
     <div className={reviewItemContainer}>
       <div className={reviewItemLeft}>
@@ -59,7 +59,7 @@ const ReviewItem = () => {
           <button className={disagree}>否決檢舉</button>
         </div>
         <div className={reviewItemRightName}>被檢舉的原因</div>
-        <div className={reviewItemRightMail}>附註內容</div>
+        <div className={reviewItemRightMail}>附註內容{item.title}</div>
         <div className={reviewItemRightDescription}>頁面連結</div>
       </div>
     </div>
@@ -68,8 +68,7 @@ const ReviewItem = () => {
 
 const AdminMainContent = ({
   page,
-  userListData,
-  susUserList,
+  data,
   onSuspend,
   onRemoveSuspend
 }) => {
@@ -77,14 +76,14 @@ const AdminMainContent = ({
     <div className={adminMainContentContainer}>
       {page === 'userList' && (
         <>
-          {userListData.map((item) => (
+          {data.map((item) => (
             <UserItem key={item.id} data={item} onSuspend={onSuspend} />
           ))}
         </>
       )}
       {page === 'susUserList' && (
         <>
-          {susUserList.map((item) => (
+          {data.map((item) => (
             <UserItem
               key={item.id}
               data={item}
@@ -96,25 +95,9 @@ const AdminMainContent = ({
       )}
       {page === 'reviewList' && (
         <>
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
-          <ReviewItem />
+          {data.map((item) => (
+            <ReviewItem key={item.id} item={item} />
+          ))}
         </>
       )}
     </div>
