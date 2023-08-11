@@ -1,5 +1,6 @@
 .adminMainPageContainer {
   display: flex;
+  background-color: var(--dark-30);
   .nav {
     // display: none;
   }
@@ -8,7 +9,8 @@
     display: flex;
     flex-direction: column;
     .rightHead {
-      background-color: var(--main-color);
+      background-color: transparent;
+      padding: 10px;
       display: flex;
       align-items: center;
       justify-content: center;

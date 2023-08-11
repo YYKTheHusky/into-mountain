@@ -81,6 +81,7 @@ export default function AdminMainPage() {
         <div className={right}>
           <div className={rightHead}>
             <IconLogo className={logo} />
+            <h4 style={{ marginLeft: '15px' }}>登山小站</h4>
           </div>
           <div className={rightContent}>
             {page === 'userList' && (
