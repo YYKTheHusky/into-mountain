@@ -21,7 +21,7 @@ const {
   reviewItemRightDescription
 } = styles
 
-const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend }) => {
+const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend, listname }) => {
   return (
     <div className={userItemContainer}>
       <div className={userItemLeft}>
@@ -30,11 +30,17 @@ const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend }) => {
       <div className={userItemRight}>
         <div className={userItemRightButton}>
           {isSus ? (
-            <button className={sus} onClick={() => onRemoveSuspend?.(data.id)}>
+            <button
+              className={sus}
+              onClick={() => onRemoveSuspend?.(data.id, listname)}
+            >
               解除停權
             </button>
           ) : (
-            <button className={unSus} onClick={() => onSuspend?.(data.id)}>
+            <button
+              className={unSus}
+              onClick={() => onSuspend?.(data.id, listname)}
+            >
               停權
             </button>
           )}
@@ -66,18 +72,20 @@ const ReviewItem = ({ item }) => {
   )
 }
 
-const AdminMainContent = ({
-  page,
-  data,
-  onSuspend,
-  onRemoveSuspend
-}) => {
+const AdminMainContent = ({ page, data, onSuspend, onRemoveSuspend }) => {
   return (
     <div className={adminMainContentContainer}>
       {page === 'userList' && (
         <>
           {data.map((item) => (
-            <UserItem key={item.id} data={item} onSuspend={onSuspend} />
+            <UserItem
+              key={item.id}
+              data={item}
+              isSus={item.isSuspended}
+              onSuspend={onSuspend}
+              onRemoveSuspend={onRemoveSuspend}
+              listname="userList"
+            />
           ))}
         </>
       )}
@@ -88,7 +96,9 @@ const AdminMainContent = ({
               key={item.id}
               data={item}
               isSus={item.isSuspended}
+              onSuspend={onSuspend}
               onRemoveSuspend={onRemoveSuspend}
+              listname="susUserList"
             />
           ))}
         </>

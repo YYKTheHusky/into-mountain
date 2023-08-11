@@ -23,19 +23,55 @@ export default function AdminMainPage() {
     setPage(type)
     localStorage.setItem('pageId', type)
   }
-  const handleSuspend = async (id) => {
+  const handleSuspend = async (id, listname) => {
     try {
       await addSuspension(id)
+      if (listname === 'userList') {
+        setUserListData((pre) => {
+          return pre.map((item) => {
+            if (item.id === id) {
+              return { ...item, isSuspended: true }
+            }
+            return item
+          })
+        })
+      } else if (listname === 'susUserList') {
+        setSusUserList((pre) => {
+          return pre.map((item) => {
+            if (item.id === id) {
+              return { ...item, isSuspended: true }
+            }
+            return item
+          })
+        })
+      }
     } catch (error) {
       console.error(error)
     }
   }
-  const handleRemoveSuspend = async (id) => {
+  const handleRemoveSuspend = async (id, listname) => {
     try {
       await removeSuspension(id)
-      setSusUserList((susUserList) =>
-        susUserList.filter((item) => item.id !== id)
-      )
+      if (listname === 'userList') {
+        console.log(`${id}  ${listname}`)
+        setUserListData((pre) => {
+          return pre.map((item) => {
+            if (item.id === id) {
+              return { ...item, isSuspended: false }
+            }
+            return item
+          })
+        })
+      } else if (listname === 'susUserList') {
+        setSusUserList((pre) => {
+          return pre.map((item) => {
+            if (item.id === id) {
+              return { ...item, isSuspended: false }
+            }
+            return item
+          })
+        })
+      }
     } catch (error) {
       console.error(error)
     }
@@ -89,12 +125,14 @@ export default function AdminMainPage() {
                 data={userListData}
                 page={page}
                 onSuspend={handleSuspend}
+                onRemoveSuspend={handleRemoveSuspend}
               />
             )}
             {page === 'susUserList' && (
               <Pagination
                 data={susUserList}
                 page={page}
+                onSuspend={handleSuspend}
                 onRemoveSuspend={handleRemoveSuspend}
               />
             )}
