@@ -30,10 +30,16 @@ const BurgerMenu = ({ onBurgerToggle }) => {
         <div className={menuListItem} onClick={() => handleNavigate('/')}>
           首頁
         </div>
-        <div className={menuListItem} onClick={() => handleNavigate('/trail')}>
+        <div
+          className={menuListItem}
+          onClick={() => handleNavigate('/search/allTrails')}
+        >
           找路徑
         </div>
-        <div className={menuListItem} onClick={() => handleNavigate('/review')}>
+        <div
+          className={menuListItem}
+          onClick={() => handleNavigate('/search/allReviews')}
+        >
           找心得
         </div>
         <div

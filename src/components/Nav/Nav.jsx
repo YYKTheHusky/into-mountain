@@ -36,10 +36,16 @@ const Nav = () => {
           <span>登山小站</span>
         </div>
         <div className={right}>
-          <div className={rightListItem} onClick={() => navigate('/trail')}>
+          <div
+            className={rightListItem}
+            onClick={() => navigate('/search/allTrails')}
+          >
             找路徑
           </div>
-          <div className={rightListItem} onClick={() => navigate('/review')}>
+          <div
+            className={rightListItem}
+            onClick={() => navigate('/search/allReviews')}
+          >
             找心得
           </div>
           <div className={postReviewButton}>
