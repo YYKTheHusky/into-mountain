@@ -44,7 +44,7 @@ export default function MainPage() {
           <h1 className={styles.slogan}>100+ Ways </h1>
           <h1 className={styles.slogan}>to Meet Nature</h1>
           <div className={styles.buttonContainer}>
-            <OvalButtonHuge onClick={() => navigate('/trail')}>
+            <OvalButtonHuge onClick={() => navigate('/search/allTrails')}>
               探索所有步道
             </OvalButtonHuge>
           </div>
