@@ -52,6 +52,17 @@
         transform: rotate(10deg);
       }
     }
+    .avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        background-position: center center;
+      }
+    }
   }
 }
 
@@ -63,7 +74,7 @@
     left: 0;
     width: 100%;
     background-color: #ffffff;
-    z-index: 99999;
+    z-index: 10;
     .burger {
       display: block;
     }

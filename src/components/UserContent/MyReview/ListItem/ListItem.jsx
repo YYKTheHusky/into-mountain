@@ -9,15 +9,15 @@ const {
   titleButton2
 } = styles
 
-const ListItem = () => {
+const ListItem = ({ data }) => {
   return (
     <div className={listItem}>
       <div className={itemLeft}>
-        <img src="https://picsum.photos/200/300?grayscale" alt="" />
+        <img src={data.image} alt="" />
       </div>
       <div className={itemRight}>
         <div className={itemRightTitle}>
-          文章標題
+          {data.title}
           <div>
             <button className={titleButton1}>按鈕1</button>
             <button className={titleButton2}>按鈕2</button>
@@ -28,7 +28,7 @@ const ListItem = () => {
           文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內
           文前文章內文前文章內文前文章內文前文章內文前
         </p>
-        <div className={itemRightTime}>發表於：2023/7/23 20:23 </div>
+        <div className={itemRightTime}>發表於：{data.updatedAt}</div>
       </div>
     </div>
   )

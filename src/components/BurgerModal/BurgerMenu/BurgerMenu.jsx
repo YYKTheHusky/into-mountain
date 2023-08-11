@@ -22,6 +22,7 @@ const BurgerMenu = ({ onBurgerToggle }) => {
     navigate(path)
     onBurgerToggle()
   }
+  const currentUserId = localStorage.getItem('currentUserId')
 
   return (
     <>
@@ -47,13 +48,21 @@ const BurgerMenu = ({ onBurgerToggle }) => {
             <IconChevronRight className={chevron} />
           </div>
           <div className={accountList}>
-            <div onClick={() => handleNavigate('/user/1/myReviews')}>
+            <div
+              onClick={() => handleNavigate(`/user/${currentUserId}/myReviews`)}
+            >
               關於我
             </div>
-            <div onClick={() => handleNavigate('/user/1/trailCollection')}>
+            <div
+              onClick={() =>
+                handleNavigate(`/user/${currentUserId}/trailCollection`)
+              }
+            >
               我的收藏
             </div>
-            <div onClick={() => handleNavigate('/user/1/myReviews')}>
+            <div
+              onClick={() => handleNavigate(`/user/${currentUserId}/myReviews`)}
+            >
               我的心得
             </div>
           </div>
@@ -64,7 +73,21 @@ const BurgerMenu = ({ onBurgerToggle }) => {
         </div>
         <span></span>
       </div>
-      <div className={login}>登入</div>
+      {currentUserId ? (
+        <div
+          className={login}
+          onClick={() => {
+            handleNavigate('/')
+            localStorage.clear()
+          }}
+        >
+          登出
+        </div>
+      ) : (
+        <div className={login} onClick={() => handleNavigate('/login')}>
+          登入
+        </div>
+      )}
     </>
   )
 }
