@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
+import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'pages/SingleTrailPage/SingleTrailPage.module.scss'
 
-// svg and photo
-import photo from 'assets/photos/AdminPage-photo.JPG'
-import defaultFavorite from 'assets/icons/icon-label.svg'
-import shareIcon from 'assets/icons/share-icon.svg'
+// svg
+import { ReactComponent as FavoriteIcon } from 'assets/icons/icon-label.svg'
+import { ReactComponent as ShareIcon } from 'assets/icons/share-icon.svg'
 
 // components
 import TrailReport from 'components/TrailsInformation/TrailReport'
@@ -17,7 +17,12 @@ import MainLayout from 'components/MainLayout/MainLayout'
 import ReportModal from 'components/Modal/ReportModal'
 import WholePageModal from 'components/Modal/WholePageModal'
 // api
-import { getOneTrail } from 'api/trail'
+import {
+  addFavoriteTrail,
+  deleteFavoriteTrail,
+  getConditions,
+  getOneTrail
+} from 'api/trail'
 
 export default function SingleTrailPage() {
   const location = useLocation()
@@ -26,6 +31,35 @@ export default function SingleTrailPage() {
   const [activeTab, setActiveTab] = useState(null)
   const [isReportModalOpen, setIsReportModalOpen] = useState(false)
   const [data, setData] = useState(null)
+  const [report, setReport] = useState(null)
+  const [reRender, setReRender] = useState(false)
+
+  // 按收藏/取消收藏
+  const handleCollect = async () => {
+    if (!data.isFavorite) {
+      const { success } = await addFavoriteTrail(trailID)
+      if (success) {
+        const updatedData = { ...data, isFavorite: true }
+        setData(updatedData)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '收藏時遇到一點問題!'
+        })
+      }
+    } else if (data.isFavorite) {
+      const { success } = await deleteFavoriteTrail(trailID)
+      if (success) {
+        const updatedData = { ...data, isFavorite: false }
+        setData(updatedData)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '取消收藏時遇到一點問題!'
+        })
+      }
+    }
+  }
 
   useEffect(() => {
     if (location.pathname.includes('detail')) {
@@ -37,11 +71,26 @@ export default function SingleTrailPage() {
 
   useEffect(() => {
     const getData = async () => {
-      const { trailData } = await getOneTrail(trailID)
+      const [{ trailData }, { report }] = await Promise.all([
+        getOneTrail(trailID),
+        getConditions(trailID)
+      ])
       setData(trailData)
+      setReport(report)
     }
     getData()
   }, [])
+
+  useEffect(() => {
+    const needReRender = async () => {
+      if (reRender) {
+        const { report } = await getConditions(trailID)
+        setReport(report)
+        setReRender(false)
+      }
+    }
+    needReRender()
+  }, [reRender])
 
   return (
     <MainLayout>
@@ -52,27 +101,26 @@ export default function SingleTrailPage() {
             <div className={styles.nameAndLike}>
               <h2 className={styles.title}>{data.title}</h2>
               <div className={styles.socialButtons}>
-                <div className={`cursor-point ${styles.favorite}`}>
-                  <img
-                    className={styles.icon}
-                    src={defaultFavorite}
-                    alt="defaultFavorite"
-                  ></img>
+                <div
+                  className={`cursor-point ${styles.favorite}`}
+                  onClick={handleCollect}
+                >
+                  <FavoriteIcon
+                    className={`${styles.icon} ${
+                      data.isFavorite && styles.favoriteActive
+                    }`}
+                  />
                   <span>收藏</span>
                 </div>
                 <div className={`cursor-point ${styles.share}`}>
-                  <img
-                    className={styles.icon}
-                    src={shareIcon}
-                    alt="shareIcon"
-                  ></img>
+                  <ShareIcon className={styles.icon} />
                   <span>分享</span>
                 </div>
               </div>
             </div>
             <div className={styles.photoAndReport}>
               <div className={styles.photoContainer}>
-                <img className={styles.photo} src={photo} alt="步道圖片" />
+                <img className={styles.photo} src={data.image} alt="步道圖片" />
               </div>
               <div className={styles.reportContainer}>
                 <div className={styles.reportHeader}>
@@ -85,14 +133,15 @@ export default function SingleTrailPage() {
                   <ReportModal
                     isReportModalOpen={isReportModalOpen}
                     setIsReportModalOpen={setIsReportModalOpen}
+                    trailId={data.id}
+                    setReRender={setReRender}
                   />
                 </div>
                 <div className={styles.reports}>
-                  <TrailReport></TrailReport>
-                  <TrailReport></TrailReport>
-                  <TrailReport></TrailReport>
-                  <TrailReport></TrailReport>
-                  <TrailReport></TrailReport>
+                  {report &&
+                    report.map((item) => (
+                      <TrailReport key={item.id} report={item} />
+                    ))}
                 </div>
               </div>
             </div>
@@ -105,7 +154,7 @@ export default function SingleTrailPage() {
           {/* 詳細資料 */}
           <section className={styles.trailDetail}>
             <div className={styles.tabs}>
-              <Link to={`/trail/trailID/detail`}>
+              <Link to={`/trail/${data.id}/detail`}>
                 <div
                   className={`cursor-point ${styles.tabOne} ${
                     activeTab === 'detail' && styles.active
@@ -114,7 +163,7 @@ export default function SingleTrailPage() {
                   <h4>基本資訊</h4>
                 </div>
               </Link>
-              <Link to={`/trail/trailID/gpx`}>
+              <Link to={`/trail/${data.id}/gpx`}>
                 <div
                   className={`cursor-point ${styles.tabTwo} ${
                     activeTab === 'gpx' && styles.active
@@ -126,7 +175,7 @@ export default function SingleTrailPage() {
             </div>
             <div className={styles.information}>
               {activeTab === 'detail' && <InformationTable data={data} />}
-              {activeTab === 'gpx' && <MapTable />}
+              {activeTab === 'gpx' && <MapTable data={data} />}
             </div>
           </section>
         </WholePageModal>

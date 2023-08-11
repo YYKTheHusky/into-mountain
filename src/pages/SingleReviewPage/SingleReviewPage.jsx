@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Toast from 'utils/sweetAlertConfig.js'
-import formatDateTime from 'utils/time.js'
+import { formatDateTime } from 'utils/time.js'
 // scss
 import styles from 'pages/SingleReviewPage/SingleReviewPage.module.scss'
 
