@@ -29,17 +29,17 @@ export const getOnePost = async (postId) => {
   }
 }
 
-// 取得暫存的一篇文章
-export const getOneTempPost = async (postId) => {
+// 取得一篇自己的文章，用來編輯
+export const getPostForEdit = async (postId) => {
   try {
-    const { data } = await axiosAuthInstance.get(`/posts/${postId}/cache`)
+    const { data } = await axiosAuthInstance.get(`/posts/users/${postId}`)
     if (data) {
-      return { status: data.status, postData: data.data }
+      return { postData: data.data }
     }
   } catch (error) {
-    console.error('[Get Temp Post Failed]:', error)
+    console.error('[Get Post For Edit Failed]:', error)
     const { message } = error.response.data
-    return { success: false, message }
+    return { message }
   }
 }
 
@@ -115,13 +115,42 @@ export const publishPost = async ({
     formData.append('difficulty', difficulty)
     formData.append('recommend', recommend)
 
-    const response = await axiosAuthInstance.post(`/posts`, formData)
+    const { data } = await axiosAuthInstance.post(`/posts`, formData)
 
-    if (response) {
-      return { success: true }
+    if (data) {
+      return { success: true, postId: data.data.postId }
     }
   } catch (error) {
     console.error('[Publish Post Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 編輯一篇文章
+export const editPost = async ({
+  reviewID,
+  title,
+  category,
+  description,
+  image,
+  difficulty,
+  recommend
+}) => {
+  try {
+    const formData = new FormData()
+    formData.append('title', title)
+    formData.append('category', category)
+    formData.append('description', description)
+    formData.append('image', image)
+    formData.append('difficulty', difficulty)
+    formData.append('recommend', recommend)
+
+    const { data } = await axiosAuthInstance.put(`/posts/${reviewID}`, formData)
+    if (data) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Edit Post Failed]:', error)
     return { success: false }
   }
 }
@@ -136,5 +165,36 @@ export const deletePost = async (postId) => {
   } catch (error) {
     console.error('[Delete Post Failed]:', error)
     return { success: false }
+  }
+}
+
+// 搜尋心得
+export const searchPostByKeyword = async (keyword) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `/posts/search/?keyword=${keyword}`
+    )
+    if (data) {
+      return { success: true, posts: data.data }
+    }
+  } catch (error) {
+    console.error('[Search Post Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 取得最新前N筆資料
+export const getTopPosts = async (limit) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `/posts?sort=createdAt&limit=${limit}`
+    )
+    if (data) {
+      return { success: true, posts: data.data }
+    }
+  } catch (error) {
+    console.error('[Get All Post Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
   }
 }
