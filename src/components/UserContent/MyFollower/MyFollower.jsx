@@ -54,7 +54,7 @@ const MyFollower = ({ theUserId, onUpdateCardInfo }) => {
           <FollowerCard
             key={item.id}
             data={item}
-            fallow={item.Follower}
+            follow={item.Follower}
             onFollow={handleFollow}
           />
         ))}

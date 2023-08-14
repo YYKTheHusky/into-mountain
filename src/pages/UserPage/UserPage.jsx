@@ -134,6 +134,7 @@ export default function UserPage() {
           <UserContent
             acitveContent={acitveContent}
             theUserId={id}
+            theUserData={theUserData}
             onUpdateCardInfo={handleUpdateCardInfo}
           />
         </div>

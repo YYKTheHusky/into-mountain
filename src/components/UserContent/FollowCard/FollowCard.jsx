@@ -3,7 +3,7 @@ import { SecondaryButton } from 'components/Button/Button'
 const { followerCardCointainer, cardHead, cardAvatar, cardTitle, cardButton } =
   styles
 
-const FollowerCard = ({ data, fallow, onFollow }) => {
+const FollowerCard = ({ data, follow, onFollow }) => {
   let theId
   if (data.Following) {
     theId = data.Following.id
@@ -14,9 +14,9 @@ const FollowerCard = ({ data, fallow, onFollow }) => {
     <div className={followerCardCointainer}>
       <div className={cardHead}>
         <div className={cardAvatar}>
-          <img src={fallow.avatar} alt="" />
+          <img src={follow.avatar} alt="" />
         </div>
-        <div className={cardTitle}>{fallow.name}</div>
+        <div className={cardTitle}>{follow.name}</div>
       </div>
       <div className={cardButton}>
         <SecondaryButton

@@ -8,7 +8,12 @@ import InfoSetting from './InfoSetting/InfoSetting'
 
 const { userContentContainer } = styles
 
-const UserContent = ({ acitveContent, theUserId, onUpdateCardInfo }) => {
+const UserContent = ({
+  theUserData,
+  acitveContent,
+  theUserId,
+  onUpdateCardInfo
+}) => {
   if (acitveContent === 'myReviews') {
     return (
       <div className={userContentContainer}>
@@ -48,7 +53,10 @@ const UserContent = ({ acitveContent, theUserId, onUpdateCardInfo }) => {
   } else if (acitveContent === 'setting') {
     return (
       <div className={userContentContainer}>
-        <InfoSetting />
+        <InfoSetting
+          theUserData={theUserData}
+          onUpdateCardInfo={onUpdateCardInfo}
+        />
       </div>
     )
   }

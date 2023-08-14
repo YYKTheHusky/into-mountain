@@ -97,3 +97,38 @@ export const isReadNotification = async (id) => {
     return { success: false, message }
   }
 }
+
+// 編輯使用者個人資料
+export const editUserData = async ({ data }) => {
+  const id = localStorage.getItem('currentUserId')
+  const formData = new FormData()
+  formData.append('name', data.name)
+  formData.append('email', data.email)
+  formData.append('introduction', data.introduction)
+  formData.append('password', data.password)
+  if (data.avatar) {
+    const avatarFile = new File([data.avatar], 'data.avatar.name')
+    formData.append('avatar', avatarFile)
+    const reader = new FileReader()
+    reader.readAsDataURL(data.avatar)
+    reader.onload = () => {
+      const avatarBase64 = reader.result
+      localStorage.setItem('currentUserAvatar', avatarBase64)
+    }
+  }
+
+  try {
+    const res = await axiosInstance.put(`/users/${id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    if (res) {
+      return res.data
+    }
+  } catch (error) {
+    console.error('[Edit User Data Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}

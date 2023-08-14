@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react'
 import styles from './UpLoad.module.scss'
-import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
-const { upLoadContainer, avatar, defaultImg } = styles
+// import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
+const { upLoadContainer, avatar } = styles
 
-const UpLoad = ({ onAvatarImg, avatarImg }) => {
+const UpLoad = ({ onAvatarImg, theUserData }) => {
   const inpuRef = useRef(null)
   const [image, setImage] = useState('')
 
@@ -24,7 +24,10 @@ const UpLoad = ({ onAvatarImg, avatarImg }) => {
             <img src={URL.createObjectURL(image)} alt="" />
           </div>
         ) : (
-          <IconDefaultUser className={`${avatar} ${defaultImg}`} />
+          // <IconDefaultUser className={`${avatar} ${defaultImg}`} />
+          <div className={avatar}>
+            <img src={theUserData.avatar} alt="" />
+          </div>
         )}
       </div>
       <button onClick={() => handleImageClick()}>點擊上傳</button>
