@@ -44,7 +44,7 @@ const {
 // }
 
 export default function UserPage() {
-  const [theUserData ,setTheUserData] = useState({})
+  const [theUserData, setTheUserData] = useState({})
   const [currentScroll, setCurrentScroll] = useState({
     currentValue: window.scrollY,
     upOrDown: true
@@ -53,8 +53,8 @@ export default function UserPage() {
   const navigate = useNavigate()
   const thePathArray = location.pathname.split('/')
   const [acitveContent, setAcitveContent] = useState()
-  // const currentUserId = localStorage.getItem('currentUserId')
   const id = thePathArray[2]
+
   // handle
   const handleAcitveContent = (type) => {
     setAcitveContent(type)

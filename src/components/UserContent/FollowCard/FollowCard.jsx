@@ -3,7 +3,13 @@ import { SecondaryButton } from 'components/Button/Button'
 const { followerCardCointainer, cardHead, cardAvatar, cardTitle, cardButton } =
   styles
 
-const FollowerCard = ({ data, fallow }) => {
+const FollowerCard = ({ data, fallow, onFollow }) => {
+  let theId
+  if (data.Following) {
+    theId = data.Following.id
+  } else {
+    theId = data.Follower.id
+  }
   return (
     <div className={followerCardCointainer}>
       <div className={cardHead}>
@@ -14,9 +20,7 @@ const FollowerCard = ({ data, fallow }) => {
       </div>
       <div className={cardButton}>
         <SecondaryButton
-        onClick={() => {
-          console.log(data.id)
-        }}
+          onClick={() => onFollow?.({ isFollow: data.isFollow, id: theId })}
         >
           {data.isFollow ? '追隨中' : '追隨'}
         </SecondaryButton>
