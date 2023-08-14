@@ -3,7 +3,7 @@ import axiosInstance from 'api/AxiosInstance.js'
 // 取得特定使用者資料
 export const getUserData = async (id) => {
   try {
-    const  data  = await axiosInstance.get(`/users/${id}`)
+    const data = await axiosInstance.get(`/users/${id}`)
     if (data) {
       return data.data.data.user
     }
@@ -70,4 +70,30 @@ export const getUserFollowers = async (id) => {
   }
 }
 
-//
+// 取得特定使用者的所有通知
+export const getUserNotifications = async (id) => {
+  try {
+    const data = await axiosInstance.get(`/users/${id}/notifications`)
+    if (data) {
+      return data.data.data
+    }
+  } catch (error) {
+    console.error('[Get User Notifications Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}
+
+// 將特定使用者的特定通知標示為「已讀」
+export const isReadNotification = async (id) => {
+  try {
+    const res = await axiosInstance.put(`/users/notifications/${id}`)
+    if (res) {
+      return res
+    }
+  } catch (error) {
+    console.error('[Read Notification Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}
