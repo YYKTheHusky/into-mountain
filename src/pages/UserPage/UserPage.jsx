@@ -49,6 +49,7 @@ export default function UserPage() {
     currentValue: window.scrollY,
     upOrDown: true
   })
+  const [updateCardInfo, setUpdateCardInfo] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const thePathArray = location.pathname.split('/')
@@ -60,7 +61,9 @@ export default function UserPage() {
     setAcitveContent(type)
     navigate(`/user/${thePathArray[2]}/${type}`)
   }
-
+  const handleUpdateCardInfo = () => {
+    setUpdateCardInfo(!updateCardInfo)
+  }
   // useEffect
   // 根據url變化，render右側內容
   useEffect(() => {
@@ -94,7 +97,7 @@ export default function UserPage() {
     if (localStorage.getItem('currentUserId')) {
       getUserDataAsync(id)
     }
-  }, [location])
+  }, [location, updateCardInfo])
 
   return (
     <div className="container mx-auto">
@@ -128,7 +131,11 @@ export default function UserPage() {
           </div>
         </div>
         <div className={right}>
-          <UserContent acitveContent={acitveContent} theUserId={id} />
+          <UserContent
+            acitveContent={acitveContent}
+            theUserId={id}
+            onUpdateCardInfo={handleUpdateCardInfo}
+          />
         </div>
       </div>
       <div className={footer}>

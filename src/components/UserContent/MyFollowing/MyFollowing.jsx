@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { followUser, unFollowUser } from 'api/followship'
 const { myFollowingContainer } = styles
 
-const MyFollowing = ({ theUserId }) => {
+const MyFollowing = ({ theUserId, onUpdateCardInfo }) => {
   const [followingList, setFollowingList] = useState([])
 
   const handleFollow = async ({ isFollow, id }) => {
@@ -20,6 +20,7 @@ const MyFollowing = ({ theUserId }) => {
     } catch (error) {
       console.error(error)
     }
+    onUpdateCardInfo()
     setFollowingList((prev) =>
       prev.map((item) => {
         if (item.followingId === id) {

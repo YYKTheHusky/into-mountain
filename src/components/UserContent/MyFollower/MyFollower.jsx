@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { followUser, unFollowUser } from 'api/followship'
 const { myFollowerContainer } = styles
 
-const MyFollower = ({ theUserId }) => {
+const MyFollower = ({ theUserId, onUpdateCardInfo }) => {
   const [followersList, setFollowersList] = useState([])
   const handleFollow = async ({ isFollow, id }) => {
     try {
@@ -19,7 +19,7 @@ const MyFollower = ({ theUserId }) => {
     } catch (error) {
       console.error(error)
     }
-
+    onUpdateCardInfo()
     setFollowersList((prev) =>
       prev.map((item) => {
         if (item.followerId === id) {
@@ -28,8 +28,6 @@ const MyFollower = ({ theUserId }) => {
         return item
       })
     )
-
-    console.log('Updated followersList:', followersList)
   }
 
   useEffect(() => {
