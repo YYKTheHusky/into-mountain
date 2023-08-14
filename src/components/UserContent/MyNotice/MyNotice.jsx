@@ -62,7 +62,6 @@ const MyNotice = () => {
       try {
         const data = await getUserNotifications(id)
         setNoticeData(data)
-        console.log(data)
       } catch (error) {
         console.error(error)
       }
