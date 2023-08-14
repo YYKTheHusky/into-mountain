@@ -1,8 +1,16 @@
+// conponents
 import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
-import styles from './MyNotice.module.scss'
 import RightSideContainer from '../RightSideContainer/RightSideContainer'
+
+// api
 import { getUserNotifications, isReadNotification } from 'api/user'
+
+// hook
 import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+// style
+import styles from './MyNotice.module.scss'
 const {
   myNoticeContainer,
   noticeItem,
@@ -29,6 +37,14 @@ const NoticeItem = ({ item, onRead }) => {
 const MyNotice = () => {
   const [noticeData, setNoticeData] = useState([])
   const id = localStorage.getItem('currentUserId')
+  const location = useLocation()
+  const thePathId = location.pathname.split('/')[2]
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (thePathId !== id) {
+      navigate(`/user/${id}/notification`)
+    }
+  }, [])
 
   const handleRead = async (id) => {
     try {
