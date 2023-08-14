@@ -23,11 +23,7 @@ const ListItem = ({ data }) => {
             <button className={titleButton2}>按鈕2</button>
           </div>
         </div>
-        <p>
-          文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前
-          文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內
-          文前文章內文前文章內文前文章內文前文章內文前
-        </p>
+        <p>{data.description}</p>
         <div className={itemRightTime}>發表於：{data.updatedAt}</div>
       </div>
     </div>

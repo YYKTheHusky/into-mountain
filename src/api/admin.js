@@ -24,7 +24,7 @@ export const adminLogin = async ({ email, password }) => {
       password
     })
     const { token } = responseData.data
-    const { id,name, avatar, isSuspended } = responseData.data.user
+    const { id, name, avatar, isSuspended } = responseData.data.user
     if (responseData) {
       return {
         token,
@@ -91,5 +91,53 @@ export const getAllSuspension = async () => {
     }
   } catch (error) {
     console.error('[Get All Suspension Data Failed]:', error)
+  }
+}
+
+// 查看所有檢舉清單
+export const getAllReports = async () => {
+  try {
+    const res = await axiosInstance.get(`/admin/reports`)
+    if (res) {
+      return res.data.data
+    }
+  } catch (error) {
+    console.error('[Get All Suspension Data Failed]:', error)
+  }
+}
+
+// 解決特定檢舉項目
+export const editReportSolved = async (id) => {
+  try {
+    const res = await axiosInstance.put(`/admin/solve/${id}`)
+    if (res) {
+      return res
+    }
+  } catch (error) {
+    console.error('[Report Solve Failed]:', error)
+  }
+}
+
+// 刪除特定的post
+export const deletePost = async (id) => {
+  try {
+    const res = await axiosInstance.delete(`/admin/posts/${id}`)
+    if (res) {
+      return res
+    }
+  } catch (error) {
+    console.error('[Delete Post Failed]:', error)
+  }
+}
+
+// 給特定使用這發送一個通知
+export const sendNotify = async (userId, notify) => {
+  try {
+    const res = await axiosInstance.post(`/admin/${userId}/notify`, { notify })
+    if (res) {
+      return res
+    }
+  } catch (error) {
+    console.error('[Send Notify Failed]:', error)
   }
 }

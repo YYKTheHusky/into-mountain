@@ -3,7 +3,14 @@ import styles from './Pagination.module.scss'
 import AdminMainContent from 'components/AdminMainContent/AdminMainContent'
 const { paginationContainer, pageNumbers, active, loadmore, hellip } = styles
 
-const Pagination = ({ data, page, onSuspend, onRemoveSuspend }) => {
+const Pagination = ({
+  data,
+  page,
+  onSuspend,
+  onRemoveSuspend,
+  onEditReportSolved,
+  onDeletePost
+}) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(10)
   const [pageNumberLimit, setPageNumberLimit] = useState(5)
@@ -73,6 +80,8 @@ const Pagination = ({ data, page, onSuspend, onRemoveSuspend }) => {
         data={currentItems}
         onSuspend={onSuspend}
         onRemoveSuspend={onRemoveSuspend}
+        onEditReportSolved={onEditReportSolved}
+        onDeletePost={onDeletePost}
       />
       <div className={paginationContainer}>
         <ul className={pageNumbers}>

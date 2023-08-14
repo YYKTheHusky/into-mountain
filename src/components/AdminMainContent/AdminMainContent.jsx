@@ -53,7 +53,7 @@ const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend, listname }) => {
   )
 }
 
-const ReviewItem = ({ item }) => {
+const ReviewItem = ({ item, onEditReportSolved, onDeletePost }) => {
   return (
     <div className={reviewItemContainer}>
       <div className={reviewItemLeft}>
@@ -61,18 +61,41 @@ const ReviewItem = ({ item }) => {
       </div>
       <div className={reviewItemRight}>
         <div className={reviewItemRightButton}>
-          <button className={agree}>同意刪除</button>
-          <button className={disagree}>否決檢舉</button>
+          <button
+            className={agree}
+            onClick={() =>
+              onDeletePost?.({
+                id: item.Post.id,
+                userId:item.Post.User.id,
+                notify: `您的 ${item.Post.title} 因為含有 ${item.category} 違反規定內容遭到檢舉，經管理員審查後，該文章已遭到刪除。提醒您下次撰寫文章時，注意文章內容，勿違反使用規範。 若多次遭到檢舉，管理員可能會將您的帳號停權。謝謝您的配合。如有疑問，歡迎寫信至 into-mountain@mountainmail.com`
+              })
+            }
+          >
+            同意刪除
+          </button>
+          <button
+            className={disagree}
+            onClick={() => onEditReportSolved?.(item.id)}
+          >
+            否決檢舉
+          </button>
         </div>
-        <div className={reviewItemRightName}>被檢舉的原因</div>
-        <div className={reviewItemRightMail}>附註內容{item.title}</div>
-        <div className={reviewItemRightDescription}>頁面連結</div>
+        <div className={reviewItemRightName}>被檢舉的原因：{item.category}</div>
+        <div className={reviewItemRightMail}>附註內容：{item.content}</div>
+        <div className={reviewItemRightDescription}>頁面連結：</div>
       </div>
     </div>
   )
 }
 
-const AdminMainContent = ({ page, data, onSuspend, onRemoveSuspend }) => {
+const AdminMainContent = ({
+  page,
+  data,
+  onSuspend,
+  onRemoveSuspend,
+  onEditReportSolved,
+  onDeletePost
+}) => {
   return (
     <div className={adminMainContentContainer}>
       {page === 'userList' && (
@@ -106,7 +129,12 @@ const AdminMainContent = ({ page, data, onSuspend, onRemoveSuspend }) => {
       {page === 'reviewList' && (
         <>
           {data.map((item) => (
-            <ReviewItem key={item.id} item={item} />
+            <ReviewItem
+              key={item.id}
+              item={item}
+              onEditReportSolved={onEditReportSolved}
+              onDeletePost={onDeletePost}
+            />
           ))}
         </>
       )}

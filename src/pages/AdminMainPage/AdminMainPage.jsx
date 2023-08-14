@@ -7,7 +7,11 @@ import {
   getAllUsers,
   addSuspension,
   removeSuspension,
-  getAllSuspension
+  getAllSuspension,
+  getAllReports,
+  editReportSolved,
+  deletePost,
+  sendNotify
 } from 'api/admin'
 
 const { adminMainPageContainer, nav, right, rightContent, rightHead, logo } =
@@ -76,6 +80,23 @@ export default function AdminMainPage() {
       console.error(error)
     }
   }
+  const handleEditReportSolved = async (id) => {
+    try {
+      await editReportSolved(id)
+      console.log(id)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const handleDeletePost = async ({ id, userId, notify }) => {
+    try {
+      await deletePost(id)
+      await sendNotify(userId, notify)
+      console.log(notify)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   useEffect(() => {
     if (page === 'userList') {
       const getAllUsersAsync = async () => {
@@ -98,13 +119,23 @@ export default function AdminMainPage() {
       }
       getAllSuspensionAsync()
     } else if (page === 'reviewList') {
-      try {
-        fetch('https://jsonplaceholder.typicode.com/todos')
-          .then((response) => response.json())
-          .then((json) => setReviewList(json))
-      } catch (error) {
-        console.error(error)
+      // try {
+      //   fetch('https://jsonplaceholder.typicode.com/todos')
+      //     .then((response) => response.json())
+      //     .then((json) => setReviewList(json))
+      // } catch (error) {
+      //   console.error(error)
+      // }
+      const getAllReportsAsync = async () => {
+        try {
+          const data = await getAllReports()
+          setReviewList(data)
+          console.log(data)
+        } catch (error) {
+          console.error(error)
+        }
       }
+      getAllReportsAsync()
     }
   }, [page])
 
@@ -137,7 +168,12 @@ export default function AdminMainPage() {
               />
             )}
             {page === 'reviewList' && (
-              <Pagination data={reviewList} page={page} />
+              <Pagination
+                data={reviewList}
+                page={page}
+                onEditReportSolved={handleEditReportSolved}
+                onDeletePost={handleDeletePost}
+              />
             )}
           </div>
         </div>
