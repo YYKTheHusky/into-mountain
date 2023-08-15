@@ -10,6 +10,7 @@ import { ReactComponent as FavoriteIcon } from 'assets/icons/icon-label.svg'
 import { ReactComponent as LikeIcon } from 'assets/icons/like-icon.svg'
 import { ReactComponent as ShareIcon } from 'assets/icons/share-icon.svg'
 import { ReactComponent as ReportIcon } from 'assets/icons/report-icon.svg'
+import UserIcon from 'assets/icons/user.svg'
 
 // components
 import { SecondaryButton, SecondaryButtonGray } from 'components/Button/Button'
@@ -27,11 +28,13 @@ import {
   getOnePost
 } from 'api/post.js'
 import { followUser, unFollowUser } from 'api/followship.js'
+import ReportPostModal from 'components/Modal/ReportPostModal'
 
 export default function SingleReviewPage() {
   const navigate = useNavigate()
   const [post, setPost] = useState('')
   const { reviewID } = useParams()
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false)
 
   // 追蹤使用者
   const handleFollow = async () => {
@@ -120,16 +123,14 @@ export default function SingleReviewPage() {
   useEffect(() => {
     const getPost = async () => {
       const { status, postData, message } = await getOnePost(reviewID)
+      console.log(message)
       if (status === 'success') {
         const updatedPost = {
           ...postData,
           createdAt: formatDateTime(postData.createdAt)
         }
         setPost(updatedPost)
-      } else if (
-        message ===
-        "TypeError: Cannot read properties of null (reading 'toJSON')"
-      ) {
+      } else if (message === 'Error: Cannot find post!') {
         // 頁面不存在，導向error page
         navigate('/error')
       } else {
@@ -150,7 +151,10 @@ export default function SingleReviewPage() {
           <section className={styles.reviewInfo}>
             {/* 標題 */}
             <div className={styles.title}>
-              <h2>{post.title}</h2>
+              <h2>
+                {post.title}
+                {post.inProgress && '(草稿)'}
+              </h2>
             </div>
             {/* 作者資訊 */}
             <div className={styles.authorAndButton}>
@@ -159,7 +163,7 @@ export default function SingleReviewPage() {
                   <div className={styles.nameAndFollow}>
                     <img
                       className={`cursor-point ${styles.avatar}`}
-                      src={post.User.avatar}
+                      src={post.User.avatar ? post.User.avatar : UserIcon}
                       alt="user-avatar"
                       onClick={() =>
                         navigate(`/user/${post.User.id}/myReviews`)
@@ -216,10 +220,18 @@ export default function SingleReviewPage() {
                   />
                   <span>收藏</span>
                 </div>
-                <div className={`cursor-point ${styles.report}`}>
+                <div
+                  className={`cursor-point ${styles.report}`}
+                  onClick={() => setIsReportModalOpen(true)}
+                >
                   <ReportIcon className={styles.icon} />
                   <span>檢舉</span>
                 </div>
+                <ReportPostModal
+                  isReportModalOpen={isReportModalOpen}
+                  setIsReportModalOpen={setIsReportModalOpen}
+                  postId={reviewID}
+                />
                 <div className={`cursor-point ${styles.share}`}>
                   <ShareIcon className={styles.icon} />
                   <span>分享</span>
