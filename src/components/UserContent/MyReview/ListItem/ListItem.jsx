@@ -1,16 +1,20 @@
 import styles from './ListItem.module.scss'
 import formatDateTime from 'utils/time'
+import { useNavigate } from 'react-router-dom'
 const {
   listItem,
   itemRight,
   itemLeft,
   itemRightTitle,
   itemRightTime,
+  btnGroup,
   titleButton1,
   titleButton2
 } = styles
 
 const ListItem = ({ data }) => {
+  const navigate = useNavigate()
+
   return (
     <div className={listItem}>
       <div className={itemLeft}>
@@ -18,13 +22,13 @@ const ListItem = ({ data }) => {
       </div>
       <div className={itemRight}>
         <div className={itemRightTitle}>
-          {data.title}
-          <div>
+          <div>{data.title}</div>
+          <div className={btnGroup}>
             <button className={titleButton1}>按鈕1</button>
             <button className={titleButton2}>按鈕2</button>
           </div>
         </div>
-        <p>{data.description}</p>
+        <p onClick={() => navigate(`/review/${data.id}`)}>{data.description}</p>
         <div className={itemRightTime}>
           發表於：{formatDateTime(data.updatedAt)}
         </div>
