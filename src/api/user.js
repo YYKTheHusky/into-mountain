@@ -36,7 +36,21 @@ export const getUserFavoritePost = async (id) => {
       return data.data.data.favoritePost
     }
   } catch (error) {
-    console.error('[Get User Posts Failed]:', error)
+    console.error('[Get User Favorite Posts Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}
+
+// 取得特定使用者所有收藏的登山路徑
+export const getUserFavoriteTrail = async (id) => {
+  try {
+    const data = await axiosInstance.get(`/users/${id}/favorites/trail`)
+    if (data) {
+      return data.data.data.favoriteTrail
+    }
+  } catch (error) {
+    console.error('[Get User Favorite Trails Failed]:', error)
     const { message } = error.response.data
     return { success: false, message }
   }

@@ -32,6 +32,10 @@
     0px 2px 4px 0px rgba(60, 79, 107, 0.1),
     0px -2px 12px 0px rgba(60, 79, 107, 0.1);
   border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    background-color: var(--dark-30);
+  }
   .itemLeft {
     @extend .itemLeftSide;
   }
@@ -42,6 +46,13 @@
     }
     p {
       min-height: 90px;
+      max-height: 100px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 3px;
     }
     .itemRightSideTag1 {
       span {
@@ -49,7 +60,6 @@
         display: inline-block;
         padding: 0px 10px;
         line-height: 18px;
-        margin-left: 10px;
         background-color: var(--dark-40);
         border-radius: 20px;
       }
