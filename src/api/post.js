@@ -134,6 +134,36 @@ export const editPost = async ({
   description,
   image,
   difficulty,
+  recommend,
+  inProgress
+}) => {
+  try {
+    const formData = new FormData()
+    formData.append('title', title)
+    formData.append('category', category)
+    formData.append('description', description)
+    formData.append('image', image)
+    formData.append('difficulty', difficulty)
+    formData.append('recommend', recommend)
+    formData.append('inProgress', inProgress)
+
+    const { data } = await axiosAuthInstance.put(`/posts/${reviewID}`, formData)
+    if (data) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Edit Post Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 暫存一篇文章
+export const scratchPost = async ({
+  title,
+  category,
+  description,
+  image,
+  difficulty,
   recommend
 }) => {
   try {
@@ -145,12 +175,13 @@ export const editPost = async ({
     formData.append('difficulty', difficulty)
     formData.append('recommend', recommend)
 
-    const { data } = await axiosAuthInstance.put(`/posts/${reviewID}`, formData)
+    const { data } = await axiosAuthInstance.post(`/posts/cache`, formData)
+
     if (data) {
-      return { success: true }
+      return { success: true, postId: data.data.postId }
     }
   } catch (error) {
-    console.error('[Edit Post Failed]:', error)
+    console.error('[Scratch Post Failed]:', error)
     return { success: false }
   }
 }
@@ -193,7 +224,26 @@ export const getTopPosts = async (limit) => {
       return { success: true, posts: data.data }
     }
   } catch (error) {
-    console.error('[Get All Post Failed]:', error)
+    console.error('[Get Top Post Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}
+
+// 檢舉心得
+export const addReport = async ({ postId, category, content }) => {
+  try {
+    const { data } = await axiosAuthInstance.post(`/posts/report`, {
+      postId,
+      category,
+      content
+    })
+    if (data) {
+      console.log(data)
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Report Post Failed]:', error)
     const { message } = error.response.data
     return { success: false, message }
   }
