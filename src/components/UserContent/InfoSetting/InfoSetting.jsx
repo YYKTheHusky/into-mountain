@@ -153,6 +153,8 @@ const InfoSetting = ({ theUserData, onUpdateCardInfo }) => {
       console.log(res)
       setIsSubmitting(false)
       onUpdateCardInfo()
+      passwordRef.current.value = ''
+      confirmRef.current.value = ''
     } catch (error) {
       console.error(error)
     }

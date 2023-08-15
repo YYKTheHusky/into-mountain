@@ -36,6 +36,7 @@ const NoticeItem = ({ item, onRead }) => {
 }
 const MyNotice = () => {
   const [noticeData, setNoticeData] = useState([])
+  const [dataIsLoading, setDataIsLoading] = useState(true)
   const id = localStorage.getItem('currentUserId')
   const location = useLocation()
   const thePathId = location.pathname.split('/')[2]
@@ -62,6 +63,7 @@ const MyNotice = () => {
       try {
         const data = await getUserNotifications(id)
         setNoticeData(data)
+        setDataIsLoading(false)
       } catch (error) {
         console.error(error)
       }
@@ -72,7 +74,7 @@ const MyNotice = () => {
   return (
     <RightSideContainer title="通知">
       <div className={myNoticeContainer}>
-        {noticeData.length === 0 && (
+        {noticeData.length === 0 && !dataIsLoading && (
           <div>
             <YouHaveNothing robotTitle="通知" robotDescription="沒有通知" />
           </div>

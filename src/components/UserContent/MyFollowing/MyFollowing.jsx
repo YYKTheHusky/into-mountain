@@ -9,7 +9,7 @@ const { myFollowingContainer } = styles
 
 const MyFollowing = ({ theUserId, onUpdateCardInfo }) => {
   const [followingList, setFollowingList] = useState([])
-
+  const [dataIsLoading, setDataIsLoading] = useState(true)
   const handleFollow = async ({ isFollow, id }) => {
     try {
       if (isFollow) {
@@ -36,6 +36,7 @@ const MyFollowing = ({ theUserId, onUpdateCardInfo }) => {
       try {
         const data = await getUserFollowing(theUserId)
         setFollowingList(data)
+         setDataIsLoading(false)
       } catch (error) {
         console.error(error)
       }
@@ -44,7 +45,7 @@ const MyFollowing = ({ theUserId, onUpdateCardInfo }) => {
   }, [])
   return (
     <RightSideContainer title="關注">
-      {followingList.length === 0 && (
+      {followingList.length === 0 && !dataIsLoading && (
         <div>
           <YouHaveNothing robotDescription="沒有關注任何人" />
         </div>

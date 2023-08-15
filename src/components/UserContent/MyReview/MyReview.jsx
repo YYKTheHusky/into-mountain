@@ -13,13 +13,13 @@ const { myReviewContainer } = styles
 
 const MyReview = ({ theUserId }) => {
   const [dataList, setDataList] = useState([])
-
+  const [dataIsLoading, setDataIsLoading] = useState(true)
   useEffect(() => {
     const getUserPostsAsync = async () => {
       try {
         const data = await getUserPosts(theUserId)
         setDataList(data)
-        // console.log(data)
+        setDataIsLoading(false)
       } catch (error) {
         console.error(error)
       }
@@ -29,7 +29,7 @@ const MyReview = ({ theUserId }) => {
 
   return (
     <RightSideContainer title="心得">
-      {dataList.length === 0 && (
+      {dataList.length === 0 && !dataIsLoading && (
         <YouHaveNothing robotDescription="未發佈過心得" />
       )}
       {dataList.length > 0 && (

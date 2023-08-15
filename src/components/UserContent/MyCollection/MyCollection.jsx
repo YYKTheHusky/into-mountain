@@ -101,69 +101,6 @@ const trailCollectionData = [
   }
 ]
 
-// const reviewCollectionData = [
-//   {
-//     postId: 1,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 1,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 2,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 3,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 4,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 5,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   }
-// ]
-
 const CollectionList = ({ tabStep, collectionData, reviewListData }) => {
   if (tabStep === 'trailCollection') {
     return (
@@ -196,12 +133,14 @@ const MyCollection = ({ theUserId }) => {
   const [tabStep, setTabStep] = useState('trailCollection')
   const [collectionData, setCollectionData] = useState(trailCollectionData)
   const [reviewListData, setReviewListData] = useState([])
+  const [dataIsLoading, setDataIsLoading] = useState(true)
   const navigate = useNavigate()
   const location = useLocation()
   const thePathArray = location.pathname.split('/')
 
   const handleTapStep = async (type) => {
     setTabStep(type)
+    setDataIsLoading(true)
     navigate(`/user/${theUserId}/${type}`)
   }
 
@@ -217,7 +156,10 @@ const MyCollection = ({ theUserId }) => {
       const getUserFavoritePostsAsync = async (theUserId) => {
         try {
           const data = await getUserFavoritePost(theUserId)
-          setReviewListData(data)
+          if (data) {
+            setReviewListData(data)
+          }
+          setDataIsLoading(false)
         } catch (error) {
           console.error(error)
         }
@@ -230,7 +172,22 @@ const MyCollection = ({ theUserId }) => {
     <>
       <RightSideContainer title="收藏">
         <MyCollectionTab tabStep={tabStep} onTapStep={handleTapStep} />
-        {collectionData.length === 0 ? (
+        {collectionData.length === 0 &&
+        tabStep === 'trailCollection' &&
+        !dataIsLoading ? (
+          <div>
+            <YouHaveNothing robotTitle="收藏" robotDescription="沒有收藏" />
+          </div>
+        ) : (
+          <CollectionList
+            tabStep={tabStep}
+            collectionData={collectionData}
+            reviewListData={reviewListData}
+          />
+        )}
+        {reviewListData.length === 0 &&
+        tabStep === 'reviewCollection' &&
+        !dataIsLoading ? (
           <div>
             <YouHaveNothing robotTitle="收藏" robotDescription="沒有收藏" />
           </div>
