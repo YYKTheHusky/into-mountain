@@ -1,4 +1,5 @@
 import styles from './ListItem.module.scss'
+import formatDateTime from 'utils/time'
 const {
   listItem,
   itemRight,
@@ -24,7 +25,9 @@ const ListItem = ({ data }) => {
           </div>
         </div>
         <p>{data.description}</p>
-        <div className={itemRightTime}>發表於：{data.updatedAt}</div>
+        <div className={itemRightTime}>
+          發表於：{formatDateTime(data.updatedAt)}
+        </div>
       </div>
     </div>
   )
