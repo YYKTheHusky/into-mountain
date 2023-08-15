@@ -10,7 +10,8 @@ const {
   emailInput,
   errorMessageStyle,
   active,
-  disabledBtnStyle
+  disabledBtnStyle,
+  loadingIcon
 } = styles
 
 const InfoSetting = ({ theUserData, onUpdateCardInfo }) => {
@@ -152,7 +153,6 @@ const InfoSetting = ({ theUserData, onUpdateCardInfo }) => {
       console.log(res)
       setIsSubmitting(false)
       onUpdateCardInfo()
-      alert('儲存成功!')
     } catch (error) {
       console.error(error)
     }
@@ -245,9 +245,9 @@ const InfoSetting = ({ theUserData, onUpdateCardInfo }) => {
               ) && disabledBtnStyle
             }
           >
-            {isSubmitting ? '傳送中...' : '儲存'}
+            {isSubmitting ? '傳送中' : '儲存'}
+            {isSubmitting && <span className={loadingIcon}></span>}
           </button>
-          {isSubmitting && <span>123</span>}
         </div>
       </div>
     </RightSideContainer>
