@@ -30,7 +30,7 @@ const UpLoad = ({ onAvatarImg, theUserData }) => {
           </div>
         )}
       </div>
-      <button onClick={() => handleImageClick()}>點擊上傳</button>
+      <button onClick={() => handleImageClick()}>上傳照片</button>
       <input
         type="file"
         ref={inpuRef}

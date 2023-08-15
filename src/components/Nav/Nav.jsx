@@ -6,6 +6,7 @@ import { ReactComponent as IconUser } from 'assets/icons/icon-user.svg'
 import BurgerModal from 'components/BurgerModal/BurgerModal'
 import { OvalButtonSmall } from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const {
   navContainer,
@@ -20,10 +21,13 @@ const {
   innerContainer
 } = styles
 
-const Nav = () => {
+const Nav = ({ updateCardInfo }) => {
   const navigate = useNavigate()
   const currentUserId = localStorage.getItem('currentUserId')
-  const currentUserAvatar = localStorage.getItem('currentUserAvatar')
+  let currentUserAvatar = localStorage.getItem('currentUserAvatar')
+  useEffect(() => {
+    currentUserAvatar = localStorage.getItem('currentUserAvatar')
+  }, [updateCardInfo])
 
   return (
     <div className={navContainer}>
