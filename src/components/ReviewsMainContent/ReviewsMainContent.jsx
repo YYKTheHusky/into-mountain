@@ -7,7 +7,7 @@ import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
 import FilterToggole from 'components/FilterToggole/FilterToggole'
 import ReviewListCard from 'components/ReviewsList/ReviewsListCard/ReviewsListCard'
 // api
-import { getAllPost } from 'api/post'
+import { getAllPost, searchPostByKeyword } from 'api/post'
 
 const { container, innerContainer, search, list } = styles
 
@@ -22,8 +22,8 @@ const ReviewsMainContent = () => {
         const { posts } = await getAllPost()
         setReviewData(posts)
       } else {
-        // const { trails } = await searchTrailByKeyword(keyword)
-        // setReviewData(trails)
+        const { posts } = await searchPostByKeyword(keyword)
+        setReviewData(posts)
       }
     }
     getData()
