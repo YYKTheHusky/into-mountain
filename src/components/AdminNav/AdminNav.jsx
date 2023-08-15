@@ -1,6 +1,6 @@
 import styles from './AdminNav.module.scss'
 import { ReactComponent as IconPerson } from 'assets/icons/icon-person.svg'
-import { ReactComponent as IconNotification2 } from 'assets/icons/icon-notification2.svg'
+// import { ReactComponent as IconNotification2 } from 'assets/icons/icon-notification2.svg'
 import { ReactComponent as IconUserSlash } from 'assets/icons/icon-user-large-slash.svg'
 import { ReactComponent as IconUserGroup } from 'assets/icons/icon-user-group.svg'
 import { ReactComponent as IconAlignLeft } from 'assets/icons/icon-align-left.svg'
@@ -59,12 +59,12 @@ const AdminNav = ({ onPage }) => {
               : '管理員'}
           </span>
         </div>
-        <div className={listItem} title="最新通知">
+        {/* <div className={listItem} title="最新通知">
           <IconNotification2 className={icon} />
           <span className={clsx(listItemLabel, navExpand && expand)}>
             最新通知
           </span>
-        </div>
+        </div> */}
       </div>
       <div
         className={content}
@@ -84,7 +84,10 @@ const AdminNav = ({ onPage }) => {
         <div
           className={listItem}
           title="使用者清單"
-          onClick={() => onPage?.('userList')}
+          onClick={() => {
+            onPage?.('userList')
+            navigate('/admin/allUser')
+          }}
         >
           <IconUserGroup className={icon} />
           <span className={clsx(listItemLabel, navExpand && expand)}>
@@ -94,7 +97,10 @@ const AdminNav = ({ onPage }) => {
         <div
           className={listItem}
           title="被停權的使用者"
-          onClick={() => onPage?.('susUserList')}
+          onClick={() => {
+            onPage?.('susUserList')
+            navigate('/admin/blockUser')
+          }}
         >
           <IconUserSlash className={icon} />
           <span className={clsx(listItemLabel, navExpand && expand)}>
@@ -105,7 +111,10 @@ const AdminNav = ({ onPage }) => {
         <div
           className={listItem}
           title="被檢舉的心得清單"
-          onClick={() => onPage?.('reviewList')}
+          onClick={() => {
+            onPage?.('reviewList')
+            navigate('/admin/reportReview')
+          }}
         >
           <IconAlignLeft className={icon} />
           <span className={clsx(listItemLabel, navExpand && expand)}>
