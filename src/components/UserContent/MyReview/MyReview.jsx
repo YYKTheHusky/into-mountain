@@ -25,7 +25,7 @@ const MyReview = ({ theUserId }) => {
       }
     }
     getUserPostsAsync()
-  }, [])
+  }, [theUserId])
 
   return (
     <RightSideContainer title="心得">

@@ -1,9 +1,11 @@
 import styles from './FollowCard.module.scss'
 import { SecondaryButton } from 'components/Button/Button'
+import { useNavigate } from 'react-router-dom'
 const { followerCardCointainer, cardHead, cardAvatar, cardTitle, cardButton } =
   styles
 
 const FollowerCard = ({ data, follow, onFollow }) => {
+  const navigate = useNavigate()
   let theId
   if (data.Following) {
     theId = data.Following.id
@@ -11,7 +13,10 @@ const FollowerCard = ({ data, follow, onFollow }) => {
     theId = data.Follower.id
   }
   return (
-    <div className={followerCardCointainer}>
+    <div
+      className={followerCardCointainer}
+      onClick={() => navigate(`/user/${theId}/myReviews`)}
+    >
       <div className={cardHead}>
         <div className={cardAvatar}>
           <img src={follow.avatar} alt="" />
