@@ -66,7 +66,9 @@ export default function ReportModal({
         </div>
         <h4>步道狀況回報</h4>
         <div className={styles.inputGroup}>
-          <label htmlFor="report">回報內容</label>
+          <label htmlFor="report" className={styles.title}>
+            回報內容
+          </label>
           <textarea
             id="report"
             value={description}
