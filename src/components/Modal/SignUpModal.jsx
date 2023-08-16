@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/SignUpModal.module.scss'
@@ -117,9 +117,9 @@ export default function SignUpModal() {
       </div>
       <div className={styles.text}>
         已經有帳號了嗎?
-        <a className={styles.links} href="/login">
+        <Link className={styles.links} to="/login">
           前往登入
-        </a>
+        </Link>
       </div>
       <div className={styles.buttonContainer}>
         <PrimaryButtonWhite>使用google註冊</PrimaryButtonWhite>
