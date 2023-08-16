@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/LoginModal.module.scss'
@@ -75,9 +75,9 @@ export default function LoginModal() {
       </div>
       <div className={styles.text}>
         還不是會員嗎?
-        <a className={styles.links} href="/regist">
+        <Link className={styles.links} to="/regist">
           前往註冊
-        </a>
+        </Link>
       </div>
       <div className={styles.buttonContainer}>
         <PrimaryButtonWhite>使用google登入</PrimaryButtonWhite>
