@@ -146,3 +146,16 @@ export const editUserData = async ({ data }) => {
     return { success: false, message }
   }
 }
+
+// 刪除指定post
+export const deletePost = async (postId) => {
+  try {
+    const response = await axiosInstance.delete(`/posts/${postId}`)
+    if (response) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Delete Post Failed]:', error)
+    return { success: false }
+  }
+}

@@ -73,9 +73,22 @@ const BurgerMenu = ({ onBurgerToggle }) => {
             </div>
           </div>
         </div>
-        <div className={menuListItem}>通知</div>
+        <div
+          className={menuListItem}
+          onClick={() => {
+            if (currentUserId) {
+              navigate(`/user/${currentUserId}/notification`)
+            } else {
+              navigate('/login')
+            }
+          }}
+        >
+          通知
+        </div>
         <div className={postReviewButton}>
-          <OvalButtonSmall>+我的心得</OvalButtonSmall>
+          <OvalButtonSmall onClick={() => navigate('/newReview')}>
+            +我的心得
+          </OvalButtonSmall>
         </div>
         <span></span>
       </div>

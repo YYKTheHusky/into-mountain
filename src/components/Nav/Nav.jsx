@@ -52,7 +52,10 @@ const Nav = ({ updateCardInfo }) => {
           >
             找心得
           </div>
-          <div className={postReviewButton}>
+          <div
+            className={postReviewButton}
+            onClick={() => navigate('/newReview')}
+          >
             <OvalButtonSmall>
               <IconAdd /> <span>我的心得</span>
             </OvalButtonSmall>

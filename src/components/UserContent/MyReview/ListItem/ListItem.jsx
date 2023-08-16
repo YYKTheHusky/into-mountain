@@ -1,6 +1,7 @@
 import styles from './ListItem.module.scss'
 import { formatDateWithTime } from 'utils/time'
 import { useNavigate } from 'react-router-dom'
+
 const {
   listItem,
   itemRight,
@@ -12,7 +13,7 @@ const {
   titleButton2
 } = styles
 
-const ListItem = ({ data }) => {
+const ListItem = ({ data, theUserId, onDeletePost }) => {
   const navigate = useNavigate()
 
   return (
@@ -23,10 +24,22 @@ const ListItem = ({ data }) => {
       <div className={itemRight}>
         <div className={itemRightTitle}>
           <div>{data.title}</div>
-          <div className={btnGroup}>
-            <button className={titleButton1}>按鈕1</button>
-            <button className={titleButton2}>按鈕2</button>
-          </div>
+          {theUserId === localStorage.getItem('currentUserId') && (
+            <div className={btnGroup}>
+              <button
+                className={titleButton1}
+                onClick={() => navigate(`/review/${data.id}/edit`)}
+              >
+                編輯
+              </button>
+              <button
+                className={titleButton2}
+                onClick={() => onDeletePost?.(data.id)}
+              >
+                刪除
+              </button>
+            </div>
+          )}
         </div>
         <p onClick={() => navigate(`/review/${data.id}`)}>{data.description}</p>
         <div className={itemRightTime}>
