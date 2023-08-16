@@ -1,7 +1,14 @@
 import { useRef, useState } from 'react'
 import styles from './UpLoad.module.scss'
-// import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
-const { upLoadContainer, avatar } = styles
+import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
+const { upLoadContainer, avatar, defaultImg } = styles
+
+const AVT = ({ theUserData }) => {
+  if (theUserData.avatar === null) {
+    return <IconDefaultUser className={defaultImg} />
+  }
+  return <img src={theUserData.avatar} alt="" />
+}
 
 const UpLoad = ({ onAvatarImg, theUserData }) => {
   const inpuRef = useRef(null)
@@ -24,9 +31,8 @@ const UpLoad = ({ onAvatarImg, theUserData }) => {
             <img src={URL.createObjectURL(image)} alt="" />
           </div>
         ) : (
-          // <IconDefaultUser className={`${avatar} ${defaultImg}`} />
           <div className={avatar}>
-            <img src={theUserData.avatar} alt="" />
+            <AVT theUserData={theUserData} />
           </div>
         )}
       </div>

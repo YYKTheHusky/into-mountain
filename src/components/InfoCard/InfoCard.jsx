@@ -1,9 +1,11 @@
 import styles from './InfoCard.module.scss'
 import { ReactComponent as IconGear } from 'assets/icons/icon-gear.svg'
+import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
 const {
   infoCardContainer,
   card,
   avatar,
+  defaultImg,
   myName,
   aboutMe,
   count,
@@ -21,7 +23,11 @@ const InfoCard = ({ data, onAcitveContent, theUserId }) => {
     <div className={infoCardContainer}>
       <div className={card}>
         <div className={avatar}>
-          <img src={data.avatar} alt="" />
+          {data.avatar === null ? (
+            <IconDefaultUser className={defaultImg} />
+          ) : (
+            <img src={data.avatar} alt="" />
+          )}
         </div>
         <div className={information}>
           <div className={myName}>{data.name}</div>
