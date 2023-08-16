@@ -74,6 +74,12 @@
         color: white;
         font-size: 14px;
       }
+      &:hover {
+        background-color: #44b2da;
+      }
+    }
+    .share {
+      position: relative;
     }
     .icon {
       height: 16px;
@@ -150,15 +156,27 @@
       }
       .like {
         background-color: #fba6b0;
+        &:hover {
+          background-color: #fbb2bb;
+        }
       }
       .favorite {
         background-color: #ffb64f;
+        &:hover {
+          background-color: #ffbe62;
+        }
       }
       .report {
         background-color: #707985;
+        &:hover {
+          background-color: #797e85;
+        }
       }
       .share {
         background-color: #5989ed;
+        &:hover {
+          background-color: #6995f4;
+        }
       }
     }
   }

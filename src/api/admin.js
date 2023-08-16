@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'https://trail-finder-project-final-zkqznr2c5a-de.a.run.app/api'
+const baseURL = 'https://trail-finder-project-us-zkqznr2c5a-uc.a.run.app/api/'
 
 // 管理者登入
 export const adminLogin = async ({ email, password }) => {

@@ -14,7 +14,7 @@ import mainPagePhoto from 'assets/photos/mainpage-photo.svg'
 
 // api
 import { getAllTrails } from 'api/trail'
-import { getAllPost } from 'api/post'
+import { getTopPosts } from 'api/post'
 
 export default function MainPage() {
   const navigate = useNavigate()
@@ -24,10 +24,10 @@ export default function MainPage() {
     const getData = async () => {
       const [{ trails }, { posts }] = await Promise.all([
         getAllTrails(),
-        getAllPost()
+        getTopPosts(10)
       ])
       setTrailData(trails.slice(0, 5))
-      setPostData(posts.slice(0, 10))
+      setPostData(posts)
     }
     getData()
   }, [])
@@ -44,7 +44,7 @@ export default function MainPage() {
           <h1 className={styles.slogan}>100+ Ways </h1>
           <h1 className={styles.slogan}>to Meet Nature</h1>
           <div className={styles.buttonContainer}>
-            <OvalButtonHuge onClick={() => navigate('/trail')}>
+            <OvalButtonHuge onClick={() => navigate('/search/allTrails')}>
               探索所有步道
             </OvalButtonHuge>
           </div>
