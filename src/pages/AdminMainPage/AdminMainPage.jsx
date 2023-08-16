@@ -57,7 +57,6 @@ export default function AdminMainPage() {
     try {
       await removeSuspension(id)
       if (listname === 'userList') {
-        console.log(`${id}  ${listname}`)
         setUserListData((pre) => {
           return pre.map((item) => {
             if (item.id === id) {
@@ -83,7 +82,6 @@ export default function AdminMainPage() {
   const handleEditReportSolved = async (id) => {
     try {
       await editReportSolved(id)
-      console.log(id)
     } catch (error) {
       console.error(error)
     }
@@ -92,7 +90,6 @@ export default function AdminMainPage() {
     try {
       await deletePost(id)
       await sendNotify(userId, notify)
-      console.log(notify)
     } catch (error) {
       console.error(error)
     }
@@ -118,19 +115,10 @@ export default function AdminMainPage() {
         }
       }
       getAllSuspensionAsync()
-    } else if (page === 'reviewList') {
-      // try {
-      //   fetch('https://jsonplaceholder.typicode.com/todos')
-      //     .then((response) => response.json())
-      //     .then((json) => setReviewList(json))
-      // } catch (error) {
-      //   console.error(error)
-      // }
       const getAllReportsAsync = async () => {
         try {
           const data = await getAllReports()
           setReviewList(data)
-          console.log(data)
         } catch (error) {
           console.error(error)
         }

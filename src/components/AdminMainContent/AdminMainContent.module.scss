@@ -148,6 +148,10 @@
         @extend .description;
       }
     }
+    &.solved{
+      background-color: var(--dark-50);
+      opacity: 0.5;
+    }
   }
 }
 
