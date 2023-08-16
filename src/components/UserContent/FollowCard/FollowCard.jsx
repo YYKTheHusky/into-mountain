@@ -1,27 +1,33 @@
-import { useState } from 'react'
 import styles from './FollowCard.module.scss'
 import { SecondaryButton } from 'components/Button/Button'
+import { useNavigate } from 'react-router-dom'
 const { followerCardCointainer, cardHead, cardAvatar, cardTitle, cardButton } =
   styles
 
-const FollowerCard = () => {
-  const [isFollow, setIsFollow] = useState(false)
-
+const FollowerCard = ({ data, follow, onFollow }) => {
+  const navigate = useNavigate()
+  let theId
+  if (data.Following) {
+    theId = data.Following.id
+  } else {
+    theId = data.Follower.id
+  }
   return (
-    <div className={followerCardCointainer}>
+    <div
+      className={followerCardCointainer}
+      onClick={() => navigate(`/user/${theId}/myReviews`)}
+    >
       <div className={cardHead}>
         <div className={cardAvatar}>
-          <img src="https://picsum.photos/id/237/200/300" alt="" />
+          <img src={follow.avatar} alt="" />
         </div>
-        <div className={cardTitle}>名稱</div>
+        <div className={cardTitle}>{follow.name}</div>
       </div>
       <div className={cardButton}>
         <SecondaryButton
-          onClick={() => {
-            setIsFollow(!isFollow)
-          }}
+          onClick={() => onFollow?.({ isFollow: data.isFollow, id: theId })}
         >
-          {isFollow ? '追隨中' : '追隨'}
+          {data.isFollow ? '追隨中' : '追隨'}
         </SecondaryButton>
       </div>
     </div>

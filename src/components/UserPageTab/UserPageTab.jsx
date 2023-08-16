@@ -3,6 +3,7 @@ import { ReactComponent as IconNotification } from 'assets/icons/icon-notificati
 import { ReactComponent as IconTag } from 'assets/icons/icon-tag.svg'
 import { ReactComponent as IconFeather } from 'assets/icons/icon-feather.svg'
 import { clsx } from 'clsx'
+import { useLocation } from 'react-router-dom'
 const {
   userPageTabContainer,
   tabType1,
@@ -13,6 +14,9 @@ const {
 } = styles
 
 const TabType1 = ({ onAcitveContent }) => {
+  const id = localStorage.getItem('currentUserId')
+  const location = useLocation()
+  const thePathId = location.pathname.split('/')[2]
   return (
     <div className={tabType1}>
       <div onClick={() => onAcitveContent('myReviews')}>
@@ -23,14 +27,19 @@ const TabType1 = ({ onAcitveContent }) => {
         <IconTag className={icon} />
         收藏
       </div>
-      <div onClick={() => onAcitveContent('notification')}>
-        <IconNotification className={icon} />
-        通知
-      </div>
+      {id === thePathId && (
+        <div onClick={() => onAcitveContent('notification')}>
+          <IconNotification className={icon} />
+          通知
+        </div>
+      )}
     </div>
   )
 }
 const TabType2 = ({ acitveContent, onAcitveContent }) => {
+  const id = localStorage.getItem('currentUserId')
+  const location = useLocation()
+  const thePathId = location.pathname.split('/')[2]
   return (
     <div className={tabType2}>
       <div
@@ -55,17 +64,20 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
         <IconTag className={icon} />
         收藏
       </div>
-      <div
-        className={clsx(
-          tabType2Selection,
-          acitveContent === 'notification' && active
-        )}
-        data-active={acitveContent}
-        onClick={() => onAcitveContent('notification')}
-      >
-        <IconNotification className={icon} />
-        通知
-      </div>
+
+      {id === thePathId && (
+        <div
+          className={clsx(
+            tabType2Selection,
+            acitveContent === 'notification' && active
+          )}
+          data-active={acitveContent}
+          onClick={() => onAcitveContent('notification')}
+        >
+          <IconNotification className={icon} />
+          通知
+        </div>
+      )}
     </div>
   )
 }

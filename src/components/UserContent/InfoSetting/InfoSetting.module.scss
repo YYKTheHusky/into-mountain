@@ -1,10 +1,16 @@
+@property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
 .infoSettingContainer {
   margin-top: 30px;
   .infoItem {
     margin: 0px auto 30px auto;
     max-width: 85%;
     position: relative;
-
+    display: flex;
+    flex-direction: column;
     label {
       font-size: 14px;
       margin: 8px 0 2px 10px;
@@ -32,6 +38,36 @@
       min-width: 200px;
       height: 35px;
     }
+    .emailInput {
+      background-color: var(--dark-30);
+      pointer-events: none;
+      pointer-events: none;
+      color: var(--dark-70);
+      outline-color: var(--dark-40);
+      ~ label {
+        background-color: var(--dark-20);
+        color: var(--dark-70);
+      }
+    }
+    .errorMessageStyle {
+      display: inline-block;
+      height: 5px;
+      color: tomato;
+      margin-left: 5px;
+      margin-top: 5px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .active {
+      outline: 2px solid tomato;
+      ~ label {
+        color: tomato;
+      }
+      &:active ~ label,
+      &:focus ~ label {
+        color: tomato;
+      }
+    }
   }
   .saveChange {
     margin: 0px auto 30px auto;
@@ -44,6 +80,8 @@
       color: white;
       padding: 5px 20px;
       border-radius: 5px;
+      display: flex;
+      align-items: center;
       cursor: pointer;
       &:focus,
       &:active {
@@ -53,5 +91,49 @@
         opacity: 0.9;
       }
     }
+    .disabledBtnStyle {
+      background-color: var(--dark-30);
+      color: var(--dark-60);
+      &:focus,
+      &:active {
+        outline: none;
+      }
+      &:hover {
+        opacity: none;
+      }
+    }
+    .loadingIcon {
+      margin-left: 10px;
+      display: inline-block;
+      position: relative;
+      width: 20px;
+      height: 20px;
+      background: repeating-conic-gradient(
+        from var(--a),
+        var(--dark-80) 0%,
+        var(--dark-80) 5%,
+        transparent 5%,
+        transparent 40%,
+        var(--dark-80) 100%
+      );
+      border-radius: 50%;
+      animation: animate 1s linear infinite;
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 2px;
+        background-color: chocolate;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    --a: 0deg;
+  }
+  100% {
+    --a: 360deg;
   }
 }

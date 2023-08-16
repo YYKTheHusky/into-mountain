@@ -1,4 +1,5 @@
 import styles from './MyCollectionItem.module.scss'
+import { formatDateWithTime } from 'utils/time'
 const {
   itemContainer,
   itemLeft,
@@ -14,12 +15,16 @@ const {
 const ItemRightSideTag1 = ({ collectionData }) => {
   return (
     <>
-      <p>{collectionData.introduction}</p>
+      <p>
+        {collectionData.introduction
+          ? collectionData.introduction
+          : '持續新增內容中，敬請期待！'}
+      </p>
       <div className={itemRightSideTag1}>
         <span>{collectionData.location}</span>
         <span>難度 {collectionData.difficulty}</span>
         <span>{collectionData.distance}</span>
-        <span>所需時間{collectionData.duration}</span>
+        <span>所需時間 {collectionData.duration}</span>
       </div>
     </>
   )
@@ -35,7 +40,9 @@ const ItemRightSideTag2 = ({ collectionData }) => {
           </div>
           <span>{collectionData.User.name}</span>
         </div>
-        <div className={tag2Time}>發表於：{collectionData.createdAt}</div>
+        <div className={tag2Time}>
+          發表於：{formatDateWithTime(collectionData.createdAt)}
+        </div>
       </div>
     </>
   )

@@ -26,41 +26,27 @@ const {
   footer
 } = styles
 
-// data
-// const theUserData = {
-//   userId: 1,
-//   name: 'user1',
-//   email: 'user1@exmaple.com',
-//   introduction:
-//     '我的自我介紹先限制八十字以內不然會報版的感覺，歐NO我的自我介紹先限制八十字以內不然會報版的感覺，這樣子八十八十八十八十八十八十八十八十八十八十八十八十八十八十八十八十',
-//   avatar: 'https://picsum.photos/id/237/200/300',
-//   suspension: false,
-//   followerCount: 3,
-//   followingCount: 4,
-//   PostLikeCount: 10,
-//   createdAt: '2023-07-26',
-//   updatedAt: '2023-07-26',
-//   isFollow: false
-// }
-
 export default function UserPage() {
-  const [theUserData ,setTheUserData] = useState({})
+  const [theUserData, setTheUserData] = useState({})
   const [currentScroll, setCurrentScroll] = useState({
     currentValue: window.scrollY,
     upOrDown: true
   })
+  const [updateCardInfo, setUpdateCardInfo] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const thePathArray = location.pathname.split('/')
   const [acitveContent, setAcitveContent] = useState()
-  // const currentUserId = localStorage.getItem('currentUserId')
   const id = thePathArray[2]
+
   // handle
   const handleAcitveContent = (type) => {
     setAcitveContent(type)
     navigate(`/user/${thePathArray[2]}/${type}`)
   }
-
+  const handleUpdateCardInfo = () => {
+    setUpdateCardInfo(!updateCardInfo)
+  }
   // useEffect
   // 根據url變化，render右側內容
   useEffect(() => {
@@ -94,12 +80,12 @@ export default function UserPage() {
     if (localStorage.getItem('currentUserId')) {
       getUserDataAsync(id)
     }
-  }, [])
+  }, [location, updateCardInfo])
 
   return (
     <div className="container mx-auto">
       <div className={navDesk}>
-        <Nav className={navDesk} />
+        <Nav className={navDesk} updateCardInfo={updateCardInfo} />
       </div>
       <div className={navMobile}>{currentScroll.upOrDown && <Nav />}</div>
       <div className={contentContainer}>
@@ -128,7 +114,12 @@ export default function UserPage() {
           </div>
         </div>
         <div className={right}>
-          <UserContent acitveContent={acitveContent} theUserId={id} />
+          <UserContent
+            acitveContent={acitveContent}
+            theUserId={id}
+            theUserData={theUserData}
+            onUpdateCardInfo={handleUpdateCardInfo}
+          />
         </div>
       </div>
       <div className={footer}>

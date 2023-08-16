@@ -30,10 +30,16 @@ const BurgerMenu = ({ onBurgerToggle }) => {
         <div className={menuListItem} onClick={() => handleNavigate('/')}>
           首頁
         </div>
-        <div className={menuListItem} onClick={() => handleNavigate('/trail')}>
+        <div
+          className={menuListItem}
+          onClick={() => handleNavigate('/search/allTrails')}
+        >
           找路徑
         </div>
-        <div className={menuListItem} onClick={() => handleNavigate('/review')}>
+        <div
+          className={menuListItem}
+          onClick={() => handleNavigate('/search/allReviews')}
+        >
           找心得
         </div>
         <div
@@ -67,9 +73,22 @@ const BurgerMenu = ({ onBurgerToggle }) => {
             </div>
           </div>
         </div>
-        <div className={menuListItem}>通知</div>
+        <div
+          className={menuListItem}
+          onClick={() => {
+            if (currentUserId) {
+              navigate(`/user/${currentUserId}/notification`)
+            } else {
+              navigate('/login')
+            }
+          }}
+        >
+          通知
+        </div>
         <div className={postReviewButton}>
-          <OvalButtonSmall>+我的心得</OvalButtonSmall>
+          <OvalButtonSmall onClick={() => navigate('/newReview')}>
+            +我的心得
+          </OvalButtonSmall>
         </div>
         <span></span>
       </div>

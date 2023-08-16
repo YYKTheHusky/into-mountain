@@ -8,176 +8,49 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 // api
-import { getUserFavoritePost } from 'api/user'
-// Dummy
-const trailCollectionData = [
-  {
-    trailId: 1,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
-  },
-  {
-    trailId: 2,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
-  },
-  {
-    trailId: 3,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
-  },
-  {
-    trailId: 4,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
-  },
-  {
-    trailId: 5,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
-  },
-  {
-    trailId: 6,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
-  },
-  {
-    trailId: 7,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
-  },
-  {
-    trailId: 8,
-    title: '文章標題',
-    image: 'https://picsum.photos/200/300?grayscale',
-    introduction:
-      '文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前',
-    location: '台北市信義區',
-    difficulty: '低',
-    distance: '2.3公里',
-    duration: '1小時40分鐘'
+import { getUserFavoritePost, getUserFavoriteTrail } from 'api/user'
+
+const TrailCollectionList = ({ tabStep, trailListData, dataIsLoading }) => {
+  if (tabStep !== 'trailCollection') {
+    return
   }
-]
-
-// const reviewCollectionData = [
-//   {
-//     postId: 1,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 1,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 2,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 3,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 4,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   },
-//   {
-//     postId: 5,
-//     title: '心得標題',
-//     description:
-//       '12312心得31231321心得3213211231321心123133211231321321123132121心231321心1231321心1231321心1',
-//     image: 'https://picsum.photos/200/300?grayscale',
-//     userId: 3,
-//     createdAt: '2023-7-28',
-//     updatedAt: '2023-7-28',
-//     userName: '嗨你好',
-//     userAvatar: 'https://picsum.photos/id/237/200/300'
-//   }
-// ]
-
-const CollectionList = ({ tabStep, collectionData, reviewListData }) => {
-  if (tabStep === 'trailCollection') {
+  if (dataIsLoading) {
+    return
+  }
+  if (trailListData.length === 0) {
+    return (
+      <div>
+        <YouHaveNothing robotTitle="收藏" robotDescription="沒有收藏" />
+      </div>
+    )
+  } else {
     return (
       <>
-        {collectionData.map((item) => (
+        {trailListData.map((item) => (
           <MyCollectionItem
-            key={item.trailId}
+            key={item.id}
             tabStep={tabStep}
-            collectionData={collectionData[0]}
+            collectionData={item.Trail}
           />
         ))}
       </>
     )
-  } else if (tabStep === 'reviewCollection') {
+  }
+}
+const PostCollectionList = ({ tabStep, reviewListData, dataIsLoading }) => {
+  if (tabStep !== 'reviewCollection') {
+    return
+  }
+  if (dataIsLoading) {
+    return
+  }
+  if (reviewListData.length === 0) {
+    return (
+      <div>
+        <YouHaveNothing robotTitle="收藏" robotDescription="沒有收藏" />
+      </div>
+    )
+  } else {
     return (
       <>
         {reviewListData.map((item) => (
@@ -191,17 +64,18 @@ const CollectionList = ({ tabStep, collectionData, reviewListData }) => {
     )
   }
 }
-
 const MyCollection = ({ theUserId }) => {
   const [tabStep, setTabStep] = useState('trailCollection')
-  const [collectionData, setCollectionData] = useState(trailCollectionData)
+  const [trailListData, setTrailListData] = useState([])
   const [reviewListData, setReviewListData] = useState([])
+  const [dataIsLoading, setDataIsLoading] = useState(true)
   const navigate = useNavigate()
   const location = useLocation()
   const thePathArray = location.pathname.split('/')
 
   const handleTapStep = async (type) => {
     setTabStep(type)
+    setDataIsLoading(true)
     navigate(`/user/${theUserId}/${type}`)
   }
 
@@ -211,13 +85,27 @@ const MyCollection = ({ theUserId }) => {
 
   useEffect(() => {
     if (tabStep === 'trailCollection') {
-      setCollectionData(trailCollectionData)
+      const getUserFavoriteTrailsAsync = async (theUserId) => {
+        try {
+          const data = await getUserFavoriteTrail(theUserId)
+          if (data) {
+            setTrailListData(data)
+          }
+          setDataIsLoading(false)
+        } catch (error) {
+          console.error(error)
+        }
+      }
+      getUserFavoriteTrailsAsync(theUserId)
     }
     if (tabStep === 'reviewCollection') {
       const getUserFavoritePostsAsync = async (theUserId) => {
         try {
           const data = await getUserFavoritePost(theUserId)
-          setReviewListData(data)
+          if (data) {
+            setReviewListData(data)
+          }
+          setDataIsLoading(false)
         } catch (error) {
           console.error(error)
         }
@@ -230,17 +118,16 @@ const MyCollection = ({ theUserId }) => {
     <>
       <RightSideContainer title="收藏">
         <MyCollectionTab tabStep={tabStep} onTapStep={handleTapStep} />
-        {collectionData.length === 0 ? (
-          <div>
-            <YouHaveNothing robotTitle="收藏" robotDescription="沒有收藏" />
-          </div>
-        ) : (
-          <CollectionList
-            tabStep={tabStep}
-            collectionData={collectionData}
-            reviewListData={reviewListData}
-          />
-        )}
+        <TrailCollectionList
+          tabStep={tabStep}
+          trailListData={trailListData}
+          dataIsLoading={dataIsLoading}
+        />
+        <PostCollectionList
+          tabStep={tabStep}
+          reviewListData={reviewListData}
+          dataIsLoading={dataIsLoading}
+        />
       </RightSideContainer>
     </>
   )

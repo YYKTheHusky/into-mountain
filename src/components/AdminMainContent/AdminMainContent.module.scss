@@ -1,11 +1,11 @@
 .item {
-  width: 70%;
-  max-width: 600px;
-  height: 130px;
+  width: 90%;
+  height: 140px;
+  overflow: hidden;
   border-radius: 5px;
   background-color: white;
   margin: 0 auto 5px auto;
-  padding: 0 3px;
+  padding: 5px 5px;
   box-shadow:
     0px 2px 2px 0px rgba(60, 79, 107, 0.1),
     0px 3px 1px -2px rgba(60, 79, 107, 0.05),
@@ -40,19 +40,22 @@
     }
   }
   .description {
-    padding: 3px 0;
+    padding: 5px 0;
     font-size: 16px;
     font-weight: 400;
     color: var(--dark-90);
+    max-height: 70px;
+    overflow: hidden;
   }
 }
 
 .adminMainContentContainer {
-  height: 100%;
-  width: 95%;
-  margin: 20px auto 0 auto;
-  max-height: 800px;
+  height: 800px;
+  min-width: 295px;
+  width: 70%;
+  margin: 30px auto 0 auto;
   overflow-y: scroll;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--secondary-color) #f0f0f0;
   &::-webkit-scrollbar {
@@ -66,7 +69,7 @@
     }
   }
   &::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
+    background-color: transparent;
     border-radius: 10px;
   }
   .userItemContainer {
@@ -93,6 +96,12 @@
           font-weight: 500;
           background-color: var(--dark-40);
           color: var(--dark-90);
+        }
+        button {
+          cursor: pointer;
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
       .userItemRightName {
@@ -138,6 +147,10 @@
       .reviewItemRightDescription {
         @extend .description;
       }
+    }
+    &.solved{
+      background-color: var(--dark-50);
+      opacity: 0.5;
     }
   }
 }

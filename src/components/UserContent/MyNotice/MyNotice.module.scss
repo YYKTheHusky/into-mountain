@@ -1,0 +1,31 @@
+.myNoticeContainer {
+  .noticeItem {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 16px;
+    max-height: 230px;
+    line-height: 24px;
+    background-color: var(--dark-0);
+    box-shadow:
+      0px 8px 16px 0px rgba(60, 79, 107, 0.1),
+      0px 2px 4px 0px rgba(60, 79, 107, 0.1),
+      0px -2px 12px 0px rgba(60, 79, 107, 0.1);
+    .itemTitle {
+      color: tomato;
+      font-weight: 500;
+    }
+    .itemRead {
+      color: var(--dark-70);
+      font-size: 12px;
+    }
+    .itemContent {
+    }
+    .itemTime {
+      font-size: 12px;
+    }
+    &.unRead {
+      cursor: pointer;
+      background-color: var(--dark-30);
+    }
+  }
+}

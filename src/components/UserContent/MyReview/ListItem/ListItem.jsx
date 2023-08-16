@@ -1,15 +1,21 @@
 import styles from './ListItem.module.scss'
+import { formatDateWithTime } from 'utils/time'
+import { useNavigate } from 'react-router-dom'
+
 const {
   listItem,
   itemRight,
   itemLeft,
   itemRightTitle,
   itemRightTime,
+  btnGroup,
   titleButton1,
   titleButton2
 } = styles
 
-const ListItem = ({ data }) => {
+const ListItem = ({ data, theUserId, onDeletePost }) => {
+  const navigate = useNavigate()
+
   return (
     <div className={listItem}>
       <div className={itemLeft}>
@@ -17,18 +23,28 @@ const ListItem = ({ data }) => {
       </div>
       <div className={itemRight}>
         <div className={itemRightTitle}>
-          {data.title}
-          <div>
-            <button className={titleButton1}>按鈕1</button>
-            <button className={titleButton2}>按鈕2</button>
-          </div>
+          <div>{data.title}</div>
+          {theUserId === localStorage.getItem('currentUserId') && (
+            <div className={btnGroup}>
+              <button
+                className={titleButton1}
+                onClick={() => navigate(`/review/${data.id}/edit`)}
+              >
+                編輯
+              </button>
+              <button
+                className={titleButton2}
+                onClick={() => onDeletePost?.(data.id)}
+              >
+                刪除
+              </button>
+            </div>
+          )}
         </div>
-        <p>
-          文章內文前100字文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前
-          文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內文前文章內
-          文前文章內文前文章內文前文章內文前文章內文前
-        </p>
-        <div className={itemRightTime}>發表於：{data.updatedAt}</div>
+        <p onClick={() => navigate(`/review/${data.id}`)}>{data.description}</p>
+        <div className={itemRightTime}>
+          發表於：{formatDateWithTime(data.updatedAt)}
+        </div>
       </div>
     </div>
   )

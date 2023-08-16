@@ -6,6 +6,7 @@ import { ReactComponent as IconUser } from 'assets/icons/icon-user.svg'
 import BurgerModal from 'components/BurgerModal/BurgerModal'
 import { OvalButtonSmall } from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const {
   navContainer,
@@ -20,10 +21,13 @@ const {
   innerContainer
 } = styles
 
-const Nav = () => {
+const Nav = ({ updateCardInfo }) => {
   const navigate = useNavigate()
   const currentUserId = localStorage.getItem('currentUserId')
-  const currentUserAvatar = localStorage.getItem('currentUserAvatar')
+  let currentUserAvatar = localStorage.getItem('currentUserAvatar')
+  useEffect(() => {
+    currentUserAvatar = localStorage.getItem('currentUserAvatar')
+  }, [updateCardInfo])
 
   return (
     <div className={navContainer}>
@@ -36,13 +40,22 @@ const Nav = () => {
           <span>登山小站</span>
         </div>
         <div className={right}>
-          <div className={rightListItem} onClick={() => navigate('/trail')}>
+          <div
+            className={rightListItem}
+            onClick={() => navigate('/search/allTrails')}
+          >
             找路徑
           </div>
-          <div className={rightListItem} onClick={() => navigate('/review')}>
+          <div
+            className={rightListItem}
+            onClick={() => navigate('/search/allReviews')}
+          >
             找心得
           </div>
-          <div className={postReviewButton}>
+          <div
+            className={postReviewButton}
+            onClick={() => navigate('/newReview')}
+          >
             <OvalButtonSmall>
               <IconAdd /> <span>我的心得</span>
             </OvalButtonSmall>

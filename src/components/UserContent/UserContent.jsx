@@ -8,11 +8,16 @@ import InfoSetting from './InfoSetting/InfoSetting'
 
 const { userContentContainer } = styles
 
-const UserContent = ({ acitveContent, theUserId }) => {
+const UserContent = ({
+  theUserData,
+  acitveContent,
+  theUserId,
+  onUpdateCardInfo
+}) => {
   if (acitveContent === 'myReviews') {
     return (
       <div className={userContentContainer}>
-        <MyReview theUserId={theUserId}/>
+        <MyReview theUserId={theUserId} />
       </div>
     )
   } else if (
@@ -33,19 +38,25 @@ const UserContent = ({ acitveContent, theUserId }) => {
   } else if (acitveContent === 'following') {
     return (
       <div className={userContentContainer}>
-        <MyFollowing />
+        <MyFollowing
+          theUserId={theUserId}
+          onUpdateCardInfo={onUpdateCardInfo}
+        />
       </div>
     )
   } else if (acitveContent === 'follower') {
     return (
       <div className={userContentContainer}>
-        <MyFollower />
+        <MyFollower theUserId={theUserId} onUpdateCardInfo={onUpdateCardInfo} />
       </div>
     )
   } else if (acitveContent === 'setting') {
     return (
       <div className={userContentContainer}>
-        <InfoSetting />
+        <InfoSetting
+          theUserData={theUserData}
+          onUpdateCardInfo={onUpdateCardInfo}
+        />
       </div>
     )
   }

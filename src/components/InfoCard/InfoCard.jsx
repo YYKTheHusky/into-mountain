@@ -31,13 +31,13 @@ const InfoCard = ({ data, onAcitveContent, theUserId }) => {
             <div>
               <div className={countTitle}>關注</div>
               <div onClick={() => onAcitveContent('following')}>
-                {data.followerCount}
+                {data.followingCount}
               </div>
             </div>
             <div>
               <div className={countTitle}>粉絲</div>
               <div onClick={() => onAcitveContent('follower')}>
-                {data.followingCount}
+                {data.followerCount}
               </div>
             </div>
             <div>
