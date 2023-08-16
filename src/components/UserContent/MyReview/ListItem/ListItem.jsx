@@ -18,7 +18,7 @@ const ListItem = ({ data, theUserId, onDeletePost }) => {
   const navigate = useNavigate()
 
   return (
-    <div className={listItem}>
+    <div className={listItem} onClick={() => navigate(`/review/${data.id}`)}>
       <div className={itemLeft}>
         <img src={data.image} alt="" />
       </div>
@@ -29,20 +29,26 @@ const ListItem = ({ data, theUserId, onDeletePost }) => {
             <div className={btnGroup}>
               <button
                 className={titleButton1}
-                onClick={() => navigate(`/review/${data.id}/edit`)}
+                onClick={(event) => {
+                  event.preventDefault()
+                  navigate(`/review/${data.id}/edit`)
+                }}
               >
                 編輯
               </button>
               <button
                 className={titleButton2}
-                onClick={() => onDeletePost?.(data.id)}
+                onClick={(event) => {
+                  event.preventDefault()
+                  onDeletePost?.(data.id)
+                }}
               >
                 刪除
               </button>
             </div>
           )}
         </div>
-        <p onClick={() => navigate(`/review/${data.id}`)}>
+        <p>
           {String(data.description)}
           {String(data.description).length === 200 && '...'}
         </p>

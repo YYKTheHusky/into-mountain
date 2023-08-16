@@ -11,6 +11,7 @@
     0px 2px 4px 0px rgba(60, 79, 107, 0.1),
     0px -2px 12px 0px rgba(60, 79, 107, 0.1);
   border-radius: 10px;
+  cursor: pointer;
   .itemLeft {
     max-width: 17%;
     height: 110px;
@@ -76,11 +77,10 @@
       overflow-wrap: break-word;
       text-overflow: ellipsis;
       margin-bottom: 3px;
-      cursor: pointer;
-      &:hover {
-        background-color: var(--dark-20);
-      }
     }
+  }
+  &:hover {
+    background-color: var(--dark-30);
   }
 }
 

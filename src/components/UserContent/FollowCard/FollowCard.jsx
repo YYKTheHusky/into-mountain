@@ -13,11 +13,11 @@ const FollowerCard = ({ data, follow, onFollow }) => {
     theId = data.Follower.id
   }
   return (
-    <div className={followerCardCointainer}>
-      <div
-        className={cardHead}
-        onClick={() => navigate(`/user/${theId}/myReviews`)}
-      >
+    <div
+      className={followerCardCointainer}
+      onClick={() => navigate(`/user/${theId}/myReviews`)}
+    >
+      <div className={cardHead}>
         <div className={cardAvatar}>
           <img src={follow.avatar} alt="" />
         </div>
@@ -25,7 +25,10 @@ const FollowerCard = ({ data, follow, onFollow }) => {
       </div>
       <div className={cardButton}>
         <SecondaryButton
-          onClick={() => onFollow?.({ isFollow: data.isFollow, id: theId })}
+          onClick={(event) => {
+            event.stopPropagation()
+            onFollow?.({ isFollow: data.isFollow, id: theId })
+          }}
         >
           {data.isFollow ? '追隨中' : '追隨'}
         </SecondaryButton>
