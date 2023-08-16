@@ -169,6 +169,7 @@ export default function EditReviewPage() {
       })
     } else {
       setIsLoading('上傳中')
+      const currentUserId = localStorage.getItem('currentUserId')
       const { postId } = await scratchPost(postData)
       if (postId) {
         setIsLoading('')
@@ -176,7 +177,7 @@ export default function EditReviewPage() {
           icon: 'success',
           title: '暫存心得成功!'
         })
-        navigate(`/review/${postId}`)
+        navigate(`/user/${currentUserId}/myReviews`)
       } else if (!postId) {
         setIsLoading('')
         Toast.fire({

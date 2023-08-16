@@ -29,12 +29,19 @@ import {
 } from 'api/post.js'
 import { followUser, unFollowUser } from 'api/followship.js'
 import ReportPostModal from 'components/Modal/ReportPostModal'
+import ShareModal from 'components/Modal/ShareModal'
 
 export default function SingleReviewPage() {
   const navigate = useNavigate()
   const [post, setPost] = useState('')
   const { reviewID } = useParams()
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const [isReportModalOpen, setIsReportModalOpen] = useState(false)
+
+  // 開啟/關閉share內容
+  const handleShareClick = () => {
+    setIsModalVisible(!isModalVisible)
+  }
 
   // 追蹤使用者
   const handleFollow = async () => {
@@ -151,10 +158,7 @@ export default function SingleReviewPage() {
           <section className={styles.reviewInfo}>
             {/* 標題 */}
             <div className={styles.title}>
-              <h2>
-                {post.title}
-                {post.inProgress && '(草稿)'}
-              </h2>
+              <h2>{post.title}</h2>
             </div>
             {/* 作者資訊 */}
             <div className={styles.authorAndButton}>
@@ -232,9 +236,13 @@ export default function SingleReviewPage() {
                   setIsReportModalOpen={setIsReportModalOpen}
                   postId={reviewID}
                 />
-                <div className={`cursor-point ${styles.share}`}>
+                <div
+                  className={`cursor-point ${styles.share}`}
+                  onClick={handleShareClick}
+                >
                   <ShareIcon className={styles.icon} />
                   <span>分享</span>
+                  {isModalVisible && <ShareModal RWD={true} />}
                 </div>
               </div>
             </div>

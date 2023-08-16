@@ -23,16 +23,23 @@ import {
   getConditions,
   getOneTrail
 } from 'api/trail'
+import ShareModal from 'components/Modal/ShareModal'
 
 export default function SingleTrailPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const { trailID } = useParams()
   const [activeTab, setActiveTab] = useState(null)
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const [isReportModalOpen, setIsReportModalOpen] = useState(false)
   const [data, setData] = useState(null)
   const [report, setReport] = useState(null)
   const [reRender, setReRender] = useState(false)
+
+  // 開啟/關閉share內容
+  const handleShareClick = () => {
+    setIsModalVisible(!isModalVisible)
+  }
 
   // 按收藏/取消收藏
   const handleCollect = async () => {
@@ -112,9 +119,13 @@ export default function SingleTrailPage() {
                   />
                   <span>收藏</span>
                 </div>
-                <div className={`cursor-point ${styles.share}`}>
+                <div
+                  className={`cursor-point ${styles.share}`}
+                  onClick={handleShareClick}
+                >
                   <ShareIcon className={styles.icon} />
                   <span>分享</span>
+                  {isModalVisible && <ShareModal />}
                 </div>
               </div>
             </div>
