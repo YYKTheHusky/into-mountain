@@ -9,6 +9,9 @@ import { getUserNotifications, isReadNotification } from 'api/user'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
+// function
+import { formatDateWithTime } from 'utils/time'
+
 // style
 import styles from './MyNotice.module.scss'
 const {
@@ -30,7 +33,9 @@ const NoticeItem = ({ item, onRead }) => {
       <span className={itemTitle}>一筆心得遭到檢舉！</span>
       <span className={itemRead}>{!item.isRead && '未讀'}</span>
       <div className={itemContent}>{item.notify}</div>
-      <div className={itemTime}>檢舉時間：{item.createdAt}</div>
+      <div className={itemTime}>
+        檢舉時間：{formatDateWithTime(item.createdAt)}
+      </div>
     </div>
   )
 }

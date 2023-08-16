@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import formatDateTime from 'utils/time.js'
+import { formatDateTime } from 'utils/time.js'
 // scss
 import styles from './ReviewsListCard.module.scss'
 // svg

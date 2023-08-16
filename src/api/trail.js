@@ -71,3 +71,48 @@ export const searchTrailByKeyword = async (keyword) => {
     return { success: false }
   }
 }
+
+// 取得路況回報
+export const getConditions = async (trailId) => {
+  try {
+    const { data } = await axiosAuthInstance.get(
+      `/trails/conditions/${trailId}`
+    )
+    if (data) {
+      return { success: true, report: data.data }
+    }
+  } catch (error) {
+    console.error('[Get Conditions Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 回報一篇路況回報
+export const postCondition = async ({ trailId, description }) => {
+  try {
+    console.log(description)
+    const { data } = await axiosAuthInstance.post(
+      `/trails/conditions/${trailId}`,
+      { description }
+    )
+    if (data) {
+      return { success: true }
+    }
+  } catch (error) {
+    console.error('[Post Conditions Failed]:', error)
+    return { success: false }
+  }
+}
+
+// 下載gpx
+export const getTrailsGPX = async (trailId) => {
+  try {
+    const { data } = await axiosInstance.get(`/trails/gpx/${trailId}`)
+    if (data) {
+      return { success: true, gpx: data.data.gpx }
+    }
+  } catch (error) {
+    console.error('[Get GPX Failed]:', error)
+    return { success: false }
+  }
+}

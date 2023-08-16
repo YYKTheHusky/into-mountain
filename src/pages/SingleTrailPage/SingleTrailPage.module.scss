@@ -21,9 +21,17 @@
         font-size: 14px;
       }
     }
+    .share {
+      position: relative;
+    }
     .icon {
       height: 16px;
+      width: 16px;
       margin-right: 8px;
+    }
+    .favoriteActive {
+      fill: #ffc542;
+      fill-opacity: 1;
     }
   }
 }

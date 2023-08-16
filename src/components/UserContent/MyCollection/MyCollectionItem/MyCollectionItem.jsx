@@ -1,5 +1,5 @@
 import styles from './MyCollectionItem.module.scss'
-import formatDateTime from 'utils/time'
+import { formatDateWithTime } from 'utils/time'
 const {
   itemContainer,
   itemLeft,
@@ -41,7 +41,7 @@ const ItemRightSideTag2 = ({ collectionData }) => {
           <span>{collectionData.User.name}</span>
         </div>
         <div className={tag2Time}>
-          發表於：{formatDateTime(collectionData.createdAt)}
+          發表於：{formatDateWithTime(collectionData.createdAt)}
         </div>
       </div>
     </>

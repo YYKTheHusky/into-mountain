@@ -1,5 +1,5 @@
 import styles from './ListItem.module.scss'
-import formatDateTime from 'utils/time'
+import { formatDateWithTime } from 'utils/time'
 import { useNavigate } from 'react-router-dom'
 const {
   listItem,
@@ -30,7 +30,7 @@ const ListItem = ({ data }) => {
         </div>
         <p onClick={() => navigate(`/review/${data.id}`)}>{data.description}</p>
         <div className={itemRightTime}>
-          發表於：{formatDateTime(data.updatedAt)}
+          發表於：{formatDateWithTime(data.updatedAt)}
         </div>
       </div>
     </div>

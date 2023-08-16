@@ -1,33 +1,49 @@
 import { useState } from 'react'
+import Toast from 'utils/sweetAlertConfig.js'
 // styles
 import styles from 'components/Modal/ReportModal.module.scss'
 // svg
 import xmark from 'assets/icons/icon-xmark.svg'
 // components
 import { SecondaryButtonBright } from 'components/Button/Button'
+// api
+import { postCondition } from 'api/trail'
 
 // 父層設定一個State控制modal開關
 // const [ isReportModalOpen, setIsReportModalOpen] = useState(false)
 
 export default function ReportModal({
   isReportModalOpen,
-  setIsReportModalOpen
+  setIsReportModalOpen,
+  trailId,
+  setReRender
 }) {
-  const [reportValue, setReportValue] = useState('')
-  const [inputNone, setInputNone] = useState(false)
+  const [description, setDescription] = useState('')
 
   // 點選確認送出後
-  const confirmFunction = () => {
-    if (reportValue.trim().length === 0) {
+  const confirmFunction = async () => {
+    if (description.trim().length === 0) {
       // 有異常跳提示框
-      setInputNone(true)
-      return
+      Toast.fire({
+        icon: 'info',
+        title: '請輸入內容!'
+      })
+    } else {
+      const { success } = await postCondition({ trailId, description })
+      if (success) {
+        setIsReportModalOpen(false)
+        setReRender(true)
+      } else {
+        Toast.fire({
+          icon: 'error',
+          title: '發布失敗!'
+        })
+      }
     }
-    console.log(reportValue)
   }
-  // 輸入內容改變reportValue
+  // 輸入內容改變Description
   const handleValueChange = (event) => {
-    setReportValue(event.target.value)
+    setDescription(event.target.value)
   }
   // 點擊關閉ICON
   const handleClose = () => {
@@ -50,21 +66,20 @@ export default function ReportModal({
         </div>
         <h4>步道狀況回報</h4>
         <div className={styles.inputGroup}>
-          <label htmlFor="report">回報內容</label>
+          <label htmlFor="report" className={styles.title}>
+            回報內容
+          </label>
           <textarea
             id="report"
-            value={reportValue}
+            value={description}
             placeholder="請輸入要回報的內容，字數限制200字"
             maxLength="200"
             onChange={handleValueChange}
-          ></textarea>
+          />
         </div>
         <div className={styles.alertMessageContainer}>
-          {reportValue.length === 200 && (
+          {description.length === 200 && (
             <div className={styles.alertMessage}>字數不可超過200字!</div>
-          )}
-          {inputNone && (
-            <div className={styles.alertMessage}>內容不可空白!</div>
           )}
         </div>
         <div className={styles.outerButtonContainer}>
