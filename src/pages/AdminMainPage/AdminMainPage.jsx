@@ -115,6 +115,7 @@ export default function AdminMainPage() {
         }
       }
       getAllSuspensionAsync()
+    } else if (page === 'reviewList') {
       const getAllReportsAsync = async () => {
         try {
           const data = await getAllReports()
