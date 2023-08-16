@@ -7,7 +7,7 @@ axiosAuthInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (!token) {
-      window.location.href = '/login'
+      window.location.href = '/into-mountain/login'
     } else {
       config.headers.Authorization = `Bearer ${token}`
     }
