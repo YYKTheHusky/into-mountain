@@ -14,13 +14,12 @@ const FollowerCard = ({ data, follow, onFollow }) => {
   }
   return (
     <div className={followerCardCointainer}>
-      <div className={cardHead}>
+      <div
+        className={cardHead}
+        onClick={() => navigate(`/user/${theId}/myReviews`)}
+      >
         <div className={cardAvatar}>
-          <img
-            src={follow.avatar}
-            alt=""
-            onClick={() => navigate(`/user/${theId}/myReviews`)}
-          />
+          <img src={follow.avatar} alt="" />
         </div>
         <div className={cardTitle}>{follow.name}</div>
       </div>

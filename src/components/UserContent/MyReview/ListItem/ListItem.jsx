@@ -7,6 +7,7 @@ const {
   itemRight,
   itemLeft,
   itemRightTitle,
+  titleText,
   itemRightTime,
   btnGroup,
   titleButton1,
@@ -23,7 +24,7 @@ const ListItem = ({ data, theUserId, onDeletePost }) => {
       </div>
       <div className={itemRight}>
         <div className={itemRightTitle}>
-          <div>{data.title}</div>
+          <div className={titleText}>{data.title}</div>
           {theUserId === localStorage.getItem('currentUserId') && (
             <div className={btnGroup}>
               <button
@@ -41,7 +42,10 @@ const ListItem = ({ data, theUserId, onDeletePost }) => {
             </div>
           )}
         </div>
-        <p onClick={() => navigate(`/review/${data.id}`)}>{data.description}</p>
+        <p onClick={() => navigate(`/review/${data.id}`)}>
+          {String(data.description)}
+          {String(data.description).length === 200 && '...'}
+        </p>
         <div className={itemRightTime}>
           發表於：{formatDateWithTime(data.updatedAt)}
         </div>

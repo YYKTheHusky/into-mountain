@@ -33,7 +33,7 @@
     0px -2px 12px 0px rgba(60, 79, 107, 0.1);
   border-radius: 10px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: var(--dark-30);
   }
   .itemLeft {
@@ -44,13 +44,16 @@
     .itemRightTitle {
       font-size: 1.2em;
     }
-    p {
+    .descriptionBlock {
+      outline: 1px solid tomato;
+      max-width: 530px;
       min-height: 90px;
       max-height: 100px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4; 
+      -webkit-line-clamp: 4;
       overflow: hidden;
+      overflow-wrap: break-word;
       text-overflow: ellipsis;
       margin-bottom: 3px;
     }
@@ -76,7 +79,8 @@
           border-radius: 50%;
           overflow: hidden;
           margin-right: 5px;
-          img {
+          img,
+          .defaultImg {
             background-position: center center;
             height: 100%;
             width: 100%;

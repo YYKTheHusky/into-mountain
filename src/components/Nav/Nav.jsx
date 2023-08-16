@@ -30,14 +30,15 @@ const Avt = ({ currentUserId, currentUserAvatar }) => {
         onClick={() => navigate('/login')}
       />
     )
-  }
-  if (currentUserAvatar) {
-    return (
-      <IconUser
-        className={`${user} ${rightListIcon}`}
-        onClick={() => navigate('/login')}
-      />
-    )
+  } else {
+    if (currentUserAvatar === 'null') {
+      return (
+        <IconUser
+          className={`${user} ${rightListIcon}`}
+          onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
+        />
+      )
+    }
   }
   return (
     <div
@@ -57,7 +58,7 @@ const Nav = ({ updateCardInfo }) => {
   useEffect(() => {
     currentUserAvatar = localStorage.getItem('currentUserAvatar')
   }, [updateCardInfo])
-  
+
   return (
     <div className={navContainer}>
       <div className={innerContainer}>
