@@ -81,7 +81,7 @@ const MyNotice = () => {
       <div className={myNoticeContainer}>
         {noticeData.length === 0 && !dataIsLoading && (
           <div>
-            <YouHaveNothing robotTitle="通知" robotDescription="沒有通知" />
+            <YouHaveNothing robotDescription="沒有通知" />
           </div>
         )}
         {noticeData.length > 0 &&

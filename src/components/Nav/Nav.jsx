@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 const {
   navContainer,
   left,
+  logo,
   right,
   rightListItem,
   rightListIcon,
@@ -66,7 +67,7 @@ const Nav = ({ updateCardInfo }) => {
           <BurgerModal />
         </div>
         <div className={left} onClick={() => navigate('/')}>
-          <IconLogo />
+          <IconLogo className={logo} />
           <span>登山小站</span>
         </div>
         <div className={right}>
