@@ -6,6 +6,7 @@ import styles from './TrailsMainContent.module.scss'
 import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
 import FilterToggole from 'components/FilterToggole/FilterToggole'
 import TrailsListCard from 'components/TrailsList/TrailsListCard/TrailsListCard'
+import CardSkeleton from 'components/Skeleton/CardSkeleton'
 // api
 import { getAllTrails, searchTrailByKeyword } from 'api/trail'
 
@@ -36,10 +37,13 @@ const TrailsMainContent = () => {
           <FilterToggole />
         </div>
         <div className={list}>
-          {trailData &&
-            trailData.map((item) => (
-              <TrailsListCard key={item.id} data={item} />
-            ))}
+          {trailData
+            ? trailData.map((item) => (
+                <TrailsListCard key={item.id} data={item} />
+              ))
+            : Array.from({ length: 5 }).map((_, index) => (
+                <CardSkeleton key={index} />
+              ))}
         </div>
       </div>
     </div>
