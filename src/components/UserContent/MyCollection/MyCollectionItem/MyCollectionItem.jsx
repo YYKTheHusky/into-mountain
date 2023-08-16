@@ -20,8 +20,8 @@ const ItemRightSideTag1 = ({ collectionData }) => {
   return (
     <>
       <div className={descriptionBlock}>
-        {collectionData.introduction
-          ? collectionData.introduction
+        {collectionData.description
+          ? String(collectionData.description)
           : '持續新增內容中，敬請期待！'}
       </div>
       <div className={itemRightSideTag1}>
@@ -34,10 +34,12 @@ const ItemRightSideTag1 = ({ collectionData }) => {
   )
 }
 const ItemRightSideTag2 = ({ collectionData }) => {
-  console.log(typeof collectionData.description)
+
   return (
     <>
-      <div className={descriptionBlock}>{collectionData.description}</div>
+      <div className={descriptionBlock}>
+        {String(collectionData.description)}
+      </div>
       <div className={itemRightSideTag2}>
         <div className={tagLeft}>
           <div className={tag2Avatar}>
