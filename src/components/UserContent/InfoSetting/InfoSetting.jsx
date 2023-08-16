@@ -56,6 +56,11 @@ const InfoSetting = ({ theUserData, onUpdateCardInfo }) => {
           ...pre,
           name: { status: true, message: '暱稱請勿空白！' }
         }))
+      } else if (value.length > 30) {
+        setErrorMessage((pre) => ({
+          ...pre,
+          name: { status: true, message: '請勿超過30個字！' }
+        }))
       } else {
         setErrorMessage((pre) => ({
           ...pre,
