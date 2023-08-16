@@ -1,6 +1,6 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import styles from './FilterToggole.module.scss'
-import { ReactComponent as IconChevronUp } from 'assets/icons/icon-chevron-up.svg'
+// import { ReactComponent as IconChevronUp } from 'assets/icons/icon-chevron-up.svg'
 import FilterModal from './FilterModal/FilterModal'
 import FilterToggoleItem from './FilterToggoleItem/FilterToggoleItem'
 // const { filterToggoleGroup, item, icon, itemList, filterIcon } = styles

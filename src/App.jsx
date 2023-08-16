@@ -1,6 +1,7 @@
 import 'styles/reset.scss'
 import 'styles/base.scss'
 import 'leaflet/dist/leaflet.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import MainPage from 'pages/MainPage/MainPage'
@@ -16,10 +17,12 @@ import AdminMainPage from 'pages/AdminMainPage/AdminMainPage'
 import ErrorPage from 'pages/ErrorPage/ErrorPage'
 import ScrollToTopOnNavigate from 'components/ScrollToTop'
 
+const basename = process.env.PUBLIC_URL
+
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <ScrollToTopOnNavigate />
         <Routes>
           <Route path="/" element={<MainPage />} />
