@@ -54,16 +54,12 @@ export default function MainPage() {
         <SearchBarMain />
       </div>
       <div className={styles.trailsContainer}>
-        {trailData && (
-          <MainPageScrollCard
-            data={trailData}
-            title="最受歡迎路線Top10"
-            type="trail"
-          />
-        )}
-        {postData && (
-          <MainPageScrollCard data={postData} title="最新心得" type="review" />
-        )}
+        <MainPageScrollCard
+          data={trailData}
+          title="最受歡迎路線Top10"
+          type="trail"
+        />
+        <MainPageScrollCard data={postData} title="最新心得" type="review" />
       </div>
     </MainLayout>
   )

@@ -1,6 +1,7 @@
 import 'styles/reset.scss'
 import 'styles/base.scss'
 import 'leaflet/dist/leaflet.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import MainPage from 'pages/MainPage/MainPage'

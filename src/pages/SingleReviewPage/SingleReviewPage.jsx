@@ -18,6 +18,9 @@ import { ColorTag } from 'components/Tag/Tag'
 import MainLayout from 'components/MainLayout/MainLayout'
 import WholePageModal from 'components/Modal/WholePageModal'
 import IconRadioInput from 'components/Input/IconRadioInput'
+import ReviewSkeleton from 'components/Skeleton/ReviewSkeleton'
+import ReportPostModal from 'components/Modal/ReportPostModal'
+import ShareModal from 'components/Modal/ShareModal'
 
 // api
 import {
@@ -28,8 +31,6 @@ import {
   getOnePost
 } from 'api/post.js'
 import { followUser, unFollowUser } from 'api/followship.js'
-import ReportPostModal from 'components/Modal/ReportPostModal'
-import ShareModal from 'components/Modal/ShareModal'
 
 export default function SingleReviewPage() {
   const navigate = useNavigate()
@@ -153,127 +154,134 @@ export default function SingleReviewPage() {
 
   return (
     <MainLayout>
-      {post && (
-        <WholePageModal>
-          <section className={styles.reviewInfo}>
-            {/* 標題 */}
-            <div className={styles.title}>
-              <h2>{post.title}</h2>
-            </div>
-            {/* 作者資訊 */}
-            <div className={styles.authorAndButton}>
-              <div className={styles.author}>
-                <div className={styles.authorInfo}>
-                  <div className={styles.nameAndFollow}>
-                    <img
-                      className={`cursor-point ${styles.avatar}`}
-                      src={post.User.avatar ? post.User.avatar : UserIcon}
-                      alt="user-avatar"
-                      onClick={() =>
-                        navigate(`/user/${post.User.id}/myReviews`)
-                      }
-                    />
-                    <span
-                      className={`cursor-point ${styles.authorName}`}
-                      onClick={() =>
-                        navigate(`/user/${post.User.id}/myReviews`)
-                      }
-                    >
-                      {post.User.name}
-                    </span>
-                    <div className={styles.buttonContainer}>
-                      {post.User.isFollow ? (
-                        <SecondaryButtonGray onClick={handleUnFollow}>
-                          已追蹤
-                        </SecondaryButtonGray>
-                      ) : (
-                        <SecondaryButton onClick={handleFollow}>
-                          關注作者
-                        </SecondaryButton>
-                      )}
+      <WholePageModal>
+        {post ? (
+          <div>
+            <section className={styles.reviewInfo}>
+              {/* 標題 */}
+              <div className={styles.title}>
+                <h2>{post.title}</h2>
+              </div>
+              {/* 作者資訊 */}
+              <div className={styles.authorAndButton}>
+                <div className={styles.author}>
+                  <div className={styles.authorInfo}>
+                    <div className={styles.nameAndFollow}>
+                      <img
+                        className={`cursor-point ${styles.avatar}`}
+                        src={post.User.avatar ? post.User.avatar : UserIcon}
+                        alt="user-avatar"
+                        onClick={() =>
+                          navigate(`/user/${post.User.id}/myReviews`)
+                        }
+                      />
+                      <span
+                        className={`cursor-point ${styles.authorName}`}
+                        onClick={() =>
+                          navigate(`/user/${post.User.id}/myReviews`)
+                        }
+                      >
+                        {post.User.name}
+                      </span>
+                      <div className={styles.buttonContainer}>
+                        {post.User.isFollow ? (
+                          <SecondaryButtonGray onClick={handleUnFollow}>
+                            已追蹤
+                          </SecondaryButtonGray>
+                        ) : (
+                          <SecondaryButton onClick={handleFollow}>
+                            關注作者
+                          </SecondaryButton>
+                        )}
+                      </div>
+                    </div>
+                    <div className={styles.otherInfo}>
+                      <span>{post.createdAt} 發表</span>
+                      <span>{post.likeCount} 個讚</span>
+                      <span>{post.favoriteCount} 個收藏</span>
                     </div>
                   </div>
-                  <div className={styles.otherInfo}>
-                    <span>{post.createdAt} 發表</span>
-                    <span>{post.likeCount} 個讚</span>
-                    <span>{post.favoriteCount} 個收藏</span>
+                </div>
+                {/* 案讚、收藏、檢舉、分享按鈕 */}
+                <div className={styles.socialButtons}>
+                  <div
+                    className={`cursor-point ${styles.like}`}
+                    onClick={handleLike}
+                  >
+                    <LikeIcon
+                      className={`${styles.icon} ${
+                        post.isLike && styles.likeActive
+                      }`}
+                    />
+                    <span>案讚</span>
+                  </div>
+                  <div
+                    className={`cursor-point ${styles.favorite}`}
+                    onClick={handleCollect}
+                  >
+                    <FavoriteIcon
+                      className={`${styles.icon} ${
+                        post.isFavorite && styles.favoriteActive
+                      }`}
+                    />
+                    <span>收藏</span>
+                  </div>
+                  <div
+                    className={`cursor-point ${styles.report}`}
+                    onClick={() => setIsReportModalOpen(true)}
+                  >
+                    <ReportIcon className={styles.icon} />
+                    <span>檢舉</span>
+                  </div>
+                  <ReportPostModal
+                    isReportModalOpen={isReportModalOpen}
+                    setIsReportModalOpen={setIsReportModalOpen}
+                    postId={reviewID}
+                  />
+                  <div
+                    className={`cursor-point ${styles.share}`}
+                    onClick={handleShareClick}
+                  >
+                    <ShareIcon className={styles.icon} />
+                    <span>分享</span>
+                    {isModalVisible && <ShareModal RWD={true} />}
                   </div>
                 </div>
               </div>
-              {/* 案讚、收藏、檢舉、分享按鈕 */}
-              <div className={styles.socialButtons}>
-                <div
-                  className={`cursor-point ${styles.like}`}
-                  onClick={handleLike}
-                >
-                  <LikeIcon
-                    className={`${styles.icon} ${
-                      post.isLike && styles.likeActive
-                    }`}
+              <div className={styles.recommend}>
+                <div className={styles.icon}>
+                  <span>困難度</span>
+                  <IconRadioInput
+                    iconType="difficulty"
+                    score={post.difficulty}
                   />
-                  <span>案讚</span>
                 </div>
-                <div
-                  className={`cursor-point ${styles.favorite}`}
-                  onClick={handleCollect}
-                >
-                  <FavoriteIcon
-                    className={`${styles.icon} ${
-                      post.isFavorite && styles.favoriteActive
-                    }`}
-                  />
-                  <span>收藏</span>
-                </div>
-                <div
-                  className={`cursor-point ${styles.report}`}
-                  onClick={() => setIsReportModalOpen(true)}
-                >
-                  <ReportIcon className={styles.icon} />
-                  <span>檢舉</span>
-                </div>
-                <ReportPostModal
-                  isReportModalOpen={isReportModalOpen}
-                  setIsReportModalOpen={setIsReportModalOpen}
-                  postId={reviewID}
-                />
-                <div
-                  className={`cursor-point ${styles.share}`}
-                  onClick={handleShareClick}
-                >
-                  <ShareIcon className={styles.icon} />
-                  <span>分享</span>
-                  {isModalVisible && <ShareModal RWD={true} />}
+                <div className={styles.icon}>
+                  <span>推薦指數</span>
+                  <IconRadioInput iconType="recommend" score={post.recommend} />
                 </div>
               </div>
-            </div>
-            <div className={styles.recommend}>
-              <div className={styles.icon}>
-                <span>困難度</span>
-                <IconRadioInput iconType="difficulty" score={post.difficulty} />
+              <div className={styles.tag}>
+                <ColorTag>{post.category}</ColorTag>
               </div>
-              <div className={styles.icon}>
-                <span>推薦指數</span>
-                <IconRadioInput iconType="recommend" score={post.recommend} />
+            </section>
+            <section className={styles.reviewPhoto}>
+              <img className={styles.photo} src={post.image} alt="步道圖片" />
+            </section>
+            <section className={styles.reviewText}>
+              <div className={styles.divide}>
+                <hr className={styles.line} />
+                <span className={styles.words}>
+                  以下內容為網友分享，不代表登山小站立場。
+                </span>
               </div>
-            </div>
-            <div className={styles.tag}>
-              <ColorTag>{post.category}</ColorTag>
-            </div>
-          </section>
-          <section className={styles.reviewPhoto}>
-            <img className={styles.photo} src={post.image} alt="步道圖片" />
-          </section>
-          <section className={styles.reviewText}>
-            <div className={styles.divide}>
-              <hr className={styles.line} />
-              <span className={styles.words}>
-                以下內容為網友分享，不代表登山小站立場。
-              </span>
-            </div>
-            <div className={styles.text}>{post.description}</div>
-          </section>
-        </WholePageModal>
-      )}
+              <div className={styles.text}>{post.description}</div>
+            </section>
+          </div>
+        ) : (
+          <ReviewSkeleton />
+        )}
+      </WholePageModal>
     </MainLayout>
   )
 }

@@ -9,6 +9,7 @@ import sliderLeft from 'assets/icons/slider-left-icon.svg'
 // components
 import TrailsListCard from 'components/TrailsList/TrailsListCard/TrailsListCard'
 import ReviewListCard from 'components/ReviewsList/ReviewsListCard/ReviewsListCard'
+import CardSkeleton from 'components/Skeleton/CardSkeleton'
 
 export default function MainPageScrollCard({ data, title, type }) {
   // 點擊按鈕滑動內容
@@ -41,23 +42,28 @@ export default function MainPageScrollCard({ data, title, type }) {
         onScroll={handleScroll}
         style={{ scrollLeft: scrollPosition }}
       >
-        {type === 'trail' &&
-          data.map((item) => <TrailsListCard key={item.id} data={item} />)}
-        {type === 'review' &&
-          data.map((item) => <ReviewListCard key={item.id} data={item} />)}
+        {data
+          ? type === 'trail'
+            ? data.map((item) => <TrailsListCard key={item.id} data={item} />)
+            : type === 'review'
+            ? data.map((item) => <ReviewListCard key={item.id} data={item} />)
+            : null
+          : Array.from({ length: 5 }).map((_, index) => (
+              <CardSkeleton key={index} />
+            ))}
       </div>
       <img
         className={`cursor-point ${styles.sliderLeft}`}
         src={sliderLeft}
         alt="sliderLeft"
         onClick={handleClickLeft}
-      ></img>
+      />
       <img
         className={`cursor-point ${styles.sliderRight}`}
         src={sliderRight}
         alt="sliderRight"
         onClick={handleClickRight}
-      ></img>
+      />
     </div>
   )
 }

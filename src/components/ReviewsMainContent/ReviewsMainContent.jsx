@@ -6,6 +6,7 @@ import styles from './ReviewsMainContent.module.scss'
 import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
 import FilterToggole from 'components/FilterToggole/FilterToggole'
 import ReviewListCard from 'components/ReviewsList/ReviewsListCard/ReviewsListCard'
+import CardSkeleton from 'components/Skeleton/CardSkeleton'
 // api
 import { getAllPost, searchPostByKeyword } from 'api/post'
 
@@ -37,10 +38,13 @@ const ReviewsMainContent = () => {
           <FilterToggole />
         </div>
         <div className={list}>
-          {reviewData &&
-            reviewData.map((item) => (
-              <ReviewListCard key={item.id} data={item} />
-            ))}
+          {reviewData
+            ? reviewData.map((item) => (
+                <ReviewListCard key={item.id} data={item} />
+              ))
+            : Array.from({ length: 12 }).map((_, index) => (
+                <CardSkeleton key={index} />
+              ))}
         </div>
       </div>
     </div>

@@ -75,9 +75,7 @@ export const searchTrailByKeyword = async (keyword) => {
 // 取得路況回報
 export const getConditions = async (trailId) => {
   try {
-    const { data } = await axiosAuthInstance.get(
-      `/trails/conditions/${trailId}`
-    )
+    const { data } = await axiosInstance.get(`/trails/conditions/${trailId}`)
     if (data) {
       return { success: true, report: data.data }
     }
