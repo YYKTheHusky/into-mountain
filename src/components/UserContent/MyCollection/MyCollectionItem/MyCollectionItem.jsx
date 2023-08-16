@@ -1,5 +1,7 @@
 import styles from './MyCollectionItem.module.scss'
 import { formatDateWithTime } from 'utils/time'
+import { useNavigate } from 'react-router-dom'
+
 const {
   itemContainer,
   itemLeft,
@@ -48,8 +50,17 @@ const ItemRightSideTag2 = ({ collectionData }) => {
   )
 }
 const MyCollectionItem = ({ tabStep, collectionData }) => {
+  const navigate = useNavigate()
+  const handleNavigate = (step,id) => {
+    if (step === 'trailCollection') {
+      navigate(`/trail/${id}/detail`)
+    } else {
+      navigate(`/review/${id}`)
+    }
+  }
+
   return (
-    <div className={itemContainer}>
+    <div className={itemContainer} onClick={() => handleNavigate(tabStep,collectionData.id)}>
       <div className={itemLeft}>
         <img src={collectionData.image} alt="" />
       </div>
