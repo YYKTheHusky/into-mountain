@@ -25,6 +25,10 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+.youHaveNothingContainer {
+  padding: 40px 60px;
+  width: 100%;
+}
 
 @media (max-width: 1225px) {
   .innerContainer {

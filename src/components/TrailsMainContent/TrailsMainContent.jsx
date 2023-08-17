@@ -9,8 +9,10 @@ import TrailsListCard from 'components/TrailsList/TrailsListCard/TrailsListCard'
 import CardSkeleton from 'components/Skeleton/CardSkeleton'
 // api
 import { getAllTrails, searchTrailByKeyword } from 'api/trail'
+import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 
-const { container, innerContainer, search, list } = styles
+const { container, innerContainer, search, list, youHaveNothingContainer } =
+  styles
 
 const TrailsMainContent = () => {
   const { keyword } = useParams()
@@ -36,15 +38,21 @@ const TrailsMainContent = () => {
           <TrailsSearchBar type="trail" />
           <FilterToggole />
         </div>
-        <div className={list}>
-          {trailData
-            ? trailData.map((item) => (
-                <TrailsListCard key={item.id} data={item} />
-              ))
-            : Array.from({ length: 5 }).map((_, index) => (
-                <CardSkeleton key={index} />
-              ))}
-        </div>
+        {trailData.length === 0 ? (
+          <div className={youHaveNothingContainer}>
+            <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+          </div>
+        ) : (
+          <div className={list}>
+            {trailData
+              ? trailData.map((item) => (
+                  <TrailsListCard key={item.id} data={item} />
+                ))
+              : Array.from({ length: 12 }).map((_, index) => (
+                  <CardSkeleton key={index} />
+                ))}
+          </div>
+        )}
       </div>
     </div>
   )
