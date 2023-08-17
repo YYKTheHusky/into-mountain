@@ -1,20 +1,19 @@
 // pre
 .itemLeftSide {
-  flex: 0.3;
+  width: 17%;
   height: 110px;
   overflow: hidden;
-  margin-top: 15px;
   margin-right: 15px;
   border-radius: 10px;
   img {
-    background-position: center center;
+    object-fit: cover;
     height: 100%;
     width: 100%;
   }
 }
 
 .itemRightSide {
-  flex: 1;
+  max-width: 80%;
   font-size: 0.8em;
 }
 
@@ -33,7 +32,7 @@
     0px -2px 12px 0px rgba(60, 79, 107, 0.1);
   border-radius: 10px;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: var(--dark-30);
   }
   .itemLeft {
@@ -43,14 +42,19 @@
     @extend .itemRightSide;
     .itemRightTitle {
       font-size: 1.2em;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    p {
-      min-height: 90px;
+    .descriptionBlock {
+      max-width: 530px;
+      min-height: 60px;
       max-height: 100px;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 4; 
+      -webkit-line-clamp: 4;
       overflow: hidden;
+      overflow-wrap: break-word;
       text-overflow: ellipsis;
       margin-bottom: 3px;
     }
@@ -66,7 +70,8 @@
     }
     .itemRightSideTag2 {
       display: flex;
-      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
       .tagLeft {
         display: flex;
         align-items: center;
@@ -76,7 +81,8 @@
           border-radius: 50%;
           overflow: hidden;
           margin-right: 5px;
-          img {
+          img,
+          .defaultImg {
             background-position: center center;
             height: 100%;
             width: 100%;
@@ -84,6 +90,7 @@
         }
       }
       .tag2Time {
+        color: var(--dark-70);
       }
     }
   }
@@ -107,18 +114,30 @@
     flex-direction: column;
     max-height: 430px;
     .itemLeft {
+      width: 100%;
     }
     .itemRight {
+      max-width: 100%;
+      .descriptionBlock {
+        min-height: initial;
+      }
       .itemRightSideTag1 {
       }
       .itemRightSideTag2 {
-        margin-top: 30px;
+        flex-wrap: wrap;
+        gap: 0;
         .tagLeft {
           display: flex;
           align-items: center;
           .tag2Avatar {
             img {
             }
+          }
+          span {
+            max-width: 70%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 3px;
           }
         }
         .tag2Time {

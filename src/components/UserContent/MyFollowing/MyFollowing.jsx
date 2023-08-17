@@ -36,7 +36,7 @@ const MyFollowing = ({ theUserId, onUpdateCardInfo }) => {
       try {
         const data = await getUserFollowing(theUserId)
         setFollowingList(data)
-         setDataIsLoading(false)
+        setDataIsLoading(false)
       } catch (error) {
         console.error(error)
       }

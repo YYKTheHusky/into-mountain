@@ -1,5 +1,7 @@
 import styles from './MyCollectionItem.module.scss'
 import { formatDateWithTime } from 'utils/time'
+import { useNavigate } from 'react-router-dom'
+import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
 const {
   itemContainer,
   itemLeft,
@@ -9,17 +11,19 @@ const {
   itemRightSideTag2,
   tagLeft,
   tag2Avatar,
-  tag2Time
+  defaultImg,
+  tag2Time,
+  descriptionBlock
 } = styles
 
 const ItemRightSideTag1 = ({ collectionData }) => {
   return (
     <>
-      <p>
-        {collectionData.introduction
-          ? collectionData.introduction
+      <div className={descriptionBlock}>
+        {collectionData.description
+          ? String(collectionData.description)
           : '持續新增內容中，敬請期待！'}
-      </p>
+      </div>
       <div className={itemRightSideTag1}>
         <span>{collectionData.location}</span>
         <span>難度 {collectionData.difficulty}</span>
@@ -30,13 +34,20 @@ const ItemRightSideTag1 = ({ collectionData }) => {
   )
 }
 const ItemRightSideTag2 = ({ collectionData }) => {
+
   return (
     <>
-      <p>{collectionData.description}</p>
+      <div className={descriptionBlock}>
+        {String(collectionData.description)}
+      </div>
       <div className={itemRightSideTag2}>
         <div className={tagLeft}>
           <div className={tag2Avatar}>
-            <img src={collectionData.User.avatar} alt="" />
+            {collectionData.User.avatar === null ? (
+              <IconDefaultUser className={defaultImg} />
+            ) : (
+              <img src={collectionData.User.avatar} alt="123" />
+            )}
           </div>
           <span>{collectionData.User.name}</span>
         </div>
@@ -48,8 +59,20 @@ const ItemRightSideTag2 = ({ collectionData }) => {
   )
 }
 const MyCollectionItem = ({ tabStep, collectionData }) => {
+  const navigate = useNavigate()
+  const handleNavigate = (step, id) => {
+    if (step === 'trailCollection') {
+      navigate(`/trail/${id}/detail`)
+    } else {
+      navigate(`/review/${id}`)
+    }
+  }
+
   return (
-    <div className={itemContainer}>
+    <div
+      className={itemContainer}
+      onClick={() => handleNavigate(tabStep, collectionData.id)}
+    >
       <div className={itemLeft}>
         <img src={collectionData.image} alt="" />
       </div>

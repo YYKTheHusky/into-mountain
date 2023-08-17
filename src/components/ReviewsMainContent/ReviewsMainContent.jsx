@@ -4,7 +4,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import styles from './ReviewsMainContent.module.scss'
 // component
 import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
-import FilterToggole from 'components/FilterToggole/FilterToggole'
+// import FilterToggole from 'components/FilterToggole/FilterToggole'
 import ReviewListCard from 'components/ReviewsList/ReviewsListCard/ReviewsListCard'
 import CardSkeleton from 'components/Skeleton/CardSkeleton'
 // api
@@ -37,7 +37,7 @@ const ReviewsMainContent = () => {
       <div className={innerContainer}>
         <div className={search}>
           <TrailsSearchBar type="review" />
-          <FilterToggole />
+          {/* <FilterToggole /> */}
         </div>
         {reviewData && reviewData.length === 0 ? (
           <div className={youHaveNothingContainer}>

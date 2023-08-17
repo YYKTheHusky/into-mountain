@@ -3,15 +3,13 @@ import { ReactComponent as IconChevronRight } from 'assets/icons/icon-chevron-ri
 import styles from './FilterToggoleItem.module.scss'
 const { selectOption, icon, active, options } = styles
 
-const FilterToggoleItem = ({ optionList }) => {
-  const theListName = Object.keys(optionList)[0]
-  // console.log(optionList[theListName])
-
+const FilterToggoleItem = ({ optionList, listName, onFilterOption }) => {
   const [openSelect, setOpenSelect] = useState(false)
   const inputRef = useRef()
   const handleSelectValue = (e) => {
     inputRef.current.value = e.target.outerText
     setOpenSelect(false)
+    onFilterOption({ type: listName, value: e.target.outerText })
   }
   const handleOpenOption = () => {
     setOpenSelect(true)
@@ -20,7 +18,7 @@ const FilterToggoleItem = ({ optionList }) => {
     <div className={selectOption}>
       <input
         type="text"
-        placeholder={theListName}
+        placeholder={listName}
         ref={inputRef}
         onClick={handleOpenOption}
         onBlur={() => {
@@ -34,7 +32,7 @@ const FilterToggoleItem = ({ optionList }) => {
         />
       </span>
       <div className={openSelect ? `${options} ${active}` : `${options}`}>
-        {optionList[theListName].map((item, index) => (
+        {optionList.map((item, index) => (
           <li onClick={handleSelectValue} key={index}>
             {item}
           </li>

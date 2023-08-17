@@ -12,7 +12,8 @@ const UserContent = ({
   theUserData,
   acitveContent,
   theUserId,
-  onUpdateCardInfo
+  onUpdateCardInfo,
+  followingList
 }) => {
   if (acitveContent === 'myReviews') {
     return (

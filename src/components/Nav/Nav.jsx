@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 const {
   navContainer,
   left,
+  logo,
   right,
   rightListItem,
   rightListIcon,
@@ -21,10 +22,40 @@ const {
   innerContainer
 } = styles
 
+const Avt = ({ currentUserId, currentUserAvatar }) => {
+  const navigate = useNavigate()
+  if (!currentUserId) {
+    return (
+      <IconUser
+        className={`${user} ${rightListIcon}`}
+        onClick={() => navigate('/login')}
+      />
+    )
+  } else {
+    if (currentUserAvatar === 'null') {
+      return (
+        <IconUser
+          className={`${user} ${rightListIcon}`}
+          onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
+        />
+      )
+    }
+  }
+  return (
+    <div
+      className={`${avatar} ${rightListIcon}`}
+      onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
+    >
+      <img src={currentUserAvatar} alt="" />
+    </div>
+  )
+}
+
 const Nav = ({ updateCardInfo }) => {
   const navigate = useNavigate()
   const currentUserId = localStorage.getItem('currentUserId')
   let currentUserAvatar = localStorage.getItem('currentUserAvatar')
+
   useEffect(() => {
     currentUserAvatar = localStorage.getItem('currentUserAvatar')
   }, [updateCardInfo])
@@ -36,7 +67,7 @@ const Nav = ({ updateCardInfo }) => {
           <BurgerModal />
         </div>
         <div className={left} onClick={() => navigate('/')}>
-          <IconLogo />
+          <IconLogo className={logo} />
           <span>登山小站</span>
         </div>
         <div className={right}>
@@ -70,19 +101,10 @@ const Nav = ({ updateCardInfo }) => {
               }
             }}
           />
-          {currentUserId ? (
-            <div
-              className={`${avatar} ${rightListIcon}`}
-              onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
-            >
-              <img src={currentUserAvatar} alt="" />
-            </div>
-          ) : (
-            <IconUser
-              className={`${user} ${rightListIcon}`}
-              onClick={() => navigate('/login')}
-            />
-          )}
+          <Avt
+            currentUserId={currentUserId}
+            currentUserAvatar={currentUserAvatar}
+          />
         </div>
       </div>
     </div>

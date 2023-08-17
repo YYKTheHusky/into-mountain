@@ -1,8 +1,16 @@
 import styles from './FollowCard.module.scss'
 import { SecondaryButton } from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
-const { followerCardCointainer, cardHead, cardAvatar, cardTitle, cardButton } =
-  styles
+import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
+const {
+  followerCardCointainer,
+  cardHead,
+  cardAvatar,
+  cardTitle,
+  cardButton,
+  defaultImg,
+  userAvatar
+} = styles
 
 const FollowerCard = ({ data, follow, onFollow }) => {
   const navigate = useNavigate()
@@ -19,13 +27,22 @@ const FollowerCard = ({ data, follow, onFollow }) => {
     >
       <div className={cardHead}>
         <div className={cardAvatar}>
-          <img src={follow.avatar} alt="" />
+          {follow.avatar === null ? (
+            <IconDefaultUser className={defaultImg} />
+          ) : (
+            <div className={userAvatar}>
+              <img src={follow.avatar} alt="" />
+            </div>
+          )}
         </div>
         <div className={cardTitle}>{follow.name}</div>
       </div>
       <div className={cardButton}>
         <SecondaryButton
-          onClick={() => onFollow?.({ isFollow: data.isFollow, id: theId })}
+          onClick={(event) => {
+            event.stopPropagation()
+            onFollow?.({ isFollow: data.isFollow, id: theId })
+          }}
         >
           {data.isFollow ? '追隨中' : '追隨'}
         </SecondaryButton>
