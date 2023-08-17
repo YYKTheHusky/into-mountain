@@ -6,14 +6,14 @@ export default function AvatarToolTip({ name }) {
 
   const getPersonData = (name) => {
     switch (name) {
-      case 'Kelly':
-        return { name: 'Kelly', title: 'Front-End' }
+      case 'Ya-Yun':
+        return { name: 'Ya-Yun', title: 'Front-End' }
       case 'Kevin':
         return { name: 'Kevin', title: 'Back-End' }
-      case 'Chc':
-        return { name: 'Chc', title: 'Back-End' }
-      case 'Ywj':
-        return { name: 'Ywj', title: 'Front-End' }
+      case 'Chia-Hsuan':
+        return { name: 'Chia-Hsuan', title: 'Back-End' }
+      case 'Willy':
+        return { name: 'Willy', title: 'Front-End' }
     }
   }
 

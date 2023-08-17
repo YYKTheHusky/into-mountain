@@ -66,7 +66,7 @@ const ReviewListCard = ({ data }) => {
             <div className={infoTime}>{newTime}</div>
             <div className={infoCollectCount}>
               <IconLikeActive />
-              {data.likeCount}人案讚
+              {data.likeCount}人按讚
             </div>
             <div className={infoCollectCount}>
               <IconStar />

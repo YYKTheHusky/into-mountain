@@ -11,6 +11,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    span {
+      margin-bottom: 5px;
+    }
+    .limit {
+      color: rgb(250, 112, 94);
+      font-weight: 600;
+    }
+    .highLigh {
+      color: var(--primary-color);
+    }
   }
   &:hover {
     border: 2px solid var(--primary-color);

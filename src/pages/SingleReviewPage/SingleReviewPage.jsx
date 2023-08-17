@@ -131,7 +131,6 @@ export default function SingleReviewPage() {
   useEffect(() => {
     const getPost = async () => {
       const { status, postData, message } = await getOnePost(reviewID)
-      console.log(message)
       if (status === 'success') {
         const updatedPost = {
           ...postData,
@@ -275,7 +274,7 @@ export default function SingleReviewPage() {
                   以下內容為網友分享，不代表登山小站立場。
                 </span>
               </div>
-              <div className={styles.text}>{post.description}</div>
+              <p className={styles.text}>{post.description}</p>
             </section>
           </div>
         ) : (

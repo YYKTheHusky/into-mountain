@@ -9,11 +9,11 @@ import { SearchBarMain } from 'components/SearchBar/SearchBar'
 import MainPageScrollCard from 'components/ScrollCardGroup/MainPageScrollCard'
 import MainLayout from 'components/MainLayout/MainLayout'
 
-// svg
-import mainPagePhoto from 'assets/photos/mainpage-photo.svg'
+// photo
+import mainPagePhoto from 'assets/photos/mainpage-photo.JPG'
 
 // api
-import { getAllTrails } from 'api/trail'
+import { getNTrails } from 'api/trail'
 import { getTopPosts } from 'api/post'
 
 export default function MainPage() {
@@ -23,10 +23,10 @@ export default function MainPage() {
   useEffect(() => {
     const getData = async () => {
       const [{ trails }, { posts }] = await Promise.all([
-        getAllTrails(),
+        getNTrails(5),
         getTopPosts(10)
       ])
-      setTrailData(trails.slice(0, 5))
+      setTrailData(trails)
       setPostData(posts)
     }
     getData()

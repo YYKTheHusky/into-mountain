@@ -25,29 +25,29 @@ export default function Footer() {
               href="https://github.com/magic9701"
               className={styles.avatarContainer}
             >
-              <img src={Kelly} alt={Kelly} />
-              <AvatarToolTip name="Kelly" />
-            </a>
-            <a
-              href="https://github.com/jiasyuanchu"
-              className={styles.avatarContainer}
-            >
-              <img src={Chc} alt={Chc} data-name="Chc" />
-              <AvatarToolTip name="Chc" />
-            </a>
-            <a
-              href="https://github.com/av124773"
-              className={styles.avatarContainer}
-            >
-              <img src={Kevin} alt={Kevin} />
-              <AvatarToolTip name="Kevin" />
+              <img src={Kelly} alt="Ya-Yun" />
+              <AvatarToolTip name="Ya-Yun" />
             </a>
             <a
               href="https://github.com/ywcheng1207"
               className={styles.avatarContainer}
             >
-              <img src={Ywj} alt={Ywj} />
-              <AvatarToolTip name="Ywj" />
+              <img src={Ywj} alt="Willy" />
+              <AvatarToolTip name="Willy" />
+            </a>
+            <a
+              href="https://github.com/jiasyuanchu"
+              className={styles.avatarContainer}
+            >
+              <img src={Chc} alt="Chia-Hsuan" />
+              <AvatarToolTip name="Chia-Hsuan" />
+            </a>
+            <a
+              href="https://github.com/av124773"
+              className={styles.avatarContainer}
+            >
+              <img src={Kevin} alt="Kevin" />
+              <AvatarToolTip name="Kevin" />
             </a>
           </div>
         </div>

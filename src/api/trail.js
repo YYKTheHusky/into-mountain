@@ -14,6 +14,21 @@ export const getAllTrails = async () => {
   }
 }
 
+// 取得N筆路徑
+export const getNTrails = async (limit) => {
+  try {
+    const { data } = await axiosInstance.get(
+      `/trails?limit=${limit}&sort=favorites`
+    )
+    if (data) {
+      return { success: true, trails: data.data }
+    }
+  } catch (error) {
+    console.error('[Get All Post Failed]:', error)
+    return { success: false }
+  }
+}
+
 // 取得指定一條路徑
 export const getOneTrail = async (trailId) => {
   try {
