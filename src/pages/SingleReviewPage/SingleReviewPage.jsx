@@ -131,7 +131,6 @@ export default function SingleReviewPage() {
   useEffect(() => {
     const getPost = async () => {
       const { status, postData, message } = await getOnePost(reviewID)
-      console.log(message)
       if (status === 'success') {
         const updatedPost = {
           ...postData,
