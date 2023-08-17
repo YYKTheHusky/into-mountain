@@ -34,11 +34,15 @@ export default function LoginPage() {
   return (
     <MainLayout>
       <div className={styles.outerContainer}>
+        <div
+          className={styles.admin}
+          onDoubleClick={() => navigate('/admin/login')}
+        />
         <img
           className={styles.photo}
           src={location.pathname.includes('login') ? LoginPhoto : SignUpPhoto}
           alt="photo"
-        ></img>
+        />
         <div className={styles.modalContainer}>
           {location.pathname.includes('login') ? (
             <LoginModal />

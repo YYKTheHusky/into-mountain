@@ -1,12 +1,3 @@
-.navbar {
-  width: 100vw;
-  height: 70px;
-}
-.emptyNav {
-  position: absolute;
-  width: 100vw;
-  height: 70px;
-}
 .outerContainer {
   position: relative;
   width: 100%;
@@ -34,4 +25,12 @@
     top: 50%;
     transform: translate(0%, -50%);
   }
+}
+
+.admin {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 0;
+  background-color: transparent;
 }

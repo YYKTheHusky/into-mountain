@@ -80,15 +80,21 @@ const TrailsMainContent = () => {
             onFilterOption={handleFilterOption}
           />
         </div>
-        <div className={list}>
-          {trailData
-            ? trailData.map((item) => (
-                <TrailsListCard key={item.id} data={item} />
-              ))
-            : Array.from({ length: 5 }).map((_, index) => (
-                <CardSkeleton key={index} />
-              ))}
-        </div>
+        {trailData && trailData.length === 0 ? (
+          <div className="">
+            {/* <YouHaveNothing robotDescription="沒有符合的搜尋結果" /> */}
+          </div>
+        ) : (
+          <div className={list}>
+            {trailData
+              ? trailData.map((item) => (
+                  <TrailsListCard key={item.id} data={item} />
+                ))
+              : Array.from({ length: 12 }).map((_, index) => (
+                  <CardSkeleton key={index} />
+                ))}
+          </div>
+        )}
       </div>
     </div>
   )

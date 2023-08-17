@@ -9,8 +9,10 @@ import ReviewListCard from 'components/ReviewsList/ReviewsListCard/ReviewsListCa
 import CardSkeleton from 'components/Skeleton/CardSkeleton'
 // api
 import { getAllPost, searchPostByKeyword } from 'api/post'
+import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 
-const { container, innerContainer, search, list } = styles
+const { container, innerContainer, search, list, youHaveNothingContainer } =
+  styles
 
 const ReviewsMainContent = () => {
   const { keyword } = useParams()
@@ -37,15 +39,21 @@ const ReviewsMainContent = () => {
           <TrailsSearchBar type="review" />
           {/* <FilterToggole /> */}
         </div>
-        <div className={list}>
-          {reviewData
-            ? reviewData.map((item) => (
-                <ReviewListCard key={item.id} data={item} />
-              ))
-            : Array.from({ length: 12 }).map((_, index) => (
-                <CardSkeleton key={index} />
-              ))}
-        </div>
+        {reviewData && reviewData.length === 0 ? (
+          <div className={youHaveNothingContainer}>
+            <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+          </div>
+        ) : (
+          <div className={list}>
+            {reviewData
+              ? reviewData.map((item) => (
+                  <ReviewListCard key={item.id} data={item} />
+                ))
+              : Array.from({ length: 12 }).map((_, index) => (
+                  <CardSkeleton key={index} />
+                ))}
+          </div>
+        )}
       </div>
     </div>
   )
