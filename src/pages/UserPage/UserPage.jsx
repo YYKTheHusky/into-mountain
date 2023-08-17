@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 // api
-import { getUserData } from 'api/user'
+import { getUserData, getUserFollowing } from 'api/user'
 
 // style
 const {
@@ -33,6 +33,7 @@ export default function UserPage() {
     currentValue: window.scrollY,
     upOrDown: true
   })
+  const [followingList, setFollowingList] = useState([])
   const [updateCardInfo, setUpdateCardInfo] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
@@ -83,6 +84,22 @@ export default function UserPage() {
     }
   }, [location, updateCardInfo])
 
+  // 追隨者清單
+  useEffect(() => {
+    const getUserFollowingAsync = async () => {
+      try {
+        const data = await getUserFollowing(
+          localStorage.getItem('currentUserId')
+        )
+        setFollowingList(data)
+        console.log(data.map((item) => console.log(item.id)))
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getUserFollowingAsync()
+  }, [])
+
   return (
     <div className="container mx-auto">
       <div className={navDesk}>
@@ -97,6 +114,7 @@ export default function UserPage() {
             theUserId={id}
             acitveContent={acitveContent}
             onAcitveContent={handleAcitveContent}
+            followingList={followingList}
           />
           <div className={tab} data-scroll={currentScroll.upOrDown}>
             <UserPageTab
@@ -121,6 +139,7 @@ export default function UserPage() {
             theUserId={id}
             theUserData={theUserData}
             onUpdateCardInfo={handleUpdateCardInfo}
+            followingList={followingList}
           />
         </div>
       </div>

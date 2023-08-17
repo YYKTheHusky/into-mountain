@@ -102,6 +102,16 @@
         margin-right: 5px;
         fill: var(--dark-90);
       }
+      .infoSetGroup {
+        display: flex;
+        .infoSetIcon {
+          width: 20px;
+          height: 20px;
+        }
+        span {
+          line-height: 19px;
+        }
+      }
     }
   }
 }
