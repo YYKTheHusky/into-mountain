@@ -118,6 +118,10 @@
   margin-top: 40px;
   line-height: 32px;
 }
+.title,
+.text {
+  overflow-wrap: break-word;
+}
 
 @media (max-width: 767px) {
   .title h2 {
