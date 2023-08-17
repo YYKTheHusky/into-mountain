@@ -7,13 +7,15 @@ import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
 import FilterToggole from 'components/FilterToggole/FilterToggole'
 import TrailsListCard from 'components/TrailsList/TrailsListCard/TrailsListCard'
 import CardSkeleton from 'components/Skeleton/CardSkeleton'
+import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 
 // api
 import { getAllTrails, searchTrailByKeyword } from 'api/trail'
 import styles from './TrailsMainContent.module.scss'
 
 // style
-const { container, innerContainer, search, list } = styles
+const { container, innerContainer, youHaveNothingContainer, search, list } =
+  styles
 
 //
 const filterList = {
@@ -68,6 +70,7 @@ const TrailsMainContent = () => {
     if (!dataIsLoading) {
       console.log(parseFloat(trailData[0].distance))
     }
+    console.log(trailData)
   }, [filterOption])
 
   return (
@@ -81,8 +84,8 @@ const TrailsMainContent = () => {
           />
         </div>
         {trailData && trailData.length === 0 ? (
-          <div className="">
-            {/* <YouHaveNothing robotDescription="沒有符合的搜尋結果" /> */}
+          <div className={youHaveNothingContainer}>
+            <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
           </div>
         ) : (
           <div className={list}>

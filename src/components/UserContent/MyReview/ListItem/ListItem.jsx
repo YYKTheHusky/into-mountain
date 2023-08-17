@@ -30,7 +30,7 @@ const ListItem = ({ data, theUserId, onDeletePost }) => {
               <button
                 className={titleButton1}
                 onClick={(event) => {
-                  event.preventDefault()
+                  event.stopPropagation()
                   navigate(`/review/${data.id}/edit`)
                 }}
               >
@@ -39,7 +39,7 @@ const ListItem = ({ data, theUserId, onDeletePost }) => {
               <button
                 className={titleButton2}
                 onClick={(event) => {
-                  event.preventDefault()
+                  event.stopPropagation()
                   onDeletePost?.(data.id)
                 }}
               >
