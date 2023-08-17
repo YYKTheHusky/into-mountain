@@ -5,7 +5,7 @@ import InfoCard from 'components/InfoCard/InfoCard'
 import UserPageTab from 'components/UserPageTab/UserPageTab'
 import UserContent from 'components/UserContent/UserContent'
 import Footer from 'components/Footer/Footer'
-
+import { ReactComponent as IconLogout } from 'assets/icons/icon-logout.svg'
 // hook
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -23,6 +23,7 @@ const {
   tab,
   right,
   logout,
+  logoutIcon,
   footer
 } = styles
 
@@ -110,6 +111,7 @@ export default function UserPage() {
               navigate(`/`)
             }}
           >
+            <IconLogout className={logoutIcon} />
             登出
           </div>
         </div>
