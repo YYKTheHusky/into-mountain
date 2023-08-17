@@ -9,8 +9,8 @@ import { SearchBarMain } from 'components/SearchBar/SearchBar'
 import MainPageScrollCard from 'components/ScrollCardGroup/MainPageScrollCard'
 import MainLayout from 'components/MainLayout/MainLayout'
 
-// svg
-import mainPagePhoto from 'assets/photos/mainpage-photo.svg'
+// photo
+import mainPagePhoto from 'assets/photos/mainpage-photo.JPG'
 
 // api
 import { getNTrails } from 'api/trail'

@@ -39,7 +39,7 @@ const ReviewsMainContent = () => {
           <TrailsSearchBar type="review" />
           <FilterToggole />
         </div>
-        {reviewData.length === 0 ? (
+        {reviewData && reviewData.length === 0 ? (
           <div className={youHaveNothingContainer}>
             <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
           </div>

@@ -38,7 +38,7 @@ const TrailsMainContent = () => {
           <TrailsSearchBar type="trail" />
           <FilterToggole />
         </div>
-        {trailData.length === 0 ? (
+        {trailData && trailData.length === 0 ? (
           <div className={youHaveNothingContainer}>
             <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
           </div>
