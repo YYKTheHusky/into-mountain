@@ -1,5 +1,5 @@
 import styles from './AdminMainContent.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import iconUser from 'assets/icons/icon-user.svg'
 const {
   adminMainContentContainer,
@@ -27,14 +27,24 @@ const {
 } = styles
 
 const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend, listname }) => {
+  const navigate = useNavigate()
   return (
     <div className={userItemContainer}>
-      <div className={userItemLeft}>
-        <img src={data.avatar || iconUser} alt="avatar" />
+      <div className={`${userItemLeft} cursor-point`}>
+        <img
+          src={data.avatar || iconUser}
+          alt="avatar"
+          onClick={() => navigate(`/user/${data.id}/myReviews`)}
+        />
       </div>
       <div className={userItemRight}>
         <div className={userButtonAndName}>
-          <div className={userItemRightName}>{data.name}</div>
+          <div
+            className={`${userItemRightName} cursor-point`}
+            onClick={() => navigate(`/user/${data.id}/myReviews`)}
+          >
+            {data.name}
+          </div>
           <div className={userItemRightButton}>
             {isSus ? (
               <button
