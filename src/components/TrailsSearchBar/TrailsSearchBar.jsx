@@ -7,7 +7,7 @@ import { ReactComponent as IconArrowRight } from 'assets/icons/icon-arrow-right.
 
 const { trailsSearchBarContainer } = styles
 
-const TrailsSearchBar = ({ type }) => {
+const TrailsSearchBar = ({ type, onFilterOption }) => {
   const navigate = useNavigate()
   const [keyword, setKeyword] = useState('')
 
@@ -17,6 +17,7 @@ const TrailsSearchBar = ({ type }) => {
     } else if (!keyword) {
       navigate('/search/allTrails')
     }
+    onFilterOption({ value: null })
   }
 
   const handleReviewSearch = () => {

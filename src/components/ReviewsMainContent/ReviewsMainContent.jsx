@@ -32,10 +32,14 @@ const ReviewsMainContent = () => {
       try {
         const { posts } = await getAllPost()
         setReviewData(posts)
-        setReviewData((pre) => pre.filter((item) => item.category === value))
+        if (value !== '') {
+          setReviewData((pre) => pre.filter((item) => item.category === value))
+        }
       } catch (error) {
         console.error(error)
       }
+    } else if (value === null) {
+      setFilterOption(null)
     } else {
       setFilterOption((pre) => ({ ...pre, category: value }))
       const { posts } = await searchPostByKeyword(keyword)
@@ -69,7 +73,7 @@ const ReviewsMainContent = () => {
     <div className={container}>
       <div className={innerContainer}>
         <div className={search}>
-          <TrailsSearchBar type="review" />
+          <TrailsSearchBar type="review" onFilterOption={handleFilterOption} />
           <FilterToggole
             filterList={filterList}
             filterOption={filterOption}
