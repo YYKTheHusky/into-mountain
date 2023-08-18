@@ -42,7 +42,8 @@ export default function ConfirmModal({
         <div className={styles.buttonGroup}>
           <div className={styles.buttonContainer}>
             <SecondaryButtonBright
-              onClick={() => {
+              onClick={(event) => {
+                event.stopPropagation()
                 confirmFunction()
               }}
             >
@@ -51,7 +52,8 @@ export default function ConfirmModal({
           </div>
           <div className={styles.buttonContainer}>
             <SecondaryButtonGray
-              onClick={() => {
+              onClick={(event) => {
+                event.stopPropagation()
                 cancelFunction()
               }}
             >

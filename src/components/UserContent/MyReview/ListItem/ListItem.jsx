@@ -1,7 +1,8 @@
 import styles from './ListItem.module.scss'
 import { formatDateWithTime } from 'utils/time'
 import { useNavigate } from 'react-router-dom'
-
+import ConfirmModal from 'components/Modal/ConfirmModal'
+import { useState } from 'react'
 const {
   listItem,
   inProgressStyle,
@@ -18,6 +19,15 @@ const {
 
 const ListItemContent = ({ data, theUserId, onDeletePost }) => {
   const navigate = useNavigate()
+  const [openModal, setOpenModal] = useState(false)
+  const handleConfirm = () => {
+    setOpenModal(!openModal)
+    onDeletePost?.(data.id)
+  }
+  const handleCancel = () => {
+    setOpenModal(!openModal)
+  }
+
   return (
     <>
       <div className={itemLeft}>
@@ -46,11 +56,17 @@ const ListItemContent = ({ data, theUserId, onDeletePost }) => {
                 className={titleButton2}
                 onClick={(event) => {
                   event.stopPropagation()
-                  onDeletePost?.(data.id)
+                  setOpenModal(true)
                 }}
               >
                 刪除
               </button>
+              <ConfirmModal
+                isModalOpen={openModal}
+                confirmFunction={handleConfirm}
+                cancelFunction={handleCancel}
+                message="確定要刪除這篇文章嗎？"
+              />
             </div>
           )}
         </div>
