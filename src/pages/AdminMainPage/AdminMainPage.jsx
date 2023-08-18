@@ -79,9 +79,28 @@ export default function AdminMainPage() {
       console.error(error)
     }
   }
-  const handleEditReportSolved = async (id) => {
+  const handleEditReportSolved = async (id, type) => {
     try {
       await editReportSolved(id)
+      if (type === 'delete') {
+        setReviewList((pre) => {
+          return pre.map((item) => {
+            if (item.id === id) {
+              return { ...item, isSolved: true, Post: null }
+            }
+            return item
+          })
+        })
+      } else {
+        setReviewList((pre) => {
+          return pre.map((item) => {
+            if (item.id === id) {
+              return { ...item, isSolved: true }
+            }
+            return item
+          })
+        })
+      }
     } catch (error) {
       console.error(error)
     }

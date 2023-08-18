@@ -41,12 +41,20 @@ export default function ConfirmModal({
         <h5>{message}</h5>
         <div className={styles.buttonGroup}>
           <div className={styles.buttonContainer}>
-            <SecondaryButtonBright onclick={confirmFunction}>
+            <SecondaryButtonBright
+              onClick={() => {
+                confirmFunction()
+              }}
+            >
               確定
             </SecondaryButtonBright>
           </div>
           <div className={styles.buttonContainer}>
-            <SecondaryButtonGray onclick={cancelFunction}>
+            <SecondaryButtonGray
+              onClick={() => {
+                cancelFunction()
+              }}
+            >
               取消
             </SecondaryButtonGray>
           </div>

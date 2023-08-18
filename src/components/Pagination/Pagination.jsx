@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Pagination.module.scss'
 import AdminMainContent from 'components/AdminMainContent/AdminMainContent'
-const { paginationContainer, pageNumbers, active, loadmore, hellip } = styles
+const { paginationContainer, pageNumbers, active, hellip } = styles
 
 const Pagination = ({
   data,
@@ -42,12 +42,15 @@ const Pagination = ({
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit)
     }
   }
-  const handleLoadMore = () => {
-    if (data.length - itemsPerPage * currentPage < itemsPerPage) {
-      return
-    }
-    setItemsPerPage(itemsPerPage + 5)
-  }
+  useEffect(() => {
+    setItemsPerPage(10)
+  }, [])
+  // const handleLoadMore = () => {
+  //   if (data.length - itemsPerPage * currentPage < itemsPerPage) {
+  //     return
+  //   }
+  //   setItemsPerPage(itemsPerPage + 5)
+  // }
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
       return (
@@ -99,7 +102,7 @@ const Pagination = ({
             下一頁
           </button>
         </ul>
-        {!(data.length - itemsPerPage * currentPage < itemsPerPage) ? (
+        {/* {!(data.length - itemsPerPage * currentPage < itemsPerPage) ? (
           <button onClick={handleLoadMore} className={loadmore}>
             更多
           </button>
@@ -107,7 +110,7 @@ const Pagination = ({
           <button disabled className={loadmore} style={{ opacity: '0.5' }}>
             更多
           </button>
-        )}
+        )} */}
       </div>
     </>
   )
