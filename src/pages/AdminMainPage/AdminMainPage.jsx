@@ -129,42 +129,40 @@ export default function AdminMainPage() {
   }, [page])
 
   return (
-    <div className="container mx-auto">
-      <div className={adminMainPageContainer}>
-        <div className={nav}>
-          <AdminNav onPage={handlePage} />
+    <div className={adminMainPageContainer}>
+      <div className={nav}>
+        <AdminNav onPage={handlePage} />
+      </div>
+      <div className={right}>
+        <div className={rightHead}>
+          <IconLogo className={logo} />
+          <h4 style={{ marginLeft: '15px' }}>登山小站</h4>
         </div>
-        <div className={right}>
-          <div className={rightHead}>
-            <IconLogo className={logo} />
-            <h4 style={{ marginLeft: '15px' }}>登山小站</h4>
-          </div>
-          <div className={rightContent}>
-            {page === 'userList' && (
-              <Pagination
-                data={userListData}
-                page={page}
-                onSuspend={handleSuspend}
-                onRemoveSuspend={handleRemoveSuspend}
-              />
-            )}
-            {page === 'susUserList' && (
-              <Pagination
-                data={susUserList}
-                page={page}
-                onSuspend={handleSuspend}
-                onRemoveSuspend={handleRemoveSuspend}
-              />
-            )}
-            {page === 'reviewList' && (
-              <Pagination
-                data={reviewList}
-                page={page}
-                onEditReportSolved={handleEditReportSolved}
-                onDeletePost={handleDeletePost}
-              />
-            )}
-          </div>
+        <div className={rightContent}>
+          {page === 'userList' && (
+            <Pagination
+              data={userListData}
+              page={page}
+              onSuspend={handleSuspend}
+              onRemoveSuspend={handleRemoveSuspend}
+            />
+          )}
+          {page === 'susUserList' && (
+            <Pagination
+              data={susUserList}
+              page={page}
+              onSuspend={handleSuspend}
+              onRemoveSuspend={handleRemoveSuspend}
+            />
+          )}
+          {page === 'reviewList' && (
+            <Pagination
+              data={reviewList}
+              page={page}
+              onEditReportSolved={handleEditReportSolved}
+              onDeletePost={handleDeletePost}
+            />
+          )}
         </div>
       </div>
     </div>

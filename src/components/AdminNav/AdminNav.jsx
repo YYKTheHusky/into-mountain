@@ -81,45 +81,47 @@ const AdminNav = ({ onPage }) => {
           setNavExpand(false)
         }}
       >
-        <div
-          className={listItem}
-          title="使用者清單"
-          onClick={() => {
-            onPage?.('userList')
-            navigate('/admin/allUser')
-          }}
-        >
-          <IconUserGroup className={icon} />
-          <span className={clsx(listItemLabel, navExpand && expand)}>
-            使用者清單
-          </span>
-        </div>
-        <div
-          className={listItem}
-          title="被停權的使用者"
-          onClick={() => {
-            onPage?.('susUserList')
-            navigate('/admin/blockUser')
-          }}
-        >
-          <IconUserSlash className={icon} />
-          <span className={clsx(listItemLabel, navExpand && expand)}>
-            被停權的使用者
-          </span>
-        </div>
+        <div>
+          <div
+            className={listItem}
+            title="使用者清單"
+            onClick={() => {
+              onPage?.('userList')
+              navigate('/admin/allUser')
+            }}
+          >
+            <IconUserGroup className={icon} />
+            <span className={clsx(listItemLabel, navExpand && expand)}>
+              使用者清單
+            </span>
+          </div>
+          <div
+            className={listItem}
+            title="被停權的使用者"
+            onClick={() => {
+              onPage?.('susUserList')
+              navigate('/admin/blockUser')
+            }}
+          >
+            <IconUserSlash className={icon} />
+            <span className={clsx(listItemLabel, navExpand && expand)}>
+              被停權的使用者
+            </span>
+          </div>
 
-        <div
-          className={listItem}
-          title="被檢舉的心得清單"
-          onClick={() => {
-            onPage?.('reviewList')
-            navigate('/admin/reportReview')
-          }}
-        >
-          <IconAlignLeft className={icon} />
-          <span className={clsx(listItemLabel, navExpand && expand)}>
-            被檢舉的心得清單
-          </span>
+          <div
+            className={listItem}
+            title="被檢舉的心得清單"
+            onClick={() => {
+              onPage?.('reviewList')
+              navigate('/admin/reportReview')
+            }}
+          >
+            <IconAlignLeft className={icon} />
+            <span className={clsx(listItemLabel, navExpand && expand)}>
+              被檢舉的心得清單
+            </span>
+          </div>
         </div>
         <div
           className={`${listItem} ${logout}`}
