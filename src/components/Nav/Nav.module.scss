@@ -52,6 +52,20 @@
         transform: rotate(10deg);
       }
     }
+    .notificationContainer {
+      position: relative;
+      span {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background-color: tomato;
+        box-shadow: 0px 0px 5px 1px tomato;
+      }
+    }
     .avatar {
       width: 45px;
       height: 45px;
