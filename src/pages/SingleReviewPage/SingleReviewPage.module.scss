@@ -18,6 +18,10 @@
       align-items: center;
     }
     .authorName {
+      width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       color: var(--main-color);
     }
     .avatar {
@@ -97,11 +101,19 @@
   }
 }
 .reviewPhoto {
-  width: 100%;
-}
-.photo {
   margin: 25px 0;
   width: 100%;
+  padding-top: 66.67%;
+  position: relative;
+  overflow: hidden;
+}
+.photo {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: auto;
+  transform: translateY(-50%);
 }
 .divide {
   position: relative;
