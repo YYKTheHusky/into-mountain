@@ -92,7 +92,6 @@ export default function UserPage() {
           localStorage.getItem('currentUserId')
         )
         setFollowingList(data)
-        console.log(data.map((item) => console.log(item.id)))
       } catch (error) {
         console.error(error)
       }
