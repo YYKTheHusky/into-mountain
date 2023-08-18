@@ -14,6 +14,7 @@
   cursor: pointer;
   .itemLeft {
     max-width: 17%;
+    min-width: 17%;
     height: 110px;
     overflow: hidden;
     margin-right: 15px;
@@ -32,6 +33,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
       .titleText {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -81,6 +83,23 @@
   }
   &:hover {
     background-color: var(--dark-30);
+  }
+  &.inProgressStyle {
+    background-color: var(--dark-50);
+    &:hover {
+      background-color: var(--dark-40);
+    }
+    .titleText {
+      display: flex;
+      align-items: center;
+      .draftStyle {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 20px;
+        color: tomato;
+        margin-left: 5px;
+      }
+    }
   }
 }
 
