@@ -14,7 +14,10 @@ const FilterToggoleItem = ({
   const handleSelectValue = (e) => {
     inputRef.current.value = e.target.outerText
     setOpenSelect(false)
-    onFilterOption({ type: listName, value: e.target.outerText })
+    onFilterOption({
+      type: listName,
+      value: e.target.outerText
+    })
   }
   const handleOpenOption = () => {
     setOpenSelect(true)

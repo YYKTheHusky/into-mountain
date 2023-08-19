@@ -19,36 +19,111 @@ const { container, innerContainer, youHaveNothingContainer, search, list } =
 
 //
 const filterList = {
-  // 步道類型: ['郊山', '百岳', '海外'],
   難易度: ['低', '中', '高'],
   里程: ['5公里以內', '10公里以內', '10公里以上'],
-  所需時間: ['3個小時以內', '1天以內', '大於1天']
+  所需時間: ['1天以內', '大於1天', '超過1週']
 }
 
 const TrailsMainContent = () => {
   const { keyword } = useParams()
   const location = useLocation()
   const [trailData, setTrailData] = useState(null)
-  const [dataIsLoading, setDataIsLoading] = useState(true)
   const [filterOption, setFilterOption] = useState({
-    category: '',
     difficulty: '',
     distance: '',
     duration: ''
   })
 
-  const handleFilterOption = ({ type, value }) => {
-    if (type === '步道類型') {
-      setFilterOption((pre) => ({ ...pre, category: value }))
-    }
+  const handleFilterOption = async ({ type, value }) => {
     if (type === '難易度') {
-      setFilterOption((pre) => ({ ...pre, difficulty: value }))
+      try {
+        if (value !== '') {
+          setFilterOption((pre) => ({
+            ...pre,
+            difficulty: (item) => {
+              const difficultyValues = item.difficulty.split('-')
+              return difficultyValues.includes(value)
+            }
+          }))
+        } else {
+          setFilterOption((pre) => ({
+            ...pre,
+            difficulty: ''
+          }))
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
     if (type === '里程') {
-      setFilterOption((pre) => ({ ...pre, distance: value }))
+      try {
+        if (value === '5公里以內') {
+          setFilterOption((pre) => ({
+            ...pre,
+            distance: (item) => {
+              return parseFloat(item.distance.match(/\d+(\.\d+)?/)) < 5
+            }
+          }))
+        } else if (value === '10公里以內') {
+          setFilterOption((pre) => ({
+            ...pre,
+            distance: (item) => {
+              return parseFloat(item.distance.match(/\d+(\.\d+)?/)) <= 10
+            }
+          }))
+        } else if (value === '10公里以上') {
+          setFilterOption((pre) => ({
+            ...pre,
+            distance: (item) => {
+              return parseFloat(item.distance.match(/\d+(\.\d+)?/)) > 10
+            }
+          }))
+        } else {
+          setFilterOption((pre) => ({
+            ...pre,
+            distance: ''
+          }))
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
     if (type === '所需時間') {
       setFilterOption((pre) => ({ ...pre, duration: value }))
+      try {
+        if (value === '1天以內') {
+          setFilterOption((pre) => ({
+            ...pre,
+            duration: (item) => {
+              return !item.duration.split('').includes('天')
+            }
+          }))
+        } else if (value === '大於1天') {
+          setFilterOption((pre) => ({
+            ...pre,
+            duration: (item) => {
+              return item.duration.split('').includes('天')
+            }
+          }))
+        } else if (value === '超過1週') {
+          setFilterOption((pre) => ({
+            ...pre,
+            duration: (item) => {
+              return (
+                item.duration.split('').includes('天') &&
+                Number(/(\d+)\s+天/g.exec(item.duration)[1]) >= 7
+              )
+            }
+          }))
+        } else {
+          setFilterOption((pre) => ({
+            ...pre,
+            duration: ''
+          }))
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 
@@ -57,29 +132,33 @@ const TrailsMainContent = () => {
       if (location.pathname === '/search/allTrails') {
         const { trails } = await getAllTrails()
         setTrailData(trails)
-        setDataIsLoading(false)
       } else {
         const { trails } = await searchTrailByKeyword(keyword)
         setTrailData(trails)
       }
+      if (filterOption.difficulty !== '') {
+        setTrailData((pre) =>
+          pre.filter((item) => filterOption.difficulty(item))
+        )
+      }
+      if (filterOption.distance !== '') {
+        setTrailData((pre) => pre.filter((item) => filterOption.distance(item)))
+      }
+      if (filterOption.duration !== '') {
+        setTrailData((pre) => pre.filter((item) => filterOption.duration(item)))
+      }
     }
     getData()
-  }, [location, keyword])
-
-  useEffect(() => {
-    if (!dataIsLoading) {
-      console.log(parseFloat(trailData[0].distance))
-    }
-    console.log(trailData)
-  }, [filterOption])
+  }, [location, keyword, filterOption])
 
   return (
     <div className={container}>
       <div className={innerContainer}>
         <div className={search}>
-          <TrailsSearchBar type="trail" />
+          <TrailsSearchBar type="trail" onFilterOption={handleFilterOption} />
           <FilterToggole
             filterList={filterList}
+            filterOption={filterOption}
             onFilterOption={handleFilterOption}
           />
         </div>
