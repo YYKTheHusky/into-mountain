@@ -43,6 +43,7 @@ const MyFollowing = ({ theUserId, onUpdateCardInfo }) => {
     }
     getUserFollowingAsync()
   }, [])
+console.log(followingList)
   return (
     <RightSideContainer title="關注">
       {followingList.length === 0 && !dataIsLoading && (

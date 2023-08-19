@@ -1,6 +1,8 @@
 import styles from './InfoCard.module.scss'
 import { ReactComponent as IconGear } from 'assets/icons/icon-gear.svg'
-import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
+import iconUser, {
+  ReactComponent as IconDefaultUser
+} from 'assets/icons/icon-user.svg'
 import { ReactComponent as IconAdd } from 'assets/icons/icon-add.svg'
 import { ReactComponent as IconMinus } from 'assets/icons/icon-minus.svg'
 import { useEffect, useState } from 'react'
@@ -52,7 +54,13 @@ const InfoCard = ({ data, onAcitveContent, theUserId, followingList }) => {
           {data.avatar === null ? (
             <IconDefaultUser className={defaultImg} />
           ) : (
-            <img src={data.avatar} alt="" />
+            <img
+              src={data.avatar}
+              onError={(e) => {
+                e.target.src = iconUser
+              }}
+              alt="avatar"
+            />
           )}
         </div>
         <div className={information}>
@@ -73,7 +81,7 @@ const InfoCard = ({ data, onAcitveContent, theUserId, followingList }) => {
               </div>
             </div>
             <div>
-              <div className={countTitle2}>總讚數</div>
+              <div className={countTitle2}>被收藏</div>
               <div>{data.favoritePostCount}</div>
             </div>
           </div>

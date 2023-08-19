@@ -76,7 +76,7 @@ const MyNotice = ({ onUpdateCardInfo }) => {
     }
     onUpdateCardInfo()
   }
-
+  const [noticeIsReadCount, setNoticeIsReadCount] = useState(0)
   useEffect(() => {
     const getUserNotificationsAsync = async () => {
       try {
@@ -90,8 +90,12 @@ const MyNotice = ({ onUpdateCardInfo }) => {
     getUserNotificationsAsync()
   }, [])
 
+  useEffect(() => {
+    setNoticeIsReadCount(noticeData.filter((item) => !item.isRead).length)
+  }, [noticeData])
+
   return (
-    <RightSideContainer title="通知">
+    <RightSideContainer title="通知" info={`${noticeIsReadCount}`}>
       <div className={myNoticeContainer}>
         {noticeData.length === 0 && !dataIsLoading && (
           <div>

@@ -53,8 +53,9 @@
           padding: 8px 10px;
           cursor: pointer;
           margin-top: 0;
+          transition: transform 0.1s;
           &:hover {
-            opacity: 0.9;
+            transform: scale(1.05);
           }
         }
         .titleButton1 {

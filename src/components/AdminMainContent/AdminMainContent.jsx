@@ -119,14 +119,14 @@ const ReviewItem = ({ item, onEditReportSolved, onDeletePost }) => {
       userId: item.Post.User.id,
       notify: `您的 ${item.Post.title} 因為含有 ${item.category} 違反規定內容遭到檢舉，經管理員審查後，該文章已遭到刪除。提醒您下次撰寫文章時，注意文章內容，勿違反使用規範。 若多次遭到檢舉，管理員可能會將您的帳號停權。謝謝您的配合。如有疑問，歡迎寫信至 into-mountain@mountainmail.com`
     })
-    onEditReportSolved?.(item.id, 'delete')
+    onEditReportSolved?.({ id: item.id, type: 'delete' })
   }
   const handleCancel1 = () => {
     setOpenModal1(!openModal1)
   }
   const handleConfirm2 = () => {
     setOpenModal2(!openModal2)
-    onEditReportSolved?.(item.id, 'deny')
+    onEditReportSolved?.({ id: item.id, type: 'deny' })
   }
   const handleCancel2 = () => {
     setOpenModal2(!openModal2)

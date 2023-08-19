@@ -1,7 +1,9 @@
 import styles from './MyCollectionItem.module.scss'
 import { formatDateWithTime } from 'utils/time'
 import { useNavigate } from 'react-router-dom'
-import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
+import iconUser, {
+  ReactComponent as IconDefaultUser
+} from 'assets/icons/icon-user.svg'
 const {
   itemContainer,
   itemLeft,
@@ -20,8 +22,8 @@ const ItemRightSideTag1 = ({ collectionData }) => {
   return (
     <>
       <div className={descriptionBlock}>
-        {collectionData.description
-          ? String(collectionData.description)
+        {collectionData.introduction
+          ? String(collectionData.introduction)
           : '持續新增內容中，敬請期待！'}
       </div>
       <div className={itemRightSideTag1}>
@@ -34,7 +36,6 @@ const ItemRightSideTag1 = ({ collectionData }) => {
   )
 }
 const ItemRightSideTag2 = ({ collectionData }) => {
-
   return (
     <>
       <div className={descriptionBlock}>
@@ -46,7 +47,13 @@ const ItemRightSideTag2 = ({ collectionData }) => {
             {collectionData.User.avatar === null ? (
               <IconDefaultUser className={defaultImg} />
             ) : (
-              <img src={collectionData.User.avatar} alt="123" />
+              <img
+                src={collectionData.User.avatar}
+                onError={(e) => {
+                  e.target.src = iconUser
+                }}
+                alt="avatar"
+              />
             )}
           </div>
           <span>{collectionData.User.name}</span>

@@ -79,7 +79,7 @@ export default function AdminMainPage() {
       console.error(error)
     }
   }
-  const handleEditReportSolved = async (id, type) => {
+  const handleEditReportSolved = async ({ id, type }) => {
     try {
       await editReportSolved(id)
       if (type === 'delete') {
@@ -91,7 +91,7 @@ export default function AdminMainPage() {
             return item
           })
         })
-      } else {
+      } else if (type === 'deny') {
         setReviewList((pre) => {
           return pre.map((item) => {
             if (item.id === id) {
