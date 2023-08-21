@@ -11,6 +11,7 @@ import MainLayout from 'components/MainLayout/MainLayout'
 
 // photo
 import mainPagePhoto from 'assets/photos/mainpage-photo.JPG'
+import mainPagePhotoPlaceholder from 'assets/photos/mainpage-photo-placeholder.jpg'
 
 // api
 import { getNTrails } from 'api/trail'
@@ -20,6 +21,7 @@ export default function MainPage() {
   const navigate = useNavigate()
   const [trailData, setTrailData] = useState(null)
   const [postData, setPostData] = useState(null)
+  const [mainPhotoLoaded, setMainPhotoLoaded] = useState(false)
   useEffect(() => {
     const getData = async () => {
       const [{ trails }, { posts }] = await Promise.all([
@@ -37,8 +39,9 @@ export default function MainPage() {
       <div className={styles.photoContainer}>
         <img
           className={styles.mainPagePhoto}
-          src={mainPagePhoto}
+          src={mainPhotoLoaded ? mainPagePhoto : mainPagePhotoPlaceholder}
           alt="mainPagePhoto"
+          onLoad={() => setMainPhotoLoaded(true)}
         />
         <div className={styles.sloganContainer}>
           <h1 className={styles.slogan}>100+ Ways </h1>

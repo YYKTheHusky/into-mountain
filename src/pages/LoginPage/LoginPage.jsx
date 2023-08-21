@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'pages/LoginPage/LoginPage.module.scss'
@@ -9,12 +9,15 @@ import SignUpModal from 'components/Modal/SignUpModal'
 
 // img
 import LoginPhoto from 'assets/photos/LoginPage-photo.JPG'
+import LoginPhotoPlaceholder from 'assets/photos/LoginPage-photo-placeholder.jpg'
 import SignUpPhoto from 'assets/photos/SignUpPage-photo.jpg'
+import SignUpPhotoPlaceholder from 'assets/photos/SignUpPage-photo-placeholder.jpg'
 import MainLayout from 'components/MainLayout/MainLayout'
 
 export default function LoginPage() {
   const location = useLocation()
   const navigate = useNavigate()
+  const [photoLoaded, setPhotoLoaded] = useState(false)
 
   // 如果已經登入，導向首頁
   useEffect(() => {
@@ -40,8 +43,17 @@ export default function LoginPage() {
         />
         <img
           className={styles.photo}
-          src={location.pathname.includes('login') ? LoginPhoto : SignUpPhoto}
+          src={
+            photoLoaded
+              ? location.pathname.includes('login')
+                ? LoginPhoto
+                : SignUpPhoto
+              : location.pathname.includes('login')
+              ? LoginPhotoPlaceholder
+              : SignUpPhotoPlaceholder
+          }
           alt="photo"
+          onLoad={() => setPhotoLoaded(true)}
         />
         <div className={styles.modalContainer}>
           {location.pathname.includes('login') ? (

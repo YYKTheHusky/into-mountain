@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 // scss
 import styles from 'components/SearchBar/SearchBar.module.scss'
 
@@ -11,6 +11,13 @@ import searchArrowIcon from 'assets/icons/search-arrow-icon.svg'
 export function SearchBarMain() {
   const navigate = useNavigate()
   const [keyword, setKeyword] = useState('')
+  const inputRef = useRef(null)
+
+  const handleSearchIconClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }
 
   const handleTrailSearch = () => {
     if (keyword) {
@@ -21,13 +28,19 @@ export function SearchBarMain() {
   }
   return (
     <div className={styles.searchBar}>
-      <img className={styles.searchIcon} src={searchIcon} alt="searchIcon" />
+      <img
+        className={styles.searchIcon}
+        src={searchIcon}
+        alt="searchIcon"
+        onClick={handleSearchIconClick}
+      />
       <input
         type="text"
         className={styles.searchInput}
         placeholder="請輸入路徑、山岳名稱"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
+        ref={inputRef}
       />
       <img
         className={`cursor-point ${styles.searchArrowIcon}`}

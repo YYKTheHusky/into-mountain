@@ -150,7 +150,7 @@ export default function AdminMainPage() {
   return (
     <div className={adminMainPageContainer}>
       <div className={nav}>
-        <AdminNav onPage={handlePage} />
+        <AdminNav onPage={handlePage} page={page} />
       </div>
       <div className={right}>
         <div className={rightHead}>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/AdminLoginModal.module.scss'
@@ -64,6 +64,11 @@ export default function AdminLoginModal() {
           setIsError={setIsError}
         />
         <PrimaryButton onClick={handleLogin}>登入</PrimaryButton>
+        <div className={styles.linksContainer}>
+          <Link className={styles.links} to="/">
+            回到首頁
+          </Link>
+        </div>
       </div>
     </div>
   )

@@ -93,12 +93,13 @@
   .expand {
     display: inline-block;
   }
-  &:hover {
-    background-color: var(--primary-color);
-    color: white;
-    .icon {
-      fill: white;
-    }
+}
+.active,
+.listItem:hover {
+  background-color: var(--primary-color);
+  color: white;
+  .icon {
+    fill: white;
   }
 }
 

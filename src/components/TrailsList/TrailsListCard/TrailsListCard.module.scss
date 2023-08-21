@@ -36,6 +36,7 @@
 .descriptionContainer {
   margin-top: 10px;
   font-size: 16px;
+  max-width: 298px;
   .descriptionType1 {
     margin-bottom: 8px;
     font-weight: 700;
@@ -45,6 +46,8 @@
     }
   }
   .descriptionType2 {
+    display: flex;
+    flex-wrap: wrap;
     margin-bottom: 5px;
     font-size: 14px;
     color: var(--dark-70);

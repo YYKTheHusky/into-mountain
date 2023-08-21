@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Toast from 'utils/sweetAlertConfig.js'
+import { WebsiteError } from 'utils/AlertCollection'
 // scss
 import styles from 'pages/SingleTrailPage/SingleTrailPage.module.scss'
 
@@ -79,23 +80,30 @@ export default function SingleTrailPage() {
 
   useEffect(() => {
     const getData = async () => {
-      const [{ trailData }, { report }] = await Promise.all([
-        getOneTrail(trailID),
-        getConditions(trailID)
-      ])
-      setData(trailData)
-      setReport(report)
+      try {
+        const [{ trailData }, { report }] = await Promise.all([
+          getOneTrail(trailID),
+          getConditions(trailID)
+        ])
+        setData(trailData)
+        setReport(report)
+      } catch (error) {
+        WebsiteError()
+      }
     }
     getData()
   }, [])
 
   useEffect(() => {
     const needReRender = async () => {
-      if (reRender) {
-        const { report } = await getConditions(trailID)
-        setReport(report)
-        setReRender(false)
-      }
+      if (reRender)
+        try {
+          const { report } = await getConditions(trailID)
+          setReport(report)
+          setReRender(false)
+        } catch (error) {
+          WebsiteError()
+        }
     }
     needReRender()
   }, [reRender])
