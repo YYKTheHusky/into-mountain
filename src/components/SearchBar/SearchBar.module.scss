@@ -7,6 +7,9 @@
   position: relative;
   width: 550px;
   height: 52px;
+  &:hover {
+    transform: scale(1.03);
+  }
   .searchInput {
     height: 40px;
     margin-top: 2px;
@@ -18,9 +21,6 @@
     transform: translate(0, -50%);
     font-size: 18px;
     outline: none;
-    &:focus {
-      outline: none;
-    }
   }
   .searchIcon {
     position: absolute;
@@ -35,6 +35,9 @@
     top: 50%;
     right: 22px;
     transform: translate(0, -50%);
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
 // 首頁用search bar
