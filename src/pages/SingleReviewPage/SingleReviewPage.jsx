@@ -38,6 +38,7 @@ export default function SingleReviewPage() {
   const { reviewID } = useParams()
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isReportModalOpen, setIsReportModalOpen] = useState(false)
+  const [currentUserId, setCurrentUserId] = useState('')
 
   // 開啟/關閉share內容
   const handleShareClick = () => {
@@ -130,6 +131,7 @@ export default function SingleReviewPage() {
 
   useEffect(() => {
     const getPost = async () => {
+      setCurrentUserId(Number(localStorage.getItem('currentUserId')))
       const { status, postData, message } = await getOnePost(reviewID)
       if (status === 'success') {
         const updatedPost = {
@@ -182,17 +184,19 @@ export default function SingleReviewPage() {
                       >
                         {post.User.name}
                       </span>
-                      <div className={styles.buttonContainer}>
-                        {post.User.isFollow ? (
-                          <SecondaryButtonGray onClick={handleUnFollow}>
-                            已追蹤
-                          </SecondaryButtonGray>
-                        ) : (
-                          <SecondaryButton onClick={handleFollow}>
-                            關注作者
-                          </SecondaryButton>
-                        )}
-                      </div>
+                      {post.User.id !== currentUserId && (
+                        <div className={styles.buttonContainer}>
+                          {post.User.isFollow ? (
+                            <SecondaryButtonGray onClick={handleUnFollow}>
+                              已追蹤
+                            </SecondaryButtonGray>
+                          ) : (
+                            <SecondaryButton onClick={handleFollow}>
+                              關注作者
+                            </SecondaryButton>
+                          )}
+                        </div>
+                      )}
                     </div>
                     <div className={styles.otherInfo}>
                       <span>{post.createdAt} 發表</span>
@@ -253,11 +257,16 @@ export default function SingleReviewPage() {
                   <IconRadioInput
                     iconType="difficulty"
                     score={post.difficulty}
+                    staticIcon="true"
                   />
                 </div>
                 <div className={styles.icon}>
                   <span>推薦指數</span>
-                  <IconRadioInput iconType="recommend" score={post.recommend} />
+                  <IconRadioInput
+                    iconType="recommend"
+                    score={post.recommend}
+                    staticIcon="true"
+                  />
                 </div>
               </div>
               <div className={styles.tag}>
