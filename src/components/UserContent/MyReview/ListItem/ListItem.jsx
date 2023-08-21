@@ -71,7 +71,7 @@ const ListItemContent = ({ data, theUserId, onDeletePost }) => {
           )}
         </div>
         <p>
-          {String(data.description)}
+          {data.description ? String(data.description) : ''}
           {String(data.description).length === 200 && '...'}
         </p>
         <div className={itemRightTime}>
