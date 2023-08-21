@@ -10,7 +10,6 @@ import { ReactComponent as FavoriteIcon } from 'assets/icons/icon-label.svg'
 import { ReactComponent as LikeIcon } from 'assets/icons/like-icon.svg'
 import { ReactComponent as ShareIcon } from 'assets/icons/share-icon.svg'
 import { ReactComponent as ReportIcon } from 'assets/icons/report-icon.svg'
-import UserIcon from 'assets/icons/user.svg'
 
 // components
 import { SecondaryButton, SecondaryButtonGray } from 'components/Button/Button'
@@ -21,6 +20,7 @@ import IconRadioInput from 'components/Input/IconRadioInput'
 import ReviewSkeleton from 'components/Skeleton/ReviewSkeleton'
 import ReportPostModal from 'components/Modal/ReportPostModal'
 import ShareModal from 'components/Modal/ShareModal'
+import { Avatar } from 'components/Avatar/Avatar'
 
 // api
 import {
@@ -168,14 +168,14 @@ export default function SingleReviewPage() {
                 <div className={styles.author}>
                   <div className={styles.authorInfo}>
                     <div className={styles.nameAndFollow}>
-                      <img
-                        className={`cursor-point ${styles.avatar}`}
-                        src={post.User.avatar ? post.User.avatar : UserIcon}
-                        alt="user-avatar"
-                        onClick={() =>
-                          navigate(`/user/${post.User.id}/myReviews`)
-                        }
-                      />
+                      <div className={`cursor-point ${styles.avatar}`}>
+                        <Avatar
+                          avatar={post.User.avatar}
+                          onClick={() =>
+                            navigate(`/user/${post.User.id}/myReviews`)
+                          }
+                        />
+                      </div>
                       <span
                         className={`cursor-point ${styles.authorName}`}
                         onClick={() =>
