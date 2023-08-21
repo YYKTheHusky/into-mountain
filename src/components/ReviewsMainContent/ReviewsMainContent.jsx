@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import { WebsiteError } from 'utils/AlertCollection'
 // scss
 import styles from './ReviewsMainContent.module.scss'
 // component
@@ -36,7 +37,7 @@ const ReviewsMainContent = () => {
           setReviewData((pre) => pre.filter((item) => item.category === value))
         }
       } catch (error) {
-        console.error(error)
+        WebsiteError()
       }
     } else if (value === null) {
       setFilterOption(null)
@@ -55,14 +56,14 @@ const ReviewsMainContent = () => {
           const { posts } = await getAllPost()
           setReviewData(posts)
         } catch (error) {
-          console.error(error)
+          WebsiteError()
         }
       } else {
         try {
           const { posts } = await searchPostByKeyword(keyword)
           setReviewData(posts)
         } catch (error) {
-          console.error(error)
+          WebsiteError()
         }
       }
     }
