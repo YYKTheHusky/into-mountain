@@ -202,35 +202,24 @@ const AdminMainContent = ({
   onSuspend,
   onRemoveSuspend,
   onEditReportSolved,
-  onDeletePost
+  onDeletePost,
+  dataLength
 }) => {
-  let userCount
-  let susCount
-  let unSolvedCount
-  if (page === 'userList') {
-    userCount = data.length
-  }
-  if (page === 'susUserList') {
-    susCount = data.filter((item) => item.isSuspended).length
-  }
-  if (page === 'reviewList') {
-    unSolvedCount = data.filter((item) => !item.isSolved).length
-  }
   return (
     <>
       {page === 'userList' && (
         <div className={statisticsText}>
-          共有 <span>{userCount}</span> 位使用者
+          共有 <span>{dataLength}</span> 位使用者
         </div>
       )}
       {page === 'susUserList' && (
         <div className={statisticsText}>
-          共有 <span>{susCount}</span> 位使用者被停權
+          共有 <span>{dataLength}</span> 位使用者被停權
         </div>
       )}
       {page === 'reviewList' && (
         <div className={statisticsText}>
-          尚有 <span>{unSolvedCount}</span> 筆被檢舉心得未處理
+          尚有 <span>{dataLength}</span> 筆被檢舉心得未處理
         </div>
       )}
       <div className={adminMainContentContainer}>
