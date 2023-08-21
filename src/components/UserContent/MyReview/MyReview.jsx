@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 // style
 import styles from './MyReview.module.scss'
 // api
-import { getUserPosts, deletePost } from 'api/user'
+import { getUserPosts, getUserAllPosts, deletePost } from 'api/user'
 
 const { myReviewContainer } = styles
 
@@ -18,23 +18,36 @@ const MyReview = ({ theUserId }) => {
   const handleDeletePost = async (id) => {
     try {
       await deletePost(id)
-      setDataList((pre)=> pre.filter((item)=> item.id !== id))
+      setDataList((pre) => pre.filter((item) => item.id !== id))
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    const getUserPostsAsync = async () => {
-      try {
-        const data = await getUserPosts(theUserId)
-        setDataList(data)
-        setDataIsLoading(false)
-      } catch (error) {
-        console.error(error)
+    if (theUserId === localStorage.getItem('currentUserId')) {
+      const getUserAllPostsAsync = async () => {
+        try {
+          const res = await getUserAllPosts()
+          setDataList(res)
+          setDataIsLoading(false)
+        } catch (error) {
+          console.error(error)
+        }
       }
+      getUserAllPostsAsync()
+    } else {
+      const getUserPostsAsync = async () => {
+        try {
+          const res = await getUserPosts(theUserId)
+          setDataList(res)
+          setDataIsLoading(false)
+        } catch (error) {
+          console.error(error)
+        }
+      }
+      getUserPostsAsync()
     }
-    getUserPostsAsync()
   }, [theUserId])
 
   return (

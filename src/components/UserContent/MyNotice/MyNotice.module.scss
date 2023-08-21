@@ -1,4 +1,5 @@
 .myNoticeContainer {
+  // position: relative;
   .noticeItem {
     margin-top: 20px;
     padding: 15px;
@@ -26,6 +27,9 @@
     &.unRead {
       cursor: pointer;
       background-color: var(--dark-30);
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }

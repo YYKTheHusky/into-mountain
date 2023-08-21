@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import styles from './UpLoad.module.scss'
 import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
-const { upLoadContainer, avatar, defaultImg } = styles
+const { upLoadContainer, avatar, defaultImg, text } = styles
 
 const AVT = ({ theUserData }) => {
   if (theUserData.avatar === null) {
@@ -19,6 +19,9 @@ const UpLoad = ({ onAvatarImg, theUserData }) => {
   }
   const handleImageChange = (e) => {
     const file = e.target.files[0]
+    if (file.size > 1024 * 1024 * 10) {
+      return
+    }
     onAvatarImg(file)
     setImage(file)
   }
@@ -36,7 +39,13 @@ const UpLoad = ({ onAvatarImg, theUserData }) => {
           </div>
         )}
       </div>
-      <button onClick={() => handleImageClick()}>上傳照片</button>
+      <div>
+        <button onClick={() => handleImageClick()}>上傳照片</button>
+        <div className={text}>
+          (檔案大小上限 <span>10MB</span>)
+        </div>
+      </div>
+
       <input
         type="file"
         ref={inpuRef}

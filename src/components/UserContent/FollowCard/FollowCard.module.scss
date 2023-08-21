@@ -15,6 +15,7 @@
   align-items: center;
   justify-content: space-around;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
   &:hover {
     border: 3px solid var(--blue-40);
   }
@@ -27,6 +28,7 @@
       max-width: 100px;
       overflow: hidden;
       text-overflow: ellipsis;
+      line-height: 20px;
     }
   }
   .cardAvatar {
@@ -45,7 +47,6 @@
       height: 100%;
       border-radius: 50%;
       overflow: hidden;
-      border: 5px solid var(--primary-color);
     }
   }
 }

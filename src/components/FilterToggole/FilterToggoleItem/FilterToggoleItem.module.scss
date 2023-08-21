@@ -57,6 +57,14 @@
       opacity: 1;
       transform: translateY(5%);
     }
+    .clearStyle {
+      border-top: 1px solid var(--dark-70);
+      color: var(--dark-70);
+      &:hover {
+        background-color: transparent;
+        color: var(--dark-60);
+      }
+    }
   }
   li {
     list-style: none;

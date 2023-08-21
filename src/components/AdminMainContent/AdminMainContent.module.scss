@@ -33,6 +33,11 @@
     &:hover {
       color: var(--main-color);
     }
+    &.isSusTitle {
+      &:hover {
+        color: var(--dark-70);
+      }
+    }
   }
   .btn {
     border: 0;
@@ -53,12 +58,20 @@
     overflow-wrap: break-word;
   }
 }
-
+.statisticsText {
+  text-align: start;
+  width: 60vw;
+  margin: 0 auto 10px auto;
+  span {
+    color: red;
+    font-weight: 700;
+  }
+}
 .adminMainContentContainer {
-  height: calc(100vh - 140px);
+  height: calc(100vh - 150px);
   min-width: 295px;
   width: 70vw;
-  margin: 20px auto 0 auto;
+  margin: 10px auto 0 auto;
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: thin;
@@ -89,6 +102,13 @@
       height: 100%;
       padding: 10px 5px;
       .userItemRightButton {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        &:hover {
+          color: var(--main-color);
+        }
         .unSus {
           @extend .btn;
           background-color: #ed4960;
@@ -153,12 +173,23 @@
       .reviewItemRightName {
         @extend .name;
         width: 157px;
+        &:hover {
+          color: var(--dark-70);
+        }
       }
       .reviewItemRightMail {
         @extend .description;
       }
       .reviewItemRightDescription {
         @extend .description;
+        .linkStyle {
+          text-decoration: none;
+          font-weight: 500;
+          color: var(--main-color);
+          &:hover {
+            opacity: 0.9;
+          }
+        }
       }
     }
     &.solved {
@@ -210,6 +241,10 @@
         img {
           width: 300px;
         }
+      }
+      .warningIconStyle {
+        width: 100%;
+        height: 100%;
       }
       .reviewItemRight {
         width: 100%;

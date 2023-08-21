@@ -1,18 +1,31 @@
 import { useRef, useState } from 'react'
 import { ReactComponent as IconChevronRight } from 'assets/icons/icon-chevron-right.svg'
 import styles from './FilterToggoleItem.module.scss'
-const { selectOption, icon, active, options } = styles
+const { selectOption, icon, active, options, clearStyle } = styles
 
-const FilterToggoleItem = ({ optionList, listName, onFilterOption }) => {
+const FilterToggoleItem = ({
+  optionList,
+  listName,
+  filterOption,
+  onFilterOption
+}) => {
   const [openSelect, setOpenSelect] = useState(false)
   const inputRef = useRef()
   const handleSelectValue = (e) => {
     inputRef.current.value = e.target.outerText
     setOpenSelect(false)
-    onFilterOption({ type: listName, value: e.target.outerText })
+    onFilterOption({
+      type: listName,
+      value: e.target.outerText
+    })
   }
   const handleOpenOption = () => {
     setOpenSelect(true)
+  }
+  const handleClearFilter = () => {
+    inputRef.current.value = ''
+    setOpenSelect(false)
+    onFilterOption({ type: listName, value: '' })
   }
   return (
     <div className={selectOption}>
@@ -37,6 +50,9 @@ const FilterToggoleItem = ({ optionList, listName, onFilterOption }) => {
             {item}
           </li>
         ))}
+        <li className={clearStyle} onClick={handleClearFilter} key="clear">
+          清空
+        </li>
       </div>
     </div>
   )

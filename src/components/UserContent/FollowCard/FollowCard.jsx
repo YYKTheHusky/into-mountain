@@ -1,7 +1,10 @@
 import styles from './FollowCard.module.scss'
 import { SecondaryButton } from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
-import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
+import iconUser, {
+  ReactComponent as IconDefaultUser
+} from 'assets/icons/icon-user.svg'
+
 const {
   followerCardCointainer,
   cardHead,
@@ -31,7 +34,13 @@ const FollowerCard = ({ data, follow, onFollow }) => {
             <IconDefaultUser className={defaultImg} />
           ) : (
             <div className={userAvatar}>
-              <img src={follow.avatar} alt="" />
+              <img
+                src={follow.avatar}
+                onError={(e) => {
+                  e.target.src = iconUser
+                }}
+                alt="avatar"
+              />
             </div>
           )}
         </div>
@@ -44,7 +53,7 @@ const FollowerCard = ({ data, follow, onFollow }) => {
             onFollow?.({ isFollow: data.isFollow, id: theId })
           }}
         >
-          {data.isFollow ? '追隨中' : '追隨'}
+          {data.isFollow ? '追蹤中' : '關注'}
         </SecondaryButton>
       </div>
     </div>

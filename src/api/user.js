@@ -28,6 +28,21 @@ export const getUserPosts = async (id) => {
   }
 }
 
+// 取得特定使用者所有Posts (含草稿)
+export const getUserAllPosts = async () => {
+  try {
+    const data = await axiosInstance.get(`/posts/all`)
+    if (data) {
+      return data.data.data
+    }
+  } catch (error) {
+    console.error('[Get User All Posts Failed]:', error)
+    const { message } = error.response.data
+    return { success: false, message }
+  }
+}
+
+
 // 取得特定使用者所有收藏的心得
 export const getUserFavoritePost = async (id) => {
   try {

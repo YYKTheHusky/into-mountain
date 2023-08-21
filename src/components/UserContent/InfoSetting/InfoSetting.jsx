@@ -154,8 +154,8 @@ const InfoSetting = ({ theUserData, onUpdateCardInfo }) => {
       if (avatarImg !== '') {
         data.avatar = avatarImg
       }
-      const res = await editUserData({ data })
-      console.log(res)
+      await editUserData({ data })
+
       setIsSubmitting(false)
       onUpdateCardInfo()
       passwordRef.current.value = ''
