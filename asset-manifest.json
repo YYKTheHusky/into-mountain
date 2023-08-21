@@ -1,12 +1,16 @@
 {
   "files": {
-    "main.css": "/into-mountain/static/css/main.10f60cd4.css",
-    "main.js": "/into-mountain/static/js/main.37bc61d2.js",
+    "main.css": "/into-mountain/static/css/main.6e2a8e7e.css",
+    "main.js": "/into-mountain/static/js/main.aa8d9215.js",
     "static/js/787.e8148e4e.chunk.js": "/into-mountain/static/js/787.e8148e4e.chunk.js",
     "static/media/SignUpPage-photo.jpg": "/into-mountain/static/media/SignUpPage-photo.856bd107271056e44a0b.jpg",
-    "static/media/mainpage-photo.svg": "/into-mountain/static/media/mainpage-photo.f73e91f456ba580462c6420635d70bc0.svg",
     "static/media/AdminPage-photo.JPG": "/into-mountain/static/media/AdminPage-photo.22243bb486c2ee6c2f09.JPG",
     "static/media/LoginPage-photo.JPG": "/into-mountain/static/media/LoginPage-photo.b0702f505054a36648f6.JPG",
+    "static/media/mainpage-photo.JPG": "/into-mountain/static/media/mainpage-photo.a1b08f945e4ca38e92e2.JPG",
+    "static/media/LoginPage-photo-placeholder.jpg": "/into-mountain/static/media/LoginPage-photo-placeholder.434257d1b8b656260837.jpg",
+    "static/media/AdminPage-photo-placeholder.jpg": "/into-mountain/static/media/AdminPage-photo-placeholder.0435b16b8e522ad2ee85.jpg",
+    "static/media/SignUpPage-photo-placeholder.jpg": "/into-mountain/static/media/SignUpPage-photo-placeholder.b57cc20963b1b789f808.jpg",
+    "static/media/mainpage-photo-placeholder.jpg": "/into-mountain/static/media/mainpage-photo-placeholder.b70995b6722e3c81b867.jpg",
     "static/media/YWJ.png": "/into-mountain/static/media/YWJ.888b75e9dface3fd0e21.png",
     "static/media/Kelly.jpg": "/into-mountain/static/media/Kelly.1c13425f99a8845b2ff5.jpg",
     "static/media/CH Chu.jpg": "/into-mountain/static/media/CH Chu.c5e45ee6f1891c45c254.jpg",
@@ -14,7 +18,6 @@
     "static/media/recommended-like-active.svg": "/into-mountain/static/media/recommended-like-active.1eaee5dc1141c9b3889b8091a3a09671.svg",
     "static/media/difficulty-white.svg": "/into-mountain/static/media/difficulty-white.cc960fb168194688f3845336accf810d.svg",
     "static/media/difficulty.svg": "/into-mountain/static/media/difficulty.dd4a1f83c6a49be591276287fdc902d1.svg",
-    "static/media/icon-filter.svg": "/into-mountain/static/media/icon-filter.5cd1b0087e072e1a36d9eb8f9f0a2b61.svg",
     "static/media/report-icon.svg": "/into-mountain/static/media/report-icon.ba9da48ba25fd7f3df0c90f8d909d5f3.svg",
     "static/media/recommended-like.svg": "/into-mountain/static/media/recommended-like.2a720af9174500d0d1f0d25c9ff0e33b.svg",
     "static/media/location-blue.svg": "/into-mountain/static/media/location-blue.31e3face54cc1cfc9685bdfb5b7c0dad.svg",
@@ -41,6 +44,7 @@
     "static/media/icon-notification2.svg": "/into-mountain/static/media/icon-notification2.5bf9b10c54f1b332eff0be38737807b4.svg",
     "static/media/icon-align-left.svg": "/into-mountain/static/media/icon-align-left.9d556f567d3155602d7dd0aa899d725a.svg",
     "static/media/icon-star.svg": "/into-mountain/static/media/icon-star.4bc5f73efba6af11caf941603c255092.svg",
+    "static/media/icon-warning.svg": "/into-mountain/static/media/icon-warning.dde3cf5c444d79237cf93846d403b15e.svg",
     "static/media/icon-user-large-slash.svg": "/into-mountain/static/media/icon-user-large-slash.9fdadc42fd67395423fd0129b0920cfc.svg",
     "static/media/icon-label.svg": "/into-mountain/static/media/icon-label.923b1c10b8e63c0296c1edbcf5d6a73f.svg",
     "static/media/icon-xmark.svg": "/into-mountain/static/media/icon-xmark.50afdf305ad820af48502c2ef4696359.svg",
@@ -52,13 +56,14 @@
     "static/media/icon-person.svg": "/into-mountain/static/media/icon-person.2a218d2d09e2e2c002e8df42990266b3.svg",
     "static/media/icon-caret-left.svg": "/into-mountain/static/media/icon-caret-left.64cb70d76fc8e91eb8d332dcbef171dd.svg",
     "static/media/icon-chevron-right.svg": "/into-mountain/static/media/icon-chevron-right.44b4b08d506fc77c9799feeb7c5c85e4.svg",
-    "static/media/icon-add.svg": "/into-mountain/static/media/icon-add.91e01cb0ca463b43ea213943391c6858.svg",
-    "main.10f60cd4.css.map": "/into-mountain/static/css/main.10f60cd4.css.map",
-    "main.37bc61d2.js.map": "/into-mountain/static/js/main.37bc61d2.js.map",
+    "static/media/icon-add.svg": "/into-mountain/static/media/icon-add.920fc624fa2bb5079c8050c223cb9501.svg",
+    "static/media/icon-minus.svg": "/into-mountain/static/media/icon-minus.672f7d7bd46d2e4c3d229012dfe58feb.svg",
+    "main.6e2a8e7e.css.map": "/into-mountain/static/css/main.6e2a8e7e.css.map",
+    "main.aa8d9215.js.map": "/into-mountain/static/js/main.aa8d9215.js.map",
     "787.e8148e4e.chunk.js.map": "/into-mountain/static/js/787.e8148e4e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.10f60cd4.css",
-    "static/js/main.37bc61d2.js"
+    "static/css/main.6e2a8e7e.css",
+    "static/js/main.aa8d9215.js"
   ]
 }
