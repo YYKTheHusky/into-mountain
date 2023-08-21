@@ -103,7 +103,7 @@ export const getUserFollowers = async (id) => {
 // 取得特定使用者的所有通知
 export const getUserNotifications = async (id) => {
   try {
-    const data = await axios.get(`${baseURL}/users/${id}/notifications`)
+    const data = await axiosInstance.get(`/users/${id}/notifications`)
     if (data) {
       return data.data.data
     }

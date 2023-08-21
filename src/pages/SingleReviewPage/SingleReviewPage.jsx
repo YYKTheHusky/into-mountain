@@ -52,11 +52,6 @@ export default function SingleReviewPage() {
       const updatedUser = { ...post.User, isFollow: true }
       const updatedPost = { ...post, User: updatedUser }
       setPost(updatedPost)
-    } else {
-      Toast.fire({
-        icon: 'error',
-        title: '追蹤時遇到一點問題!'
-      })
     }
   }
 
@@ -67,11 +62,6 @@ export default function SingleReviewPage() {
       const updatedUser = { ...post.User, isFollow: false }
       const updatedPost = { ...post, User: updatedUser }
       setPost(updatedPost)
-    } else {
-      Toast.fire({
-        icon: 'error',
-        title: '退追蹤時遇到一點問題!'
-      })
     }
   }
 
@@ -82,22 +72,12 @@ export default function SingleReviewPage() {
       if (success) {
         const updatedPost = { ...post, isLike: true }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '按讚時遇到一點問題!'
-        })
       }
     } else if (post.isLike) {
       const { success } = await dislikePost(reviewID)
       if (success) {
         const updatedPost = { ...post, isLike: false }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '取消讚時遇到一點問題!'
-        })
       }
     }
   }
@@ -109,22 +89,12 @@ export default function SingleReviewPage() {
       if (success) {
         const updatedPost = { ...post, isFavorite: true }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '收藏時遇到一點問題!'
-        })
       }
     } else if (post.isFavorite) {
       const { success } = await discollectPost(reviewID)
       if (success) {
         const updatedPost = { ...post, isFavorite: false }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '取消收藏時遇到一點問題!'
-        })
       }
     }
   }

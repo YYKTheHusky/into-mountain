@@ -96,10 +96,6 @@ export default function EditReviewPage() {
           navigate(`/review/${postId}`)
         } else if (!postId) {
           setIsLoading('')
-          Toast.fire({
-            icon: 'error',
-            title: '發布失敗!'
-          })
         }
       } else if (!isNewPost) {
         // 編輯舊文章，編輯草稿後發布
@@ -117,10 +113,6 @@ export default function EditReviewPage() {
           navigate(`/review/${reviewID}`)
         } else if (!success) {
           setIsLoading('')
-          Toast.fire({
-            icon: 'error',
-            title: '編輯失敗!'
-          })
         }
       }
     }
@@ -151,10 +143,6 @@ export default function EditReviewPage() {
         navigate(`/review/${reviewID}`)
       } else if (!success) {
         setIsLoading('')
-        Toast.fire({
-          icon: 'error',
-          title: '編輯失敗!'
-        })
       }
     }
   }
@@ -180,16 +168,16 @@ export default function EditReviewPage() {
         navigate(`/user/${currentUserId}/myReviews`)
       } else if (!postId) {
         setIsLoading('')
-        Toast.fire({
-          icon: 'error',
-          title: '暫存心得失敗!'
-        })
       }
     }
   }
 
   useEffect(() => {
     const editOrNew = async () => {
+      const token = localStorage.getItem('token')
+      if (!token) {
+        navigate('/login')
+      }
       if (location.pathname === '/newReview') {
         setIsNewPost(true)
       } else {
