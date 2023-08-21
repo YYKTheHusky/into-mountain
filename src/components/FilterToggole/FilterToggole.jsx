@@ -1,9 +1,9 @@
 // import { useState } from 'react'
 import styles from './FilterToggole.module.scss'
 // import { ReactComponent as IconChevronUp } from 'assets/icons/icon-chevron-up.svg'
-import FilterModal from './FilterModal/FilterModal'
+// import FilterModal from './FilterModal/FilterModal'
 import FilterToggoleItem from './FilterToggoleItem/FilterToggoleItem'
-const { filterIcon, filterToggoleGroup } = styles
+const { filterToggoleGroup } = styles
 
 const FilterToggole = ({ filterList, onFilterOption }) => {
   const listName = Object.keys(filterList)
@@ -21,9 +21,9 @@ const FilterToggole = ({ filterList, onFilterOption }) => {
         ))}
       </div>
       {/* 手機板縮小至modal */}
-      <div className={filterIcon}>
+      {/* <div className={filterIcon}>
         <FilterModal list={filterList} />
-      </div>
+      </div> */}
     </div>
   )
 }

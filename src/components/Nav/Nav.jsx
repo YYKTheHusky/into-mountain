@@ -6,7 +6,9 @@ import { ReactComponent as IconUser } from 'assets/icons/icon-user.svg'
 import BurgerModal from 'components/BurgerModal/BurgerModal'
 import { OvalButtonSmall } from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+import { getUserNotifications } from 'api/user'
 
 const {
   navContainer,
@@ -19,7 +21,8 @@ const {
   avatar,
   burger,
   postReviewButton,
-  innerContainer
+  innerContainer,
+  notificationContainer
 } = styles
 
 const Avt = ({ currentUserId, currentUserAvatar }) => {
@@ -52,12 +55,33 @@ const Avt = ({ currentUserId, currentUserAvatar }) => {
 }
 
 const Nav = ({ updateCardInfo }) => {
+  const [notiData, setNotiData] = useState(null)
   const navigate = useNavigate()
   const currentUserId = localStorage.getItem('currentUserId')
   let currentUserAvatar = localStorage.getItem('currentUserAvatar')
 
   useEffect(() => {
     currentUserAvatar = localStorage.getItem('currentUserAvatar')
+  }, [updateCardInfo])
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      try {
+        const getUserNotificationsAsync = async () => {
+          const data = await getUserNotifications(
+            localStorage.getItem('currentUserId')
+          )
+          if (data.filter((item) => !item.isRead).length > 0) {
+            setNotiData(data.filter((item) => !item.isRead))
+          } else {
+            setNotiData(null)
+          }
+        }
+        getUserNotificationsAsync()
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }, [updateCardInfo])
 
   return (
@@ -91,16 +115,19 @@ const Nav = ({ updateCardInfo }) => {
               <IconAdd /> <span>我的心得</span>
             </OvalButtonSmall>
           </div>
-          <IconNotification
-            className={rightListIcon}
-            onClick={() => {
-              if (currentUserId) {
-                navigate(`/user/${currentUserId}/notification`)
-              } else {
-                navigate('/login')
-              }
-            }}
-          />
+          <span className={notificationContainer}>
+            <IconNotification
+              className={rightListIcon}
+              onClick={() => {
+                if (currentUserId) {
+                  navigate(`/user/${currentUserId}/notification`)
+                } else {
+                  navigate('/login')
+                }
+              }}
+            />
+            {notiData && <span></span>}
+          </span>
           <Avt
             currentUserId={currentUserId}
             currentUserAvatar={currentUserAvatar}

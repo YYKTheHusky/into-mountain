@@ -33,7 +33,7 @@ const UserContent = ({
   } else if (acitveContent === 'notification') {
     return (
       <div className={userContentContainer}>
-        <MyNotice />
+        <MyNotice onUpdateCardInfo={onUpdateCardInfo} />
       </div>
     )
   } else if (acitveContent === 'following') {

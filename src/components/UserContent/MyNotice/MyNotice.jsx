@@ -25,21 +25,34 @@ const {
 } = styles
 
 const NoticeItem = ({ item, onRead }) => {
-  return (
-    <div
-      className={item.isRead ? noticeItem : `${noticeItem} ${unRead}`}
-      onClick={() => onRead?.(item.id)}
-    >
-      <span className={itemTitle}>一筆心得遭到檢舉！</span>
-      <span className={itemRead}>{!item.isRead && '未讀'}</span>
-      <div className={itemContent}>{item.notify}</div>
-      <div className={itemTime}>
-        檢舉時間：{formatDateWithTime(item.createdAt)}
+  if (!item.isRead) {
+    return (
+      <div
+        className={item.isRead ? noticeItem : `${noticeItem} ${unRead}`}
+        onClick={() => onRead?.(item.id)}
+      >
+        <span className={itemTitle}>一筆心得遭到檢舉！</span>
+        <span className={itemRead}>{!item.isRead && '未讀'}</span>
+        <div className={itemContent}>{item.notify}</div>
+        <div className={itemTime}>
+          檢舉時間：{formatDateWithTime(item.createdAt)}
+        </div>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div className={item.isRead ? noticeItem : `${noticeItem} ${unRead}`}>
+        <span className={itemTitle}>一筆心得遭到檢舉！</span>
+        <span className={itemRead}>{!item.isRead && '未讀'}</span>
+        <div className={itemContent}>{item.notify}</div>
+        <div className={itemTime}>
+          檢舉時間：{formatDateWithTime(item.createdAt)}
+        </div>
+      </div>
+    )
+  }
 }
-const MyNotice = () => {
+const MyNotice = ({ onUpdateCardInfo }) => {
   const [noticeData, setNoticeData] = useState([])
   const [dataIsLoading, setDataIsLoading] = useState(true)
   const id = localStorage.getItem('currentUserId')
@@ -61,8 +74,9 @@ const MyNotice = () => {
     } catch (error) {
       console.error(error)
     }
+    onUpdateCardInfo()
   }
-
+  const [noticeIsReadCount, setNoticeIsReadCount] = useState(0)
   useEffect(() => {
     const getUserNotificationsAsync = async () => {
       try {
@@ -76,8 +90,12 @@ const MyNotice = () => {
     getUserNotificationsAsync()
   }, [])
 
+  useEffect(() => {
+    setNoticeIsReadCount(noticeData.filter((item) => !item.isRead).length)
+  }, [noticeData])
+
   return (
-    <RightSideContainer title="通知">
+    <RightSideContainer title="通知" info={`${noticeIsReadCount}`}>
       <div className={myNoticeContainer}>
         {noticeData.length === 0 && !dataIsLoading && (
           <div>

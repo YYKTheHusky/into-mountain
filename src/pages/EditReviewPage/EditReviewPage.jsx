@@ -205,6 +205,9 @@ export default function EditReviewPage() {
           setTitle(postData.title)
           setDescription(postData.description)
           setUploadedImage(postData.image)
+          setDifficulty(postData.difficulty)
+          setRecommend(postData.recommend)
+          setCategory(postData.category)
           setIsLoading('')
         } else {
           Toast.fire({
@@ -245,15 +248,36 @@ export default function EditReviewPage() {
             {/* 心得分類 */}
             <label className={styles.inputLabel}>心得分類</label>
             <div>
-              <input type="radio" id="baiyue" name="category" value="百岳" />
+              <input
+                type="radio"
+                id="baiyue"
+                name="category"
+                value="百岳"
+                checked={category === '百岳'}
+                readOnly
+              />
               <label htmlFor="baiyue" onClick={(e) => setCategory('百岳')}>
                 百岳
               </label>
-              <input type="radio" id="subur" name="category" value="郊山" />
+              <input
+                type="radio"
+                id="subur"
+                name="category"
+                value="郊山"
+                checked={category === '郊山'}
+                readOnly
+              />
               <label htmlFor="subur" onClick={(e) => setCategory('郊山')}>
                 郊山
               </label>
-              <input type="radio" id="oversea" name="category" value="海外" />
+              <input
+                type="radio"
+                id="oversea"
+                name="category"
+                value="海外"
+                checked={category === '海外'}
+                readOnly
+              />
               <label htmlFor="oversea" onClick={(e) => setCategory('海外')}>
                 海外
               </label>
@@ -263,12 +287,14 @@ export default function EditReviewPage() {
             <IconRadioInput
               iconType="difficulty"
               onChange={handleDifficultyChange}
+              score={difficulty}
             />
             {/* 推薦指數 */}
             <label className={styles.inputLabel}>推薦指數</label>
             <IconRadioInput
               iconType="recommend"
               onChange={handleRecommendChange}
+              score={recommend}
             />
             {/* 上傳封面圖片 */}
             <label className={styles.inputLabel}>上傳封面圖片</label>
