@@ -85,24 +85,29 @@ const Pagination = ({
         onRemoveSuspend={onRemoveSuspend}
         onEditReportSolved={onEditReportSolved}
         onDeletePost={onDeletePost}
+        dataLength={data.length}
       />
-      <div className={paginationContainer}>
-        <ul className={pageNumbers}>
-          <button onClick={handlePreBtn} disabled={currentPage === pages[0]}>
-            上一頁
-          </button>
-          {pageDecrementBtn}
-          {renderPageNumbers}
-          {pageIncrementBtn}
+      {data.length > 0 && (
+        <div className={paginationContainer}>
+          <ul className={pageNumbers}>
+            <button onClick={handlePreBtn} disabled={currentPage === pages[0]}>
+              上一頁
+            </button>
+            {pageDecrementBtn}
+            {renderPageNumbers}
+            {pageIncrementBtn}
 
-          <button
-            onClick={handleNextBtn}
-            disabled={currentPage === pages[pages.length - 1]}
-          >
-            下一頁
-          </button>
-        </ul>
-        {/* {!(data.length - itemsPerPage * currentPage < itemsPerPage) ? (
+            <button
+              style={{
+                zIndex: currentPage === pages[pages.length - 1] ? '-1' : ''
+              }}
+              onClick={handleNextBtn}
+              disabled={currentPage === pages[pages.length - 1]}
+            >
+              下一頁
+            </button>
+          </ul>
+          {/* {!(data.length - itemsPerPage * currentPage < itemsPerPage) ? (
           <button onClick={handleLoadMore} className={loadmore}>
             更多
           </button>
@@ -111,7 +116,8 @@ const Pagination = ({
             更多
           </button>
         )} */}
-      </div>
+        </div>
+      )}
     </>
   )
 }
