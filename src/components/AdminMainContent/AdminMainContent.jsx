@@ -205,6 +205,10 @@ const AdminMainContent = ({
   onDeletePost,
   dataLength
 }) => {
+  let isSolvedCount
+  if (page === 'reviewList') {
+    isSolvedCount = data.filter((item) => !item.isSolved).length
+  }
   return (
     <>
       {page === 'userList' && (
@@ -219,7 +223,7 @@ const AdminMainContent = ({
       )}
       {page === 'reviewList' && (
         <div className={statisticsText}>
-          尚有 <span>{dataLength}</span> 筆被檢舉心得未處理
+          尚有 <span>{isSolvedCount}</span> 筆被檢舉心得未處理
         </div>
       )}
       <div className={adminMainContentContainer}>
