@@ -20,10 +20,11 @@ const {
   footerTrans,
   icon,
   logout,
-  adminPhoto
+  adminPhoto,
+  active
 } = styles
 
-const AdminNav = ({ onPage }) => {
+const AdminNav = ({ onPage, page }) => {
   const [navExpand, setNavExpand] = useState(false)
   const [fixed, setFixed] = useState(false)
   const navigate = useNavigate()
@@ -83,7 +84,7 @@ const AdminNav = ({ onPage }) => {
       >
         <div>
           <div
-            className={listItem}
+            className={`${listItem} ${page === 'userList' ? active : ''}`}
             title="使用者清單"
             onClick={() => {
               onPage?.('userList')
@@ -96,7 +97,7 @@ const AdminNav = ({ onPage }) => {
             </span>
           </div>
           <div
-            className={listItem}
+            className={`${listItem} ${page === 'susUserList' ? active : ''}`}
             title="被停權的使用者"
             onClick={() => {
               onPage?.('susUserList')
@@ -110,7 +111,7 @@ const AdminNav = ({ onPage }) => {
           </div>
 
           <div
-            className={listItem}
+            className={`${listItem} ${page === 'reviewList' ? active : ''}`}
             title="被檢舉的心得清單"
             onClick={() => {
               onPage?.('reviewList')
