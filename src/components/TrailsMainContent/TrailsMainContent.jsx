@@ -20,8 +20,8 @@ const { container, innerContainer, youHaveNothingContainer, search, list } =
 //
 const filterList = {
   難易度: ['低', '中', '高'],
-  里程: ['5公里以內', '10公里以內', '10公里以上'],
-  所需時間: ['1天以內', '大於1天', '超過1週']
+  里程: ['5公里以內', '5 - 10公里', '10公里以上'],
+  所需時間: ['單日行程', '多日行程', '超過1週']
 }
 
 const TrailsMainContent = () => {
@@ -64,11 +64,12 @@ const TrailsMainContent = () => {
               return parseFloat(item.distance.match(/\d+(\.\d+)?/)) < 5
             }
           }))
-        } else if (value === '10公里以內') {
+        } else if (value === '5 - 10公里') {
           setFilterOption((pre) => ({
             ...pre,
             distance: (item) => {
-              return parseFloat(item.distance.match(/\d+(\.\d+)?/)) <= 10
+              const distance = parseFloat(item.distance.match(/\d+(\.\d+)?/))
+              return distance >= 5 && distance <= 10
             }
           }))
         } else if (value === '10公里以上') {
@@ -91,14 +92,14 @@ const TrailsMainContent = () => {
     if (type === '所需時間') {
       setFilterOption((pre) => ({ ...pre, duration: value }))
       try {
-        if (value === '1天以內') {
+        if (value === '單日行程') {
           setFilterOption((pre) => ({
             ...pre,
             duration: (item) => {
               return !item.duration.split('').includes('天')
             }
           }))
-        } else if (value === '大於1天') {
+        } else if (value === '多日行程') {
           setFilterOption((pre) => ({
             ...pre,
             duration: (item) => {
