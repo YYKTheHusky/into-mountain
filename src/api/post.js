@@ -1,5 +1,6 @@
 import axiosInstance from 'api/AxiosInstance.js'
-import axiosAuthInstance from 'api/AxiosAuthInstance.js'
+import axios from 'axios'
+const baseURL = 'https://trail-finder-project-final-zkqznr2c5a-de.a.run.app/api'
 
 // 取得所有已發布文章
 export const getAllPost = async () => {
@@ -32,7 +33,7 @@ export const getOnePost = async (postId) => {
 // 取得一篇自己的文章，用來編輯
 export const getPostForEdit = async (postId) => {
   try {
-    const { data } = await axiosAuthInstance.get(`/posts/users/${postId}`)
+    const { data } = await axios.get(`${baseURL}/posts/users/${postId}`)
     if (data) {
       return { postData: data.data }
     }
@@ -46,7 +47,7 @@ export const getPostForEdit = async (postId) => {
 // 按讚文章
 export const likePost = async (postId) => {
   try {
-    const response = await axiosAuthInstance.post(`/posts/likes`, { postId })
+    const response = await axios.post(`${baseURL}/posts/likes`, { postId })
     if (response) {
       return { success: true }
     }
@@ -59,7 +60,7 @@ export const likePost = async (postId) => {
 // 取消讚文章
 export const dislikePost = async (postId) => {
   try {
-    const response = await axiosAuthInstance.delete(`/posts/likes/${postId}`)
+    const response = await axios.delete(`${baseURL}/posts/likes/${postId}`)
     if (response) {
       return { success: true }
     }
@@ -72,7 +73,7 @@ export const dislikePost = async (postId) => {
 // 收藏文章
 export const collectPost = async (postId) => {
   try {
-    const response = await axiosAuthInstance.post(`/posts/collects`, {
+    const response = await axios.post(`${baseURL}/posts/collects`, {
       postId
     })
     if (response) {
@@ -80,14 +81,14 @@ export const collectPost = async (postId) => {
     }
   } catch (error) {
     console.error('[Collect Post Failed]:', error)
-    return { success: false }
+    return { error }
   }
 }
 
 // 取消收藏文章
 export const discollectPost = async (postId) => {
   try {
-    const response = await axiosAuthInstance.delete(`/posts/collects/${postId}`)
+    const response = await axios.delete(`${baseURL}/posts/collects/${postId}`)
     if (response) {
       return { success: true }
     }
@@ -115,7 +116,7 @@ export const publishPost = async ({
     formData.append('difficulty', difficulty)
     formData.append('recommend', recommend)
 
-    const { data } = await axiosAuthInstance.post(`/posts`, formData)
+    const { data } = await axios.post(`${baseURL}/posts`, formData)
 
     if (data) {
       return { success: true, postId: data.data.postId }
@@ -147,7 +148,7 @@ export const editPost = async ({
     formData.append('recommend', recommend)
     formData.append('inProgress', inProgress)
 
-    const { data } = await axiosAuthInstance.put(`/posts/${reviewID}`, formData)
+    const { data } = await axios.put(`${baseURL}/posts/${reviewID}`, formData)
     if (data) {
       return { success: true }
     }
@@ -175,7 +176,7 @@ export const scratchPost = async ({
     formData.append('difficulty', difficulty)
     formData.append('recommend', recommend)
 
-    const { data } = await axiosAuthInstance.post(`/posts/cache`, formData)
+    const { data } = await axios.post(`${baseURL}/posts/cache`, formData)
 
     if (data) {
       return { success: true, postId: data.data.postId }
@@ -189,7 +190,7 @@ export const scratchPost = async ({
 // 刪除指定post
 export const deletePost = async (postId) => {
   try {
-    const response = await axiosAuthInstance.delete(`/posts/${postId}`)
+    const response = await axios.delete(`${baseURL}/posts/${postId}`)
     if (response) {
       return { success: true }
     }
@@ -233,7 +234,7 @@ export const getTopPosts = async (limit) => {
 // 檢舉心得
 export const addReport = async ({ postId, category, content }) => {
   try {
-    const { data } = await axiosAuthInstance.post(`/posts/report`, {
+    const { data } = await axios.post(`${baseURL}/posts/report`, {
       postId,
       category,
       content
