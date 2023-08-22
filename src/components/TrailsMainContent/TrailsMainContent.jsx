@@ -103,7 +103,11 @@ const TrailsMainContent = () => {
           setFilterOption((pre) => ({
             ...pre,
             duration: (item) => {
-              return item.duration.split('').includes('天')
+              return (
+                item.duration.split('').includes('天') &&
+                Number(/(\d+)\s+天/g.exec(item.duration)[1]) >= 1 &&
+                Number(/(\d+)\s+天/g.exec(item.duration)[1]) <= 7
+              )
             }
           }))
         } else if (value === '超過1週') {
