@@ -25,7 +25,7 @@ export default function MainPage() {
   useEffect(() => {
     const getData = async () => {
       const [{ trails }, { posts }] = await Promise.all([
-        getNTrails(5),
+        getNTrails(10),
         getTopPosts(10)
       ])
       setTrailData(trails)

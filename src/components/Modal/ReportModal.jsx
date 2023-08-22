@@ -33,11 +33,6 @@ export default function ReportModal({
       if (success) {
         setIsReportModalOpen(false)
         setReRender(true)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '發布失敗!'
-        })
       }
     }
   }

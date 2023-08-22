@@ -10,7 +10,6 @@ import { ReactComponent as FavoriteIcon } from 'assets/icons/icon-label.svg'
 import { ReactComponent as LikeIcon } from 'assets/icons/like-icon.svg'
 import { ReactComponent as ShareIcon } from 'assets/icons/share-icon.svg'
 import { ReactComponent as ReportIcon } from 'assets/icons/report-icon.svg'
-import UserIcon from 'assets/icons/user.svg'
 
 // components
 import { SecondaryButton, SecondaryButtonGray } from 'components/Button/Button'
@@ -21,6 +20,7 @@ import IconRadioInput from 'components/Input/IconRadioInput'
 import ReviewSkeleton from 'components/Skeleton/ReviewSkeleton'
 import ReportPostModal from 'components/Modal/ReportPostModal'
 import ShareModal from 'components/Modal/ShareModal'
+import { Avatar } from 'components/Avatar/Avatar'
 
 // api
 import {
@@ -52,11 +52,6 @@ export default function SingleReviewPage() {
       const updatedUser = { ...post.User, isFollow: true }
       const updatedPost = { ...post, User: updatedUser }
       setPost(updatedPost)
-    } else {
-      Toast.fire({
-        icon: 'error',
-        title: '追蹤時遇到一點問題!'
-      })
     }
   }
 
@@ -67,11 +62,6 @@ export default function SingleReviewPage() {
       const updatedUser = { ...post.User, isFollow: false }
       const updatedPost = { ...post, User: updatedUser }
       setPost(updatedPost)
-    } else {
-      Toast.fire({
-        icon: 'error',
-        title: '退追蹤時遇到一點問題!'
-      })
     }
   }
 
@@ -82,22 +72,12 @@ export default function SingleReviewPage() {
       if (success) {
         const updatedPost = { ...post, isLike: true }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '按讚時遇到一點問題!'
-        })
       }
     } else if (post.isLike) {
       const { success } = await dislikePost(reviewID)
       if (success) {
         const updatedPost = { ...post, isLike: false }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '取消讚時遇到一點問題!'
-        })
       }
     }
   }
@@ -109,22 +89,12 @@ export default function SingleReviewPage() {
       if (success) {
         const updatedPost = { ...post, isFavorite: true }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '收藏時遇到一點問題!'
-        })
       }
     } else if (post.isFavorite) {
       const { success } = await discollectPost(reviewID)
       if (success) {
         const updatedPost = { ...post, isFavorite: false }
         setPost(updatedPost)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '取消收藏時遇到一點問題!'
-        })
       }
     }
   }
@@ -168,14 +138,14 @@ export default function SingleReviewPage() {
                 <div className={styles.author}>
                   <div className={styles.authorInfo}>
                     <div className={styles.nameAndFollow}>
-                      <img
-                        className={`cursor-point ${styles.avatar}`}
-                        src={post.User.avatar ? post.User.avatar : UserIcon}
-                        alt="user-avatar"
-                        onClick={() =>
-                          navigate(`/user/${post.User.id}/myReviews`)
-                        }
-                      />
+                      <div className={`cursor-point ${styles.avatar}`}>
+                        <Avatar
+                          avatar={post.User.avatar}
+                          onClick={() =>
+                            navigate(`/user/${post.User.id}/myReviews`)
+                          }
+                        />
+                      </div>
                       <span
                         className={`cursor-point ${styles.authorName}`}
                         onClick={() =>

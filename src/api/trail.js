@@ -1,5 +1,6 @@
 import axiosInstance from 'api/AxiosInstance.js'
-import axiosAuthInstance from 'api/AxiosAuthInstance.js'
+import axios from 'axios'
+const baseURL = 'https://trail-finder-project-final-zkqznr2c5a-de.a.run.app/api'
 
 // 取得所有路徑
 export const getAllTrails = async () => {
@@ -45,7 +46,7 @@ export const getOneTrail = async (trailId) => {
 // 收藏一條路徑
 export const addFavoriteTrail = async (trailId) => {
   try {
-    const { data } = await axiosAuthInstance.post(`/trails/favorites`, {
+    const { data } = await axios.post(`${baseURL}/trails/favorites`, {
       trailId
     })
     if (data) {
@@ -60,8 +61,8 @@ export const addFavoriteTrail = async (trailId) => {
 // 取消收藏一條路徑
 export const deleteFavoriteTrail = async (trailId) => {
   try {
-    const { data } = await axiosAuthInstance.delete(
-      `/trails/favorites/${trailId}`
+    const { data } = await axios.delete(
+      `${baseURL}/trails/favorites/${trailId}`
     )
     if (data) {
       return { success: true }
@@ -103,10 +104,11 @@ export const getConditions = async (trailId) => {
 // 回報一篇路況回報
 export const postCondition = async ({ trailId, description }) => {
   try {
-    console.log(description)
-    const { data } = await axiosAuthInstance.post(
-      `/trails/conditions/${trailId}`,
-      { description }
+    const { data } = await axios.post(
+      `${baseURL}/trails/conditions/${trailId}`,
+      {
+        description
+      }
     )
     if (data) {
       return { success: true }

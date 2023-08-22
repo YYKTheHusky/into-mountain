@@ -40,10 +40,10 @@ export default function ReportPostModal({
           icon: 'success',
           title: '您已送出檢舉!'
         })
-      } else if (message) {
+      } else if (message === 'Error: You already reported this post!') {
         Toast.fire({
           icon: 'error',
-          title: '檢舉失敗! 請勿重複檢舉!'
+          title: '請勿重複檢舉!'
         })
       }
     }

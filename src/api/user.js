@@ -1,4 +1,6 @@
+import axios from 'axios'
 import axiosInstance from 'api/AxiosInstance.js'
+const baseURL = 'https://trail-finder-project-final-zkqznr2c5a-de.a.run.app/api'
 
 // 取得特定使用者資料
 export const getUserData = async (id) => {
@@ -31,7 +33,7 @@ export const getUserPosts = async (id) => {
 // 取得特定使用者所有Posts (含草稿)
 export const getUserAllPosts = async () => {
   try {
-    const data = await axiosInstance.get(`/posts/all`)
+    const data = await axios.get(`${baseURL}/posts/all`)
     if (data) {
       return data.data.data
     }
@@ -41,7 +43,6 @@ export const getUserAllPosts = async () => {
     return { success: false, message }
   }
 }
-
 
 // 取得特定使用者所有收藏的心得
 export const getUserFavoritePost = async (id) => {
@@ -116,7 +117,7 @@ export const getUserNotifications = async (id) => {
 // 將特定使用者的特定通知標示為「已讀」
 export const isReadNotification = async (id) => {
   try {
-    const res = await axiosInstance.put(`/users/notifications/${id}`)
+    const res = await axios.put(`${baseURL}/users/notifications/${id}`)
     if (res) {
       return res
     }
@@ -147,7 +148,7 @@ export const editUserData = async ({ data }) => {
   }
 
   try {
-    const res = await axiosInstance.put(`/users/${id}`, formData, {
+    const res = await axios.put(`${baseURL}/users/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -165,7 +166,7 @@ export const editUserData = async ({ data }) => {
 // 刪除指定post
 export const deletePost = async (postId) => {
   try {
-    const response = await axiosInstance.delete(`/posts/${postId}`)
+    const response = await axios.delete(`${baseURL}/posts/${postId}`)
     if (response) {
       return { success: true }
     }

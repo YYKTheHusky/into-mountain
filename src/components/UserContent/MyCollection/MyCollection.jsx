@@ -44,7 +44,7 @@ const PostCollectionList = ({ tabStep, reviewListData, dataIsLoading }) => {
   if (dataIsLoading) {
     return
   }
-  if (reviewListData.length === 0) {
+  if (reviewListData.length === 0 || !reviewListData.length) {
     return (
       <div>
         <YouHaveNothing robotTitle="收藏" robotDescription="沒有收藏" />

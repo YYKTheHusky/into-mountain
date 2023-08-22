@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
-import Toast from 'utils/sweetAlertConfig.js'
 import { WebsiteError } from 'utils/AlertCollection'
 // scss
 import styles from 'pages/SingleTrailPage/SingleTrailPage.module.scss'
@@ -50,22 +49,12 @@ export default function SingleTrailPage() {
       if (success) {
         const updatedData = { ...data, isFavorite: true }
         setData(updatedData)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '收藏時遇到一點問題!'
-        })
       }
     } else if (data.isFavorite) {
       const { success } = await deleteFavoriteTrail(trailID)
       if (success) {
         const updatedData = { ...data, isFavorite: false }
         setData(updatedData)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '取消收藏時遇到一點問題!'
-        })
       }
     }
   }

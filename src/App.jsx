@@ -16,6 +16,7 @@ import AdminLoginPage from 'pages/AdminLoginPage/AdminLoginPage'
 import AdminMainPage from 'pages/AdminMainPage/AdminMainPage'
 import ErrorPage from 'pages/ErrorPage/ErrorPage'
 import ScrollToTopOnNavigate from 'components/ScrollToTop'
+import { NavigateFunctionComponent } from 'components/NavigateFunctionComponent'
 
 const basename = process.env.PUBLIC_URL
 
@@ -24,6 +25,7 @@ function App() {
     <div className="App">
       <BrowserRouter basename={basename}>
         <ScrollToTopOnNavigate />
+        <NavigateFunctionComponent />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="login" element={<LoginPage />} />
