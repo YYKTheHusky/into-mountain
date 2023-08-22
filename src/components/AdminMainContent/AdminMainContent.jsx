@@ -1,7 +1,7 @@
 import ConfirmModal from 'components/Modal/ConfirmModal'
 import styles from './AdminMainContent.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
-import iconUser from 'assets/icons/icon-user.svg'
+import iconUser from 'assets/icons/user.svg'
 import { ReactComponent as IconWarning } from 'assets/icons/icon-warning.svg'
 import { useState } from 'react'
 const {

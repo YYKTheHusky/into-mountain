@@ -121,16 +121,18 @@ export default function UserPage() {
               onAcitveContent={handleAcitveContent}
             />
           </div>
-          <div
-            className={logout}
-            onClick={() => {
-              localStorage.clear()
-              navigate(`/`)
-            }}
-          >
-            <IconLogout className={logoutIcon} />
-            登出
-          </div>
+          {localStorage.getItem('currentUserId') && (
+            <div
+              className={logout}
+              onClick={() => {
+                localStorage.clear()
+                navigate(`/`)
+              }}
+            >
+              <IconLogout className={logoutIcon} />
+              登出
+            </div>
+          )}
         </div>
         <div className={right}>
           <UserContent
