@@ -25,7 +25,10 @@ const {
 } = styles
 
 const InfoCard = ({ data, onAcitveContent, theUserId, followingList }) => {
-  const currentUserId = localStorage.getItem('currentUserId')
+  let currentUserId = ''
+  if (localStorage.getItem('currentUserId')) {
+    currentUserId = localStorage.getItem('currentUserId')
+  }
   const [checkFollowing, setCheckFollowing] = useState(null)
   const handleFollow = async ({ isFollow, theUserId }) => {
     try {
@@ -107,6 +110,9 @@ const InfoCardBtn = ({
   checkFollowing,
   onFollow
 }) => {
+  if (currentUserId === '') {
+    return
+  }
   if (theUserId === currentUserId) {
     return (
       <>

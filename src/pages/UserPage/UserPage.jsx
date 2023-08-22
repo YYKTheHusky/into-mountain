@@ -79,9 +79,7 @@ export default function UserPage() {
         console.error(error)
       }
     }
-    if (localStorage.getItem('currentUserId')) {
-      getUserDataAsync(id)
-    }
+    getUserDataAsync(id)
   }, [location, updateCardInfo])
 
   // 追隨者清單
@@ -96,7 +94,9 @@ export default function UserPage() {
         console.error(error)
       }
     }
-    getUserFollowingAsync()
+    if (localStorage.getItem('currentUserId')) {
+      getUserFollowingAsync()
+    }
   }, [])
 
   return (
