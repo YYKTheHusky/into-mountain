@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from './TrailsListCard.module.scss'
 // svg
@@ -32,22 +31,12 @@ const TrailsListCard = ({ data }) => {
       if (success === true) {
         setCardLabel(true)
         setFavoriteCount(favoriteCount + 1)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '收藏時遇到一點問題!'
-        })
       }
     } else if (cardLabel) {
       const { success } = await deleteFavoriteTrail(data.id)
       if (success === true) {
         setCardLabel(false)
         setFavoriteCount(favoriteCount - 1)
-      } else {
-        Toast.fire({
-          icon: 'error',
-          title: '取消收藏時遇到一點問題!'
-        })
       }
     }
   }

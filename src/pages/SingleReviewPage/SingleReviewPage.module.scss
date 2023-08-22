@@ -18,7 +18,7 @@
       align-items: center;
     }
     .authorName {
-      max-width: 210px;
+      max-width: 200px;
       line-height: 40px;
       white-space: nowrap;
       overflow: hidden;
@@ -26,10 +26,10 @@
       color: var(--main-color);
     }
     .avatar {
-      width: 40px;
       height: 40px;
-      object-fit: cover;
-      border-radius: 50px;
+      width: 40px;
+      border-radius: 50%;
+      overflow: hidden;
       margin-right: 8px;
     }
     span + span::before {
