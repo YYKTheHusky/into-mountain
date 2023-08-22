@@ -3,7 +3,7 @@ import { SecondaryButton } from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import iconUser, {
   ReactComponent as IconDefaultUser
-} from 'assets/icons/icon-user.svg'
+} from 'assets/icons/user.svg'
 
 const {
   followerCardCointainer,

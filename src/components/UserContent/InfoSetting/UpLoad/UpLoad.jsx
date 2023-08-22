@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import styles from './UpLoad.module.scss'
-import { ReactComponent as IconDefaultUser } from 'assets/icons/icon-user.svg'
+import { ReactComponent as IconDefaultUser } from 'assets/icons/user.svg'
 const { upLoadContainer, avatar, defaultImg, text } = styles
 
 const AVT = ({ theUserData }) => {

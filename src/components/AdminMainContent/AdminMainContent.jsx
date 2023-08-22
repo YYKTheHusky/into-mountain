@@ -1,7 +1,7 @@
 import ConfirmModal from 'components/Modal/ConfirmModal'
 import styles from './AdminMainContent.module.scss'
 import { Link, useNavigate } from 'react-router-dom'
-import iconUser from 'assets/icons/icon-user.svg'
+import iconUser from 'assets/icons/user.svg'
 import { ReactComponent as IconWarning } from 'assets/icons/icon-warning.svg'
 import { useState } from 'react'
 const {
@@ -110,14 +110,24 @@ const UserItem = ({ isSus, data, onSuspend, onRemoveSuspend, listname }) => {
 }
 
 const ReviewItem = ({ item, onEditReportSolved, onDeletePost }) => {
+  if (item.Post === null && !item.isSolved) {
+    return
+  }
   const [openModal1, setOpenModal1] = useState(false)
   const [openModal2, setOpenModal2] = useState(false)
+  let notify = ''
+  if (item.Post !== null) {
+    notify = `您的 ${item.Post.title} 因為含有 ${item.category} 違反規定內容遭到檢舉，經管理員審查後，該文章已遭到刪除。提醒您下次撰寫文章時，注意文章內容，勿違反使用規範。 若多次遭到檢舉，管理員可能會將您的帳號停權。謝謝您的配合。如有疑問，歡迎寫信至 into-mountain@mountainmail.com`
+    if (item.category === '其他') {
+      notify = `您的 ${item.Post.title} 因為含有違反規定內容遭到檢舉，經管理員審查後，該文章已遭到刪除。提醒您下次撰寫文章時，注意文章內容，勿違反使用規範。 若多次遭到檢舉，管理員可能會將您的帳號停權。謝謝您的配合。如有疑問，歡迎寫信至 into-mountain@mountainmail.com`
+    }
+  }
   const handleConfirm1 = () => {
     setOpenModal1(!openModal1)
     onDeletePost?.({
       id: item.Post.id,
       userId: item.Post.User.id,
-      notify: `您的 ${item.Post.title} 因為含有 ${item.category} 違反規定內容遭到檢舉，經管理員審查後，該文章已遭到刪除。提醒您下次撰寫文章時，注意文章內容，勿違反使用規範。 若多次遭到檢舉，管理員可能會將您的帳號停權。謝謝您的配合。如有疑問，歡迎寫信至 into-mountain@mountainmail.com`
+      notify
     })
     onEditReportSolved?.({ id: item.id, type: 'delete' })
   }
@@ -205,6 +215,12 @@ const AdminMainContent = ({
   onDeletePost,
   dataLength
 }) => {
+  let isSolvedCount
+  if (page === 'reviewList') {
+    isSolvedCount = data.filter(
+      (item) => !item.isSolved && item.Post !== null
+    ).length
+  }
   return (
     <>
       {page === 'userList' && (
@@ -219,7 +235,7 @@ const AdminMainContent = ({
       )}
       {page === 'reviewList' && (
         <div className={statisticsText}>
-          尚有 <span>{dataLength}</span> 筆被檢舉心得未處理
+          尚有 <span>{isSolvedCount}</span> 筆被檢舉心得未處理
         </div>
       )}
       <div className={adminMainContentContainer}>

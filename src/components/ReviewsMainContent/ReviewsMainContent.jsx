@@ -28,24 +28,20 @@ const ReviewsMainContent = () => {
   })
 
   const handleFilterOption = async ({ type, value }) => {
-    if (type === '步道類型' && location.pathname === '/search/allReviews') {
-      setFilterOption((pre) => ({ ...pre, category: value }))
-      try {
-        const { posts } = await getAllPost()
-        setReviewData(posts)
-        if (value !== '') {
-          setReviewData((pre) => pre.filter((item) => item.category === value))
-        }
-      } catch (error) {
-        WebsiteError()
+    if (type === '步道類型') {
+      if (value !== '') {
+        setFilterOption((pre) => ({
+          ...pre,
+          category: (item) => {
+            return item.category === value
+          }
+        }))
+      } else {
+        setFilterOption((pre) => ({
+          ...pre,
+          category: ''
+        }))
       }
-    } else if (value === null) {
-      setFilterOption(null)
-    } else {
-      setFilterOption((pre) => ({ ...pre, category: value }))
-      const { posts } = await searchPostByKeyword(keyword)
-      setReviewData(posts)
-      setReviewData((pre) => pre.filter((item) => item.category === value))
     }
   }
 
@@ -66,9 +62,14 @@ const ReviewsMainContent = () => {
           WebsiteError()
         }
       }
+      if (filterOption.category !== '') {
+        setReviewData((pre) =>
+          pre.filter((item) => filterOption.category(item))
+        )
+      }
     }
     getData()
-  }, [location, keyword])
+  }, [location, keyword, filterOption])
 
   return (
     <div className={container}>

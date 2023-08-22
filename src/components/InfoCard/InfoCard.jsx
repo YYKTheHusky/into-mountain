@@ -2,7 +2,7 @@ import styles from './InfoCard.module.scss'
 import { ReactComponent as IconGear } from 'assets/icons/icon-gear.svg'
 import iconUser, {
   ReactComponent as IconDefaultUser
-} from 'assets/icons/icon-user.svg'
+} from 'assets/icons/user.svg'
 import { ReactComponent as IconAdd } from 'assets/icons/icon-add.svg'
 import { ReactComponent as IconMinus } from 'assets/icons/icon-minus.svg'
 import { useEffect, useState } from 'react'
@@ -25,7 +25,10 @@ const {
 } = styles
 
 const InfoCard = ({ data, onAcitveContent, theUserId, followingList }) => {
-  const currentUserId = localStorage.getItem('currentUserId')
+  let currentUserId = ''
+  if (localStorage.getItem('currentUserId')) {
+    currentUserId = localStorage.getItem('currentUserId')
+  }
   const [checkFollowing, setCheckFollowing] = useState(null)
   const handleFollow = async ({ isFollow, theUserId }) => {
     try {
@@ -107,6 +110,9 @@ const InfoCardBtn = ({
   checkFollowing,
   onFollow
 }) => {
+  if (currentUserId === '') {
+    return
+  }
   if (theUserId === currentUserId) {
     return (
       <>
