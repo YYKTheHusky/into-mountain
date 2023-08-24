@@ -290,47 +290,32 @@ export default function EditReviewPage() {
             {/* 心得內容 */}
             <label className={styles.inputLabel}>心得內容</label>
             <textarea
-              maxLength="5000"
+              maxLength="1000"
               placeholder="請輸入心得內容"
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
             <div className={styles.descriptionLength}>
-              {description.length} / 5000
+              {description.length} / 1000
             </div>
             {/* 按鈕 */}
             <div className={styles.buttonGroup}>
-              {isNewPost ? (
+              {isNewPost || isDraft ? (
                 <>
                   <div className={styles.buttonContainer}>
                     <Button
-                      style="secondaryButtonLight"
-                      text="暫存心得"
-                      onClick={handleScratch}
+                      style={
+                        isNewPost ? 'secondaryButtonLight' : 'secondaryButton'
+                      }
+                      text={isNewPost ? '暫存心得' : '暫存草稿'}
+                      onClick={isNewPost ? handleScratch : handleEditScratch}
                     />
                   </div>
                   <div className={styles.buttonContainer}>
                     <Button
                       style="secondaryButton"
-                      text="發布心得"
-                      onClick={handleFormSubmit}
-                    />
-                  </div>
-                </>
-              ) : isDraft ? (
-                <>
-                  <div className={styles.buttonContainer}>
-                    <Button
-                      style="secondaryButtonLight"
-                      text="暫存草稿"
-                      onClick={handleEditScratch}
-                    />
-                  </div>
-                  <div className={styles.buttonContainer}>
-                    <Button
-                      style="secondaryButton"
-                      text="發布草稿"
+                      text={isNewPost ? '發布心得' : '發布草稿'}
                       onClick={handleFormSubmit}
                     />
                   </div>
