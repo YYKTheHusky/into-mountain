@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import styles from 'pages/MainPage/MainPage.module.scss'
 
 // components
-import { OvalButtonHuge } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import { SearchBarMain } from 'components/SearchBar/SearchBar'
 import MainPageScrollCard from 'components/ScrollCardGroup/MainPageScrollCard'
 import MainLayout from 'components/MainLayout/MainLayout'
@@ -47,9 +47,11 @@ export default function MainPage() {
           <h1 className={styles.slogan}>100+ Ways </h1>
           <h1 className={styles.slogan}>to Meet Nature</h1>
           <div className={styles.buttonContainer}>
-            <OvalButtonHuge onClick={() => navigate('/search/allTrails')}>
-              探索所有步道
-            </OvalButtonHuge>
+            <Button
+              style="ovalButtonHuge"
+              text="探索所有步道"
+              onClick={() => navigate('/search/allTrails')}
+            />
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { ReactComponent as IconAdd } from 'assets/icons/icon-add.svg'
 import { ReactComponent as IconNotification } from 'assets/icons/icon-notification.svg'
 import { ReactComponent as IconUser } from 'assets/icons/icon-user.svg'
 import BurgerModal from 'components/BurgerModal/BurgerModal'
-import { OvalButtonSmall } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
@@ -111,9 +111,14 @@ const Nav = ({ updateCardInfo }) => {
             className={postReviewButton}
             onClick={() => navigate('/newReview')}
           >
-            <OvalButtonSmall>
-              <IconAdd /> <span>我的心得</span>
-            </OvalButtonSmall>
+            <Button
+              style="ovalButtonSmall"
+              text={
+                <>
+                  <IconAdd /> <span>我的心得</span>
+                </>
+              }
+            />
           </div>
           <span className={notificationContainer}>
             <IconNotification

@@ -4,7 +4,7 @@ import Toast from 'utils/sweetAlertConfig.js'
 // scss
 import styles from 'components/Modal/AdminLoginModal.module.scss'
 // components
-import { PrimaryButton } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import InputBox from 'components/Input/InputBox'
 // api
 import { adminLogin } from 'api/admin'
@@ -63,7 +63,7 @@ export default function AdminLoginModal() {
           onChange={(inputValue) => setPassword(inputValue)}
           setIsError={setIsError}
         />
-        <PrimaryButton onClick={handleLogin}>登入</PrimaryButton>
+        <Button style="primaryButton" text="登入" onClick={handleLogin} />
         <div className={styles.linksContainer}>
           <Link className={styles.links} to="/">
             回到首頁

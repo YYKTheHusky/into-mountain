@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styles from './BurgerMenu.module.scss'
 import { ReactComponent as IconChevronRight } from 'assets/icons/icon-chevron-right.svg'
-import { OvalButtonSmall } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
 
 const {
@@ -86,9 +86,11 @@ const BurgerMenu = ({ onBurgerToggle }) => {
           通知
         </div>
         <div className={postReviewButton}>
-          <OvalButtonSmall onClick={() => navigate('/newReview')}>
-            +我的心得
-          </OvalButtonSmall>
+          <Button
+            style="ovalButtonSmall"
+            text="+ 我的心得"
+            onClick={() => navigate('/newReview')}
+          />
         </div>
         <span></span>
       </div>

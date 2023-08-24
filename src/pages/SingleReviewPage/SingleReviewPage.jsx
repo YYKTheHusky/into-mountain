@@ -12,7 +12,7 @@ import { ReactComponent as ShareIcon } from 'assets/icons/share-icon.svg'
 import { ReactComponent as ReportIcon } from 'assets/icons/report-icon.svg'
 
 // components
-import { SecondaryButton, SecondaryButtonGray } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import { ColorTag } from 'components/Tag/Tag'
 import MainLayout from 'components/MainLayout/MainLayout'
 import WholePageModal from 'components/Modal/WholePageModal'
@@ -157,13 +157,17 @@ export default function SingleReviewPage() {
                       {post.User.id !== currentUserId && (
                         <div className={styles.buttonContainer}>
                           {post.User.isFollow ? (
-                            <SecondaryButtonGray onClick={handleUnFollow}>
-                              已追蹤
-                            </SecondaryButtonGray>
+                            <Button
+                              style="secondaryButtonGray"
+                              text="已追蹤"
+                              onClick={handleUnFollow}
+                            />
                           ) : (
-                            <SecondaryButton onClick={handleFollow}>
-                              關注作者
-                            </SecondaryButton>
+                            <Button
+                              style="secondaryButton"
+                              text="關注作者"
+                              onClick={handleFollow}
+                            />
                           )}
                         </div>
                       )}

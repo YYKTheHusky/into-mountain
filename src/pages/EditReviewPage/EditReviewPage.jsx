@@ -9,7 +9,7 @@ import styles from 'pages/EditReviewPage/EditReviewPage.module.scss'
 import MainLayout from 'components/MainLayout/MainLayout'
 import WholePageModal from 'components/Modal/WholePageModal'
 import IconRadioInput from 'components/Input/IconRadioInput'
-import { SecondaryButton, SecondaryButtonLight } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import ImgDropzone from 'components/Input/ImgDropzone'
 import UpLoadingSpinner from 'components/Spinner/UpLoadingSpinner'
 // api
@@ -304,34 +304,44 @@ export default function EditReviewPage() {
               {isNewPost ? (
                 <>
                   <div className={styles.buttonContainer}>
-                    <SecondaryButtonLight onClick={handleScratch}>
-                      暫存心得
-                    </SecondaryButtonLight>
+                    <Button
+                      style="secondaryButtonLight"
+                      text="暫存心得"
+                      onClick={handleScratch}
+                    />
                   </div>
                   <div className={styles.buttonContainer}>
-                    <SecondaryButton onClick={handleFormSubmit}>
-                      發布心得
-                    </SecondaryButton>
+                    <Button
+                      style="secondaryButton"
+                      text="發布心得"
+                      onClick={handleFormSubmit}
+                    />
                   </div>
                 </>
               ) : isDraft ? (
                 <>
                   <div className={styles.buttonContainer}>
-                    <SecondaryButtonLight onClick={handleEditScratch}>
-                      暫存草稿
-                    </SecondaryButtonLight>
+                    <Button
+                      style="secondaryButtonLight"
+                      text="暫存草稿"
+                      onClick={handleEditScratch}
+                    />
                   </div>
                   <div className={styles.buttonContainer}>
-                    <SecondaryButton onClick={handleFormSubmit}>
-                      發布草稿
-                    </SecondaryButton>
+                    <Button
+                      style="secondaryButton"
+                      text="發布草稿"
+                      onClick={handleFormSubmit}
+                    />
                   </div>
                 </>
               ) : (
                 <div className={styles.buttonContainer}>
-                  <SecondaryButton onClick={handleFormSubmit}>
-                    編輯心得
-                  </SecondaryButton>
+                  <Button
+                    style="secondaryButton"
+                    text="編輯心得"
+                    onClick={handleFormSubmit}
+                  />
                 </div>
               )}
             </div>

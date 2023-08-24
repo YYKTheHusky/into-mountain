@@ -1,8 +1,5 @@
 // scss
-import {
-  SecondaryButtonBright,
-  SecondaryButtonGray
-} from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import styles from 'components/Modal/ConfirmModal.module.scss'
 
 // 父層設定一個State、兩個function，點選兩個按鈕做某些事情
@@ -21,7 +18,7 @@ import styles from 'components/Modal/ConfirmModal.module.scss'
 //   message="確定要刪除嗎?"
 //   confirmFunction={confirmFunction}
 //   cancelFunction={cancelFunction}
-// ></ConfirmModal>
+// />
 
 export default function ConfirmModal({
   isModalOpen,
@@ -41,24 +38,24 @@ export default function ConfirmModal({
         <h5>{message}</h5>
         <div className={styles.buttonGroup}>
           <div className={styles.buttonContainer}>
-            <SecondaryButtonBright
+            <Button
+              style="secondaryButtonBright"
+              text="確定"
               onClick={(event) => {
                 event.stopPropagation()
                 confirmFunction()
               }}
-            >
-              確定
-            </SecondaryButtonBright>
+            />
           </div>
           <div className={styles.buttonContainer}>
-            <SecondaryButtonGray
+            <Button
+              style="secondaryButtonGray"
+              text="取消"
               onClick={(event) => {
                 event.stopPropagation()
                 cancelFunction()
               }}
-            >
-              取消
-            </SecondaryButtonGray>
+            />
           </div>
         </div>
       </div>

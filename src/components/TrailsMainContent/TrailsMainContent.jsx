@@ -160,10 +160,9 @@ const TrailsMainContent = () => {
     <div className={container}>
       <div className={innerContainer}>
         <div className={search}>
-          <TrailsSearchBar type="trail" onFilterOption={handleFilterOption} />
+          <TrailsSearchBar type="trail" />
           <FilterToggole
             filterList={filterList}
-            filterOption={filterOption}
             onFilterOption={handleFilterOption}
           />
         </div>

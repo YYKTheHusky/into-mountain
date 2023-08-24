@@ -5,10 +5,7 @@ import Toast from 'utils/sweetAlertConfig.js'
 import styles from 'components/Modal/SignUpModal.module.scss'
 
 // components
-import {
-  PrimaryButtonBright,
-  PrimaryButtonWhite
-} from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import InputBox from 'components/Input/InputBox'
 
 // svg
@@ -113,7 +110,11 @@ export default function SignUpModal() {
           onChange={(inputValue) => setPasswordCheck(inputValue)}
           setIsError={setIsError}
         />
-        <PrimaryButtonBright onClick={handleSignUp}>註冊</PrimaryButtonBright>
+        <Button
+          style="primaryButtonBright"
+          text="註冊"
+          onClick={handleSignUp}
+        />
       </div>
       <div className={styles.text}>
         已經有帳號了嗎?
@@ -122,11 +123,11 @@ export default function SignUpModal() {
         </Link>
       </div>
       <div className={styles.buttonContainer}>
-        <PrimaryButtonWhite>使用google註冊</PrimaryButtonWhite>
+        <Button style="primaryButtonWhite" text="使用google註冊" />
         <img className={styles.logo} src={googleLogo} alt={googleLogo} />
       </div>
       <div className={styles.buttonContainer}>
-        <PrimaryButtonWhite>使用facebook註冊</PrimaryButtonWhite>
+        <Button style="primaryButtonWhite" text="使用facebook註冊" />
         <img className={styles.logo} src={facebookLogo} alt={facebookLogo} />
       </div>
     </div>
