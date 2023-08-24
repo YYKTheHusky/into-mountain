@@ -3,12 +3,7 @@ import { ReactComponent as IconChevronRight } from 'assets/icons/icon-chevron-ri
 import styles from './FilterToggoleItem.module.scss'
 const { selectOption, icon, active, options, clearStyle } = styles
 
-const FilterToggoleItem = ({
-  optionList,
-  listName,
-  filterOption,
-  onFilterOption
-}) => {
+const FilterToggoleItem = ({ optionList, listName, onFilterOption }) => {
   const [openSelect, setOpenSelect] = useState(false)
   const inputRef = useRef()
   const handleSelectValue = (e) => {

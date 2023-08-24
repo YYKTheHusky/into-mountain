@@ -4,7 +4,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  z-index: 11;
   background-color: rgba(0, 0, 0, 0.5);
 }
 .filterModalContainer {
@@ -16,81 +16,44 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    z-index: 1100;
+    z-index: 12;
     width: 100%;
-    height: 90%;
+    height: 90vh;
     border-radius: 15px 15px 0 0;
     background-color: white;
-    padding-top: 10px;
-    padding-left: 10px;
     .xmark {
+      margin: 10px 0 0 10px;
       height: 25px;
       &:hover {
         fill-opacity: 0.6;
       }
     }
     span {
-      display: inline-block;
+      display: flex;
+      margin: 5px 0;
       width: 100%;
       height: 1px;
       background-color: var(--dark-50);
     }
     .listContainer {
-      margin-top: 10px;
       width: 100%;
-      height: 85%;
-      cursor: default;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      overflow: hidden;
-      overflow-y: scroll;
-      &::-webkit-scrollbar {
-        width: 5px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: var(--dark-40);
-      }
-
-      &::-webkit-scrollbar-thumb:hover {
-        background: var(--dark-20);
+      height: calc(90vh - 42px);
+      .listInnerContainer {
+        height: calc(100% - 42px);
+        padding: 10px;
+        cursor: default;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        overflow: hidden;
+        overflow-y: scroll;
       }
     }
     .buttonContainer {
-      margin-top: 10px;
-      height: 7%;
+      padding: 0 15px;
       display: flex;
-      align-items: center;
-      justify-content: space-around;
-      gap: 3px;
-      .cancel,
-      .show {
-        flex: 0.8;
-        height: 60%;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-        &:focus,
-        &:active {
-          border: 0;
-          outline: none;
-        }
-        font-size: 18px;
-        font-weight: 600;
-      }
-      .show {
-        background-color: var(--blue-40);
-        color: var(--main-text);
-        &:hover {
-          background-color: var(--main-color);
-          color: var(--background-color);
-        }
-      }
+      gap: 10px;
+      width: 100%;
     }
   }
 }

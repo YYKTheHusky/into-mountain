@@ -3,6 +3,7 @@ import { ReactComponent as IconXmark } from 'assets/icons/icon-xmark.svg'
 import FilterListItem from './FilterListItem/FilterListItem'
 import styles from './FilterModal.module.scss'
 import { useState } from 'react'
+import Button from 'components/Button/Button'
 const {
   filterModalContainer,
   filterIcon,
@@ -10,78 +11,69 @@ const {
   modal,
   xmark,
   listContainer,
-  buttonContainer,
-  cancel,
-  show
+  listInnerContainer,
+  buttonContainer
 } = styles
 
-const FilterModal = ({ list }) => {
-  const [filterModalToggle, setFilterModalToggle] = useState(false)
-  const [selection, setSelection] = useState([])
+const FilterModal = ({ list, onFilterOption }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedFilters, setSelectedFilters] = useState()
 
   const handleFilterModalToggle = () => {
-    setFilterModalToggle(!filterModalToggle)
+    setIsModalOpen(!isModalOpen)
   }
-  const handleSelection = ({ listname, item }) => {
-    setSelection((pre) => {
-      const index = Object.values(pre).findIndex(
-        (obj) => obj[listname] !== undefined
-      )
-      if (index === -1) {
-        return [...pre, { [listname]: item }]
-      } else {
-        return pre.map((obj, i) => {
-          if (i === index) {
-            return { [listname]: item }
-          } else {
-            return obj
-          }
-        })
-      }
+
+  const handleShowButtonClick = (e) => {
+    e.preventDefault()
+    console.log(selectedFilters)
+    Object.entries(selectedFilters).forEach(([key, value]) => {
+      onFilterOption({ type: key, value })
     })
+    setSelectedFilters('')
+    setIsModalOpen(!isModalOpen)
   }
 
   return (
     <>
-      {filterModalToggle && (
-        <div
-          className={backdrop}
-          onClick={() => handleFilterModalToggle?.()}
-        ></div>
+      {isModalOpen && (
+        <div className={backdrop} onClick={() => handleFilterModalToggle?.()} />
       )}
       <div className={filterModalContainer}>
         <IconFilter
           className={filterIcon}
-          onClick={() => setFilterModalToggle(!filterModalToggle)}
+          onClick={() => setIsModalOpen(!isModalOpen)}
         />
-        {filterModalToggle && (
+        {isModalOpen && (
           <div className={modal}>
             <IconXmark
               className={xmark}
-              onClick={() => setFilterModalToggle(!filterModalToggle)}
+              onClick={() => setIsModalOpen(!isModalOpen)}
             />
-            <span></span>
-            <div className={listContainer}>
-              {Object.keys(list).map((theListName) => (
-                <FilterListItem
-                  listname={theListName}
-                  thelist={list[theListName]}
-                  key={theListName}
-                  onSelection={handleSelection}
+            <span />
+            <form className={listContainer}>
+              <div className={listInnerContainer}>
+                {Object.keys(list).map((theListName) => (
+                  <FilterListItem
+                    listname={theListName}
+                    thelist={list[theListName]}
+                    key={theListName}
+                    setSelectedFilters={setSelectedFilters}
+                  />
+                ))}
+              </div>
+              <div className={buttonContainer}>
+                <Button
+                  style="secondaryButtonGray"
+                  text="取消"
+                  onClick={() => setIsModalOpen(!isModalOpen)}
                 />
-              ))}
-            </div>
-            <div className={buttonContainer}>
-              <button
-                className={cancel}
-                onClick={() => setFilterModalToggle(!filterModalToggle)}
-              >
-                取消
-              </button>
-              <button className={show} onClick={() => console.log(selection)}>
-                顯示
-              </button>
-            </div>
+                <Button
+                  style="secondaryButtonBright"
+                  text="搜尋"
+                  onClick={handleShowButtonClick}
+                />
+              </div>
+            </form>
           </div>
         )}
       </div>
