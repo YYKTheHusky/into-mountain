@@ -15,7 +15,7 @@ const {
   buttonContainer
 } = styles
 
-const FilterModal = ({ list, onFilterOption }) => {
+const FilterModal = ({ list, setFilter }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedFilters, setSelectedFilters] = useState()
 
@@ -25,9 +25,15 @@ const FilterModal = ({ list, onFilterOption }) => {
 
   const handleShowButtonClick = (e) => {
     e.preventDefault()
-    console.log(selectedFilters)
-    Object.entries(selectedFilters).forEach(([key, value]) => {
-      onFilterOption({ type: key, value })
+    setFilter((prevFilter) => {
+      const updatedFilter = Object.keys(list).reduce(
+        (newFilter, title) => {
+          newFilter[title] = selectedFilters[title]
+          return newFilter
+        },
+        { ...prevFilter }
+      )
+      return updatedFilter
     })
     setSelectedFilters('')
     setIsModalOpen(!isModalOpen)

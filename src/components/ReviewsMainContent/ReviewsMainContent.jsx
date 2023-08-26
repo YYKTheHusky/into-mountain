@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { WebsiteError } from 'utils/AlertCollection'
 // scss
 import styles from './ReviewsMainContent.module.scss'
 // component
@@ -12,8 +11,7 @@ import CardSkeleton from 'components/Skeleton/CardSkeleton'
 import { getAllPost, searchPostByKeyword } from 'api/post'
 import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 
-const { container, innerContainer, search, list, youHaveNothingContainer } =
-  styles
+const { container, innerContainer, search, list } = styles
 
 const filterList = {
   步道類型: ['郊山', '百岳', '海外']
@@ -22,78 +20,75 @@ const filterList = {
 const ReviewsMainContent = () => {
   const { keyword } = useParams()
   const location = useLocation()
+  const [isLoading, setIsLoading] = useState(true)
   const [reviewData, setReviewData] = useState(null)
-  const [filterOption, setFilterOption] = useState({
-    category: ''
+  const [filteredData, setFilteredData] = useState(null)
+  const [filter, setFilter] = useState({
+    步道類型: ''
   })
 
-  const handleFilterOption = async ({ type, value }) => {
-    if (type === '步道類型' && location.pathname === '/search/allReviews') {
-      setFilterOption((pre) => ({ ...pre, category: value }))
-      try {
-        const { posts } = await getAllPost()
-        setReviewData(posts)
-        if (value !== '') {
-          setReviewData((pre) => pre.filter((item) => item.category === value))
-        }
-      } catch (error) {
-        WebsiteError()
-      }
-    } else if (value === null) {
-      setFilterOption(null)
-    } else {
-      setFilterOption((pre) => ({ ...pre, category: value }))
-      const { posts } = await searchPostByKeyword(keyword)
-      setReviewData(posts)
-      setReviewData((pre) => pre.filter((item) => item.category === value))
+  const handleFilter = () => {
+    if (filter.步道類型 !== '') {
+      setFilteredData((pre) =>
+        pre.filter((item) => {
+          return item.category === filter.步道類型
+        })
+      )
     }
   }
 
   useEffect(() => {
     const getData = async () => {
       if (location.pathname === '/search/allReviews') {
-        try {
-          const { posts } = await getAllPost()
-          setReviewData(posts)
-        } catch (error) {
-          WebsiteError()
-        }
+        const { posts } = await getAllPost()
+        setReviewData(posts)
+        setFilteredData(posts)
       } else {
-        try {
-          const { posts } = await searchPostByKeyword(keyword)
-          setReviewData(posts)
-        } catch (error) {
-          WebsiteError()
-        }
+        const { posts } = await searchPostByKeyword(keyword)
+        setReviewData(posts)
+        setFilteredData(posts)
       }
+      setIsLoading(false)
     }
     getData()
   }, [location, keyword])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      setFilteredData(reviewData)
+      handleFilter()
+      setIsLoading(false)
+    }
+
+    fetchData()
+  }, [filter])
 
   return (
     <div className={container}>
       <div className={innerContainer}>
         <div className={search}>
-          <TrailsSearchBar type="review" onFilterOption={handleFilterOption} />
-          <FilterToggole
-            filterList={filterList}
-            filterOption={filterOption}
-            onFilterOption={handleFilterOption}
-          />
+          <TrailsSearchBar type="review" />
+          <FilterToggole filterList={filterList} setFilter={setFilter} />
         </div>
-        {reviewData && reviewData.length === 0 ? (
-          <div className={youHaveNothingContainer}>
-            <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+        {isLoading ? (
+          <div className={list}>
+            {Array.from({ length: 12 }).map((_, index) => (
+              <CardSkeleton key={index} />
+            ))}
           </div>
         ) : (
-          <div className={list}>
-            {reviewData
-              ? reviewData.map((item) => (
+          <div>
+            {filteredData && filteredData.length === 0 && (
+              <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+            )}
+            {filteredData && filteredData.length !== 0 && (
+              <div className={list}>
+                {filteredData.map((item) => (
                   <ReviewListCard key={item.id} data={item} />
-                ))
-              : Array.from({ length: 12 }).map((_, index) => (
-                  <CardSkeleton key={index} />
                 ))}
+              </div>
+            )}
           </div>
         )}
       </div>
