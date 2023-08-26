@@ -79,9 +79,7 @@ export default function UserPage() {
         console.error(error)
       }
     }
-    if (localStorage.getItem('currentUserId')) {
-      getUserDataAsync(id)
-    }
+    getUserDataAsync(id)
   }, [location, updateCardInfo])
 
   // 追隨者清單
@@ -96,7 +94,9 @@ export default function UserPage() {
         console.error(error)
       }
     }
-    getUserFollowingAsync()
+    if (localStorage.getItem('currentUserId')) {
+      getUserFollowingAsync()
+    }
   }, [])
 
   return (
@@ -121,16 +121,18 @@ export default function UserPage() {
               onAcitveContent={handleAcitveContent}
             />
           </div>
-          <div
-            className={logout}
-            onClick={() => {
-              localStorage.clear()
-              navigate(`/`)
-            }}
-          >
-            <IconLogout className={logoutIcon} />
-            登出
-          </div>
+          {localStorage.getItem('currentUserId') && (
+            <div
+              className={logout}
+              onClick={() => {
+                localStorage.clear()
+                navigate(`/`)
+              }}
+            >
+              <IconLogout className={logoutIcon} />
+              登出
+            </div>
+          )}
         </div>
         <div className={right}>
           <UserContent

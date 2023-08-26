@@ -3,7 +3,7 @@ import { formatDateWithTime } from 'utils/time'
 import { useNavigate } from 'react-router-dom'
 import iconUser, {
   ReactComponent as IconDefaultUser
-} from 'assets/icons/icon-user.svg'
+} from 'assets/icons/user.svg'
 const {
   itemContainer,
   itemLeft,

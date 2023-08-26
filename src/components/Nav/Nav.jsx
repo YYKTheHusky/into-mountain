@@ -3,6 +3,7 @@ import { ReactComponent as IconLogo } from 'assets/icons/icon-logo.svg'
 import { ReactComponent as IconAdd } from 'assets/icons/icon-add.svg'
 import { ReactComponent as IconNotification } from 'assets/icons/icon-notification.svg'
 import { ReactComponent as IconUser } from 'assets/icons/icon-user.svg'
+import { ReactComponent as IconUserDefault } from 'assets/icons/user.svg'
 import BurgerModal from 'components/BurgerModal/BurgerModal'
 import Button from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
@@ -37,7 +38,7 @@ const Avt = ({ currentUserId, currentUserAvatar }) => {
   } else {
     if (currentUserAvatar === 'null') {
       return (
-        <IconUser
+        <IconUserDefault
           className={`${user} ${rightListIcon}`}
           onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
         />
