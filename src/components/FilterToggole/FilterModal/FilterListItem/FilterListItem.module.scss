@@ -6,6 +6,21 @@
 }
 
 .radioSection {
+  button {
+    cursor: pointer;
+    background-color: rgba(238, 238, 238, 0.652);
+    border: none;
+    font-size: 16px;
+    font-family: var(--main-font);
+    margin-left: 20px;
+    width: 80%;
+    height: 32px;
+    border-radius: 12px;
+    margin-top: 10px;
+    &:hover {
+      background-color: rgb(238, 238, 238);
+    }
+  }
   .radioItem {
     input {
       &[type='radio'] {

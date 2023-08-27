@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# 登山小站
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+登山小站是一個登山資訊平台，使用者可以瀏覽、查找登山路線及心得，並下載相關的GPX檔案。<br>
+[gh-page 連結](https://magic9701.github.io/into-mountain/) <br>
+[後端 repo 連結](https://github.com/jiasyuanchu/Trail-Finder) <br>
 
-## Available Scripts
+## 畫面截圖
 
-In the project directory, you can run:
+![](./public/screenShot-001.jpg)
+![](./public/screenShot-002.jpg)
+![](./public/screenShot-003.jpg)
+![](./public/screenShot-004.jpg)
+![](./public/screenShot-005.jpg)
+![](./public/screenShot-006.jpg)
 
-### `npm start`
+## 功能說明
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 前台功能
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+登入、註冊、修改個人資料 <br>
+撰寫心得文章、瀏覽/案讚/收藏/檢舉/分享 心得 <br>
+瀏覽/收藏/分享路線、回報路況、查看GPX軌跡、下載GPX檔案 <br>
+搜尋心得或路徑 <br>
+使用者頁面可查看 收藏內容/發布內容/追蹤者/追隨者/通知(當文章被檢舉刪除時)，並可刪除自己發的心得文 <br>
 
-### `npm test`
+### 後台功能
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+登入、瀏覽所有使用者、審核檢舉、刪除文章、停權/恢復使用者
 
-### `npm run build`
+## 使用說明
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. 確認有安裝 node.js、npm
+2. clone 專案
+3. 使用終端機進入專案資料夾，輸入:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+ $ npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. 啟動專案
 
-### `npm run eject`
+```
+ $ npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 使用工具
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    "axios": "^1.4.0",
+    "clsx": "^2.0.0",
+    "gh-pages": "^6.0.0",
+    "leaflet": "^1.9.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-leaflet": "^4.2.1",
+    "react-loading-skeleton": "^3.3.1",
+    "react-router-dom": "^6.14.2",
+    "react-scripts": "5.0.1",
+    "sweetalert2": "^11.7.20",
+    "web-vitals": "^2.1.4"
+    "sass": "^1.63.6"
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributors
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 前端
 
-## Learn More
+- Ya-Yun(Kelly) [https://github.com/magic9701](https://github.com/magic9701)
+- Willy [https://github.com/ywcheng1207](https://github.com/ywcheng1207)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 後端
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Kevin_L [https://github.com/av124773](https://github.com/av124773)
+- Chia-Hsuan Chu [https://github.com/jiasyuanchu](https://github.com/jiasyuanchu)

@@ -1,7 +1,7 @@
 // scss
 import styles from 'components/TrailsInformation/InformationTable.module.scss'
 // component
-import { SecondaryButton } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import Map from './Map'
 import { getTrailsGPX } from 'api/trail'
 
@@ -35,9 +35,11 @@ export default function InformationTable({ data }) {
           <th>地圖</th>
           <td>
             <div className={styles.buttonContainer}>
-              <SecondaryButton onClick={handleDownload}>
-                下載GPX
-              </SecondaryButton>
+              <Button
+                style="secondaryButton"
+                text="下載GPX"
+                onClick={handleDownload}
+              />
             </div>
             <div className={styles.mapContainer}>
               <Map gpx={data.gpx} />

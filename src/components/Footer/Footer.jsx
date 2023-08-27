@@ -8,6 +8,13 @@ import Ywj from 'assets/photos/YWJ.png'
 import AvatarToolTip from 'components/ToolTips/AvatarToolTip'
 
 export default function Footer() {
+  const contributors = [
+    { name: 'Ya-Yun', link: 'https://github.com/magic9701', image: Kelly },
+    { name: 'Willy', link: 'https://github.com/ywcheng1207', image: Ywj },
+    { name: 'Chia-Hsuan', link: 'https://github.com/jiasyuanchu', image: Chc },
+    { name: 'Kevin', link: 'https://github.com/av124773', image: Kevin }
+  ]
+
   return (
     <div className={styles.footerContainer}>
       <div className={styles.innerContainer}>
@@ -21,34 +28,16 @@ export default function Footer() {
         <div className={styles.contributors}>
           <p>製作者</p>
           <div className={styles.socialLinkContainer}>
-            <a
-              href="https://github.com/magic9701"
-              className={styles.avatarContainer}
-            >
-              <img src={Kelly} alt="Ya-Yun" />
-              <AvatarToolTip name="Ya-Yun" />
-            </a>
-            <a
-              href="https://github.com/ywcheng1207"
-              className={styles.avatarContainer}
-            >
-              <img src={Ywj} alt="Willy" />
-              <AvatarToolTip name="Willy" />
-            </a>
-            <a
-              href="https://github.com/jiasyuanchu"
-              className={styles.avatarContainer}
-            >
-              <img src={Chc} alt="Chia-Hsuan" />
-              <AvatarToolTip name="Chia-Hsuan" />
-            </a>
-            <a
-              href="https://github.com/av124773"
-              className={styles.avatarContainer}
-            >
-              <img src={Kevin} alt="Kevin" />
-              <AvatarToolTip name="Kevin" />
-            </a>
+            {contributors.map((contributor) => (
+              <a
+                href={contributor.link}
+                className={styles.avatarContainer}
+                key={contributor.name}
+              >
+                <img src={contributor.image} alt={contributor.name} />
+                <AvatarToolTip name={contributor.name} />
+              </a>
+            ))}
           </div>
         </div>
       </div>

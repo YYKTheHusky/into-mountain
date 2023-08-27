@@ -5,7 +5,7 @@ import styles from 'components/Modal/ReportModal.module.scss'
 // svg
 import xmark from 'assets/icons/icon-xmark.svg'
 // components
-import { SecondaryButtonBright } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 // api
 import { postCondition } from 'api/trail'
 
@@ -79,9 +79,11 @@ export default function ReportModal({
         </div>
         <div className={styles.outerButtonContainer}>
           <div className={styles.buttonContainer}>
-            <SecondaryButtonBright onClick={confirmFunction}>
-              確認送出
-            </SecondaryButtonBright>
+            <Button
+              style="secondaryButtonBright"
+              text="確認送出"
+              onClick={confirmFunction}
+            />
           </div>
         </div>
       </div>

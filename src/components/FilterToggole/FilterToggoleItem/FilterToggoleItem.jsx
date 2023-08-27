@@ -3,29 +3,44 @@ import { ReactComponent as IconChevronRight } from 'assets/icons/icon-chevron-ri
 import styles from './FilterToggoleItem.module.scss'
 const { selectOption, icon, active, options, clearStyle } = styles
 
-const FilterToggoleItem = ({
-  optionList,
-  listName,
-  filterOption,
-  onFilterOption
-}) => {
+const FilterToggoleItem = ({ optionList, listName, setFilter }) => {
   const [openSelect, setOpenSelect] = useState(false)
   const inputRef = useRef()
+
+  function replaceKeyValue(obj, keyToReplace, newValue) {
+    const updatedObj = { ...obj }
+
+    for (const key in updatedObj) {
+      if (key === keyToReplace) {
+        updatedObj[key] = newValue
+      }
+    }
+
+    return updatedObj
+  }
+
   const handleSelectValue = (e) => {
     inputRef.current.value = e.target.outerText
     setOpenSelect(false)
-    onFilterOption({
-      type: listName,
-      value: e.target.outerText
+    setFilter((pre) => {
+      const updatedFilterData = replaceKeyValue(
+        pre,
+        listName,
+        e.target.outerText
+      )
+      return updatedFilterData
     })
   }
   const handleOpenOption = () => {
-    setOpenSelect(true)
+    setOpenSelect(!openSelect)
   }
   const handleClearFilter = () => {
     inputRef.current.value = ''
     setOpenSelect(false)
-    onFilterOption({ type: listName, value: '' })
+    setFilter((pre) => {
+      const updatedFilterData = replaceKeyValue(pre, listName, '')
+      return updatedFilterData
+    })
   }
   return (
     <div className={selectOption}>

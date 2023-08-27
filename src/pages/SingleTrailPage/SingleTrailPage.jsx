@@ -10,7 +10,7 @@ import { ReactComponent as ShareIcon } from 'assets/icons/share-icon.svg'
 
 // components
 import TrailReport from 'components/TrailsInformation/TrailReport'
-import { SecondaryButton } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import InformationTable from 'components/TrailsInformation/InformationTable'
 import MapTable from 'components/TrailsInformation/MapTable.jsx'
 import MainLayout from 'components/MainLayout/MainLayout'
@@ -140,11 +140,11 @@ export default function SingleTrailPage() {
                   <div className={styles.reportHeader}>
                     <h4>路況回報</h4>
                     <div className={styles.reportButton}>
-                      <SecondaryButton
+                      <Button
+                        style="secondaryButton"
+                        text="我要回報"
                         onClick={() => setIsReportModalOpen(true)}
-                      >
-                        我要回報
-                      </SecondaryButton>
+                      />
                     </div>
                     <ReportModal
                       isReportModalOpen={isReportModalOpen}

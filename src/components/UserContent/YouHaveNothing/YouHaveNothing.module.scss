@@ -1,5 +1,6 @@
 .youHaveNothingContainer {
-  width: 100%;
+  max-width: 1140px;
+  width: calc(100vw - 80px);
   height: 466px;
   background-color: #eeeeee;
   padding: 10px;

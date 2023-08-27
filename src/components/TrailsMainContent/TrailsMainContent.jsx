@@ -14,8 +14,7 @@ import { getAllTrails, searchTrailByKeyword } from 'api/trail'
 import styles from './TrailsMainContent.module.scss'
 
 // style
-const { container, innerContainer, youHaveNothingContainer, search, list } =
-  styles
+const { container, innerContainer, search, list } = styles
 
 //
 const filterList = {
@@ -27,105 +26,84 @@ const filterList = {
 const TrailsMainContent = () => {
   const { keyword } = useParams()
   const location = useLocation()
+  const [isLoading, setIsLoading] = useState(true)
   const [trailData, setTrailData] = useState(null)
-  const [filterOption, setFilterOption] = useState({
-    difficulty: '',
-    distance: '',
-    duration: ''
+  const [filteredData, setFilteredData] = useState(null)
+  const [filter, setFilter] = useState({
+    難易度: '',
+    里程: '',
+    所需時間: ''
   })
 
-  const handleFilterOption = async ({ type, value }) => {
-    if (type === '難易度') {
-      try {
-        if (value !== '') {
-          setFilterOption((pre) => ({
-            ...pre,
-            difficulty: (item) => {
-              const difficultyValues = item.difficulty.split('-')
-              return difficultyValues.includes(value)
-            }
-          }))
-        } else {
-          setFilterOption((pre) => ({
-            ...pre,
-            difficulty: ''
-          }))
-        }
-      } catch (error) {
-        console.error(error)
+  const filteredDifficulty = () => {
+    if (filter.難易度 !== '') {
+      setFilteredData((pre) =>
+        pre.filter((item) => {
+          const difficultyValues = item.difficulty.split('-')
+          return difficultyValues.includes(filter.難易度)
+        })
+      )
+    }
+  }
+
+  const filteredDistance = () => {
+    if (filter.里程 !== '') {
+      if (filter.里程 === '5公里以內') {
+        setFilteredData((pre) =>
+          pre.filter((item) => {
+            return parseFloat(item.distance.match(/\d+(\.\d+)?/)) < 5
+          })
+        )
+      } else if (filter.里程 === '5 - 10公里') {
+        setFilteredData((pre) =>
+          pre.filter((item) => {
+            const distance = parseFloat(item.distance.match(/\d+(\.\d+)?/))
+            return distance >= 5 && distance <= 10
+          })
+        )
+      } else if (filter.里程 === '10公里以上') {
+        setFilteredData((pre) =>
+          pre.filter((item) => {
+            return parseFloat(item.distance.match(/\d+(\.\d+)?/)) > 10
+          })
+        )
       }
     }
-    if (type === '里程') {
-      try {
-        if (value === '5公里以內') {
-          setFilterOption((pre) => ({
-            ...pre,
-            distance: (item) => {
-              return parseFloat(item.distance.match(/\d+(\.\d+)?/)) < 5
-            }
-          }))
-        } else if (value === '5 - 10公里') {
-          setFilterOption((pre) => ({
-            ...pre,
-            distance: (item) => {
-              const distance = parseFloat(item.distance.match(/\d+(\.\d+)?/))
-              return distance >= 5 && distance <= 10
-            }
-          }))
-        } else if (value === '10公里以上') {
-          setFilterOption((pre) => ({
-            ...pre,
-            distance: (item) => {
-              return parseFloat(item.distance.match(/\d+(\.\d+)?/)) > 10
-            }
-          }))
-        } else {
-          setFilterOption((pre) => ({
-            ...pre,
-            distance: ''
-          }))
-        }
-      } catch (error) {
-        console.error(error)
+  }
+
+  const filteredTime = () => {
+    if (filter.所需時間 !== '') {
+      if (filter.所需時間 === '單日行程') {
+        setFilteredData((pre) =>
+          pre.filter((item) => {
+            return !item.duration.split('').includes('天')
+          })
+        )
+      } else if (filter.所需時間 === '多日行程') {
+        setFilteredData((pre) =>
+          pre.filter((item) => {
+            return (
+              item.duration.split('').includes('天') &&
+              Number(/(\d+)\s+天/g.exec(item.duration)[1]) >= 1 &&
+              Number(/(\d+)\s+天/g.exec(item.duration)[1]) <= 7
+            )
+          })
+        )
+      } else if (filter.所需時間 === '超過1週') {
+        setFilteredData((pre) =>
+          pre.filter((item) => {
+            return (
+              item.duration.split('').includes('天') &&
+              Number(/(\d+)\s+天/g.exec(item.duration)[1]) >= 7
+            )
+          })
+        )
       }
     }
-    if (type === '所需時間') {
-      setFilterOption((pre) => ({ ...pre, duration: value }))
-      try {
-        if (value === '單日行程') {
-          setFilterOption((pre) => ({
-            ...pre,
-            duration: (item) => {
-              return !item.duration.split('').includes('天')
-            }
-          }))
-        } else if (value === '多日行程') {
-          setFilterOption((pre) => ({
-            ...pre,
-            duration: (item) => {
-              return item.duration.split('').includes('天')
-            }
-          }))
-        } else if (value === '超過1週') {
-          setFilterOption((pre) => ({
-            ...pre,
-            duration: (item) => {
-              return (
-                item.duration.split('').includes('天') &&
-                Number(/(\d+)\s+天/g.exec(item.duration)[1]) >= 7
-              )
-            }
-          }))
-        } else {
-          setFilterOption((pre) => ({
-            ...pre,
-            duration: ''
-          }))
-        }
-      } catch (error) {
-        console.error(error)
-      }
-    }
+  }
+
+  const handleFilter = () => {
+    filteredDifficulty(filteredDistance(filteredTime()))
   }
 
   useEffect(() => {
@@ -133,49 +111,53 @@ const TrailsMainContent = () => {
       if (location.pathname === '/search/allTrails') {
         const { trails } = await getAllTrails()
         setTrailData(trails)
+        setFilteredData(trails)
       } else {
         const { trails } = await searchTrailByKeyword(keyword)
         setTrailData(trails)
+        setFilteredData(trails)
       }
-      if (filterOption.difficulty !== '') {
-        setTrailData((pre) =>
-          pre.filter((item) => filterOption.difficulty(item))
-        )
-      }
-      if (filterOption.distance !== '') {
-        setTrailData((pre) => pre.filter((item) => filterOption.distance(item)))
-      }
-      if (filterOption.duration !== '') {
-        setTrailData((pre) => pre.filter((item) => filterOption.duration(item)))
-      }
+      setIsLoading(false)
     }
     getData()
-  }, [location, keyword, filterOption])
+  }, [location, keyword])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      setFilteredData(trailData)
+      handleFilter()
+      setIsLoading(false)
+    }
+
+    fetchData()
+  }, [filter])
 
   return (
     <div className={container}>
       <div className={innerContainer}>
         <div className={search}>
-          <TrailsSearchBar type="trail" onFilterOption={handleFilterOption} />
-          <FilterToggole
-            filterList={filterList}
-            filterOption={filterOption}
-            onFilterOption={handleFilterOption}
-          />
+          <TrailsSearchBar type="trail" />
+          <FilterToggole filterList={filterList} setFilter={setFilter} />
         </div>
-        {trailData && trailData.length === 0 ? (
-          <div className={youHaveNothingContainer}>
-            <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+        {isLoading ? (
+          <div className={list}>
+            {Array.from({ length: 12 }).map((_, index) => (
+              <CardSkeleton key={index} />
+            ))}
           </div>
         ) : (
-          <div className={list}>
-            {trailData
-              ? trailData.map((item) => (
+          <div>
+            {filteredData && filteredData.length === 0 && (
+              <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+            )}
+            {filteredData && filteredData.length !== 0 && (
+              <div className={list}>
+                {filteredData.map((item) => (
                   <TrailsListCard key={item.id} data={item} />
-                ))
-              : Array.from({ length: 12 }).map((_, index) => (
-                  <CardSkeleton key={index} />
                 ))}
+              </div>
+            )}
           </div>
         )}
       </div>

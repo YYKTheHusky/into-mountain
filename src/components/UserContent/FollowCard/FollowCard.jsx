@@ -1,5 +1,5 @@
 import styles from './FollowCard.module.scss'
-import { SecondaryButton } from 'components/Button/Button'
+import Button from 'components/Button/Button'
 import { useNavigate } from 'react-router-dom'
 import iconUser, {
   ReactComponent as IconDefaultUser
@@ -47,14 +47,14 @@ const FollowerCard = ({ data, follow, onFollow }) => {
         <div className={cardTitle}>{follow.name}</div>
       </div>
       <div className={cardButton}>
-        <SecondaryButton
+        <Button
+          style="secondaryButton"
+          text={data.isFollow ? '追蹤中' : '關注'}
           onClick={(event) => {
             event.stopPropagation()
             onFollow?.({ isFollow: data.isFollow, id: theId })
           }}
-        >
-          {data.isFollow ? '追蹤中' : '關注'}
-        </SecondaryButton>
+        />
       </div>
     </div>
   )
