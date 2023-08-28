@@ -27,6 +27,7 @@ const {
 } = styles
 
 const Avt = ({ currentUserId, currentUserAvatar }) => {
+  console.log(currentUserAvatar == null)
   const navigate = useNavigate()
   if (!currentUserId) {
     return (
@@ -35,35 +36,30 @@ const Avt = ({ currentUserId, currentUserAvatar }) => {
         onClick={() => navigate('/login')}
       />
     )
-  } else {
-    if (currentUserAvatar === 'null') {
-      return (
-        <IconUserDefault
-          className={`${user} ${rightListIcon}`}
-          onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
-        />
-      )
-    }
   }
-  return (
-    <div
-      className={`${avatar} ${rightListIcon}`}
-      onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
-    >
-      <img src={currentUserAvatar} alt="" />
-    </div>
-  )
+  if (currentUserAvatar) {
+    return (
+      <div
+        className={`${avatar} ${rightListIcon}`}
+        onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
+      >
+        <img src={currentUserAvatar} alt="" />
+      </div>
+    )
+  } else {
+    return (
+      <IconUserDefault
+        className={`${user} ${rightListIcon}`}
+        onClick={() => navigate(`/user/${currentUserId}/myReviews`)}
+      />
+    )
+  }
 }
 
-const Nav = ({ updateCardInfo }) => {
+const Nav = ({ updateCardInfo, currentUserAvatar }) => {
   const [notiData, setNotiData] = useState(null)
   const navigate = useNavigate()
   const currentUserId = localStorage.getItem('currentUserId')
-  let currentUserAvatar = localStorage.getItem('currentUserAvatar')
-
-  useEffect(() => {
-    currentUserAvatar = localStorage.getItem('currentUserAvatar')
-  }, [updateCardInfo])
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
