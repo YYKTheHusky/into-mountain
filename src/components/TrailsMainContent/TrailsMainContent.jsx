@@ -14,7 +14,8 @@ import { getAllTrails, searchTrailByKeyword } from 'api/trail'
 import styles from './TrailsMainContent.module.scss'
 
 // style
-const { container, innerContainer, search, list } = styles
+const { container, innerContainer, search, list, youHaveNothingContainer } =
+  styles
 
 //
 const filterList = {
@@ -147,18 +148,22 @@ const TrailsMainContent = () => {
             ))}
           </div>
         ) : (
-          <div>
+          <>
             {filteredData && filteredData.length === 0 && (
-              <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
-            )}
-            {filteredData && filteredData.length !== 0 && (
-              <div className={list}>
-                {filteredData.map((item) => (
-                  <TrailsListCard key={item.id} data={item} />
-                ))}
+              <div className={youHaveNothingContainer}>
+                <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
               </div>
             )}
-          </div>
+            <div>
+              {filteredData && filteredData.length !== 0 && (
+                <div className={list}>
+                  {filteredData.map((item) => (
+                    <TrailsListCard key={item.id} data={item} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>
