@@ -27,7 +27,6 @@ const {
 } = styles
 
 const Avt = ({ currentUserId, currentUserAvatar }) => {
-  console.log(currentUserAvatar == null)
   const navigate = useNavigate()
   if (!currentUserId) {
     return (
