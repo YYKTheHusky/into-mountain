@@ -154,7 +154,6 @@ const TrailsMainContent = () => {
                 <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
               </div>
             )}
-            <div>
               {filteredData && filteredData.length !== 0 && (
                 <div className={list}>
                   {filteredData.map((item) => (
@@ -162,7 +161,6 @@ const TrailsMainContent = () => {
                   ))}
                 </div>
               )}
-            </div>
           </>
         )}
       </div>
