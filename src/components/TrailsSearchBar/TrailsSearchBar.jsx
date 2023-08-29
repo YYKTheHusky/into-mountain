@@ -11,19 +11,29 @@ const TrailsSearchBar = ({ type }) => {
   const navigate = useNavigate()
   const [keyword, setKeyword] = useState('')
 
-  const handleTrailSearch = () => {
+  const handleSearch = () => {
     if (keyword) {
-      navigate(`/search/trails/${keyword}`)
-    } else if (!keyword) {
-      navigate('/search/allTrails')
-    }
-  }
-
-  const handleReviewSearch = () => {
-    if (keyword) {
-      navigate(`/search/reviews/${keyword}`)
-    } else if (!keyword) {
-      navigate('/search/allReviews')
+      switch (type) {
+        case 'trail':
+          navigate(`/search/trails/${keyword}`)
+          break
+        case 'review':
+          navigate(`/search/reviews/${keyword}`)
+          break
+        default:
+          break
+      }
+    } else {
+      switch (type) {
+        case 'trail':
+          navigate('/search/allTrails')
+          break
+        case 'review':
+          navigate('/search/allReviews')
+          break
+        default:
+          break
+      }
     }
   }
 
@@ -31,14 +41,17 @@ const TrailsSearchBar = ({ type }) => {
     <div className={trailsSearchBarContainer}>
       <input
         type="text"
-        placeholder="請輸入路徑、山岳名相關名稱"
+        placeholder="請輸入路徑、山岳相關名稱"
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            handleSearch()
+          }
+        }}
       />
       <button>
-        <IconArrowRight
-          onClick={type === 'trail' ? handleTrailSearch : handleReviewSearch}
-        />
+        <IconArrowRight onClick={handleSearch} />
       </button>
     </div>
   )

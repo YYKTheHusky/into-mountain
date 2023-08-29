@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 
+// scss
+import styles from './TrailsMainContent.module.scss'
+
 // component
 import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
 import FilterToggole from 'components/FilterToggole/FilterToggole'
@@ -11,12 +14,10 @@ import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing
 
 // api
 import { getAllTrails, searchTrailByKeyword } from 'api/trail'
-import styles from './TrailsMainContent.module.scss'
 
 // style
-const { container, innerContainer, search, list } = styles
+const { container, innerContainer, search, list, nothing } = styles
 
-//
 const filterList = {
   難易度: ['低', '中', '高'],
   里程: ['5公里以內', '5 - 10公里', '10公里以上'],
@@ -124,14 +125,12 @@ const TrailsMainContent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true)
       setFilteredData(trailData)
       handleFilter()
-      setIsLoading(false)
     }
 
     fetchData()
-  }, [filter])
+  }, [filter, trailData])
 
   return (
     <div className={container}>
@@ -147,9 +146,11 @@ const TrailsMainContent = () => {
             ))}
           </div>
         ) : (
-          <div>
+          <>
             {filteredData && filteredData.length === 0 && (
-              <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+              <div className={nothing}>
+                <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+              </div>
             )}
             {filteredData && filteredData.length !== 0 && (
               <div className={list}>
@@ -158,7 +159,7 @@ const TrailsMainContent = () => {
                 ))}
               </div>
             )}
-          </div>
+          </>
         )}
       </div>
     </div>
