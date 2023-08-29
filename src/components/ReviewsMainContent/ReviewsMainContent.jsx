@@ -11,7 +11,9 @@ import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing
 // api
 import { getAllPost, searchPostByKeyword } from 'api/post'
 
+
 const { container, innerContainer, search, list, nothing } = styles
+
 
 const filterList = {
   步道類型: ['郊山', '百岳', '海外']
@@ -78,6 +80,7 @@ const ReviewsMainContent = () => {
         ) : (
           <>
             {filteredData && filteredData.length === 0 && (
+
               <div className={nothing}>
                 <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
               </div>

@@ -43,7 +43,7 @@ const MyFollower = ({ theUserId, onUpdateCardInfo }) => {
     }
     getUserFollowersAsync()
   }, [])
-console.log(followersList)
+
   return (
     <RightSideContainer title="粉絲">
       {followersList.length === 0 && !dataIsLoading && (

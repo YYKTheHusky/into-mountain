@@ -55,19 +55,35 @@ const BurgerMenu = ({ onBurgerToggle }) => {
           </div>
           <div className={accountList}>
             <div
-              onClick={() => handleNavigate(`/user/${currentUserId}/myReviews`)}
+              onClick={() => {
+                if (currentUserId) {
+                  handleNavigate(`/user/${currentUserId}/myReviews`)
+                } else {
+                  navigate('/login')
+                }
+              }}
             >
               關於我
             </div>
             <div
-              onClick={() =>
-                handleNavigate(`/user/${currentUserId}/trailCollection`)
-              }
+              onClick={() => {
+                if (currentUserId) {
+                  handleNavigate(`/user/${currentUserId}/trailCollection`)
+                } else {
+                  navigate('/login')
+                }
+              }}
             >
               我的收藏
             </div>
             <div
-              onClick={() => handleNavigate(`/user/${currentUserId}/myReviews`)}
+              onClick={() => {
+                if (currentUserId) {
+                  handleNavigate(`/user/${currentUserId}/myReviews`)
+                } else {
+                  navigate('/login')
+                }
+              }}
             >
               我的心得
             </div>

@@ -102,7 +102,12 @@ export default function UserPage() {
   return (
     <div className="container mx-auto">
       <div className={navDesk}>
-        <Nav className={navDesk} updateCardInfo={updateCardInfo} />
+        <Nav
+          className={navDesk}
+          updateCardInfo={updateCardInfo}
+          theUserData={theUserData}
+          currentUserAvatar={theUserData.avatar}
+        />
       </div>
       <div className={navMobile}>{currentScroll.upOrDown && <Nav />}</div>
       <div className={contentContainer}>
