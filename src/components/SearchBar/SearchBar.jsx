@@ -41,6 +41,11 @@ export function SearchBarMain() {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         ref={inputRef}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            handleTrailSearch()
+          }
+        }}
       />
       <img
         className={`cursor-point ${styles.searchArrowIcon}`}

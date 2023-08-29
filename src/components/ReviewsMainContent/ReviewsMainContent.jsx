@@ -7,12 +7,13 @@ import TrailsSearchBar from 'components/TrailsSearchBar/TrailsSearchBar'
 import FilterToggole from 'components/FilterToggole/FilterToggole'
 import ReviewListCard from 'components/ReviewsList/ReviewsListCard/ReviewsListCard'
 import CardSkeleton from 'components/Skeleton/CardSkeleton'
+import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 // api
 import { getAllPost, searchPostByKeyword } from 'api/post'
-import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 
-const { container, innerContainer, search, list, youHaveNothingContainer } =
-  styles
+
+const { container, innerContainer, search, list, nothing } = styles
+
 
 const filterList = {
   步道類型: ['郊山', '百岳', '海外']
@@ -56,14 +57,12 @@ const ReviewsMainContent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true)
       setFilteredData(reviewData)
       handleFilter()
-      setIsLoading(false)
     }
 
     fetchData()
-  }, [filter])
+  }, [filter, reviewData])
 
   return (
     <div className={container}>
@@ -81,7 +80,8 @@ const ReviewsMainContent = () => {
         ) : (
           <>
             {filteredData && filteredData.length === 0 && (
-              <div className={youHaveNothingContainer}>
+
+              <div className={nothing}>
                 <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
               </div>
             )}

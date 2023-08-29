@@ -3,6 +3,7 @@ import styles from 'components/TrailsInformation/InformationTable.module.scss'
 // component
 import Button from 'components/Button/Button'
 import Map from './Map'
+import TableDataRow from './TableDataRow'
 import { getTrailsGPX } from 'api/trail'
 
 export default function InformationTable({ data }) {
@@ -19,33 +20,26 @@ export default function InformationTable({ data }) {
   return (
     <div className={styles.tableContainer}>
       <table className={styles.tableOne}>
-        <tr>
-          <th>出發點</th>
-          <td>{data.startingPoint}</td>
-        </tr>
-        <tr>
-          <th>路線</th>
-          <td>{data.track}</td>
-        </tr>
-        <tr>
-          <th>備註</th>
-          <td>{data.notes}</td>
-        </tr>
-        <tr>
-          <th>地圖</th>
-          <td>
-            <div className={styles.buttonContainer}>
-              <Button
-                style="secondaryButton"
-                text="下載GPX"
-                onClick={handleDownload}
-              />
-            </div>
-            <div className={styles.mapContainer}>
-              <Map gpx={data.gpx} />
-            </div>
-          </td>
-        </tr>
+        <tbody>
+          <TableDataRow label="出發點" value={data.startingPoint} />
+          <TableDataRow label="路線" value={data.track} />
+          <TableDataRow label="備註" value={data.notes} />
+          <tr>
+            <th>地圖</th>
+            <td>
+              <div className={styles.buttonContainer}>
+                <Button
+                  style="secondaryButton"
+                  text="下載GPX"
+                  onClick={handleDownload}
+                />
+              </div>
+              <div className={styles.mapContainer}>
+                <Map gpx={data.gpx} />
+              </div>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   )

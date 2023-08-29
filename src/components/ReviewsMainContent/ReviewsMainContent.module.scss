@@ -24,6 +24,10 @@
     gap: 10px;
     grid-template-columns: repeat(4, 1fr);
   }
+  .nothing {
+    padding: 40px 60px;
+    width: 100%;
+  }
 }
 .youHaveNothingContainer {
   padding: 40px 60px;
@@ -52,6 +56,10 @@
   .innerContainer {
     .list {
       grid-template-columns: repeat(1, 1fr);
+    }
+    .nothing {
+      padding: 40px 60px;
+      width: 100%;
     }
   }
 }
