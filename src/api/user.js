@@ -141,10 +141,6 @@ export const editUserData = async ({ data }) => {
     formData.append('avatar', avatarFile)
     const reader = new FileReader()
     reader.readAsDataURL(data.avatar)
-    reader.onload = () => {
-      const avatarBase64 = reader.result
-      localStorage.setItem('currentUserAvatar', avatarBase64)
-    }
   }
 
   try {

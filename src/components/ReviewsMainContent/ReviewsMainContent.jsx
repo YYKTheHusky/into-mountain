@@ -11,7 +11,8 @@ import CardSkeleton from 'components/Skeleton/CardSkeleton'
 import { getAllPost, searchPostByKeyword } from 'api/post'
 import YouHaveNothing from 'components/UserContent/YouHaveNothing/YouHaveNothing'
 
-const { container, innerContainer, search, list } = styles
+const { container, innerContainer, search, list, youHaveNothingContainer } =
+  styles
 
 const filterList = {
   步道類型: ['郊山', '百岳', '海外']
@@ -78,9 +79,11 @@ const ReviewsMainContent = () => {
             ))}
           </div>
         ) : (
-          <div>
+          <>
             {filteredData && filteredData.length === 0 && (
-              <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+              <div className={youHaveNothingContainer}>
+                <YouHaveNothing robotDescription="沒有符合的搜尋結果" />
+              </div>
             )}
             {filteredData && filteredData.length !== 0 && (
               <div className={list}>
@@ -89,7 +92,7 @@ const ReviewsMainContent = () => {
                 ))}
               </div>
             )}
-          </div>
+          </>
         )}
       </div>
     </div>
