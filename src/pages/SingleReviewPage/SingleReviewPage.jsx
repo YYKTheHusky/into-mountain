@@ -138,13 +138,13 @@ export default function SingleReviewPage() {
                 <div className={styles.author}>
                   <div className={styles.authorInfo}>
                     <div className={styles.nameAndFollow}>
-                      <div className={`cursor-point ${styles.avatar}`}>
-                        <Avatar
-                          avatar={post.User.avatar}
-                          onClick={() =>
-                            navigate(`/user/${post.User.id}/myReviews`)
-                          }
-                        />
+                      <div
+                        className={`cursor-point ${styles.avatar}`}
+                        onClick={(e) =>
+                          navigate(`/user/${post.User.id}/myReviews`)
+                        }
+                      >
+                        <Avatar avatar={post.User.avatar} />
                       </div>
                       <span
                         className={`cursor-point ${styles.authorName}`}
