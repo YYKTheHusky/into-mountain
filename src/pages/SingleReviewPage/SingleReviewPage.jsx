@@ -179,7 +179,7 @@ export default function SingleReviewPage() {
                     </div>
                   </div>
                 </div>
-                {/* 案讚、收藏、檢舉、分享按鈕 */}
+                {/* 按讚、收藏、檢舉、分享按鈕 */}
                 <div className={styles.socialButtons}>
                   <div
                     className={`cursor-point ${styles.like}`}
@@ -190,7 +190,7 @@ export default function SingleReviewPage() {
                         post.isLike && styles.likeActive
                       }`}
                     />
-                    <span>案讚</span>
+                    <span>按讚</span>
                   </div>
                   <div
                     className={`cursor-point ${styles.favorite}`}
