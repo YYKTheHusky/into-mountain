@@ -1,5 +1,5 @@
 .modalContainer {
-  height: 530px;
+  height: 370px;
   width: 375px;
   border-radius: 16px;
   background: #ffffff;
@@ -11,9 +11,10 @@
   }
   .text {
     margin-top: 24px;
-    margin-bottom: 24px;
+    display: flex;
+    justify-content: flex-end;
     .links {
-      margin-left: 18px;
+      margin: 0 4px;
       color: var(--main-color);
     }
   }
