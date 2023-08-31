@@ -9,8 +9,8 @@ import Button from 'components/Button/Button'
 import InputBox from 'components/Input/InputBox'
 
 // svg
-import googleLogo from 'assets/icons/google-logo.svg'
-import facebookLogo from 'assets/icons/facebook-logo.svg'
+// import googleLogo from 'assets/icons/google-logo.svg'
+// import facebookLogo from 'assets/icons/facebook-logo.svg'
 
 // api
 import { signUp, login } from 'api/auth.js'
@@ -30,6 +30,8 @@ export default function SignUpModal() {
     passwordCheck.trim().length === 0 ||
     email.trim().length === 0
 
+  const emailRegex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+
   // 註冊功能
   const handleSignUp = async () => {
     // 檢查輸入內容
@@ -38,10 +40,17 @@ export default function SignUpModal() {
         icon: 'warning',
         title: '密碼與確認密碼不同!'
       })
+      return
     } else if (isError || isNotValid) {
       Toast.fire({
         icon: 'warning',
         title: '請檢查輸入內容!'
+      })
+      return
+    } else if (!emailRegex.test(email)) {
+      Toast.fire({
+        icon: 'warning',
+        title: '請確認email是否合法!'
       })
       return
     }
@@ -122,14 +131,14 @@ export default function SignUpModal() {
           前往登入
         </Link>
       </div>
-      <div className={styles.buttonContainer}>
+      {/* <div className={styles.buttonContainer}>
         <Button style="primaryButtonWhite" text="使用google註冊" />
         <img className={styles.logo} src={googleLogo} alt={googleLogo} />
       </div>
       <div className={styles.buttonContainer}>
         <Button style="primaryButtonWhite" text="使用facebook註冊" />
         <img className={styles.logo} src={facebookLogo} alt={facebookLogo} />
-      </div>
+      </div> */}
     </div>
   )
 }

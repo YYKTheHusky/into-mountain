@@ -9,8 +9,8 @@ import Button from 'components/Button/Button'
 import InputBox from 'components/Input/InputBox'
 
 // svg
-import googleLogo from 'assets/icons/google-logo.svg'
-import facebookLogo from 'assets/icons/facebook-logo.svg'
+// import googleLogo from 'assets/icons/google-logo.svg'
+// import facebookLogo from 'assets/icons/facebook-logo.svg'
 
 // api
 import { login } from 'api/auth.js'
@@ -71,19 +71,22 @@ export default function LoginModal() {
         <Button style="primaryButtonBright" text="登入" onClick={handleLogin} />
       </div>
       <div className={styles.text}>
-        還不是會員嗎?
         <Link className={styles.links} to="/regist">
-          前往註冊
+          註冊
+        </Link>
+        ·
+        <Link className={styles.links} to="/admin/login">
+          後台登入
         </Link>
       </div>
-      <div className={styles.buttonContainer}>
+      {/* <div className={styles.buttonContainer}>
         <Button style="primaryButtonWhite" text="使用google登入" />
         <img className={styles.logo} src={googleLogo} alt={googleLogo} />
       </div>
       <div className={styles.buttonContainer}>
         <Button style="primaryButtonWhite" text="使用facebook登入" />
         <img className={styles.logo} src={facebookLogo} alt={facebookLogo} />
-      </div>
+      </div> */}
     </div>
   )
 }
