@@ -103,7 +103,6 @@ export default function UserPage() {
       getUserFollowingAsync()
     }
   }, [])
-
   return (
     <div className="container mx-auto">
       <div className={navDesk}>
