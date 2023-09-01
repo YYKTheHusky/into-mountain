@@ -8,11 +8,10 @@
     width: 100px;
     border-radius: 50%;
     overflow: hidden;
-
     img {
       height: 100%;
       width: 100%;
-      background-position: center center;
+      object-fit: cover;
     }
     .defaultImg {
       width: 100%;
@@ -34,10 +33,10 @@
       opacity: 0.9;
     }
   }
-  .text{
+  .text {
     font-size: 10px;
     margin-top: 3px;
-    span{
+    span {
       color: red;
       font-weight: 700;
     }

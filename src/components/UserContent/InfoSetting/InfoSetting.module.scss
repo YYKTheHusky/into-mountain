@@ -137,3 +137,11 @@
     --a: 360deg;
   }
 }
+
+@media (max-width: 991px) {
+  .infoSettingContainer {
+    .infoItem {
+      z-index: -5;
+    }
+  }
+}
