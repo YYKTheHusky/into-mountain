@@ -117,17 +117,19 @@ const MyCollection = ({ theUserId }) => {
   return (
     <>
       <RightSideContainer title="收藏">
-        <MyCollectionTab tabStep={tabStep} onTapStep={handleTapStep} />
-        <TrailCollectionList
-          tabStep={tabStep}
-          trailListData={trailListData}
-          dataIsLoading={dataIsLoading}
-        />
-        <PostCollectionList
-          tabStep={tabStep}
-          reviewListData={reviewListData}
-          dataIsLoading={dataIsLoading}
-        />
+        <div>
+          <MyCollectionTab tabStep={tabStep} onTapStep={handleTapStep} />
+          <TrailCollectionList
+            tabStep={tabStep}
+            trailListData={trailListData}
+            dataIsLoading={dataIsLoading}
+          />
+          <PostCollectionList
+            tabStep={tabStep}
+            reviewListData={reviewListData}
+            dataIsLoading={dataIsLoading}
+          />
+        </div>
       </RightSideContainer>
     </>
   )
