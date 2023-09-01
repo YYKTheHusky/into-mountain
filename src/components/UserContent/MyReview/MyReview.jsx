@@ -11,7 +11,7 @@ import { getUserPosts, getUserAllPosts, deletePost } from 'api/user'
 
 const { myReviewContainer } = styles
 
-const MyReview = ({ theUserId }) => {
+const MyReview = ({ theUserId, onUpdateCardInfo }) => {
   const [dataList, setDataList] = useState([])
   const [dataIsLoading, setDataIsLoading] = useState(true)
 
@@ -19,6 +19,7 @@ const MyReview = ({ theUserId }) => {
     try {
       await deletePost(id)
       setDataList((pre) => pre.filter((item) => item.id !== id))
+      onUpdateCardInfo()
     } catch (error) {
       console.error(error)
     }

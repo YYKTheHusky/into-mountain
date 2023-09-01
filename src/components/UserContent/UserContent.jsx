@@ -18,7 +18,7 @@ const UserContent = ({
   if (acitveContent === 'myReviews') {
     return (
       <div className={userContentContainer}>
-        <MyReview theUserId={theUserId} />
+        <MyReview theUserId={theUserId} onUpdateCardInfo={onUpdateCardInfo} />
       </div>
     )
   } else if (
