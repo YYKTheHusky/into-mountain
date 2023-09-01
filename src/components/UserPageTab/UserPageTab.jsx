@@ -4,6 +4,7 @@ import { ReactComponent as IconTag } from 'assets/icons/icon-tag.svg'
 import { ReactComponent as IconFeather } from 'assets/icons/icon-feather.svg'
 import { clsx } from 'clsx'
 import { useLocation } from 'react-router-dom'
+
 const {
   userPageTabContainer,
   tabType1,
@@ -40,6 +41,7 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
   const id = localStorage.getItem('currentUserId')
   const location = useLocation()
   const thePathId = location.pathname.split('/')[2]
+
   return (
     <div className={tabType2}>
       <div
@@ -56,7 +58,8 @@ const TabType2 = ({ acitveContent, onAcitveContent }) => {
       <div
         className={clsx(
           tabType2Selection,
-          acitveContent === 'trailCollection' && active
+          location.pathname.split('/')[3].split('Collection').length > 1 &&
+            active
         )}
         data-active={acitveContent}
         onClick={() => onAcitveContent('trailCollection')}

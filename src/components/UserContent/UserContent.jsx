@@ -12,8 +12,7 @@ const UserContent = ({
   theUserData,
   acitveContent,
   theUserId,
-  onUpdateCardInfo,
-  followingList
+  onUpdateCardInfo
 }) => {
   if (acitveContent === 'myReviews') {
     return (
@@ -27,7 +26,7 @@ const UserContent = ({
   ) {
     return (
       <div className={userContentContainer}>
-        <MyCollection theUserId={theUserId} />
+        <MyCollection theUserId={theUserId} acitveContent={acitveContent} />
       </div>
     )
   } else if (acitveContent === 'notification') {

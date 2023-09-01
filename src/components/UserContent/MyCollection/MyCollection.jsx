@@ -116,20 +116,22 @@ const MyCollection = ({ theUserId }) => {
 
   return (
     <>
-      <RightSideContainer title="收藏">
-        <div>
+      <RightSideContainer
+        title="收藏"
+        collectionTab={
           <MyCollectionTab tabStep={tabStep} onTapStep={handleTapStep} />
-          <TrailCollectionList
-            tabStep={tabStep}
-            trailListData={trailListData}
-            dataIsLoading={dataIsLoading}
-          />
-          <PostCollectionList
-            tabStep={tabStep}
-            reviewListData={reviewListData}
-            dataIsLoading={dataIsLoading}
-          />
-        </div>
+        }
+      >
+        <TrailCollectionList
+          tabStep={tabStep}
+          trailListData={trailListData}
+          dataIsLoading={dataIsLoading}
+        />
+        <PostCollectionList
+          tabStep={tabStep}
+          reviewListData={reviewListData}
+          dataIsLoading={dataIsLoading}
+        />
       </RightSideContainer>
     </>
   )
