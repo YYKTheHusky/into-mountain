@@ -116,8 +116,12 @@ const MyCollection = ({ theUserId }) => {
 
   return (
     <>
-      <RightSideContainer title="收藏">
-        <MyCollectionTab tabStep={tabStep} onTapStep={handleTapStep} />
+      <RightSideContainer
+        title="收藏"
+        collectionTab={
+          <MyCollectionTab tabStep={tabStep} onTapStep={handleTapStep} />
+        }
+      >
         <TrailCollectionList
           tabStep={tabStep}
           trailListData={trailListData}

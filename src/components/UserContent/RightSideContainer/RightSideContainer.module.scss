@@ -40,11 +40,15 @@
       background-color: transparent;
       border-radius: 10px;
     }
+    &.collect {
+      height: 88%;
+    }
   }
 }
 
 @media (max-width: 991px) {
   .rightSideContainer {
+    max-width: initial;
     background-color: initial;
     box-shadow: initial;
     .listContent {

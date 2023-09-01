@@ -35,6 +35,7 @@ export default function UserPage() {
   })
   const [followingList, setFollowingList] = useState([])
   const [updateCardInfo, setUpdateCardInfo] = useState(false)
+  const [currentUserAvatar, setCurrentUserAvatar] = useState(null)
   const location = useLocation()
   const navigate = useNavigate()
   const thePathArray = location.pathname.split('/')
@@ -74,7 +75,11 @@ export default function UserPage() {
     const getUserDataAsync = async (id) => {
       try {
         const data = await getUserData(id)
+        const theLoginUser = await getUserData(
+          localStorage.getItem('currentUserId')
+        )
         setTheUserData(data)
+        setCurrentUserAvatar(theLoginUser.avatar)
       } catch (error) {
         console.error(error)
       }
@@ -106,7 +111,7 @@ export default function UserPage() {
           className={navDesk}
           updateCardInfo={updateCardInfo}
           theUserData={theUserData}
-          currentUserAvatar={theUserData.avatar}
+          currentUserAvatar={currentUserAvatar}
         />
       </div>
       <div className={navMobile}>{currentScroll.upOrDown && <Nav />}</div>

@@ -41,7 +41,9 @@ const TrailsSearchBar = ({ type }) => {
     <div className={trailsSearchBarContainer}>
       <input
         type="text"
-        placeholder="請輸入路徑、山岳相關名稱"
+        placeholder={
+          type === 'trail' ? '請輸入路徑、山岳相關名稱' : '請輸入心得標題'
+        }
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(event) => {

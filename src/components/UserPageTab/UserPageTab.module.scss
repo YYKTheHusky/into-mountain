@@ -1,5 +1,4 @@
 .userPageTabContainer {
-  width: 100%;
   .tabType1 {
     width: 250px;
     background-color: var(--dark-0);
@@ -31,29 +30,32 @@
 
 @media (max-width: 991px) {
   .userPageTabContainer {
+    z-index: 10;
     .tabType1 {
       display: none;
     }
     .tabType2 {
-      padding-top: 10px;
-      text-align: center;
+      max-width: 100%;
+      line-height: 30px;
       display: flex;
+      align-items: center;
       font-size: 18px;
       font-weight: 500;
       .tabType2Selection {
+        text-align: center;
         cursor: pointer;
         height: 100%;
         padding: 10px 20px 5px 20px;
-        width: 40%;
+        width: 50%;
         border-bottom: 3px solid var(--dark-50);
         &:hover {
           opacity: 0.9;
         }
       }
       .active {
-        background-color: var(--dark-0);
         color: var(--main-color);
         border-color: var(--main-color);
+        background-color: var(--dark-20);
         .icon {
           fill: var(--main-color);
         }

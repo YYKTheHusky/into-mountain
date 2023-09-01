@@ -3,7 +3,6 @@ import { clsx } from 'clsx'
 const { myCollectionTab, tabItem, active } = styles
 
 const MyCollectionTab = ({ tabStep, onTapStep }) => {
-
   return (
     <div className={myCollectionTab}>
       <div
