@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/into-mountain/static/css/main.eac79512.css",
-    "main.js": "/into-mountain/static/js/main.494c44b0.js",
+    "main.css": "/into-mountain/static/css/main.19e6db2a.css",
+    "main.js": "/into-mountain/static/js/main.60b9ea8a.js",
     "static/js/787.e8148e4e.chunk.js": "/into-mountain/static/js/787.e8148e4e.chunk.js",
     "static/media/SignUpPage-photo.jpg": "/into-mountain/static/media/SignUpPage-photo.856bd107271056e44a0b.jpg",
     "static/media/AdminPage-photo.JPG": "/into-mountain/static/media/AdminPage-photo.22243bb486c2ee6c2f09.JPG",
@@ -34,7 +34,6 @@
     "static/media/Slider-right-icon.svg": "/into-mountain/static/media/Slider-right-icon.4d1fcff11c346c771846b7f3b4ce01b5.svg",
     "static/media/icon-gear.svg": "/into-mountain/static/media/icon-gear.92e74837913e087dece80d9fc41642da.svg",
     "static/media/share-icon.svg": "/into-mountain/static/media/share-icon.2d0d1bc3894d11816ff796d3390c90fe.svg",
-    "static/media/google-logo.svg": "/into-mountain/static/media/google-logo.d4ae43e17a851f41211bff857f4501a6.svg",
     "static/media/search-icon.svg": "/into-mountain/static/media/search-icon.732c5718e8c324a1a3e8972939b8911f.svg",
     "static/media/search-arrow-icon.svg": "/into-mountain/static/media/search-arrow-icon.b733d201dce2207dad3c72672ec55696.svg",
     "static/media/icon-arrow-right.svg": "/into-mountain/static/media/icon-arrow-right.120815507a35b30ba8c88db854bc2008.svg",
@@ -59,12 +58,12 @@
     "static/media/icon-chevron-right.svg": "/into-mountain/static/media/icon-chevron-right.44b4b08d506fc77c9799feeb7c5c85e4.svg",
     "static/media/icon-add.svg": "/into-mountain/static/media/icon-add.920fc624fa2bb5079c8050c223cb9501.svg",
     "static/media/icon-minus.svg": "/into-mountain/static/media/icon-minus.672f7d7bd46d2e4c3d229012dfe58feb.svg",
-    "main.eac79512.css.map": "/into-mountain/static/css/main.eac79512.css.map",
-    "main.494c44b0.js.map": "/into-mountain/static/js/main.494c44b0.js.map",
+    "main.19e6db2a.css.map": "/into-mountain/static/css/main.19e6db2a.css.map",
+    "main.60b9ea8a.js.map": "/into-mountain/static/js/main.60b9ea8a.js.map",
     "787.e8148e4e.chunk.js.map": "/into-mountain/static/js/787.e8148e4e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eac79512.css",
-    "static/js/main.494c44b0.js"
+    "static/css/main.19e6db2a.css",
+    "static/js/main.60b9ea8a.js"
   ]
 }
