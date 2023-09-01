@@ -36,7 +36,7 @@
     }
     .tabType2 {
       max-width: 100%;
-      padding-top: 10px;
+      line-height: 30px;
       display: flex;
       align-items: center;
       font-size: 18px;
@@ -53,9 +53,9 @@
         }
       }
       .active {
-        background-color: var(--dark-0);
         color: var(--main-color);
         border-color: var(--main-color);
+        background-color: var(--dark-20);
         .icon {
           fill: var(--main-color);
         }
