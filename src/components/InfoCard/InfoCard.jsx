@@ -21,7 +21,8 @@ const {
   countTitle2,
   information,
   infoSetGroup,
-  infoSetIcon
+  infoSetIcon,
+  countStyle
 } = styles
 
 const InfoCard = ({ data, onAcitveContent, theUserId, followingList }) => {
@@ -71,19 +72,19 @@ const InfoCard = ({ data, onAcitveContent, theUserId, followingList }) => {
           <div className={aboutMe}>{data.introduction}</div>
           <span></span>
           <div className={count}>
-            <div>
+            <div className={countStyle}>
               <div className={countTitle}>關注</div>
               <div onClick={() => onAcitveContent('following')}>
                 {data.followingCount}
               </div>
             </div>
-            <div>
+            <div className={countStyle}>
               <div className={countTitle}>粉絲</div>
               <div onClick={() => onAcitveContent('follower')}>
                 {data.followerCount}
               </div>
             </div>
-            <div>
+            <div className={countStyle}>
               <div className={countTitle2}>被收藏</div>
               <div>{data.beFavoritedPostCount}</div>
             </div>
