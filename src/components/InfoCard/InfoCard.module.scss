@@ -64,6 +64,12 @@
       display: flex;
       justify-content: space-evenly;
       padding-top: 10px;
+      .countStyle {
+        width: 30%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
       div {
         text-align: center;
       }
