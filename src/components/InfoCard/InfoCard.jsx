@@ -85,7 +85,7 @@ const InfoCard = ({ data, onAcitveContent, theUserId, followingList }) => {
             </div>
             <div>
               <div className={countTitle2}>被收藏</div>
-              <div>{data.favoritePostCount}</div>
+              <div>{data.beFavoritedPostCount}</div>
             </div>
           </div>
           <InfoCardBtn
