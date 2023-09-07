@@ -125,7 +125,6 @@ const TrailsMainContent = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(filter)
       setFilteredData(trailData)
       handleFilter()
     }
