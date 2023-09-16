@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'https://trail-finder-srxv5uvvaa-de.a.run.app/api'
+const baseURL = 'https://trail-finder-srxv5uvvaa-uc.a.run.app/api'
 
 // 追蹤用戶
 export const followUser = async (userId) => {

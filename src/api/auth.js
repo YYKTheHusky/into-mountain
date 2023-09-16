@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'https://trail-finder-srxv5uvvaa-de.a.run.app/api'
+const baseURL = 'https://trail-finder-srxv5uvvaa-uc.a.run.app/api'
 
 // 使用者登入
 export const login = async ({ email, password }) => {
