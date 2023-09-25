@@ -1,23 +1,8 @@
 import styles from 'components/ToolTips/AvatarToolTip.module.scss'
 import { useState } from 'react'
 
-export default function AvatarToolTip({ name }) {
+export default function AvatarToolTip({ contributor }) {
   const [isVisible, setIsVisible] = useState(false)
-
-  const getPersonData = (name) => {
-    switch (name) {
-      case 'Ya-Yun':
-        return { name: 'Ya-Yun', title: 'Front-End' }
-      case 'Kevin':
-        return { name: 'Kevin', title: 'Back-End' }
-      case 'Chia-Hsuan':
-        return { name: 'Chia-Hsuan', title: 'Back-End' }
-      case 'Willy':
-        return { name: 'Willy', title: 'Front-End' }
-    }
-  }
-
-  const person = getPersonData(name)
 
   return (
     <div
@@ -27,8 +12,8 @@ export default function AvatarToolTip({ name }) {
     >
       {isVisible && (
         <div className={styles.tooltip}>
-          <div className={styles.title}>{person.title}</div>
-          <div className={styles.Name}>{person.name}</div>
+          <div className={styles.title}>{contributor.title}</div>
+          <div className={styles.Name}>{contributor.name}</div>
         </div>
       )}
     </div>
