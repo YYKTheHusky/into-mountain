@@ -90,14 +90,15 @@ const Pagination = ({
       {data.length > 0 && (
         <div className={paginationContainer}>
           <ul className={pageNumbers}>
-            {currentPage > 1 && (
-              <button
-                onClick={handlePreBtn}
-                disabled={currentPage === pages[0]}
-              >
-                上一頁
-              </button>
-            )}
+            <button
+              style={{
+                zIndex: currentPage === 1 ? '-1' : ''
+              }}
+              onClick={handlePreBtn}
+              disabled={currentPage === pages[0]}
+            >
+              上一頁
+            </button>
 
             {pageDecrementBtn}
             {renderPageNumbers}
