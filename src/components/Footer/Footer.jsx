@@ -9,10 +9,30 @@ import AvatarToolTip from 'components/ToolTips/AvatarToolTip'
 
 export default function Footer() {
   const contributors = [
-    { name: 'Ya-Yun', link: 'https://github.com/magic9701', image: Kelly },
-    { name: 'Willy', link: 'https://github.com/ywcheng1207', image: Ywj },
-    { name: 'Chia-Hsuan', link: 'https://github.com/jiasyuanchu', image: Chc },
-    { name: 'Kevin', link: 'https://github.com/av124773', image: Kevin }
+    {
+      name: 'Ya-Yun',
+      link: 'https://github.com/magic9701',
+      image: Kelly,
+      title: 'Front-End'
+    },
+    {
+      name: 'Willy',
+      link: 'https://github.com/ywcheng1207',
+      image: Ywj,
+      title: 'Front-End'
+    },
+    {
+      name: 'Chia-Hsuan',
+      link: 'https://github.com/jiasyuanchu',
+      image: Chc,
+      title: 'Back-End'
+    },
+    {
+      name: 'Kevin',
+      link: 'https://github.com/av124773',
+      image: Kevin,
+      title: 'Back-End'
+    }
   ]
 
   return (
@@ -35,7 +55,7 @@ export default function Footer() {
                 key={contributor.name}
               >
                 <img src={contributor.image} alt={contributor.name} />
-                <AvatarToolTip name={contributor.name} />
+                <AvatarToolTip contributor={contributor} />
               </a>
             ))}
           </div>

@@ -36,7 +36,7 @@ const TrailsMainContent = () => {
     所需時間: ''
   })
 
-  const filteredDifficulty = () => {
+  const filteredDifficulty = async () => {
     if (filter.難易度 !== '' && filter.難易度 !== undefined) {
       setFilteredData((pre) =>
         pre.filter((item) => {
@@ -47,7 +47,7 @@ const TrailsMainContent = () => {
     }
   }
 
-  const filteredDistance = () => {
+  const filteredDistance = async () => {
     if (filter.里程 !== '' && filter.里程 !== undefined) {
       if (filter.里程 === '5公里以內') {
         setFilteredData((pre) =>
@@ -72,7 +72,7 @@ const TrailsMainContent = () => {
     }
   }
 
-  const filteredTime = () => {
+  const filteredTime = async () => {
     if (filter.所需時間 !== '' && filter.所需時間 !== undefined) {
       if (filter.所需時間 === '單日行程') {
         setFilteredData((pre) =>
@@ -103,8 +103,14 @@ const TrailsMainContent = () => {
     }
   }
 
-  const handleFilter = () => {
-    filteredDifficulty(filteredDistance(filteredTime()))
+  // const handleFilter = () => {
+  //   filteredDifficulty(filteredDistance(filteredTime()))
+  // }
+
+  const handleFilter = async () => {
+    await filteredDifficulty()
+    await filteredDistance()
+    await filteredTime()
   }
 
   useEffect(() => {
