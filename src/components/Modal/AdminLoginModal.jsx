@@ -10,8 +10,8 @@ import InputBox from 'components/Input/InputBox'
 import { adminLogin } from 'api/admin'
 
 export default function AdminLoginModal() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('root@example.com')
+  const [password, setPassword] = useState('1234')
   const [isError, setIsError] = useState('')
   const navigate = useNavigate()
 
