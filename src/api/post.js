@@ -1,11 +1,10 @@
-import axiosInstance from 'api/AxiosInstance.js'
 import axios from 'axios'
-const baseURL = 'https://trail-finder-srxv5uvvaa-uc.a.run.app/api'
+const baseURL = 'https://trail-ds7h7cqykq-uc.a.run.app/api'
 
 // 取得所有已發布文章
 export const getAllPost = async () => {
   try {
-    const { data } = await axiosInstance.get(`/posts`)
+    const { data } = await axios.get(`${baseURL}/posts`)
     if (data) {
       return { status: data.status, posts: data.data }
     }
@@ -19,7 +18,7 @@ export const getAllPost = async () => {
 // 取得指定一篇文章
 export const getOnePost = async (postId) => {
   try {
-    const { data } = await axiosInstance.get(`/posts/${postId}`)
+    const { data } = await axios.get(`${baseURL}/posts/${postId}`)
     if (data) {
       return { status: data.status, postData: data.data }
     }
@@ -203,8 +202,8 @@ export const deletePost = async (postId) => {
 // 搜尋心得
 export const searchPostByKeyword = async (keyword) => {
   try {
-    const { data } = await axiosInstance.get(
-      `/posts/search/?keyword=${keyword}`
+    const { data } = await axios.get(
+      `${baseURL}/posts/search/?keyword=${keyword}`
     )
     if (data) {
       return { success: true, posts: data.data }
@@ -218,8 +217,8 @@ export const searchPostByKeyword = async (keyword) => {
 // 取得最新前N筆資料
 export const getTopPosts = async (limit) => {
   try {
-    const { data } = await axiosInstance.get(
-      `/posts?sort=createdAt&limit=${limit}`
+    const { data } = await axios.get(
+      `${baseURL}/posts?sort=createdAt&limit=${limit}`
     )
     if (data) {
       return { success: true, posts: data.data }

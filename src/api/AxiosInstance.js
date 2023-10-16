@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'https://trail-finder-srxv5uvvaa-uc.a.run.app/api'
+const baseURL = 'https://trail-ds7h7cqykq-uc.a.run.app/api'
 const axiosInstance = axios.create({ baseURL })
 
 axiosInstance.interceptors.request.use(

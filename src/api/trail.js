@@ -1,11 +1,10 @@
-import axiosInstance from 'api/AxiosInstance.js'
 import axios from 'axios'
-const baseURL = 'https://trail-finder-srxv5uvvaa-uc.a.run.app/api'
+const baseURL = 'https://trail-ds7h7cqykq-uc.a.run.app/api'
 
 // 取得所有路徑
 export const getAllTrails = async () => {
   try {
-    const { data } = await axiosInstance.get(`/trails`)
+    const { data } = await axios.get(`${baseURL}/trails`)
     if (data) {
       return { success: true, trails: data.data }
     }
@@ -18,8 +17,8 @@ export const getAllTrails = async () => {
 // 取得N筆路徑
 export const getNTrails = async (limit) => {
   try {
-    const { data } = await axiosInstance.get(
-      `/trails?limit=${limit}&sort=favorites`
+    const { data } = await axios.get(
+      `${baseURL}/trails?limit=${limit}&sort=favorites`
     )
     if (data) {
       return { success: true, trails: data.data }
@@ -33,7 +32,7 @@ export const getNTrails = async (limit) => {
 // 取得指定一條路徑
 export const getOneTrail = async (trailId) => {
   try {
-    const { data } = await axiosInstance.get(`/trails/${trailId}`)
+    const { data } = await axios.get(`${baseURL}/trails/${trailId}`)
     if (data) {
       return { success: true, trailData: data.data }
     }
@@ -76,8 +75,8 @@ export const deleteFavoriteTrail = async (trailId) => {
 // 搜尋路線
 export const searchTrailByKeyword = async (keyword) => {
   try {
-    const { data } = await axiosInstance.get(
-      `/trails/search/?keyword=${keyword}`
+    const { data } = await axios.get(
+      `${baseURL}/trails/search/?keyword=${keyword}`
     )
     if (data) {
       return { success: true, trails: data.data }
@@ -91,7 +90,7 @@ export const searchTrailByKeyword = async (keyword) => {
 // 取得路況回報
 export const getConditions = async (trailId) => {
   try {
-    const { data } = await axiosInstance.get(`/trails/conditions/${trailId}`)
+    const { data } = await axios.get(`${baseURL}/trails/conditions/${trailId}`)
     if (data) {
       return { success: true, report: data.data }
     }
@@ -122,7 +121,7 @@ export const postCondition = async ({ trailId, description }) => {
 // 下載gpx
 export const getTrailsGPX = async (trailId) => {
   try {
-    const { data } = await axiosInstance.get(`/trails/gpx/${trailId}`)
+    const { data } = await axios.get(`${baseURL}/trails/gpx/${trailId}`)
     if (data) {
       return { success: true, gpx: data.data.gpx }
     }
