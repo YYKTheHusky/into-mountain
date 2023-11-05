@@ -10,7 +10,6 @@ export const formatDateTime = (inputDatetime) => {
     // 返回轉換後的結果
     return `${year}.${month}.${day}`
   } catch (error) {
-    // 如果輸入的日期時間字符串格式不正確，則返回空字符串或錯誤信息，視情況而定
     return 'Invalid input datetime format.'
   }
 }
@@ -29,7 +28,6 @@ export const formatDateWithTime = (inputDatetime) => {
     // 返回轉換後的結果
     return `${year}.${month}.${day} ${hours}:${minutes}`
   } catch (error) {
-    // 如果輸入的日期時間字符串格式不正確，則返回空字符串或錯誤信息，視情況而定
     return 'Invalid input datetime format.'
   }
 }
