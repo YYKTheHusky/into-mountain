@@ -1,6 +1,6 @@
 import axios from 'axios'
 import axiosInstance from 'api/AxiosInstance.js'
-const baseURL = 'https://trail-ds7h7cqykq-uc.a.run.app/api'
+const baseURL = 'https://trail-finder-rnzzjxx3wa-uc.a.run.app/api'
 
 // 取得特定使用者資料
 export const getUserData = async (id) => {

@@ -1,5 +1,4 @@
 import styles from './AdminNav.module.scss'
-import { ReactComponent as IconPerson } from 'assets/icons/icon-person.svg'
 // import { ReactComponent as IconNotification2 } from 'assets/icons/icon-notification2.svg'
 import { ReactComponent as IconUserSlash } from 'assets/icons/icon-user-large-slash.svg'
 import { ReactComponent as IconUserGroup } from 'assets/icons/icon-user-group.svg'
@@ -9,6 +8,7 @@ import { ReactComponent as IconLogout } from 'assets/icons/icon-logout.svg'
 import { clsx } from 'clsx'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Avatar } from 'components/Avatar/Avatar'
 const {
   adminNavContainer,
   headerInfo,
@@ -19,8 +19,8 @@ const {
   footer,
   footerTrans,
   icon,
-  logout,
   adminPhoto,
+  logout,
   active
 } = styles
 
@@ -47,13 +47,9 @@ const AdminNav = ({ onPage, page }) => {
         }}
       >
         <div className={listItem} title="管理員">
-          {localStorage.getItem('adminAvatar') ? (
-            <div className={adminPhoto}>
-              <img src={localStorage.getItem('adminAvatar')} alt="" />
-            </div>
-          ) : (
-            <IconPerson className={icon} />
-          )}
+          <div className={adminPhoto}>
+            <Avatar avatar={localStorage.getItem('adminAvatar')} />
+          </div>
           <span className={clsx(listItemLabel, navExpand && expand)}>
             {localStorage.getItem('adminName')
               ? localStorage.getItem('adminName')
