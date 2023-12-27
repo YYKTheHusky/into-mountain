@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'https://trail-finder-rnzzjxx3wa-uc.a.run.app/api'
+const baseURL = 'https://trail-finder-ov2vgkaf5a-uc.a.run.app/api'
 
 // 取得所有路徑
 export const getAllTrails = async () => {
