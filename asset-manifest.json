@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/into-mountain/static/css/main.f62363e2.css",
-    "main.js": "/into-mountain/static/js/main.be7c1d48.js",
-    "static/js/787.e8148e4e.chunk.js": "/into-mountain/static/js/787.e8148e4e.chunk.js",
+    "main.css": "/into-mountain/static/css/main.88bb91a9.css",
+    "main.js": "/into-mountain/static/js/main.b2a72410.js",
+    "static/js/453.c6c6e198.chunk.js": "/into-mountain/static/js/453.c6c6e198.chunk.js",
     "static/media/SignUpPage-photo.jpg": "/into-mountain/static/media/SignUpPage-photo.856bd107271056e44a0b.jpg",
     "static/media/AdminPage-photo.JPG": "/into-mountain/static/media/AdminPage-photo.22243bb486c2ee6c2f09.JPG",
     "static/media/LoginPage-photo.JPG": "/into-mountain/static/media/LoginPage-photo.b0702f505054a36648f6.JPG",
@@ -57,12 +57,12 @@
     "static/media/icon-chevron-right.svg": "/into-mountain/static/media/icon-chevron-right.44b4b08d506fc77c9799feeb7c5c85e4.svg",
     "static/media/icon-add.svg": "/into-mountain/static/media/icon-add.920fc624fa2bb5079c8050c223cb9501.svg",
     "static/media/icon-minus.svg": "/into-mountain/static/media/icon-minus.672f7d7bd46d2e4c3d229012dfe58feb.svg",
-    "main.f62363e2.css.map": "/into-mountain/static/css/main.f62363e2.css.map",
-    "main.be7c1d48.js.map": "/into-mountain/static/js/main.be7c1d48.js.map",
-    "787.e8148e4e.chunk.js.map": "/into-mountain/static/js/787.e8148e4e.chunk.js.map"
+    "main.88bb91a9.css.map": "/into-mountain/static/css/main.88bb91a9.css.map",
+    "main.b2a72410.js.map": "/into-mountain/static/js/main.b2a72410.js.map",
+    "453.c6c6e198.chunk.js.map": "/into-mountain/static/js/453.c6c6e198.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f62363e2.css",
-    "static/js/main.be7c1d48.js"
+    "static/css/main.88bb91a9.css",
+    "static/js/main.b2a72410.js"
   ]
 }
