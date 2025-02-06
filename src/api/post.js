@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'https://trail-finder-rnzzjxx3wa-uc.a.run.app/api'
+const baseURL = 'https://trail-finder-d60e010ea135.herokuapp.com/api'
 
 // 取得所有已發布文章
 export const getAllPost = async () => {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'https://trail-finder-rnzzjxx3wa-uc.a.run.app/api'
+const baseURL = 'https://trail-finder-d60e010ea135.herokuapp.com/api'
 const axiosInstance = axios.create({ baseURL })
 
 axiosInstance.interceptors.request.use(

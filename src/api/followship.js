@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'https://trail-finder-rnzzjxx3wa-uc.a.run.app/api'
+const baseURL = 'https://trail-finder-d60e010ea135.herokuapp.com/api'
 
 // 追蹤用戶
 export const followUser = async (userId) => {
