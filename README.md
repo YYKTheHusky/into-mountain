@@ -68,7 +68,7 @@
 
 ### 前端
 
-- Ya-Yun(Kelly) [https://github.com/magic9701](https://github.com/magic9701)
+- Ya-Yun(Kelly) [https://github.com/magic9701](https://github.com/YYKTheHusky)
 - Willy [https://github.com/ywcheng1207](https://github.com/ywcheng1207)
 
 ### 後端
